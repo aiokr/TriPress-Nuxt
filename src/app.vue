@@ -5,7 +5,11 @@
 </template>
 
 <style>
-:root {
+body {
   background: #f8fafc;
+}
+
+.dark body {
+  background: #18181B;
 }
 </style>
