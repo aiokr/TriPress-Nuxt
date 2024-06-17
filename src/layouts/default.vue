@@ -6,6 +6,7 @@ import Header from '@/components/Header.vue';
   <main class="w-screen h-screen overflow-auto">
     <div class="common-layout">
       <Header />
+      <slot />
     </div>
   </main>
 </template>
