@@ -1,5 +1,5 @@
 <template>
-  <main class="bg-white/60 dark:bg-dbg/60 backdrop-blur-lg fixed top-0 left-0 right-0 px-4">
+  <main class="bg-zinc-50/80 dark:bg-dbg/80 backdrop-blur-lg fixed top-0 left-0 right-0 px-4 z-50">
     <div class="container max-w-[1200px] mx-auto px-3 flex items-center justify-between  h-16">
       <router-link to="/">
         <img src="https://imgur.lzmun.com/picgo/after2022/tripper2colorfull.png_avatar" alt="logo"
@@ -7,6 +7,7 @@
       </router-link>
       <div class="flex gap-6 items-center justify-center">
         <router-link to="/" class="headerLink">Home</router-link>
+        <router-link to="/posts" class="headerLink">Posts</router-link>
         <router-link to="/about" class="headerLink">About</router-link>
         <button v-if="colorMode.value === 'dark'" @click="handleColorMode" class="themeBtn">
           <IconMoon />

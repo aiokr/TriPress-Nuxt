@@ -5,7 +5,7 @@
       <div class="text-2xl font-bold text-text dark:text-dtext drop-shadow-md block md:hidden">山涤余霭，宇暧微霄。<br />有风自南，翼彼新苗。</div>
     </section>
     <section class="container max-w-[800px] mx-auto px-4">
-      <NuxtLink v-for="post in posts" :to="post._path" class="postCard block w-full hover:shadow-2xl rounded-xl mb-6 bg-white dark:bg-zinc-800">
+      <NuxtLink v-for="post in posts" :to="post._path" class="postCard block w-full hover:shadow-2xl rounded-xl mb-12 bg-white dark:bg-zinc-800">
         <img v-if="post.cover" :src="post.cover" alt="cover" class="h-[180px] md:h-[233px] w-full object-cover rounded-xl" />
         <div class="min-h-[160px] p-8 pt-7 md:p-12 md:pt-10 rounded-b-xl">
           <div class="text-xs text-zinc-400 dark:text-dtext/80 pb-4">

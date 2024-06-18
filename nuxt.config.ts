@@ -12,7 +12,22 @@ export default defineNuxtConfig({
       pathPrefix: true,
     },
   ],
+  app: {
+    head: {
+      charset: 'utf-8',
+      viewport: 'width=device-width, initial-scale=1',
+    }
+  },
   content: {
+    highlight: {
+      theme: {
+        default: 'github-light',
+        dark: 'github-dark',
+      },
+    },
+    markdown: {
+      anchorLinks: false,
+    }
   },
   colorMode: {
     preference: "system",
