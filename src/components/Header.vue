@@ -8,10 +8,10 @@
       <div class="flex gap-6 items-center justify-center">
         <router-link to="/" class="headerLink">Home</router-link>
         <router-link to="/about" class="headerLink">About</router-link>
-        <button v-if="colorMode.preference === 'dark'" @click="colorMode.preference = 'light'" class="themeBtn">
+        <button v-if="colorMode.value === 'dark'" @click="handleColorMode" class="themeBtn">
           <IconMoon />
         </button>
-        <button v-else @click="colorMode.preference = 'dark'" class="themeBtn">
+        <button v-else-if="colorMode.value === 'light'" @click="handleColorMode" class="themeBtn">
           <IconSun />
         </button>
       </div>
@@ -23,6 +23,14 @@
 import IconSun from './icons/IconSun.vue';
 import IconMoon from './icons/IconMoon.vue';
 const colorMode = useColorMode();
+
+const handleColorMode = () => {
+  if (colorMode.preference === 'dark') {
+    colorMode.preference = 'light';
+  } else {
+    colorMode.preference = 'dark';
+  }
+};
 
 </script>
 
@@ -52,6 +60,6 @@ const colorMode = useColorMode();
 }
 
 .themeBtn {
-  @apply block text-text dark:text-dtext;
+  @apply text-text dark:text-dtext;
 }
 </style>
