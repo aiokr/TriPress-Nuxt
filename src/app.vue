@@ -5,6 +5,8 @@
 </template>
 
 <script setup lang="ts">
+import '@/assets/article.css'
+
 useHead({
   title: 'Tripper Press - Take Photo, Think Seriously',
   meta: [

@@ -66,7 +66,7 @@ useSeoMeta({
 })
 
 const queryCategory = ref("");
-const queryPosts = ref("");
+const queryPosts = ref<any>();
 const isAllPosts = ref(true);
 
 const posts = await queryContent("/post").only(["_path", "title", "date", "category", "cover"]).sort({ date: -1 }).find();

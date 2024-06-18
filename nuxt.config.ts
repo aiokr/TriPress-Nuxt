@@ -11,6 +11,10 @@ export default defineNuxtConfig({
       path: '~/components/',
       pathPrefix: true,
     },
+    {
+      path: '~/components/content/',
+      pathPrefix: true,
+    }
   ],
   app: {
     head: {
