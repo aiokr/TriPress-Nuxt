@@ -1,7 +1,7 @@
 <template>
   <ContentDoc>
     <template v-slot="{ doc }">
-      <article class="md:pt-36 pb-24 container max-w-[1000px] mx-auto">
+      <article class="md:pt-36 pb-36 container max-w-[1000px] mx-auto">
         <div class="md:rounded-xl bg-white dark:bg-zinc-800">
           <!--Post Cover-->
           <div>

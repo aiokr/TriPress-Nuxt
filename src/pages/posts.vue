@@ -12,7 +12,7 @@
             <img v-if="post.cover" :src="post.cover" alt="cover" class="w-full object-cover rounded-xl aspect-square" />
             <div class="pl-4 pt-2 md:px-6 md:pt-2 rounded-b-xl col-span-4">
               <div class="text-xs text-zinc-400 dark:text-dtext/80 pb-2">
-                <span>{{ new Date(post.date).toISOString().split('T')[0] }}</span>
+                <span v-if="post.date">{{ new Date(post.date).toISOString().split('T')[0] }}</span>
                 <span v-if="post.category" class="mx-2">·</span>
                 <span v-if="post.category">{{ post.category }}</span>
               </div>
@@ -51,11 +51,25 @@
 <script lang="ts" setup>
 import { ref, onMounted } from "vue";
 
+useHead({
+  title: '文章 - Tripper Press',
+  meta: [
+    { name: 'description', content: 'Take Photo, Think Seriousl' }
+  ]
+})
+
+useSeoMeta({
+  title: '文章 - Tripper Press',
+  ogTitle: '文章 - Tripper Press',
+  description: 'Take Photo, Think Seriousl',
+  ogDescription: 'Take Photo, Think Seriousl'
+})
+
 const queryCategory = ref("");
 const queryPosts = ref("");
 const isAllPosts = ref(true);
 
-const posts = await queryContent("/").only(["_path", "title", "date", "category", "cover"]).sort({ date: -1 }).find();
+const posts = await queryContent("/post").only(["_path", "title", "date", "category", "cover"]).sort({ date: -1 }).find();
 const allCategories = posts.map((post) => post.category).filter((category) => category);
 
 const handleChangeCategory = (category: string) => {
