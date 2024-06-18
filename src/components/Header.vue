@@ -8,33 +8,21 @@
       <div class="flex gap-6 items-center justify-center">
         <router-link to="/" class="headerLink">Home</router-link>
         <router-link to="/about" class="headerLink">About</router-link>
-        <button @click="handleColorScheme" class="themeBtn">
-          <IconSun v-if="colorScheme === 'light'" />
-          <IconMoon v-else />
+        <button v-if="colorMode.preference === 'dark'" @click="colorMode.preference = 'light'" class="themeBtn">
+          <IconMoon />
+        </button>
+        <button v-else @click="colorMode.preference = 'dark'" class="themeBtn">
+          <IconSun />
         </button>
       </div>
     </div>
   </main>
 </template>
 
-<script setup>
-import { ref, onMounted } from 'vue'
-import { useColorSchemeStore } from '~/stores/colorSchemeStore';
+<script setup lang="ts">
 import IconSun from './icons/IconSun.vue';
 import IconMoon from './icons/IconMoon.vue';
-
-const colorSchemeStore = useColorSchemeStore()
-const colorScheme = ref(colorSchemeStore.mode)
-
-const handleColorScheme = () => {
-  if (colorScheme.value === 'light') {
-    colorScheme.value = 'dark'
-    colorSchemeStore.toggleMode('dark')
-  } else {
-    colorScheme.value = 'light'
-    colorSchemeStore.toggleMode('light')
-  }
-}
+const colorMode = useColorMode();
 
 </script>
 

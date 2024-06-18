@@ -11,8 +11,9 @@
   },
   "dependencies": {
     "@nuxt/content": "^2.12.1",
-    "@pinia/nuxt": "^0.5.1",
     "@nuxtjs/tailwindcss": "^6.12.0",
+    "@nuxtjs/color-mode": "^3.4.1",
+    "@pinia/nuxt": "^0.5.1",
     "nuxt": "^3.12.2",
     "pinia": "^2.1.7",
     "vue": "^3.4.29",
