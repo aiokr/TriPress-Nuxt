@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss', "@nuxt/content", "@pinia/nuxt", "@nuxtjs/color-mode", "@nuxtjs/turnstile"],
+  modules: ['@nuxtjs/tailwindcss', "@nuxt/content", "@pinia/nuxt", "@nuxtjs/color-mode", "@nuxtjs/turnstile", "@vueuse/motion/nuxt"],
   srcDir: 'src/',
   imports: {
     dirs: ['./stores']
