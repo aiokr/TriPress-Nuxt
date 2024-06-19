@@ -18,13 +18,19 @@
   </main>
   <!-- Dock -->
   <div class="fixed bottom-6 w-full flex justify-center">
-    <div id="linksDock" class=" rounded-lg w-max px-3 h-24 flex justify-start items-end gap-3"
+    <div id="linksDock" class=" rounded-lg w-max p-10 flex justify-start items-end gap-3"
       @mouseenter="onMouseenter" @mousemove="onMousemove" @mouseleave="onMouseleave">
-      <div v-for="i in sectionList" :key="i.index"
-        :style="`width: ${iconOriWidth}px; height: ${iconOriWidth}px; background-color: ${currectSection === i.index ? '#71afdd40' : '#22283110'}`"
-        class="linksDockItem flex items-center justify-center aspect-square rounded-full">
-        <component :is="i.icon" class="w-6 h-6" />
-      </div>
+      <button v-for="i in sectionList" :key="i.index"
+        :style="`width: ${iconWidth}px; height: ${iconWidth}px; background-color: ${currentSection === i.index ? '#71afdd40' : '#E2E2E233'}`"
+        class="linksDockItem flex items-center justify-center aspect-square rounded-full" @click="currentSection = currentSection + 1">
+        <component :is="i.icon" />
+      </button>
+      <div class="linksDockItem !w-0 border" :style="`height: ${iconWidth}px;`" />
+      <NuxtLink v-for="link in links" :key="link.link" :to="link.link" target="_blank"
+        :style="`width: ${iconWidth}px; height: ${iconWidth}px; background-color: #22283110'}`"
+        class="linksDockItem flex items-center justify-center aspect-square rounded-full bg-dtext/20 hover:bg-dtext/40 transition-colors">
+        <component :is="link.icon" />
+      </NuxtLink>
     </div>
   </div>
 </template>
@@ -35,6 +41,8 @@ import { scroll, animate } from "motion";
 
 import IconsTwitter from '~/components/icons/Twitter.vue';
 import IconYoutube from '~/components/icons/Youtube.vue';
+import IconHome from '~/components/icons/Home.vue';
+import IconSkill from '~/components/icons/Skill.vue';
 
 useHead({
   title: '关于 - Tripper Press',
@@ -52,7 +60,7 @@ useSeoMeta({
 
 // 页面幻灯 //
 
-const currectSection = ref(0);
+const currentSection = ref(0);
 
 onMounted(() => {
 });
@@ -80,12 +88,12 @@ const sectionList = [
   {
     index: 0,
     title: 'Cover',
-    icon: IconsTwitter
+    icon: IconHome
   },
   {
     index: 1,
-    title: 'Cover',
-    icon: IconYoutube
+    title: 'Skill',
+    icon: IconSkill
   }
 ]
 
@@ -114,7 +122,7 @@ const onMouseenter = (e) => {
   isMouseIntoDock.value = true;
   setTimeout(() => {
     isMouseIntoDock.value = false;
-  }, 120);
+  }, 200);
 
   const x = e.clientX;
   const y = e.clientY;
@@ -135,7 +143,7 @@ const onMouseenter = (e) => {
     const targetWidth = iconNewWidth;
     const targetHeight = iconNewWidth;
     // 持续时间
-    const duration = 160;
+    const duration = 120;
 
     const startTime = performance.now(); // 动画开始时间
 
