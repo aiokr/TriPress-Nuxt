@@ -3,12 +3,12 @@
     <section class="h-[calc(80vh-64px)] w-full mt-[10vh] flex justify-center items-center">
       <div class="">
         <div class="text-4xl font-bold p-2">你好，我是</div>
-        <div class="inline-block text-8xl font-bold marked p-2">aiokr</div>
-        <div v-motion id="linksDock" class="border rounded-lg w-max mt-8 px-3 h-11 flex justify-start items-end"
+        <div class="inline-block text-8xl font-bold marked p-2 mb-8">aiokr</div>
+        <div id="linksDock" class="border rounded-lg w-max px-3 h-16 flex justify-start items-center gap-3"
           @mouseenter="onMouseenter" @mousemove="onMousemove" @mouseleave="onMouseleave">
           <NuxtLink v-for="link in links" :key="link.link" :to="link.link" target="_blank"
-            :style="'width:' + link.width + 'px; height:' + iconWidth.value + 'px;'"
-            class="linksDockItem flex items-center justify-center aspect-square rounded-full hover:bg-dtext/40 transition-colors">
+            :style="'width:' + iconWidth + 'px; height:' + iconWidth + 'px;'"
+            class="linksDockItem flex items-center justify-center aspect-square rounded-full bg-dtext/20 hover:bg-dtext/40 transition-colors">
             <component :is="link.icon" />
           </NuxtLink>
         </div>
@@ -25,7 +25,6 @@
 </template>
 
 <script setup>
-import { useMotions } from '@vueuse/motion'
 import IconsTwitter from '~/components/icons/Twitter.vue';
 import IconYoutube from '~/components/icons/Youtube.vue';
 
@@ -61,8 +60,8 @@ const links = ref([
   }
 ])
 
-let iconOriWidth = 42;
-let iconBigWidth = 64;
+let iconOriWidth = 44;
+let iconBigWidth = 72;
 
 
 // Dock 元素
@@ -76,10 +75,63 @@ onMounted(() => {
   linksDockItem.value = document.querySelectorAll('.linksDockItem');
 });
 
+const { state, style: elementStyle } = reactiveStyle({
+  opacity: 0,
+  backgroundColor: 'blue',
+})
+
 const isMouseIntoDock = ref(false)
 
-const onMouseenter = () => {
+const onMouseenter = (e) => {
   isMouseIntoDock.value = true;
+  setTimeout(() => {
+    isMouseIntoDock.value = false;
+  }, 120);
+
+  const x = e.clientX;
+  const y = e.clientY;
+  const dockRect = linksDock.value?.getBoundingClientRect(); // 获取 Dock 元素的位置
+  const isMouseInDock = x > dockRect.x && x < dockRect.x + dockRect.width && y > dockRect.y && y < dockRect.y + dockRect.height; // 鼠标是否在 Dock 元素内
+
+  linksDockItem.value.forEach((item, index) => {
+    const itemRect = item.getBoundingClientRect(); // 获取图标元素的位置
+    const isMouseInItem = x > itemRect.x && x < itemRect.x + itemRect.width && y > itemRect.y && y < itemRect.y + itemRect.height; // 鼠标是否在图标元素内
+
+    const distance = Math.sqrt(Math.pow(x - itemRect.x - itemRect.width / 2, 2) + Math.pow(y - itemRect.y - itemRect.height / 2, 2)); // 计算鼠标与图标的距离
+    const iconNewWidth = iconOriWidth + (iconBigWidth - iconOriWidth) * (1 - distance / 240); // 计算图标新的大小
+
+    // 当前
+    const currentWidth = parseInt(item.style.width);
+    const currentHeight = parseInt(item.style.height);
+    // 目标
+    const targetWidth = iconNewWidth;
+    const targetHeight = iconNewWidth;
+    // 持续时间
+    const duration = 160;
+
+    const startTime = performance.now(); // 动画开始时间
+
+    // 动画函数
+    const animate = (timestamp) => {
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / duration, 1); // Calculate the progress of the animation
+
+      const newWidth = currentWidth + (targetWidth - currentWidth) * progress;
+      const newHeight = currentHeight + (targetHeight - currentHeight) * progress;
+
+      if (isMouseInDock && distance < 240) {
+        item.style.width = newWidth + 'px';
+        item.style.height = newHeight + 'px';
+      }
+
+      if (progress < 1) {
+        requestAnimationFrame(animate); // Continue the animation
+      }
+    };
+
+    requestAnimationFrame(animate);
+  });
+
 }
 
 // 鼠标移动事件
@@ -97,7 +149,7 @@ const onMousemove = (e) => {
     const distance = Math.sqrt(Math.pow(x - itemRect.x - itemRect.width / 2, 2) + Math.pow(y - itemRect.y - itemRect.height / 2, 2)); // 计算鼠标与图标的距离
     const iconNewWidth = iconOriWidth + (iconBigWidth - iconOriWidth) * (1 - distance / 240); // 计算图标新的大小
 
-    if (isMouseInDock && distance < 240) {
+    if (isMouseInDock && !isMouseIntoDock.value && distance < 240) {
       item.style.width = iconNewWidth + 'px';
       item.style.height = iconNewWidth + 'px';
     }
