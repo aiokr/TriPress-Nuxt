@@ -1,30 +1,38 @@
 <template>
-  <main class="container mx-auto">
-    <section class="h-[calc(80vh-64px)] w-full mt-[10vh] flex justify-center items-center">
-      <div class="">
+  <main class="container mx-auto flex flex-col">
+    <section class="h-[calc(80vh-64px)] mt-[10vh] mb-[10vh] flex justify-center items-center">
+      <div>
         <div class="text-4xl font-bold p-2">你好，我是</div>
         <div class="inline-block text-8xl font-bold marked p-2 mb-8">aiokr</div>
-        <div id="linksDock" class="border rounded-lg w-max px-3 h-16 flex justify-start items-center gap-3"
-          @mouseenter="onMouseenter" @mousemove="onMousemove" @mouseleave="onMouseleave">
-          <NuxtLink v-for="link in links" :key="link.link" :to="link.link" target="_blank"
-            :style="'width:' + iconWidth + 'px; height:' + iconWidth + 'px;'"
-            class="linksDockItem flex items-center justify-center aspect-square rounded-full bg-dtext/20 hover:bg-dtext/40 transition-colors">
-            <component :is="link.icon" />
-          </NuxtLink>
-        </div>
       </div>
     </section>
+    <!--
     <article class="container max-w-[800px] mx-auto">
       <ContentDoc>
         <template v-slot="{ doc }">
           <ContentRenderer :value="doc" />
         </template>
-      </ContentDoc>
-    </article>
+</ContentDoc>
+</article>
+-->
   </main>
+  <!-- Dock -->
+  <div class="fixed bottom-6 w-full flex justify-center">
+    <div id="linksDock" class=" rounded-lg w-max px-3 h-24 flex justify-start items-end gap-3"
+      @mouseenter="onMouseenter" @mousemove="onMousemove" @mouseleave="onMouseleave">
+      <div v-for="i in sectionList" :key="i.index"
+        :style="`width: ${iconOriWidth}px; height: ${iconOriWidth}px; background-color: ${currectSection === i.index ? '#71afdd40' : '#22283110'}`"
+        class="linksDockItem flex items-center justify-center aspect-square rounded-full">
+        <component :is="i.icon" class="w-6 h-6" />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue';
+import { scroll, animate } from "motion";
+
 import IconsTwitter from '~/components/icons/Twitter.vue';
 import IconYoutube from '~/components/icons/Youtube.vue';
 
@@ -42,30 +50,50 @@ useSeoMeta({
   ogDescription: 'Take Photo, Think Seriousl'
 })
 
+// 页面幻灯 //
+
+const currectSection = ref(0);
+
+onMounted(() => {
+});
+
+
+// Dock 图标 //
+
 // 默认图标宽度
 let iconWidth = ref(42);
 
 const links = ref([
   {
     title: 'X',
-    width: iconWidth.value,
     link: 'https://x.com/skomobi',
     icon: IconsTwitter
   },
   {
     title: 'Youtube',
-    width: iconWidth.value,
     link: 'https://youtube.com/@tripress',
     icon: IconYoutube
   }
 ])
+
+const sectionList = [
+  {
+    index: 0,
+    title: 'Cover',
+    icon: IconsTwitter
+  },
+  {
+    index: 1,
+    title: 'Cover',
+    icon: IconYoutube
+  }
+]
 
 let iconOriWidth = 44;
 let iconBigWidth = 72;
 
 
 // Dock 元素
-import { ref, onMounted } from 'vue';
 
 const linksDock = ref(null);
 const linksDockItem = ref([]);
@@ -190,10 +218,6 @@ const onMouseleave = () => {
   });
   isMouseIntoDock.value = true;
 }
-
-
-
-
 </script>
 
 <style scoped>

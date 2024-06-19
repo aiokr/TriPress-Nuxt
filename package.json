@@ -16,6 +16,7 @@
     "@nuxtjs/turnstile": "^0.8.0",
     "@pinia/nuxt": "^0.5.1",
     "@vueuse/motion": "^2.2.3",
+    "motion": "^10.18.0",
     "nuxt": "^3.12.2",
     "pinia": "^2.1.7",
     "vue": "^3.4.29",
