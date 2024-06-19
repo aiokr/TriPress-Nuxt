@@ -1,14 +1,18 @@
 <template>
   <ContentDoc>
     <template v-slot="{ doc }">
-      <article class="md:pt-36 pb-36 container max-w-[1000px] mx-auto">
+      <article class="md:pt-24 pb-36 container max-w-[1000px] mx-auto">
         <div class="md:rounded-xl bg-white dark:bg-zinc-800">
           <!--Post Cover-->
-          <div>
-            <img :src="doc.cover" alt="cover" class="w-full h-[360px] object-cover md:rounded-xl" />
+          <div class="w-full object-cover md:rounded-t-xl bg-center bg-cover"
+            :style="'background-image: url(' + doc.cover + ');'">
+            <div class="bg-gradient-to-t from-white to-white/60 dark:from-zinc-800 dark:to-zinc-800/40">
+              <div class="pt-16 md:pt-32 pb-24 px-4 container max-w-[800px] mx-auto ">
+                <h1 class="text-3xl font-semibold text-text dark:text-dtext">{{ doc.title }}</h1>
+              </div>
+            </div>
           </div>
           <div class="container max-w-[800px] px-4 mx-auto pb-12">
-            <h1 class="pt-12 py-8 text-2xl text-text dark:text-dtext">{{ doc.title }}</h1>
             <ContentRenderer :value="doc" />
           </div>
         </div>
@@ -37,6 +41,4 @@ useSeoMeta({
 
 </script>
 
-<style>
-
-</style>
+<style></style>

@@ -2,7 +2,7 @@
 title: "宣布 Tripper Press @ Nuxt"
 date: 2024-06-17 00:00:00
 category: "开发"
-slug: "tripper-press-nuxt"
+slug: "release-tripper-nuxt"
 cover: "https://imgur.lzmun.com/tricms/1712709442394-20230218-web.jpeg_itp"
 ---
 

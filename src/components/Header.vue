@@ -1,5 +1,5 @@
 <template>
-  <main class="bg-zinc-50/80 dark:bg-dbg/80 backdrop-blur-lg fixed top-0 left-0 right-0 px-4 z-50">
+  <main class="bg-zinc-50/80 dark:bg-dbg/80 backdrop-blur-lg sticky top-0 px-4 z-50">
     <div class="container max-w-[1200px] mx-auto px-3 flex items-center justify-between  h-16">
       <router-link to="/">
         <img src="https://imgur.lzmun.com/picgo/after2022/tripper2colorfull.png_avatar" alt="logo"

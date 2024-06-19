@@ -1,6 +1,6 @@
 <template>
   <main class="container mx-auto">
-    <section class="h-[80vh] w-full mt-[10vh] flex justify-center items-center">
+    <section class="h-[calc(80vh-64px)] w-full mt-[10vh] flex justify-center items-center">
       <div class="">
         <div class="text-4xl font-bold p-2">你好，我是</div>
         <div class="text-8xl font-bold marked p-2">aiokr</div>

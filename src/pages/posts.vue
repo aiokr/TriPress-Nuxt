@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <section class="container max-w-[1200px] mx-auto pt-24 px-4">
+    <section class="container max-w-[1200px] mx-auto pt-12 px-4">
       <div class="pb-6">
         <div class="text-2xl font-bold text-text dark:text-dtext pb-6">文章</div>
         <hr />
@@ -37,9 +37,9 @@
         </div>
         <div class="md:col-span-1">
           <div class="sticky top">
-            <div class="text-lg font-bold text-text dark:text-dtext pb-3">分类</div>
-            <button class="block py-1 text-text dark:text-dtext" @click="handleChangeCategory('')">全部文章</button>
-            <button class="block py-1 text-text dark:text-dtext" v-for="i in allCategories"
+            <div class="text-lg font-bold text-text dark:text-dtext pb-3 px-1">分类</div>
+            <button class="block py-1 text-text dark:text-dtext px-1" @click="handleChangeCategory('')">全部文章</button>
+            <button class="block py-1 text-text dark:text-dtext px-1" v-for="i in allCategories"
               :class="i === queryCategory ? 'marked' : ''" @click="handleChangeCategory(i)">{{ i }}</button>
           </div>
         </div>
@@ -70,7 +70,7 @@ const queryPosts = ref<any>();
 const isAllPosts = ref(true);
 
 const posts = await queryContent("/post").only(["_path", "title", "date", "category", "cover"]).sort({ date: -1 }).find();
-const allCategories = posts.map((post) => post.category).filter((category) => category);
+const allCategories = Array.from(new Set(posts.map((post) => post.category).filter((category) => category !== undefined)));
 
 const handleChangeCategory = (category: string) => {
   queryCategory.value = category;
