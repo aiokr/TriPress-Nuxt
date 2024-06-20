@@ -1,10 +1,41 @@
 <template>
   <main class="container mx-auto flex flex-col">
-    <section class="h-[calc(80vh-64px)] mt-[10vh] mb-[10vh] flex justify-center items-center">
+    <div class="aboutCover h-[calc(80vh)] mt-[calc(10vh-64px)] mb-[10vh] flex justify-center items-center">
       <div>
         <div class="text-4xl font-bold p-2">你好，我是</div>
+
         <div class="inline-block text-8xl font-bold marked p-2 mb-8">aiokr</div>
+
       </div>
+    </div>
+    <section class="aboutSkillBg">
+      <section class="aboutSkill h-[calc(80vh-64px)] grid grid-cols-2 grid-rows-2 gap-3 p-6">
+        <div class="p-4 transition-all pr-24">
+          <div class="flex items-center gap-2 pb-4 text-white">
+            <IconsVideo />
+            <div class="text-xl font-bold ">视频制作</div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <p>DaVenci & Fusion</p>
+            <p>Davenci</p>
+          </div>
+        </div>
+        <div class="p-4 transition-all pr-24 text-white">
+          <div class="flex items-center gap-2 pb-4">
+            <IconsVideo />
+            <div class="text-xl font-bold">平面设计</div>
+          </div>
+        </div>
+      </section>
+    </section>
+    <section class=" h-[calc(80vh-64px)] flex">
+
+    </section>
+    <section class=" h-[calc(80vh-64px)] flex">
+
+    </section>
+    <section class=" h-[calc(80vh-64px)] flex">
+
     </section>
     <!--
     <article class="container max-w-[800px] mx-auto">
@@ -18,11 +49,12 @@
   </main>
   <!-- Dock -->
   <div class="fixed bottom-6 w-full flex justify-center">
-    <div id="linksDock" class=" rounded-lg w-max p-10 flex justify-start items-end gap-3"
-      @mouseenter="onMouseenter" @mousemove="onMousemove" @mouseleave="onMouseleave">
+    <div id="linksDock" class=" rounded-lg w-max p-10 flex justify-start items-end gap-3" @mouseenter="onMouseenter"
+      @mousemove="onMousemove" @mouseleave="onMouseleave">
       <button v-for="i in sectionList" :key="i.index"
         :style="`width: ${iconWidth}px; height: ${iconWidth}px; background-color: ${currentSection === i.index ? '#71afdd40' : '#E2E2E233'}`"
-        class="linksDockItem flex items-center justify-center aspect-square rounded-full" @click="currentSection = currentSection + 1">
+        class="linksDockItem flex items-center justify-center aspect-square rounded-full"
+        @click="currentSection = currentSection + 1">
         <component :is="i.icon" />
       </button>
       <div class="linksDockItem !w-0 border" :style="`height: ${iconWidth}px;`" />
@@ -232,5 +264,124 @@ const onMouseleave = () => {
 .marked {
   background: linear-gradient(104deg, #71afdd00 0.9%, #71afdd7c 2.4%, #71afdd4d 5.8%, #71afdd1a 93%, #71afdd23 96%, #82ffff00 98%), linear-gradient(183deg, #71afdd00 0%, #71afdd3b 7.9%, #71afdd00 15%);
   border-radius: 16px;
+}
+
+@keyframes coverKeyframes {
+  0% {
+    width: 100%;
+    position: sticky;
+    top: 10vh;
+  }
+
+  10% {
+    width: 45%;
+    position: sticky;
+    top: 10vh;
+    opacity: 1;
+  }
+
+  40% {
+    width: 45%;
+    position: sticky;
+    top: 10vh;
+    opacity: 1;
+  }
+
+  60% {
+    width: 45%;
+    position: sticky;
+    opacity: 0;
+  }
+
+  100% {
+    width: 40%;
+    position: sticky;
+    opacity: 0;
+  }
+}
+
+.aboutCover {
+  animation: coverKeyframes 1s ease-in-out;
+  animation-timeline: scroll();
+}
+
+@keyframes skillKeyframes {
+  0% {
+    position: sticky;
+    top: 10vh;
+    opacity: 0;
+  }
+
+  20% {
+    position: sticky;
+    top: 10vh;
+    opacity: 1;
+  }
+
+  40% {
+    position: sticky;
+    top: 10vh;
+    opacity: 1;
+  }
+
+  70% {
+    position: sticky;
+    top: 10vh;
+    opacity: 0;
+  }
+
+  100% {
+    position: sticky;
+    top: 10vh;
+    opacity: 0;
+  }
+}
+
+.aboutSkill {
+  animation: skillKeyframes 1s ease-in-out;
+  animation-timeline: scroll();
+  width: fit-content
+}
+
+@keyframes aboutSkillBgKeyframes {
+  0% {
+    position: sticky;
+    top: 0;
+    opacity: 0;
+  }
+
+  20% {
+    position: sticky;
+    top: 0;
+    opacity: 1;
+  }
+
+  40% {
+    position: sticky;
+    top: 0;
+    opacity: 1;
+  }
+
+  70% {
+    position: sticky;
+    top: 0;
+    opacity: 0;
+  }
+
+  100% {
+    position: sticky;
+    top: 0;
+    opacity: 0;
+  }
+
+}
+
+.aboutSkillBg {
+  background-color: #71afdd;
+  animation: aboutSkillBgKeyframes 1s ease-in-out;
+  animation-timeline: scroll();
+  height: 100vh;
+  margin-left: 36vw;
+  margin-right: auto;
 }
 </style>
