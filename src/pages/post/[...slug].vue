@@ -1,7 +1,7 @@
 <template>
   <ContentDoc>
     <template v-slot="{ doc }">
-      <article class="md:pt-24 pb-36 container max-w-[1000px] mx-auto">
+      <article class="md:pt-24 pb-[1000px] container max-w-[1000px] mx-auto">
         <div class="md:rounded-xl bg-white dark:bg-zinc-800">
           <!--Post Cover-->
           <div class="w-full object-cover md:rounded-t-xl bg-center bg-cover"
@@ -14,6 +14,9 @@
           </div>
           <div class="container max-w-[800px] px-4 mx-auto pb-12">
             <ContentRenderer :value="doc" />
+          </div>
+          <div class="progress">
+            <div class="progressBar" />
           </div>
         </div>
       </article>
@@ -50,4 +53,41 @@ useSeoMeta({
 
 </script>
 
-<style></style>
+<style scoped>
+@keyframes progress-appear {
+  0% {
+    height: 0px;
+  }
+
+  10% {
+    height: 12px;
+  }
+
+  100% {
+    height: 12px;
+  }
+}
+
+@keyframes progress {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.progress {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: #22283130;
+  animation: progress-appear auto forwards, progress auto 1s forwards;
+  animation-timeline: view(0% 100%), view(0% 100%);
+  animation-range:
+    entry 10% contain 25%, 0 calc(100% - 200vh), ;
+}
+</style>

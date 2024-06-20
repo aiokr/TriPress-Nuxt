@@ -1,5 +1,5 @@
 <template>
-  <main class="container mx-auto flex flex-col">
+  <main class="aboutContainer flex flex-col">
     <div class="aboutCover h-[calc(80vh)] mt-[calc(10vh-64px)] mb-[10vh] flex justify-center items-center">
       <div>
         <div class="text-4xl font-bold p-2">你好，我是</div>
@@ -8,25 +8,23 @@
 
       </div>
     </div>
-    <section class="aboutSkillBg">
-      <section class="aboutSkill h-[calc(80vh-64px)] grid grid-cols-2 grid-rows-2 gap-3 p-6">
-        <div class="p-4 transition-all pr-24">
-          <div class="flex items-center gap-2 pb-4 text-white">
-            <IconsVideo />
-            <div class="text-xl font-bold ">视频制作</div>
-          </div>
-          <div class="flex flex-col gap-2">
-            <p>DaVenci & Fusion</p>
-            <p>Davenci</p>
-          </div>
+    <section class="aboutSkill h-[calc(80vh-64px)] grid grid-cols-2 grid-rows-2 gap-3 p-6 mr-auto">
+      <div class="p-4 transition-all pr-24">
+        <div class="flex items-center gap-2 pb-4 text-white">
+          <IconsVideo />
+          <div class="text-xl font-bold ">视频制作</div>
         </div>
-        <div class="p-4 transition-all pr-24 text-white">
-          <div class="flex items-center gap-2 pb-4">
-            <IconsVideo />
-            <div class="text-xl font-bold">平面设计</div>
-          </div>
+        <div class="flex flex-col gap-2">
+          <p>DaVenci & Fusion</p>
+          <p>Davenci</p>
         </div>
-      </section>
+      </div>
+      <div class="p-4 transition-all pr-24 text-white">
+        <div class="flex items-center gap-2 pb-4">
+          <IconsVideo />
+          <div class="text-xl font-bold">平面设计</div>
+        </div>
+      </div>
     </section>
     <section class=" h-[calc(80vh-64px)] flex">
 
@@ -266,6 +264,39 @@ const onMouseleave = () => {
   border-radius: 16px;
 }
 
+@keyframes aboutContainerKeyframes {
+  0% {
+    background-position: 60vw 0;
+  }
+
+  30% {
+    background-position: 0 0;
+  }
+
+  50% {
+
+    background-position: 0 0;
+  }
+
+  65% {
+
+    background-position: 60vw 0;
+  }
+
+  100% {
+
+    background-position: 60vw 0;
+  }
+
+}
+
+.aboutContainer {
+  animation: aboutContainerKeyframes 1s ease-in-out;
+  animation-timeline: scroll();
+  background: linear-gradient(to right, #ffffff00 0, #ffffff00 40vw, #71afdd 40vw, #71afdd 100vw);
+  background-repeat: no-repeat;
+}
+
 @keyframes coverKeyframes {
   0% {
     width: 100%;
@@ -307,32 +338,22 @@ const onMouseleave = () => {
 
 @keyframes skillKeyframes {
   0% {
-    position: sticky;
-    top: 10vh;
     opacity: 0;
   }
 
   20% {
-    position: sticky;
-    top: 10vh;
     opacity: 1;
   }
 
   40% {
-    position: sticky;
-    top: 10vh;
     opacity: 1;
   }
 
   70% {
-    position: sticky;
-    top: 10vh;
     opacity: 0;
   }
 
   100% {
-    position: sticky;
-    top: 10vh;
     opacity: 0;
   }
 }
@@ -340,48 +361,8 @@ const onMouseleave = () => {
 .aboutSkill {
   animation: skillKeyframes 1s ease-in-out;
   animation-timeline: scroll();
-  width: fit-content
-}
-
-@keyframes aboutSkillBgKeyframes {
-  0% {
-    position: sticky;
-    top: 0;
-    opacity: 0;
-  }
-
-  20% {
-    position: sticky;
-    top: 0;
-    opacity: 1;
-  }
-
-  40% {
-    position: sticky;
-    top: 0;
-    opacity: 1;
-  }
-
-  70% {
-    position: sticky;
-    top: 0;
-    opacity: 0;
-  }
-
-  100% {
-    position: sticky;
-    top: 0;
-    opacity: 0;
-  }
-
-}
-
-.aboutSkillBg {
-  background-color: #71afdd;
-  animation: aboutSkillBgKeyframes 1s ease-in-out;
-  animation-timeline: scroll();
-  height: 100vh;
-  margin-left: 36vw;
-  margin-right: auto;
+  position: sticky;
+  margin-left: 42vw;
+  top: 10vh;
 }
 </style>
