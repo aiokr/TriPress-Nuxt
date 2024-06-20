@@ -10,7 +10,7 @@ import '@/assets/article.css'
 useHead({
   title: 'Tripper Press - Take Photo, Think Seriously',
   meta: [
-    { name: 'description', content: 'Take Photo, Think Seriousl' }
+    { name: 'description', content: 'Take Photo, Think Seriously' }
   ]
 })
 useSeoMeta({

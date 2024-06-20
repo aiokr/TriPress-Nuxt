@@ -33,8 +33,8 @@ useHead({
 })
 
 useSeoMeta({
-  title: 'Tripper Press - Take Photo, Think Seriously',
-  ogTitle: 'Tripper Press - Take Photo, Think Seriously',
+  title: 'Tripper Press',
+  ogTitle: 'Tripper Press',
   description: 'Take Photo, Think Seriousl',
   ogDescription: 'Take Photo, Think Seriousl'
 })

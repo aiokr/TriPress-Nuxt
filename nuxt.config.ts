@@ -1,7 +1,16 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss', "@nuxt/content", "@pinia/nuxt", "@nuxtjs/color-mode", "@nuxtjs/turnstile", "@vueuse/motion/nuxt"],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    "@nuxt/content",
+    "@pinia/nuxt",
+    "@nuxtjs/color-mode",
+    "@nuxtjs/turnstile",
+    "@vueuse/motion/nuxt",
+    "@nuxtjs/seo",
+    "@nuxtjs/sitemap",
+  ],
   srcDir: 'src/',
   imports: {
     dirs: ['./stores']
@@ -21,6 +30,18 @@ export default defineNuxtConfig({
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
     }
+  },
+  site: {
+    url: 'https://tripper.press',
+    name: 'Tripper Press - Take Photo, Think Seriously.',
+    description: 'Take Photo, Think Seriously.',
+  },
+  routeRules: {
+  },
+  sitemap: {
+    sources: [
+      '/api/postmap'
+    ]
   },
   content: {
     highlight: {
