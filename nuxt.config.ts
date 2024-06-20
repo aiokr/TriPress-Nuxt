@@ -36,8 +36,7 @@ export default defineNuxtConfig({
     name: 'Tripper Press - Take Photo, Think Seriously.',
     description: 'Take Photo, Think Seriously.',
   },
-  routeRules: {
-  },
+  ogImage: { enabled: false },
   sitemap: {
     sources: [
       '/api/postmap'
@@ -61,6 +60,11 @@ export default defineNuxtConfig({
   },
   turnstile: {
     siteKey: '0x4AAAAAAAcv6femMitqO6lO',
+  },
+  nitro: {
+    prerender: {
+      routes: ["/atom.xml", "/sitemap.xml", "/api/postmap"],
+    },
   },
   runtimeConfig: {
     turnstile: {
