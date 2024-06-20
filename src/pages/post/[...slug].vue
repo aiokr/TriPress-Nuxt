@@ -26,17 +26,26 @@
 
 <script setup lang="ts">
 
+const url = useRoute().path
+const post = await useAsyncData('post', () => queryContent(url).findOne())
+// console.log(post.data.value)
+const postCover = post.data.value?.cover
+
 useHead({
   meta: [
-    { name: 'description', content: 'Take Photo, Think Seriousl' }
+    { name: 'description', content: 'Take Photo, Think Seriously' }
   ]
 })
 
 useSeoMeta({
   title: 'Tripper Press',
   ogTitle: 'Tripper Press',
-  description: 'Take Photo, Think Seriousl',
-  ogDescription: 'Take Photo, Think Seriousl'
+  twitterTitle: 'Tripper Press',
+  description: 'Take Photo, Think Seriously',
+  ogDescription: 'Take Photo, Think Seriously',
+  twitterDescription: 'Take Photo, Think Seriously',
+  ogImage: postCover,
+  twitterImage: postCover,
 })
 
 </script>
