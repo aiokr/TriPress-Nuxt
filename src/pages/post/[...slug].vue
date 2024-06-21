@@ -54,21 +54,7 @@ useSeoMeta({
 </script>
 
 <style scoped>
-@keyframes progress-appear {
-  0% {
-    height: 0px;
-  }
-
-  10% {
-    height: 12px;
-  }
-
-  100% {
-    height: 12px;
-  }
-}
-
-@keyframes progress {
+@keyframes progress-bar {
   from {
     transform: scaleX(0);
   }
@@ -84,10 +70,16 @@ useSeoMeta({
   left: 0;
   right: 0;
   width: 100%;
-  background-color: #22283130;
-  animation: progress-appear auto forwards, progress auto 1s forwards;
-  animation-timeline: view(0% 100%), view(0% 100%);
-  animation-range:
-    entry 10% contain 25%, 0 calc(100% - 200vh), ;
+  height: 6px;
+  background-color: #71afdd;
+  border-top-right-radius: 9999px;
+  border-bottom-right-radius: 9999px;
+  transform: scaleX(0); /* 初始状态要在 CSS 中写出来，否则当动画还没开始的时候，元素直接是结束状态 */
+  transform-origin: left;
+  animation: progress-bar auto forwards;
+  /** animation-timeline 可以选择 view() 或者 scroll()  */
+  animation-timeline: view(0 100%);
+  animation-range-start: cover 0%; /* 0% 时，元素的状态 */
+  animation-range-end: cover 80%; /* 80% 时，动画结束 */
 }
 </style>
