@@ -1,10 +1,10 @@
 <template>
   <ContentDoc>
     <template v-slot="{ doc }">
-      <article class="md:pt-24 pb-[1000px] container max-w-[1000px] mx-auto">
+      <article class="md:pt-24 pb-36 container max-w-[1000px] mx-auto">
         <div class="md:rounded-xl bg-white dark:bg-zinc-800">
           <!--Post Cover-->
-          <div class="w-full object-cover md:rounded-t-xl bg-center bg-cover"
+          <div class="postCard w-full object-cover md:rounded-t-xl bg-center bg-cover"
             :style="'background-image: url(' + doc.cover + ');'">
             <div class="bg-gradient-to-t from-white to-white/60 dark:from-zinc-800 dark:to-zinc-800/40">
               <div class="pt-16 md:pt-32 pb-24 px-4 container max-w-[800px] mx-auto ">
@@ -16,7 +16,6 @@
             <ContentRenderer :value="doc" />
           </div>
           <div class="progress">
-            <div class="progressBar" />
           </div>
         </div>
       </article>
@@ -64,6 +63,7 @@ useSeoMeta({
   }
 }
 
+
 .progress {
   position: sticky;
   bottom: 0;
@@ -72,14 +72,19 @@ useSeoMeta({
   width: 100%;
   height: 6px;
   background-color: #71afdd;
-  border-top-right-radius: 9999px;
-  border-bottom-right-radius: 9999px;
-  transform: scaleX(0); /* 初始状态要在 CSS 中写出来，否则当动画还没开始的时候，元素直接是结束状态 */
+  transform: scaleX(0);
+  /* 初始状态要在 CSS 中写出来，否则当动画还没开始的时候，元素直接是结束状态 */
   transform-origin: left;
-  animation: progress-bar auto forwards;
-  /** animation-timeline 可以选择 view() 或者 scroll()  */
-  animation-timeline: view(0 100%);
-  animation-range-start: cover 0%; /* 0% 时，元素的状态 */
-  animation-range-end: cover 80%; /* 80% 时，动画结束 */
+
+  animation: progress-bar 1s linear;
+  animation-timeline: --post-progress;
+  view-timeline: --post-progress;
+  animation-range-start: cover 100vh;
+  /* 这里的 cover 其实可以省略 */
+  animation-range-end: exit-crossing -100vh;
+
+  /* 
+    滚动动画的值具体可以参照：https://scroll-driven-animations.style/tools/view-timeline/ranges/
+  */
 }
 </style>
