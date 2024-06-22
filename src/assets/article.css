@@ -13,9 +13,9 @@ article h6 {
 
 article p {
   margin: 0 0 1em 0 !important;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
-  line-height: 1.8em;
+  line-height: 2em;
   letter-spacing: 0;
 }
 
@@ -89,7 +89,8 @@ article ul,
 article blockquote ul {
   margin-left: 1.2em;
   margin-bottom: 1em;
-  line-height: 1.8em;
+  line-height: 2em;
+  font-size: 14px;
 }
 
 article ol,
