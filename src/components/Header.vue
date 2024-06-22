@@ -1,9 +1,12 @@
 <template>
-  <main class="bg-zinc-50/80 dark:bg-dbg/80 backdrop-blur-lg sticky top-0 px-4 z-50">
+  <main
+    class="container max-w-[1040px] mx-auto white-60/80 dark:bg-dbg/80 backdrop-blur-lg lg:border dark:border-white/20 rounded-2xl shadow-lg shadow-gray-50/25 dark:shadow-zinc-900/25 sticky top-0 lg:top-4 px-4 z-50">
     <div class="container max-w-[1200px] mx-auto px-3 flex items-center justify-between  h-16">
       <router-link to="/">
+        <img src="https://imgur.lzmun.com/picgo/after2022/tripper2whitefull.png_avatar" alt="logo"
+          class="dark:hidden rounded-full w-8 h-8  mr-auto" />
         <img src="https://imgur.lzmun.com/picgo/after2022/tripper2colorfull.png_avatar" alt="logo"
-          class="rounded-full w-8 h-8  mr-auto" />
+          class="hidden dark:block rounded-full w-8 h-8  mr-auto" />
       </router-link>
       <div class="flex gap-6 items-center justify-center">
         <router-link to="/" class="headerLink">Home</router-link>
