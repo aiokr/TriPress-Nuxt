@@ -1,11 +1,17 @@
 <template>
-  <div class="container max-w-[800px] mx-auto">
-    <section class="w-full transition-shadow rounded px-4 pt-32 pb-36 flex items-center justify-between">
-      <div class="text-2xl font-bold">
+  <div class="container max-w-[1000px] px-2 md:px-0 mx-auto">
+    <section
+      class="w-full transition-shadow rounded px-4 md:px-3 pt-16 md:pt-32 pb-20 md:pb-36 flex flex-col md:flex-row md:items-center justify-between gap-12">
+      <div class="relative md:hidden">
+        <img src="https://imgur.lzmun.com/picgo/after2022/tripper2colorfull.png_avatar" width="64px" height="64px">
+        <div class="absolute inset-0 -z-10 bg-gradient-to-tl from-main/60 to-main/10 opacity-0 blur-2xl md:opacity-50">
+        </div>
+      </div>
+      <div class="text-3xl font-bold">
         <p class="pb-2">I'm aiokr,<br />
           want to be a
-        <div class="wantToBeGrid inline-grid h-9 text-main overflow-hidden">
-          <div :style="wantToBeStyle">
+        <div class="wantToBeGrid inline-grid h-10 text-main overflow-hidden">
+          <div class="grid gap-1" :style="wantToBeStyle">
             <div>Full Stack Developer</div>
             <div>Photographer</div>
             <div>Motion/ Graphic Designer</div>
@@ -15,25 +21,55 @@
         </div>
         </p>
       </div>
-      <div class="relative">
+      <div class="hidden md:block md:relative">
         <img src="https://imgur.lzmun.com/picgo/after2022/tripper2colorfull.png_avatar" width="72px" height="72px">
         <div class="absolute inset-0 -z-10 bg-gradient-to-tl from-main/60 to-main/10 opacity-0 blur-2xl md:opacity-50">
         </div>
       </div>
     </section>
-
-    <section class="container max-w-[800px] mx-auto px-4 pb-16">
-      <NuxtLink v-for="post in posts" :to="post._path"
-        class="postCard block border dark:border-white/20 w-full hover:shadow-2xl rounded-xl mb-12 bg-white dark:bg-zinc-800">
-        <img v-if="post.cover" :src="post.cover" alt="cover"
-          class="h-[180px] md:h-[233px] w-full object-cover rounded-t-xl" />
-        <div class="min-h-[160px] p-8 pt-7 md:p-12 md:pt-10 rounded-b-xl">
-          <div v-if="post.date" class="text-sm text-zinc-400 dark:text-dtext/80 pb-4">
-            <span>{{ new Date(post.date).toISOString().split('T')[0] }}</span>
+    <div class="flex items-center justify-between px-3 md:px-2">
+      <div class="text-3xl font-bold pb-6">About Me</div>
+    </div>
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-6 px-3 md:px-2 pb-12">
+      <div class="flex-1 md:col-span-2 shadow-card dark:shadow-card-dark rounded-lg p-3">
+        <div class="font-bold py-2 text-center">Building……</div>
+      </div>
+      <div class="flex-1 shadow-card dark:shadow-card-dark rounded-lg p-3">
+        <div class="text-xs text-zinc-300 dark:text-dtext/40 pt-2 pb-1">I Want To Travaling All Around The World</div>
+        <div class="text-lg font-bold pb-2">My Destination Plan</div>
+        <div class=" flex flex-col text-sm gap-1 h-36 overflow-hidden">
+          <li>Japan</li>
+          <li>DeTian Waterfall - BaiSe - China</li>
+          <div class="travlePlanAlready">
+            <li class="line-through text-zinc-300 dark:text-dtext/40">Chongqing - China</li>
+            <li class="line-through text-zinc-300 dark:text-dtext/40">HaiKou - China</li>
+            <li class="line-through text-zinc-300 dark:text-dtext/40">BeiHai - China</li>
+            <li class="line-through text-zinc-300 dark:text-dtext/40">ChongZuo - China</li>
+            <li class="line-through text-zinc-300 dark:text-dtext/40">ChengDu - China</li>
           </div>
-          <h2 class="text-2xl text-text dark:text-dtext pb-6">{{ post.title }}</h2>
-          <p v-if="post.excerpt" class="pb-6 text-xs text-zinc-400">{{ post.excerpt }}</p>
+        </div>
+      </div>
+    </section>
+    <div class="flex items-center justify-between px-3 md:px-2">
+      <div class="text-3xl font-bold pb-6">Posts</div>
+      <NuxtLink to="/posts" class="text-sm text-main">All Posts</NuxtLink>
+    </div>
+    <section class="container mx-auto px-3 md:px-2 pb-16 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <NuxtLink v-for="post in posts" :to="post._path"
+        class="postCard block border-zinc-400/20 dark:border-white/20 w-full shadow-card dark:shadow-card-dark hover:shadow-lg rounded-xl bg-white dark:bg-zinc-800">
+        <img v-if="post.cover" :src="post.cover" :alt="post.title + ' cover'"
+          class="h-[180px] md:h-[233px] w-full object-cover rounded-2xl p-2" />
+        <img v-else src="https://imgur.lzmun.com/tricms/1713761252690-2022-03-16-DSC09021-web.jpg"
+          :alt="post.title + ' default cover'" class="h-[180px] md:h-[233px] w-full object-cover rounded-2xl p-2" />
+        <div class="h-[200px] p-3 md:p-4 md:pt-4 flex flex-col justify-between">
           <div>
+            <div v-if="post.date" class="text-sm text-zinc-400 dark:text-dtext/80 pb-2">
+              <span>{{ new Date(post.date).toISOString().split('T')[0] }}</span>
+            </div>
+            <h2 class="text-2xl text-text dark:text-dtext pb-4">{{ post.title }}</h2>
+            <p v-if="post.excerpt" class="pb-6 text-xs text-zinc-400">{{ post.excerpt }}</p>
+          </div>
+          <div class="pb-1">
             <span v-if="post.category" class="postCategory">{{ post.category }}</span>
           </div>
         </div>
@@ -79,7 +115,7 @@ onMounted(() => {
       const progress = Math.min((currentTime - startTime) / duration, 1);
       wantToBeIndex.value = startNum + (endNum - startNum) * progress;
       wantToBeStyle.value = {
-        transform: `translateY(-${wantToBeIndex.value * 32}px)`
+        transform: `translateY(-${wantToBeIndex.value * 40}px)`
       }
 
       if (progress < 1) {
@@ -110,6 +146,10 @@ const posts = await queryContent("/post").only(["_path", "title", "excerpt", "da
 }
 
 .postCategory {
-  @apply text-xs font-semibold text-zinc-500 bg-zinc-100 py-2 px-2 rounded opacity-80 dark:bg-dtext/10 dark:text-dtext;
+  @apply text-xs font-semibold text-zinc-500 bg-zinc-100 p-2 rounded-lg opacity-80 dark:bg-dtext/10 dark:text-dtext;
+}
+
+.travlePlanAlready {
+  mask-image: linear-gradient(black 0%, rgb(0, 0, 0) 30%, rgba(0, 0, 0, 0.2) 80%, transparent 100%);
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <main
-    class="container max-w-[1040px] mx-auto white-60/80 dark:bg-dbg/80 backdrop-blur-lg lg:border dark:border-white/20 rounded-2xl shadow-lg shadow-gray-50/25 dark:shadow-zinc-900/25 sticky top-0 lg:top-4 px-4 z-50">
+    class="container max-w-[1040px] mx-auto bg-white/60 dark:bg-dbg/80 backdrop-blur lg:border dark:border-white/20 rounded-2xl shadow-lg shadow-gray-50/25 dark:shadow-zinc-900/25 sticky top-0 lg:top-4 px-4 z-50">
     <div class="container max-w-[1200px] mx-auto px-3 flex items-center justify-between  h-16">
       <router-link to="/">
         <img src="https://imgur.lzmun.com/picgo/after2022/tripper2whitefull.png_avatar" alt="logo"

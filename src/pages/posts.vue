@@ -1,12 +1,12 @@
 <template>
   <div class="">
-    <section class="container max-w-[1200px] mx-auto pt-12 px-4">
+    <section class="container max-w-[1000px] mx-auto pt-12 px-4">
       <div class="pb-6">
         <div class="text-2xl font-bold text-text dark:text-dtext pb-6">文章</div>
         <hr />
       </div>
-      <div class=" grid grid-cols-4">
-        <div class="col-span-4 md:col-span-3">
+      <div class=" grid grid-cols-5">
+        <div class="col-span-4 md:col-span-4">
           <NuxtLink v-if="isAllPosts" v-for="post in posts" :to="post._path"
             class="w-full rounded-xl mb-8 grid grid-cols-5">
             <img v-if="post.cover" :src="post.cover" alt="cover" class="w-full object-cover rounded-xl aspect-square" />

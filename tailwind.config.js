@@ -19,6 +19,10 @@ export default {
         'dtext': '#E2E2E2',
         'dbg': '#18181B',
       },
+      boxShadow: {
+        'card': '0 -1px 3px 0 rgb(0 0 0 / 0.05)',
+        'card-dark': '0 0 0 1px rgb(255 255 255 / 0.06), 0 -1px rgb(255 255 255 / 0.1)'
+      }
     },
   },
   plugins: [],
