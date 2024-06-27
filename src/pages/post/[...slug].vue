@@ -1,7 +1,7 @@
 <template>
   <ContentDoc>
     <template v-slot="{ doc }">
-      <article class="md:pt-24 pb-36 container max-w-[1000px] mx-auto">
+      <article class="md:pt-24 pb-36 container max-w-[1000px] mx-auto flex-1 w-full h-screen overflow-y-auto">
         <div class="md:rounded-xl bg-white dark:bg-zinc-800">
           <!--Post Cover-->
           <div class="postCard w-full object-cover md:rounded-t-xl bg-center bg-cover"
@@ -15,8 +15,6 @@
           <div class="container max-w-[800px] px-4 mx-auto pb-12">
             <ContentRenderer :value="doc" />
           </div>
-          <div class="progress">
-          </div>
         </div>
       </article>
     </template>
@@ -27,6 +25,10 @@
 </template>
 
 <script setup lang="ts">
+
+definePageMeta({
+  layout: 'post'
+})
 
 const url = useRoute().path
 const post = await useAsyncData('post', () => queryContent(url).findOne())
