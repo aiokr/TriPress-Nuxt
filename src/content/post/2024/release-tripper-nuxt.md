@@ -16,7 +16,16 @@ cover: "https://imgur.lzmun.com/tricms/1712709442394-20230218-web.jpeg_itp"
 
 兜兜转转，最终我又放弃了 CMS + SSR 的方案，转而使用之前静态网站生成器的方案。这次我选择了 Nuxt.js，首先因为不能再使用 Vercel，并且之前用的 Contentlayer 并不支持在 Windows 上运行，加上我最近做的几个小工具都是基于 Nuxt 或者 VUE的，所以这次就选择了 Nuxt。
 
-按照惯例，这次的网站依然在 [aiokr/TriPress-Nuxt](https://github.com/aiokr/TriPress-Nuxt) 上开源，欢迎大家 star，当然在 fork 之后，记得修改 `nuxt.config.js` 中的一些配置，比如 turnstile 的 siteKey、分析插件的 ID 等。
+按照惯例，这次的网站依然在 [aiokr/TriPress-Nuxt](https://github.com/aiokr/TriPress-Nuxt) 上开源，欢迎大家 star，当然在 fork 之后，记得删除仓库内的 Markdown 文件，修改 `nuxt.config.js` 中的一些配置，比如 turnstile 的 siteKey、分析插件的 ID 等。
+
+在这次改版中，我除了保留了之前版本的一些设计样式之外，还借鉴了不少其他个人站点的创意：
+
+- [Hong - A Full Stack Developer](https://honghong.me/)
+- [可可托海没有海](https://darmau.design/)
+- [Camarts](https://camarts.cn/)
+- [Maxime Heckel's Blog](https://blog.maximeheckel.com/)
+
+---
 
 ## Markdown 样式测试
 
