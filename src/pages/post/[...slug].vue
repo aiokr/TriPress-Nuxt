@@ -3,8 +3,8 @@
     <template v-slot="{ doc }">
       <article class="pb-36">
         <div class="bg-white dark:bg-zinc-800">
-          <!--Post Cover-->
-          <div class="postCard w-full object-cover bg-center bg-cover"
+          <!--Post Header w/ Cover-->
+          <div v-if="doc.cover" class="postCard w-full object-cover bg-center bg-cover"
             :style="'background-image: url(' + doc.cover + ');'">
             <div class="bg-gradient-to-t from-white to-white/60 dark:from-zinc-800 dark:to-zinc-800/40">
               <div class="pt-16 md:pt-32 pb-24 px-4 container max-w-[800px] mx-auto ">
@@ -12,6 +12,11 @@
               </div>
             </div>
           </div>
+          <!--Post Header w/o Cover-->
+          <div v-else class="pt-16 md:pt-20 pb-20 px-4 container max-w-[800px] mx-auto">
+            <h1 class="text-3xl font-semibold text-text dark:text-dtext">{{ doc.title }}</h1>
+          </div>
+          <!--Post Content-->
           <div class="container max-w-[800px] px-4 mx-auto pb-12">
             <ContentRenderer :value="doc" />
           </div>
