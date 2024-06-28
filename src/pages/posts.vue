@@ -69,7 +69,7 @@ const queryCategory = ref("");
 const queryPosts = ref<any>();
 const isAllPosts = ref(true);
 
-const posts = await queryContent("/post").only(["_path", "title", "date", "category", "cover"]).sort({ date: -1 }).find();
+const posts = await queryContent("/post").only(["_path", "title", "date", "category", "cover", "type"]).where({ type: { $ne: 'draft' } }).sort({ date: -1 }).find();
 const allCategories = Array.from(new Set(posts.map((post) => post.category).filter((category) => category !== undefined)));
 
 const handleChangeCategory = (category: string) => {

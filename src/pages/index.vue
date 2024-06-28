@@ -131,7 +131,7 @@ onMounted(() => {
 
 });
 
-const posts = await queryContent("/post").only(["_path", "title", "excerpt", "date", "type", "category", "cover"]).sort({ date: -1 }).find();
+const posts = await queryContent("/post").only(["_path", "title", "date", "category", "cover", "type"]).where({ type: { $ne: 'draft' } }).limit(4).sort({ date: -1 }).find();
 
 </script>
 
