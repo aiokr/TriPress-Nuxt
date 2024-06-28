@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     "@vueuse/motion/nuxt",
     "@nuxtjs/seo",
     "@nuxtjs/sitemap",
+    "@nuxthq/studio"
   ],
   srcDir: 'src/',
   imports: {
