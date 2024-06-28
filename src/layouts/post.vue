@@ -177,7 +177,7 @@ const handlePostHeaderCollapse = () => {
 };
 
 // 所有文章和所有分类数据
-const posts = await queryContent("/post").only(["_path", "title", "date", "category", "cover"]).sort({ date: -1 }).find();
+const posts = await queryContent("/post").only(["_path", "title", "date", "category", "cover", "type"]).where({ type: { $ne: 'draft' } }).sort({ date: -1 }).find();
 const allCategories = Array.from(new Set(posts.map((post) => post.category).filter((category) => category !== undefined)));
 
 const currentCategories = ref(allCategories); // 当前选中的分类
