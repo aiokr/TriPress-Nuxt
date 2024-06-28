@@ -4,6 +4,7 @@ date: 2024-06-30T00:00:00.000Z
 category: 开发
 slug: release-tripper-nuxt
 cover: https://imgur.lzmun.com/tricms/1712709442394-20230218-web.jpeg_itp
+type: post
 ---
 
 好家伙，Tripper Press 又改版了。
