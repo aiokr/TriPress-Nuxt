@@ -1,6 +1,7 @@
 <template>
   <NuxtLayout>
     <NuxtPage />
+    <KMenu />
   </NuxtLayout>
 </template>
 
@@ -11,6 +12,9 @@ useHead({
   title: 'Tripper Press - Take Photo, Think Seriously',
   meta: [
     { name: 'description', content: 'Take Photo, Think Seriously' }
+  ],
+  script: [
+    { src: 'https://cloud.umami.is/script.js', 'data-website-id': '73046b43-aca0-475b-825e-39ad1a7400ce' }
   ]
 })
 useSeoMeta({
