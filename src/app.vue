@@ -12,6 +12,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import '@/assets/article.css'
+import '@/assets/tripper.css'
 
 useHead({
   title: 'Tripper Press - Take Photo, Think Seriously',
