@@ -66,8 +66,6 @@ const post = await useAsyncData('post', () => queryContent(url).findOne())
 const postCover = post.data.value?.cover
 const toc = post.data.value?.body?.toc
 
-console.log(toc)
-
 useHead({
   meta: [
     { name: 'description', content: 'Take Photo, Think Seriously' }

@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
     },
     copyright: `© $2016 - {new Date().getFullYear()} Tripper Press`,
   });
-  const docs = (await serverQueryContent(event)
+  const docs = (await serverQueryContent(event).where({ type: { $ne: 'draft' } })
     .find()).filter((post) => post._path?.startsWith("/post"));
   for (const post of docs) {
     const postDate = new Date(post.date);
