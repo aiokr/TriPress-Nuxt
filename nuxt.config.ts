@@ -52,6 +52,15 @@ export default defineNuxtConfig({
     },
     markdown: {
       anchorLinks: false,
+      toc: {
+        depth: 2,
+        searchDepth: 4
+      },
+    },
+    experimental: {
+      search: {
+        indexed: false
+      }
     }
   },
   colorMode: {
