@@ -1,13 +1,13 @@
 <template>
   <ContentDoc>
     <template v-slot="{ doc }">
-      <article class="pb-36">
+      <div class="pb-36 relative">
         <div class="bg-white dark:bg-zinc-800">
           <!--Post Header w/ Cover-->
           <div v-if="doc.cover" class="postCard w-full object-cover bg-center bg-cover"
             :style="'background-image: url(' + doc.cover + ');'">
             <div class="bg-gradient-to-t from-white to-white/60 dark:from-zinc-800 dark:to-zinc-800/40">
-              <div class="pt-16 md:pt-32 pb-24 px-4 container max-w-[800px] mx-auto ">
+              <div class="pt-32 pb-24 px-4 container max-w-[800px] mx-auto ">
                 <h1 class="text-3xl font-semibold text-text dark:text-dtext">{{ doc.title }}</h1>
               </div>
             </div>
@@ -17,11 +17,36 @@
             <h1 class="text-3xl font-semibold text-text dark:text-dtext">{{ doc.title }}</h1>
           </div>
           <!--Post Content-->
-          <div class="container max-w-[800px] px-4 mx-auto pb-12">
+          <article class="container max-w-[800px] px-4 mx-auto pb-12">
             <ContentRenderer :value="doc" />
+          </article>
+        </div>
+        <!--Table of Content-->
+        <div class="hidden md:block text-xs leading-7">
+          <div v-if="toc && toc.links"
+            class="toc group/toc fixed max-w-96 ml-3 top-[120px] mt-12">
+            <ul class="list-none">
+              <li v-for="link in toc.links" :key="link.text">
+                <a :href="'#' + link.id" class="flex flex-row items-center h-8 group/title">
+                  <i class="block h-1 w-4 my-3 mr-2 rounded-full bg-zinc-200 group-hover/toc:bg-zinc-400"></i>
+                  <div
+                    class="truncate opacity-0 group-hover/toc:opacity-60 group-hover/title:opacity-80 transition-all w-28">
+                    {{ link.text }}</div>
+                </a>
+                <ul v-if="link.children" class="list-none">
+                  <a :href="'#' + sublink.id" v-for="sublink in link.children" :key="sublink.text"
+                    class="flex flex-row items-center h-8 group/title">
+                    <i class="block h-1 w-3 rounded-full bg-zinc-200 group-hover/toc:bg-zinc-400 my-3 mr-2"></i>
+                    <div
+                      class="pl-2 truncate opacity-0 group-hover/toc:opacity-60 group-hover/title:opacity-80 transition-all w-14">
+                      {{ sublink.text }}</div>
+                  </a>
+                </ul>
+              </li>
+            </ul>
           </div>
         </div>
-      </article>
+      </div>
     </template>
     <template #not-found>
       <h1>Document not found</h1>
@@ -39,6 +64,9 @@ const url = useRoute().path
 const post = await useAsyncData('post', () => queryContent(url).findOne())
 // console.log(post.data.value)
 const postCover = post.data.value?.cover
+const toc = post.data.value?.body?.toc
+
+console.log(toc)
 
 useHead({
   meta: [
@@ -60,6 +88,20 @@ useSeoMeta({
 </script>
 
 <style scoped>
+.toc {
+  opacity: .8;
+  max-height: calc(100vh - 460px);
+  overflow-y: scroll;
+  scrollbar-width: none;
+  transform: translateY(260px);
+}
+
+.toc .ul,
+.toc .li {
+  list-style-type: none !important;
+  display: block;
+}
+
 @keyframes progress-bar {
   from {
     transform: scaleX(0);

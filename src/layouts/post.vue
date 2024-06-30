@@ -47,8 +47,8 @@
       <!--主要区域-->
       <div class="postArea flex-1 flex flex-col h-screen overflow-y-auto">
         <div
-          class="fixed md:sticky top-0 left-0 right-0 bg-white/60 dark:bg-dbg/80 backdrop-blur h-12 border-b dark:border-white/20 flex items-center justify-between">
-          <div class="text-xs text-text/30 dark:text-dtext/30 ml-4 mr-auto">
+          class="fixed md:sticky top-0 left-0 right-0 bg-white/60 dark:bg-dbg/80 backdrop-blur h-12 border-b dark:border-white/20 flex items-center justify-between z-10">
+          <div class="text-xs text-text/30 dark:text-dtext/30 ml-4 mr-auto truncate">
             <NuxtLink to="/" class="hover:text-text dark:hover:text-dtext transition-all">TriPress</NuxtLink>
             /
             <NuxtLink to="/posts" class="hover:text-text dark:hover:text-dtext transition-all">Posts</NuxtLink>
@@ -147,7 +147,7 @@ const colorMode = useColorMode(); // 颜色模式
 // 侧边栏是否折叠
 const isAsideCollapsed = ref<boolean>(false); // true 为折叠侧边栏 / false 为展示侧边栏
 const isPostsListCollapsed = ref<boolean>(false); // true 为折叠文章列表 / false 为展示文章列表
-const isCategoriesListCollapsed = ref<boolean>(false); // true 为折叠分类列表 / false 为展示分类列表
+const isCategoriesListCollapsed = ref<boolean>(true); // true 为折叠分类列表 / false 为展示分类列表
 const handleAsideCollapse = () => {
   isAsideCollapsed.value = true;
   isPostsListCollapsed.value = true;
