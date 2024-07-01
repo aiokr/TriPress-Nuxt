@@ -4,6 +4,7 @@ import { serverQueryContent } from "#content/server";
 
 export default defineEventHandler(async (event) => {
   const appConfig = useAppConfig();
+  const nowYear = new Date().getFullYear();
   const feed = new Feed({
     id: 'https://tripper.press/atom.xml',
     title: 'Tripper Press - Take Photo, Think Seriously.',
@@ -12,7 +13,7 @@ export default defineEventHandler(async (event) => {
       atom: 'https://tripper.press/atom.xml',
       sitemap: 'https://tripper.press/sitemap.xml',
     },
-    copyright: `© $2016 - {new Date().getFullYear()} Tripper Press`,
+    copyright: `© $2016 - ${nowYear} Tripper Press`,
   });
   const docs = (await serverQueryContent(event).where({ type: { $ne: 'draft' } })
     .find()).filter((post) => post._path?.startsWith("/post"));
@@ -22,6 +23,7 @@ export default defineEventHandler(async (event) => {
       id: `https://tripper.press${post._path}`,
       title: post.title as string,
       link: `https://tripper.press${post._path}`,
+      description: post.description as string,
       date: postDate,
     });
   }
