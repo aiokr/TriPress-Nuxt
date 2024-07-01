@@ -1,6 +1,7 @@
 ---
 title: 新玩意 | PGYTECH 运动相机、手机支架、相机腕带
 date: 2024-06-30T00:00:00.000Z
+description: PGYTECH 的设备还是不错的，质量很稳定，至少比 Ulanzi 的好用。
 category: 新玩意
 slug: pgytech-equipment-several
 type: post

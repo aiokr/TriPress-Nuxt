@@ -1,5 +1,6 @@
 ---
 title: 宣布 Tripper Press @ Nuxt
+description: 又双叒叕重构了，这次是 Nuxt
 date: 2024-06-30T00:00:00.000Z
 category: 开发
 slug: release-tripper-nuxt
