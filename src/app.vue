@@ -19,10 +19,12 @@ useHead({
   meta: [
     { name: 'description', content: 'Take Photo, Think Seriously' }
   ],
+  link: [
+    { type: 'application/atom+xml', rel: 'alternate', title: 'Tripper Press Atom Feed', href: '/atom.xml' },
+  ],
   script: [
     { src: 'https://cloud.umami.is/script.js', 'data-website-id': '73046b43-aca0-475b-825e-39ad1a7400ce' },
-
-  ]
+  ],
 })
 useSeoMeta({
   title: 'Tripper Press - Take Photo, Think Seriously',
