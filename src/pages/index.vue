@@ -38,16 +38,24 @@
         <div class="text-xs text-zinc-300 dark:text-dtext/40 pt-2 pb-1">I Want To Travaling All Around The World</div>
         <div class="text-lg font-bold pb-2">My Destination Plan</div>
         <div class=" flex flex-col text-sm gap-1 h-36 overflow-hidden">
-          <li>Japan</li>
-          <li>DeTian Waterfall - BaiSe - China</li>
+          <li v-for="plan in planningTravelPlan">
+            {{ plan.destination }}
+          </li>
           <div class="travlePlanAlready">
-            <li class="line-through text-zinc-300 dark:text-dtext/40">Chongqing - China</li>
-            <li class="line-through text-zinc-300 dark:text-dtext/40">HaiKou - China</li>
-            <li class="line-through text-zinc-300 dark:text-dtext/40">BeiHai - China</li>
-            <li class="line-through text-zinc-300 dark:text-dtext/40">ChongZuo - China</li>
-            <li class="line-through text-zinc-300 dark:text-dtext/40">ChengDu - China</li>
+            <li v-for="plan in alreadyTravelPlan" class="line-through text-zinc-300 dark:text-dtext/40">
+              {{ plan.destination }}
+            </li>
           </div>
         </div>
+      </div>
+      <div class="shadow-card dark:shadow-card-dark rounded-lg p-3">
+        <div class="text-xs text-zinc-300 dark:text-dtext/40 pt-2 pb-1">stay hungry, stay foolish</div>
+        <div class="text-lg font-bold">Currently Reading</div>
+        <a :href="currentReadingBookLink" target="_blank">
+          <img :src="currentReadingBookCover"
+            class="bookCover h-40 w-32 object-cover overflow-hidden mx-auto translate-y-3" />
+          <div class="text-center text-2xl font-bold">{{ currentReadingBook }}</div>
+        </a>
       </div>
     </section>
     <div class="flex items-center justify-between px-3 md:px-2">
@@ -80,6 +88,16 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
+
+const appConfig = useAppConfig()
+
+const currentReadingBook = appConfig.content.reading.bookName
+const currentReadingBookCover = appConfig.content.reading.cover
+const currentReadingBookLink = appConfig.content.reading.link
+
+const travelPlan = appConfig.content.travel
+const alreadyTravelPlan = travelPlan.filter((item) => item.already === true).slice(0, 6)
+const planningTravelPlan = travelPlan.filter((item) => item.already !== true)
 
 useHead({
   title: 'Tripper Press - Take Photo, Think Seriously',
@@ -151,5 +169,9 @@ const posts = await queryContent("/post").only(["_path", "title", "date", "categ
 
 .travlePlanAlready {
   mask-image: linear-gradient(black 0%, rgb(0, 0, 0) 30%, rgba(0, 0, 0, 0.2) 80%, transparent 100%);
+}
+
+.bookCover {
+  mask-image: linear-gradient(black 0%, rgb(0, 0, 0, 0.8) 30%, rgba(0, 0, 0, 0.2) 80%, transparent 100%);
 }
 </style>
