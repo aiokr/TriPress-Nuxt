@@ -8,18 +8,18 @@
         </div>
       </div>
       <div class="text-3xl font-bold">
-        <p class="pb-2">I'm aiokr,<br />
+        <div class="pb-2">I'm aiokr,<br />
           want to be a
-        <div class="wantToBeGrid inline-grid h-10 text-main overflow-hidden">
-          <div class="grid gap-1" :style="wantToBeStyle">
-            <div>Full Stack Developer</div>
-            <div>Photographer</div>
-            <div>Motion/ Graphic Designer</div>
-            <div>Blogger & Vlogger</div>
-            <div>Full Stack Developer</div>
+          <div class="wantToBeGrid inline-grid h-10 text-main overflow-hidden">
+            <div class="grid gap-1" :style="wantToBeStyle">
+              <div>Full Stack Developer</div>
+              <div>Photographer</div>
+              <div>Motion/ Graphic Designer</div>
+              <div>Blogger & Vlogger</div>
+              <div>Full Stack Developer</div>
+            </div>
           </div>
         </div>
-        </p>
       </div>
       <div class="hidden md:block md:relative">
         <img src="https://imgur.lzmun.com/picgo/after2022/tripper2colorfull.png_avatar" width="72px" height="72px">

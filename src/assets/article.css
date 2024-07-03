@@ -128,9 +128,17 @@ article code {
   border-radius: 3px;
 }
 
+.dark article code {
+  background: #222831;
+}
+
 article pre {
   padding: 0 1em;
   overflow: auto;
   background: #f8f8f8;
   border-radius: 12px;
+}
+
+.dark article pre {
+  background: #222831;
 }
