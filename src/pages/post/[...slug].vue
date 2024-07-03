@@ -23,8 +23,7 @@
         </div>
         <!--Table of Content-->
         <div class="hidden md:block text-xs leading-7">
-          <div v-if="toc && toc.links"
-            class="toc group/toc fixed max-w-96 ml-3 top-[120px] mt-12">
+          <div v-if="toc && toc.links" class="toc group/toc fixed max-w-96 ml-3 top-[120px] mt-12">
             <ul class="list-none">
               <li v-for="link in toc.links" :key="link.text">
                 <a :href="'#' + link.id" class="flex flex-row items-center h-8 group/title">
@@ -73,12 +72,12 @@ useHead({
 })
 
 useSeoMeta({
-  title: 'Tripper Press',
-  ogTitle: 'Tripper Press',
-  twitterTitle: 'Tripper Press',
-  description: 'Take Photo, Think Seriously',
-  ogDescription: 'Take Photo, Think Seriously',
-  twitterDescription: 'Take Photo, Think Seriously',
+  title: post.data.value?.title + ' | Tripper Press',
+  ogTitle: post.data.value?.title + ' | Tripper Press',
+  twitterTitle: post.data.value?.title + ' | Tripper Press',
+  description: post.data.value?.description || 'Post at Tripper Press',
+  ogDescription: post.data.value?.description || 'Post at Tripper Press',
+  twitterDescription: post.data.value?.description || 'Post at Tripper Press',
   ogImage: postCover,
   twitterImage: postCover,
 })
