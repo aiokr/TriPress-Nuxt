@@ -39,7 +39,7 @@
           <div class="sticky top">
             <div class="text-lg font-bold text-text dark:text-dtext pb-3 px-1">分类</div>
             <button class="block py-1 text-text dark:text-dtext px-1" @click="handleChangeCategory('')">全部文章</button>
-            <button class="block py-1 text-text dark:text-dtext px-1" v-for="i in allCategories"
+            <button class="block py-1 text-text dark:text-dtext px-1" v-for="i in allCategories" :data-umami-event="'selectCategoryInPostsPage - ' + i"
               :class="i === queryCategory ? 'marked' : ''" @click="handleChangeCategory(i)">{{ i }}</button>
           </div>
         </div>

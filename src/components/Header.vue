@@ -13,10 +13,12 @@
         <router-link to="/posts" class="headerLink">Posts</router-link>
         <router-link to="/darkroom" class="headerLink">Darkroom</router-link>
         <router-link to="/about" class="headerLink">About</router-link>
-        <button v-if="colorMode.value === 'dark'" @click="handleColorMode" class="themeBtn">
+        <button v-if="colorMode.value === 'dark'" @click="handleColorMode" data-umami-event="changeColorModeToLight"
+          class="themeBtn">
           <IconMoon />
         </button>
-        <button v-else-if="colorMode.value === 'light'" @click="handleColorMode" class="themeBtn">
+        <button v-else-if="colorMode.value === 'light'" @click="handleColorMode"
+          data-umami-event="changeColorModeToDark" class="themeBtn">
           <IconSun />
         </button>
         <button @click="clickHeaderMenuBtn" class="headerMenu headerMenuBtn md:hidden">
