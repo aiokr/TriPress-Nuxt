@@ -43,8 +43,10 @@
           </div>
         </div>
         <!--拖动手柄 - 文章列表和主要区域中间-->
-        <div id="posts-drag-bar"
-          class="drag-bar posts-drag-bar border-r dark:border-white/20 w-2 hover:bg-zinc-300 transition"></div>
+        <ClientOnly>
+          <div id="posts-drag-bar"
+            class="drag-bar posts-drag-bar border-r dark:border-white/20 w-2 hover:bg-zinc-300 transition"></div>
+        </ClientOnly>
       </div>
       <!--主要区域-->
       <div class="postArea flex-1 flex flex-col h-screen overflow-y-auto">
@@ -59,12 +61,16 @@
             /
             <span>{{ currentPost.title }}</span>
           </div>
-          <button v-if="colorMode.value === 'light'" class="p-2" @click="handleColorMode">
-            <IconsIconSun />
-          </button>
-          <button v-if="colorMode.value === 'dark'" class="p-2" @click="handleColorMode">
-            <IconsIconMoon />
-          </button>
+          <ClientOnly>
+            <button v-if="colorMode.value === 'light'" class="p-2" @click="handleColorMode"
+              data-umami-event="changeColorModeToDark">
+              <IconsIconSun />
+            </button>
+            <button v-else-if="colorMode.value === 'dark'" class="p-2" @click="handleColorMode"
+              data-umami-event="changeColorModeToLight">
+              <IconsIconMoon />
+            </button>
+          </ClientOnly>
         </div>
         <div class="max-h-[calc(100vh-48px)]">
           <slot />
