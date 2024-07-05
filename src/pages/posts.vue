@@ -7,7 +7,7 @@
       </div>
       <div class=" grid grid-cols-5">
         <div class="col-span-4 md:col-span-4">
-          <NuxtLink v-if="isAllPosts" v-for="post in posts" :to="post._path"
+          <NuxtLink v-if="isAllPosts" v-for="post in posts" :key="post._id" :to="post._path"
             class="w-full rounded-xl mb-8 grid grid-cols-5">
             <img v-if="post.cover" :src="post.cover" alt="cover" class="w-full object-cover rounded-xl aspect-square" />
             <div class="pl-4 pt-2 md:px-6 md:pt-2 rounded-b-xl col-span-4">
@@ -21,7 +21,7 @@
               </div>
             </div>
           </NuxtLink>
-          <NuxtLink v-else v-for="post in queryPosts" :to="post._path" class="w-full rounded-xl mb-8 grid grid-cols-5">
+          <NuxtLink v-else v-for="post in queryPosts" :key="post._path" :to="post._path" class="w-full rounded-xl mb-8 grid grid-cols-5">
             <img v-if="post.cover" :src="post.cover" alt="cover" class="w-full object-cover rounded-xl aspect-square" />
             <div class="pl-4 pt-2 md:px-6 md:pt-2 rounded-b-xl col-span-4">
               <div class="text-xs text-zinc-400 dark:text-dtext/80 pb-2">
@@ -39,7 +39,7 @@
           <div class="sticky top">
             <div class="text-lg font-bold text-text dark:text-dtext pb-3 px-1">分类</div>
             <button class="block py-1 text-text dark:text-dtext px-1" @click="handleChangeCategory('')">全部文章</button>
-            <button class="block py-1 text-text dark:text-dtext px-1" v-for="i in allCategories" :data-umami-event="'selectCategoryInPostsPage - ' + i"
+            <button class="block py-1 text-text dark:text-dtext px-1" v-for="i in allCategories" :key="i" :data-umami-event="'selectCategoryInPostsPage - ' + i"
               :class="i === queryCategory ? 'marked' : ''" @click="handleChangeCategory(i)">{{ i }}</button>
           </div>
         </div>

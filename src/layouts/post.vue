@@ -38,7 +38,7 @@
               class="w-full h-8 p-2 text-sm pring-1 ring-slate-900/10 hover:ring-slate-300 focus:outline-none focus:ring-2 focus:ring-main shadow-sm rounded-lg text-slate-400 dark:bg-slate-800 dark:ring-0 dark:text-slate-300 dark:highlight-white/5 dark:hover:bg-slate-700 transition" />
           </div>
           <div class=" h-[calc(100vh-54px)] overflow-y-scroll no-scrollbar">
-            <PostLink v-for="post in queryPosts" :post="post" :currentPost="currentPost"
+            <PostLink v-for="post in queryPosts" :post="post" :currentPost="currentPost" :key="post._id"
               @updateCurrentPost="updateCurrentPost" />
           </div>
         </div>

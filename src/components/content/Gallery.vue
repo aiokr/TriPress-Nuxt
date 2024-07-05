@@ -1,6 +1,6 @@
 <template>
   <div class="grid gap-1 pb-4" :style="'grid-template-columns: repeat(' + gridCols + ', minmax(0, 1fr));'">
-    <div v-for="i in pic">
+    <div v-for="i in pic" :key="i">
       <img :src="i" alt="gallery" />
     </div>
   </div>
