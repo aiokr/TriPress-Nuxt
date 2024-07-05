@@ -1,13 +1,13 @@
 <template>
   <ContentDoc>
     <template v-slot="{ doc }">
-      <div class="pb-36 relative">
-        <div class="bg-white dark:bg-zinc-800">
+      <div class="pb-36 -mt-[72px] relative">
+        <div class="">
           <!--Post Header w/ Cover-->
           <div v-if="doc.cover" class="postCard w-full object-cover bg-center bg-cover"
             :style="'background-image: url(' + doc.cover + ');'">
             <div class="bg-gradient-to-t from-white to-white/60 dark:from-zinc-800 dark:to-zinc-800/40">
-              <div class="pt-32 pb-24 px-4 container max-w-[800px] mx-auto ">
+              <div class="pt-48 pb-24 px-4 container max-w-[800px] mx-auto ">
                 <h1 class="text-3xl font-semibold text-text dark:text-dtext">{{ doc.title }}</h1>
               </div>
             </div>
@@ -56,7 +56,6 @@
 <script setup lang="ts">
 
 definePageMeta({
-  layout: 'post'
 })
 
 const url = useRoute().path
