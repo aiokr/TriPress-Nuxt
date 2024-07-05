@@ -38,11 +38,11 @@
         <div class="text-xs text-zinc-300 dark:text-dtext/40 pt-2 pb-1">I Want To Travaling All Around The World</div>
         <div class="text-lg font-bold pb-2">My Destination Plan</div>
         <div class=" flex flex-col text-sm gap-1 h-36 overflow-hidden">
-          <li v-for="plan in planningTravelPlan">
+          <li v-for="plan in planningTravelPlan" :key="plan">
             {{ plan.destination }}
           </li>
           <div class="travlePlanAlready">
-            <li v-for="plan in alreadyTravelPlan" class="line-through text-zinc-300 dark:text-dtext/40">
+            <li v-for="plan in alreadyTravelPlan" :key="plan" class="line-through text-zinc-300 dark:text-dtext/40">
               {{ plan.destination }}
             </li>
           </div>
