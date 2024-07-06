@@ -1,10 +1,9 @@
 import { defineEventHandler } from 'h3'
-import type { ParsedContent } from '@nuxt/content/dist/runtime/types'
 import { serverQueryContent } from '#content/server'
 import { asSitemapUrl, defineSitemapEventHandler } from '#imports'
 
 export default defineSitemapEventHandler(async (e) => {
-  const contentList = (await serverQueryContent(e).find()) as ParsedContent[]
+  const contentList = (await serverQueryContent(e).where({ type: { $ne: 'draft' } }).find())
   return contentList
     .filter(c => c?._path?.startsWith('/post'))
     .map((c) => {
