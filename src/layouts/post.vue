@@ -38,15 +38,13 @@
               class="w-full h-8 p-2 text-sm pring-1 ring-slate-900/10 hover:ring-slate-300 focus:outline-none focus:ring-2 focus:ring-main shadow-sm rounded-lg text-slate-400 dark:bg-slate-800 dark:ring-0 dark:text-slate-300 dark:highlight-white/5 dark:hover:bg-slate-700 transition" />
           </div>
           <div class=" h-[calc(100vh-54px)] overflow-y-scroll no-scrollbar">
-            <PostLink v-for="post in queryPosts" :post="post" :currentPost="currentPost" :key="post._id"
+            <PostLink v-for="post in queryPosts" :post="post" :currentPost="currentPost" :key="post.title"
               @updateCurrentPost="updateCurrentPost" />
           </div>
         </div>
         <!--拖动手柄 - 文章列表和主要区域中间-->
-        <ClientOnly>
-          <div id="posts-drag-bar"
-            class="drag-bar posts-drag-bar border-r dark:border-white/20 w-2 hover:bg-zinc-300 transition"></div>
-        </ClientOnly>
+        <div id="posts-drag-bar"
+          class="drag-bar posts-drag-bar border-r dark:border-white/20 w-2 hover:bg-zinc-300 transition"></div>
       </div>
       <!--主要区域-->
       <div class="postArea flex-1 flex flex-col h-screen overflow-y-auto">
@@ -93,7 +91,6 @@ onMounted(() => {
 // 侧边栏拖动功能
 onMounted(() => {
   let postsDragBar = document.getElementById('posts-drag-bar');
-  let titleDragBar = document.getElementById('title-drag-bar');
 
   postsDragBar?.addEventListener('mousedown', (e) => {
     let startX = e.clientX;
@@ -107,38 +104,10 @@ onMounted(() => {
     document.onmousemove = (e) => {
       window.getSelection()?.removeAllRanges(); // 防止选中文字
       let moveX = e.clientX - startX;
-      if (startWidth + moveX < 220) {
+      if (startWidth + moveX < 220 || startWidth + moveX > 800) {
         return;
       }
       (document.querySelector('.posts') as HTMLElement).style.width = startWidth + moveX + 'px';
-    };
-
-    // 鼠标松开事件
-    document.onmouseup = () => {
-      document.onmousemove = null;
-      document.onmouseup = null;
-      window.getSelection()?.removeAllRanges(); // 防止选中文字
-    };
-  });
-
-  titleDragBar?.addEventListener('mousedown', (e) => {
-    let startX = e.clientX;
-    let startWidth = (document.querySelector('.categories') as HTMLElement)?.offsetWidth;
-
-    if (isCategoriesListCollapsed.value === true) {
-      isCategoriesListCollapsed.value = false;
-    }
-
-    // 鼠标移动事件
-    document.onmousemove = (e) => {
-      window.getSelection()?.removeAllRanges(); // 防止选中文字
-      let moveX = e.clientX - startX;
-      if (startWidth + moveX < 180 && startWidth + moveX > 120) {
-        return;
-      } else if (startWidth + moveX < 120) {
-        isCategoriesListCollapsed.value = true;
-      }
-      (document.querySelector('.categories') as HTMLElement).style.width = startWidth + moveX + 'px';
     };
 
     // 鼠标松开事件
