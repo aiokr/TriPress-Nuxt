@@ -13,7 +13,7 @@
             </div>
           </div>
           <!--Post Header w/o Cover-->
-          <div v-else class="pt-16 md:pt-20 pb-20 px-4 container max-w-[800px] mx-auto">
+          <div v-else class="pt-16 md:pt-44 pb-20 px-4 container max-w-[800px] mx-auto">
             <h1 class="text-3xl font-semibold text-text dark:text-dtext">{{ doc.title }}</h1>
           </div>
           <!--Post Content-->
@@ -56,6 +56,7 @@
 <script setup lang="ts">
 
 definePageMeta({
+  layout: 'post',
 })
 
 const url = useRoute().path
