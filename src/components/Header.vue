@@ -13,7 +13,6 @@
           <router-link to="/" class="headerLink">Home</router-link>
           <router-link to="/posts" class="headerLink">Posts</router-link>
           <router-link to="/darkroom" class="headerLink">Darkroom</router-link>
-          <router-link to="/about" class="headerLink">About</router-link>
           <button v-if="colorMode.value === 'dark'" @click="handleColorMode" data-umami-event="changeColorModeToLight"
             class="themeBtn">
             <IconsIconMoon />
@@ -34,7 +33,6 @@
       <router-link to="/" class="headerMenuLink">Home</router-link>
       <router-link to="/posts" class="headerMenuLink">Posts</router-link>
       <router-link to="/darkroom" class="headerMenuLink">Darkroom</router-link>
-      <router-link to="/about" class="headerMenuLink">About</router-link>
     </div>
   </ClientOnly>
 </template>

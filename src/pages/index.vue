@@ -83,6 +83,10 @@
         </div>
       </NuxtLink>
     </section>
+    <Footer />
+  </div>
+  <div class="right-0 left-0 h-36 w-full px-36 flex blur-3xl -z-50 -mt-36">
+    <div class="bg-main/30 flex-1 h-full"></div>
   </div>
 </template>
 
