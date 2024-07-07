@@ -8,18 +8,21 @@
       <hr />
     </div>
     <div class="pt-4">
-      <div class="text-2xl font-bold text-text dark:text-dtext pb-2">Carema</div>
-      <div v-for="i in usesData.camera" :key="i.model">
-        {{ i }}
+      <div class="text-2xl font-bold text-text dark:text-dtext pb-4">Film</div>
+      <div class="grid grid-cols-2 md:grid-cols-5 grid-4">
+        <div v-for="i in usesData.film" :key="i.model">
+          <NuxtImg v-if="i.image" :src="i.image" :alt="i.model" class="rounded-lg border" />
+          <NuxtLink v-if="i.link" :to="i.link" class="text-lg font-bold text-text dark:text-dtext">{{ i.model }}
+          </NuxtLink>
+          <div class="text-sm py-2">{{ i.model }}</div>
+        </div>
       </div>
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
-
-const appConfig = useAppConfig()
-
-const usesData = appConfig.content.uses
+const appConfig: any = useAppConfig()
+const usesData: any = appConfig.content.uses
 
 </script>

@@ -37,7 +37,7 @@ export default defineAppConfig({
         { model: '7Artisans 25mm F1.8', status: 'sold' }
       ],
       film: [
-        { model: 'LUCKUFilm SHD400', status: 'using' }
+        { model: 'LUCKUFilm SHD400', status: 'using', image: './icons/LuckyFilm-SHD400.svg' }
       ],
       laptop: [
         { model: 'Macbook Air M1', status: 'using' }
