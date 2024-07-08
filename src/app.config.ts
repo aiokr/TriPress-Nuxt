@@ -25,10 +25,10 @@ export default defineAppConfig({
       camera: [
         {
           model: 'SONY ICLE-6400',
-          status: 'using' // used | sold | broken
+          status: 'using' // used | sold | broken | plan
         },
         { model: 'Phenix DC901', status: 'using' },
-        { model: 'Panasonic', status: 'sold' }
+        { model: 'Panasonic GF9', status: 'sold' }
       ],
       lens: [
         { model: 'SONY SELP1650', status: 'using' },
@@ -37,7 +37,8 @@ export default defineAppConfig({
         { model: '7Artisans 25mm F1.8', status: 'sold' }
       ],
       film: [
-        { model: 'LUCKUFilm SHD400', status: 'using', image: './icons/LuckyFilm-SHD400.svg' }
+        { model: 'LUCKUFilm SHD400', status: 'using', image: './icons/LuckyFilm-SHD400.svg' },
+        { model: 'ILFORD HP5', status: 'plan', image: './icons/ILFORD-HP5.svg' }
       ],
       laptop: [
         { model: 'Macbook Air M1', status: 'using' }
