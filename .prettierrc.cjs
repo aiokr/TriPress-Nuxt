@@ -8,5 +8,5 @@ module.exports = {
   trailingComma: 'none', // 末尾逗号
   jsxBracketSameLine: false, // jsx标签多行属性写法时，尖括号是否另起一行
   arrowParens: 'always', // 只有一个参数的箭头函数的参数是否带圆括号
-  embeddedLanguageFormatting: 'off'
+  embeddedLanguageFormatting: 'off' // 是否格式化内嵌的代码
 }
