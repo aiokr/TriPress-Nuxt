@@ -1,79 +1,107 @@
 <template>
-  <div class="container max-w-[1000px] px-2 md:px-0 mx-auto">
+  <div class="container max-w-[800px] px-2 md:px-0 mx-auto">
     <section
-      class="w-full transition-shadow rounded px-4 md:px-3 pt-16 md:pt-32 pb-20 md:pb-36 flex flex-col md:flex-row md:items-center justify-between gap-12"
-    >
+      class="w-full transition-shadow rounded px-4 md:px-3 pt-16 md:pt-32 pb-20 md:pb-36 flex flex-col md:flex-row md:items-center justify-between gap-12">
       <div class="relative md:hidden">
         <img src="https://imgur.lzmun.com/picgo/after2022/tripper2colorfull.png_avatar" width="64px" height="64px" />
-        <div class="absolute inset-0 -z-10 bg-gradient-to-tl from-main/60 to-main/10 opacity-0 blur-2xl md:opacity-50"></div>
+        <div class="absolute inset-0 -z-10 bg-gradient-to-tl from-main/60 to-main/10 opacity-0 blur-2xl md:opacity-50">
+        </div>
       </div>
-      <div class="text-3xl font-bold">
+      <div class="text-2xl font-light">
         <div class="pb-2">
-          I'm aiokr,<br />
-          want to be a
-          <div class="wantToBeGrid inline-grid h-10 text-main overflow-hidden">
-            <div class="grid gap-1" :style="wantToBeStyle">
-              <div>Full Stack Developer</div>
-              <div>Photographer</div>
-              <div>Motion/ Graphic Designer</div>
-              <div>Blogger & Vlogger</div>
-              <div>Full Stack Developer</div>
-            </div>
-          </div>
+          Chen WJP
+          <div class="text-base text-submain">Always as a student</div>
         </div>
       </div>
       <div class="hidden md:block md:relative">
         <img src="https://imgur.lzmun.com/picgo/after2022/tripper2colorfull.png_avatar" width="72px" height="72px" />
-        <div class="absolute inset-0 -z-10 bg-gradient-to-tl from-main/60 to-main/10 opacity-0 blur-2xl md:opacity-50"></div>
-      </div>
-    </section>
-    <div class="flex items-center justify-between px-3 md:px-2">
-      <div class="text-3xl font-bold pb-6">About Me</div>
-    </div>
-    <section class="grid grid-cols-1 md:grid-cols-2 gap-6 px-3 md:px-2 pb-12">
-      <div class="warnBanner flex-1 md:col-span-2 shadow-card dark:shadow-card-dark rounded-lg p-3">
-        <div class="font-bold py-2 text-center">Building……</div>
-      </div>
-      <div class="flex-1 shadow-card dark:shadow-card-dark rounded-lg p-3">
-        <div class="text-xs text-zinc-300 dark:text-dtext/40 pt-2 pb-1">I Want To Travaling All Around The World</div>
-        <div class="text-lg font-bold pb-2">My Destination Plan</div>
-        <div class=" flex flex-col text-sm gap-1 h-36 overflow-hidden">
-          <li v-for="plan in planningTravelPlan" :key="plan">
-            {{ plan.destination }}
-          </li>
-          <div class="travlePlanAlready">
-            <li v-for="plan in alreadyTravelPlan" :key="plan" class="line-through text-zinc-300 dark:text-dtext/40">
-              {{ plan.destination }}
-            </li>
-          </div>
+        <div class="absolute inset-0 -z-10 bg-gradient-to-tl from-main/60 to-main/10 opacity-0 blur-2xl md:opacity-50">
         </div>
       </div>
-      <div class="shadow-card dark:shadow-card-dark rounded-lg p-3">
-        <div class="text-xs text-zinc-300 dark:text-dtext/40 pt-2 pb-1">stay hungry, stay foolish</div>
-        <div class="text-lg font-bold">Currently Reading</div>
-        <a :href="currentReadingBookLink" target="_blank">
-          <img :src="currentReadingBookCover" class="bookCover h-40 w-32 object-cover overflow-hidden mx-auto translate-y-3" />
-          <div class="text-center text-2xl font-bold">{{ currentReadingBook }}</div>
-        </a>
+    </section>
+    <!--About-->
+    <div class="flex items-center justify-between px-3 md:px-2">
+      <div class="text-lg font-light pb-6">About</div>
+    </div>
+    <!--Work Experience-->
+    <div class="flex items-center justify-between px-3 md:px-2">
+      <div class="text-lg font-light pb-6">Work Experience</div>
+    </div>
+    <section class="text-lg font-light">
+      <div class=" mx-auto px-3 md:px-2 pb-8 grid grid-cols-1 md:grid-cols-6 gap-6">
+        <div class="col-span-1 md:col-span-1 text-slate-400">
+          <div>2022 - Now</div>
+        </div>
+        <div class="col-span-1 md:col-span-5 text-slate-800 dark:text-slate-50">
+          <div>MuTian Technology Co., Ltd</div>
+        </div>
+      </div>
+      <div class=" mx-auto px-3 md:px-2 pb-8 grid grid-cols-1 md:grid-cols-6 gap-6">
+        <div class="col-span-1 md:col-span-1 text-slate-400">
+          <div>2022</div>
+        </div>
+        <div class="col-span-1 md:col-span-5 text-slate-800 dark:text-slate-50">
+          <div>Media Operation Intern at Propaganda Department of Liuzhou Chengzhong District</div>
+          <div class="text-slate-400 text-base">Liuzhou</div>
+        </div>
+      </div>
+    </section>
+    <!--Certifications-->
+    <div class="flex items-center justify-between px-3 md:px-2">
+      <div class="text-lg font-light pb-6">Certifications</div>
+    </div>
+    <section class="text-lg font-light">
+      <div class=" mx-auto px-3 md:px-2 pb-8 grid grid-cols-1 md:grid-cols-6 gap-6">
+        <div class="col-span-1 md:col-span-1 text-slate-400">
+          <div>2021</div>
+        </div>
+        <div class="col-span-1 md:col-span-5 text-slate-800 dark:text-slate-50">
+          <div>College English Test Level 4 (CET4)</div>
+        </div>
+      </div>
+    </section>
+    <!--Side Projects-->
+    <div class="flex items-center justify-between px-3 md:px-2">
+      <div class="text-lg font-light pb-6">Side Projects</div>
+    </div>
+    <section class="text-lg font-light">
+      <div class=" mx-auto px-3 md:px-2 pb-8 grid grid-cols-1 md:grid-cols-6 gap-6">
+        <div class="col-span-1 md:col-span-1 text-slate-400">
+        Ongoing
+        </div>
+        <div class="col-span-1 md:col-span-5 text-slate-800 dark:text-slate-50">
+          <div>Tripper Press</div>
+          <div class="text-slate-400 text-base">Personal website built with Nuxt</div>
+          <NuxtLink to="https://github.com/aiokr/tripress-nuxt" class="text-sm text-main"></NuxtLink>
+        </div>
+      </div>
+    </section>
+    <!--Education-->
+    <div class="flex items-center justify-between px-3 md:px-2">
+      <div class="text-lg font-light pb-6">Education</div>
+    </div>
+    <section class="text-lg font-light">
+      <div class=" mx-auto px-3 md:px-2 pb-16 grid grid-cols-1 md:grid-cols-6 gap-6">
+        <div class="col-span-1 md:col-span-1 text-slate-400">
+          <div>2018-2022</div>
+        </div>
+        <div class="col-span-1 md:col-span-5 text-slate-800 dark:text-slate-50">
+          <div>Nanning Normal University</div>
+          <div>Bachelor of Cultural Industry Management</div>
+        </div>
       </div>
     </section>
     <div class="flex items-center justify-between px-3 md:px-2">
-      <div class="text-3xl font-bold pb-6">Posts</div>
+      <div class="text-2xl font-light pb-6">Posts</div>
       <NuxtLink to="/posts" class="text-sm text-main">All Posts</NuxtLink>
     </div>
     <section class="container mx-auto px-3 md:px-2 pb-16 grid grid-cols-1 md:grid-cols-2 gap-6">
-      <NuxtLink
-        v-for="post in posts"
-        :to="post._path"
-        class="postCard block border-zinc-400/20 dark:border-white/20 w-full shadow-card dark:shadow-card-dark hover:shadow-lg rounded-xl bg-white dark:bg-zinc-800"
-      >
-        <img v-if="post.cover" :src="post.cover" :alt="post.title + ' cover'" class="h-[180px] md:h-[233px] w-full object-cover rounded-2xl p-2" />
-        <img
-          v-else
-          src="https://imgur.lzmun.com/tricms/1713761252690-2022-03-16-DSC09021-web.jpg"
-          :alt="post.title + ' default cover'"
-          class="h-[180px] md:h-[233px] w-full object-cover rounded-2xl p-2"
-        />
+      <NuxtLink v-for="post in posts" :to="post._path"
+        class="postCard block border-zinc-400/20 dark:border-white/20 w-full shadow-card dark:shadow-card-dark hover:shadow-lg rounded-xl bg-white dark:bg-zinc-800">
+        <img v-if="post.cover" :src="post.cover" :alt="post.title + ' cover'"
+          class="h-[180px] md:h-[233px] w-full object-cover rounded-2xl p-2" />
+        <img v-else src="https://imgur.lzmun.com/tricms/1713761252690-2022-03-16-DSC09021-web.jpg"
+          :alt="post.title + ' default cover'" class="h-[180px] md:h-[233px] w-full object-cover rounded-2xl p-2" />
         <div class="h-[200px] p-3 md:p-4 md:pt-4 flex flex-col justify-between">
           <div>
             <div v-if="post.date" class="text-sm text-zinc-400 dark:text-dtext/80 pb-2">
@@ -122,42 +150,6 @@ useSeoMeta({
   ogDescription: 'Take Photo, Think Seriously',
 })
 
-const wantToBeIndex = ref(1);
-const wantToBeStyle = ref({
-  transform: 'translateY(0)',
-});
-
-onMounted(() => {
-  function wangToBeAnimate() {
-    let startNum = wantToBeIndex.value;
-    if (startNum === 4) {
-      startNum = 0;
-    }
-    const endNum = startNum + 1;
-    const duration = 300;
-    const startTime = new Date().getTime();
-
-    const animate = () => {
-      const currentTime = new Date().getTime();
-      const progress = Math.min((currentTime - startTime) / duration, 1);
-      wantToBeIndex.value = startNum + (endNum - startNum) * progress;
-      wantToBeStyle.value = {
-        transform: `translateY(-${wantToBeIndex.value * 40}px)`
-      }
-
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      }
-    }
-    requestAnimationFrame(animate);
-  }
-
-  setInterval(() => {
-    wangToBeAnimate();
-  }, 3600);
-
-});
-
 const posts = await queryContent("/post").only(["_path", "title", "date", "category", "cover", "type"]).where({ type: { $ne: 'draft' } }).limit(4).sort({ date: -1 }).find();
 </script>
 
@@ -187,15 +179,15 @@ const posts = await queryContent("/post").only(["_path", "title", "date", "categ
   --orange: #ffc75f30;
   --white: #ffc75f10;
   background:
-  linear-gradient(90deg, #ffffff ,#ffffffb0 80%, #ffffff00 100%),
-  repeating-linear-gradient(-45deg,  var(--orange) 0%, var(--orange) 2%, var(--white) 2%, var(--white) 4%, var(--orange) 4%);
+    linear-gradient(90deg, #ffffff, #ffffffb0 80%, #ffffff00 100%),
+    repeating-linear-gradient(-45deg, var(--orange) 0%, var(--orange) 2%, var(--white) 2%, var(--white) 4%, var(--orange) 4%);
 }
 
-.dark .warnBanner{
+.dark .warnBanner {
   --orange: #ffc75f60;
   --white: #ffc75f40;
   background:
-  linear-gradient(90deg, #18181b ,#18181bb0 80%, #18181b00 100%),
-  repeating-linear-gradient(-45deg,  var(--orange) 0%, var(--orange) 2%, var(--white) 2%, var(--white) 4%, var(--orange) 4%);
+    linear-gradient(90deg, #18181b, #18181bb0 80%, #18181b00 100%),
+    repeating-linear-gradient(-45deg, var(--orange) 0%, var(--orange) 2%, var(--white) 2%, var(--white) 4%, var(--orange) 4%);
 }
 </style>
