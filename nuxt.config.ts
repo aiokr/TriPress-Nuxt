@@ -82,6 +82,10 @@ export default defineNuxtConfig({
     preset: 'cloudflare_pages',
   },
 
+  alias: {
+    '@nuxt/kit': require.resolve('@nuxt/kit/dist/index.mjs'),
+  },
+
   runtimeConfig: {
     turnstile: {
       secretKey: '',
