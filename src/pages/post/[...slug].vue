@@ -1,86 +1,50 @@
-<template>
-  <ContentDoc>
-    <template v-slot="{ doc }">
-      <div class="pb-36 -mt-[72px] relative">
-        <div class="">
-          <!--Post Header w/ Cover-->
-          <div v-if="doc.cover" class="postCard w-full object-cover bg-center bg-cover"
-            :style="'background-image: url(' + doc.cover + ');'">
-            <div class="bg-gradient-to-t from-white to-white/60 dark:from-zinc-800 dark:to-zinc-800/40">
-              <div class="pt-48 pb-24 px-4 container max-w-[800px] mx-auto ">
-                <h1 class="text-3xl font-semibold text-text dark:text-dtext">{{ doc.title }}</h1>
-              </div>
-            </div>
-          </div>
-          <!--Post Header w/o Cover-->
-          <div v-else class="pt-16 md:pt-44 pb-20 px-4 container max-w-[800px] mx-auto">
-            <h1 class="text-3xl font-semibold text-text dark:text-dtext">{{ doc.title }}</h1>
-          </div>
-          <!--Post Content-->
-          <article class="container max-w-[800px] px-4 mx-auto pb-12">
-            <ContentRenderer :value="doc" />
-          </article>
-        </div>
-        <!--Table of Content-->
-        <div class="hidden md:block text-xs leading-7">
-          <div v-if="toc && toc.links" class="toc group/toc fixed max-w-96 ml-3 top-[120px] mt-12">
-            <ul class="list-none">
-              <li v-for="link in toc.links" :key="link.text">
-                <a :href="'#' + link.id" class="flex flex-row items-center h-8 group/title">
-                  <i class="block h-1 w-4 my-3 mr-2 rounded-full bg-zinc-200 group-hover/toc:bg-zinc-400"></i>
-                  <div
-                    class="truncate opacity-0 group-hover/toc:opacity-60 group-hover/title:opacity-80 transition-all w-28">
-                    {{ link.text }}</div>
-                </a>
-                <ul v-if="link.children" class="list-none">
-                  <a :href="'#' + sublink.id" v-for="sublink in link.children" :key="sublink.text"
-                    class="flex flex-row items-center h-8 group/title">
-                    <i class="block h-1 w-3 rounded-full bg-zinc-200 group-hover/toc:bg-zinc-400 my-3 mr-2"></i>
-                    <div
-                      class="pl-2 truncate opacity-0 group-hover/toc:opacity-60 group-hover/title:opacity-80 transition-all w-14">
-                      {{ sublink.text }}</div>
-                  </a>
-                </ul>
-              </li>
-            </ul>
+<template v-slot="{ doc }">
+  <div class="pb-36 -mt-[72px] relative">
+    <div class="">
+      <!--Post Header w/ Cover-->
+      <div v-if="post?.cover" class="postCard w-full object-cover bg-center bg-cover"
+        :style="'background-image: url(' + post?.cover + ');'">
+        <div class="bg-gradient-to-t from-white to-white/60 dark:from-zinc-800 dark:to-zinc-800/40">
+          <div class="pt-48 pb-24 px-4 container max-w-[800px] mx-auto ">
+            <h1 class="text-3xl font-semibold text-text dark:text-dtext">{{ post?.title }}</h1>
           </div>
         </div>
       </div>
-    </template>
-    <template #not-found>
-      <h1>Document not found</h1>
-    </template>
-  </ContentDoc>
+      <!--Post Header w/o Cover-->
+      <div v-else class="pt-16 md:pt-44 pb-20 px-4 container max-w-[800px] mx-auto">
+        <h1 class="text-3xl font-semibold text-text dark:text-dtext">{{ post?.title }}</h1>
+      </div>
+      <!--Post Content-->
+      <article class="container max-w-[800px] px-4 mx-auto pb-12">
+        <template v-if="post">
+          <ContentRenderer :value="post" />
+        </template>
+        <template v-else>
+          <div class="empty-page">
+            <p>{{ route.path }}</p>
+            <h1>Page Not Found</h1>
+            <p>Oops! The content you're looking for doesn't exist.</p>
+            <NuxtLink to="/">Go back home</NuxtLink>
+          </div>
+        </template>
+      </article>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
 
 definePageMeta({
-  layout: 'post',
+  layout: 'default',
 })
 
-const url = useRoute().path
-const post = await useAsyncData('post', () => queryContent(url).findOne())
-// console.log(post.data.value)
-const postCover = post.data.value?.cover
-const toc = post.data.value?.body?.toc
-
-useHead({
-  meta: [
-    { name: 'description', content: 'Take Photo, Think Seriously' }
-  ]
+const route = useRoute()
+const { data: post } = await useAsyncData(route.path, () => {
+  return queryCollection('post').path(route.path).first()
 })
 
-useSeoMeta({
-  title: post.data.value?.title + ' | Tripper Press',
-  ogTitle: post.data.value?.title + ' | Tripper Press',
-  twitterTitle: post.data.value?.title + ' | Tripper Press',
-  description: post.data.value?.description || 'Post at Tripper Press',
-  ogDescription: post.data.value?.description || 'Post at Tripper Press',
-  twitterDescription: post.data.value?.description || 'Post at Tripper Press',
-  ogImage: postCover,
-  twitterImage: postCover,
-})
+
+console.log(post.value)
 
 </script>
 

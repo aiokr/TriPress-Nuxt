@@ -2,7 +2,6 @@
 title: 字体使用指南
 date: 2024-07-02T12:00:00.000Z
 category: 读立写生
-cover: https://ooo.0o0.ooo/2017/06/06/593697b7b77d8.jpg
 type: draft
 ---
 

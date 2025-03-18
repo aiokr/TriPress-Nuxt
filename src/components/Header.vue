@@ -50,7 +50,7 @@ const headerMenuOpen = ref(false);
 
 const clickHeaderMenuBtn = () => {
   headerMenuOpen.value = !headerMenuOpen.value;
-  console.log(headerMenuOpen.value)
+  // console.log(headerMenuOpen.value)
 };
 
 const handleClickOutside = (event: any) => {
