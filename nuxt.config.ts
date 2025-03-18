@@ -4,15 +4,13 @@ export default defineNuxtConfig({
 
   modules: [
     '@nuxtjs/tailwindcss',
-    "@nuxt/content",
     "@pinia/nuxt",
     "@nuxtjs/color-mode",
     "@nuxtjs/turnstile",
     "@vueuse/motion/nuxt",
     "@nuxtjs/seo",
-    "@nuxtjs/sitemap",
-    "@nuxthq/studio",
-    "@nuxt/image"
+    "@nuxt/image",
+    '@nuxt/content',
   ],
 
   srcDir: 'src/',
@@ -54,23 +52,16 @@ export default defineNuxtConfig({
   },
 
   content: {
-    highlight: {
-      theme: {
-        default: 'github-light',
-        dark: 'github-dark',
+    build: {
+      markdown: {
+        toc: {
+          depth: 4,
+          searchDepth: 4
+        },
       },
     },
-    markdown: {
-      anchorLinks: false,
-      toc: {
-        depth: 2,
-        searchDepth: 4
-      },
-    },
-    experimental: {
-      search: {
-        indexed: false
-      }
+    renderer: {
+      anchorLinks: false
     }
   },
 
@@ -86,8 +77,9 @@ export default defineNuxtConfig({
 
   nitro: {
     prerender: {
-      routes: ["/atom.xml", "/sitemap.xml", "/api/postmap"],
+      // routes: ["/atom.xml", "/sitemap.xml", "/api/postmap"],
     },
+    preset: 'cloudflare_pages',
   },
 
   runtimeConfig: {

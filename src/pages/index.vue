@@ -67,7 +67,7 @@
     <section class="text-lg font-light">
       <div class=" mx-auto px-3 md:px-2 pb-8 grid grid-cols-1 md:grid-cols-6 gap-6">
         <div class="col-span-1 md:col-span-1 text-slate-400">
-        Ongoing
+          Ongoing
         </div>
         <div class="col-span-1 md:col-span-5 text-slate-800 dark:text-slate-50">
           <div>Tripper Press</div>
@@ -91,27 +91,21 @@
         </div>
       </div>
     </section>
-    <div class="flex items-center justify-between px-3 md:px-2">
-      <div class="text-2xl font-light pb-6">Posts</div>
+    <div class="flex items-center justify-between px-3 md:px-2 pt-12">
+      <div class="text-2xl font-light pb-6 pt-8">Posts</div>
       <NuxtLink to="/posts" class="text-sm text-main">All Posts</NuxtLink>
     </div>
-    <section class="container mx-auto px-3 md:px-2 pb-16 grid grid-cols-1 md:grid-cols-2 gap-6">
-      <NuxtLink v-for="post in posts" :to="post._path"
-        class="postCard block border-zinc-400/20 dark:border-white/20 w-full shadow-card dark:shadow-card-dark hover:shadow-lg rounded-xl bg-white dark:bg-zinc-800">
-        <img v-if="post.cover" :src="post.cover" :alt="post.title + ' cover'"
-          class="h-[180px] md:h-[233px] w-full object-cover rounded-2xl p-2" />
-        <img v-else src="https://imgur.lzmun.com/tricms/1713761252690-2022-03-16-DSC09021-web.jpg"
-          :alt="post.title + ' default cover'" class="h-[180px] md:h-[233px] w-full object-cover rounded-2xl p-2" />
-        <div class="h-[200px] p-3 md:p-4 md:pt-4 flex flex-col justify-between">
+    <section class="container mx-auto px-3 md:px-2 pb-16 gap-6">
+      <NuxtLink v-for="post in posts" :to="post.path"
+        class="postCard block w-full rounded-xl bg-white dark:bg-zinc-800">
+        <div class="p-3 md:p-4 md:pt-4 lg:px-0 flex flex-col justify-between">
           <div>
+            <h2 class="text-2xl text-text dark:text-dtext pb-4 font-light">{{ post.title }}</h2>
             <div v-if="post.date" class="text-sm text-zinc-400 dark:text-dtext/80 pb-2">
-              <span>{{ new Date(post.date).toISOString().split('T')[0] }}</span>
+              <span>{{ new Date(post.date).toISOString().split('T')[0] }}</span> ·
+              <span v-if="post.category">{{ post.category }}</span>
             </div>
-            <h2 class="text-2xl text-text dark:text-dtext pb-4">{{ post.title }}</h2>
             <p v-if="post.excerpt" class="pb-6 text-xs text-zinc-400">{{ post.excerpt }}</p>
-          </div>
-          <div class="pb-1">
-            <span v-if="post.category" class="postCategory">{{ post.category }}</span>
           </div>
         </div>
       </NuxtLink>
@@ -124,17 +118,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-
 const appConfig = useAppConfig()
-
-const currentReadingBook = appConfig.content.reading.bookName
-const currentReadingBookCover = appConfig.content.reading.cover
-const currentReadingBookLink = appConfig.content.reading.link
-
-const travelPlan = appConfig.content.travel
-const alreadyTravelPlan = travelPlan.filter((item) => item.already === true).slice(0, 6)
-const planningTravelPlan = travelPlan.filter((item) => item.already !== true)
 
 useHead({
   title: 'Tripper Press - Take Photo, Think Seriously',
@@ -150,7 +134,14 @@ useSeoMeta({
   ogDescription: 'Take Photo, Think Seriously',
 })
 
-const posts = await queryContent("/post").only(["_path", "title", "date", "category", "cover", "type"]).where({ type: { $ne: 'draft' } }).limit(4).sort({ date: -1 }).find();
+const { data: posts } = await useAsyncData('post', () => {
+  return queryCollection('post')
+    .order('date', 'DESC')
+    .where('type', '<>', 'draft')
+    .limit(6)
+    .all()
+})
+
 </script>
 
 <style scoped>
@@ -160,7 +151,6 @@ const posts = await queryContent("/post").only(["_path", "title", "date", "categ
 
 .postCard:hover {
   transition: transform 0.3s, background-color 0.3s, box-shadow 0.6s;
-  transform: translateY(-5px);
 }
 
 .postCategory {

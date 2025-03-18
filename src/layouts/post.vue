@@ -13,17 +13,21 @@
           <div v-if="!isCategoriesListCollapsed"
             class="categories h-screen sticky flex flex-col items-start gap-1 w-48">
             <div class="p-2">
+            <!--
               <div class="pt-6 pb-2 font-bold text-lg p-1">Categories</div>
               <button class="category p-1 block rounded w-full text-start text-sm" @click="chooseAllCategories"
                 :style="isAllCategories ? '' : 'color: #22283150'">
                 All Categories
               </button>
+              -->
+              <!--
               <button v-for="category in allCategories" :key="category"
                 class="category p-1 block rounded w-full text-start text-sm"
                 :style="currentCategories.includes(category) ? '' : 'color: #22283150'"
                 @click="handleCategoryClick(category)">
                 {{ category }}
               </button>
+              -->
             </div>
           </div>
         </Transition>
@@ -38,8 +42,10 @@
               class="w-full h-8 p-2 text-sm pring-1 ring-slate-900/10 hover:ring-slate-300 focus:outline-none focus:ring-2 focus:ring-main shadow-sm rounded-lg text-slate-400 dark:bg-slate-800 dark:ring-0 dark:text-slate-300 dark:highlight-white/5 dark:hover:bg-slate-700 transition" />
           </div>
           <div class=" h-[calc(100vh-54px)] overflow-y-scroll no-scrollbar">
+          <!--
             <PostLink v-for="post in queryPosts" :post="post" :currentPost="currentPost" :key="post.title"
               @updateCurrentPost="updateCurrentPost" />
+              -->
           </div>
         </div>
         <!--拖动手柄 - 文章列表和主要区域中间-->
@@ -85,7 +91,7 @@ import { onKeyStroke } from '@vueuse/core'
 onMounted(() => {
   // 首次进入文章阅读页面时，获取当前文章
   const currentUrl = window.location.pathname;
-  currentPost.value = queryPosts.value.find((post) => post._path === currentUrl);
+  // currentPost.value = queryPosts.value.find((post) => post._path === currentUrl);
 });
 
 // 侧边栏拖动功能
@@ -154,11 +160,11 @@ const handlePostHeaderCollapse = () => {
 };
 
 // 所有文章和所有分类数据
-const posts = await queryContent("/post").only(["_path", "title", "date", "category", "cover", "type"]).where({ type: { $ne: 'draft' } }).sort({ date: -1 }).find();
-const allCategories = Array.from(new Set(posts.map((post) => post.category).filter((category) => category !== undefined)));
+// const posts = await queryContent("/post").only(["_path", "title", "date", "category", "cover", "type"]).where({ type: { $ne: 'draft' } }).sort({ date: -1 }).find();
+// const allCategories = Array.from(new Set(posts.map((post) => post.category).filter((category) => category !== undefined)));
 
-const currentCategories = ref(allCategories); // 当前选中的分类
-const queryPosts = ref(posts); // 当前分类中的文章列表
+// const currentCategories = ref(allCategories); // 当前选中的分类
+// const queryPosts = ref(posts); // 当前分类中的文章列表
 const currentPost = ref<any>(''); // 当前展示的文章
 
 // 更新当前文章
@@ -167,9 +173,10 @@ const updateCurrentPost = (post: any) => {
 };
 
 // 是否所有分类都被选中
-const isAllCategories = computed(() => currentCategories.value.length === allCategories.length);
+// const isAllCategories = computed(() => currentCategories.value.length === allCategories.length);
 
 // 点击分类
+/*
 const handleCategoryClick = (category: string) => {
   if (currentCategories.value.includes(category)) {
     currentCategories.value = currentCategories.value.filter((c) => c !== category);
@@ -177,8 +184,10 @@ const handleCategoryClick = (category: string) => {
     currentCategories.value = [...currentCategories.value, category];
   }
 };
+*/
 
 // 选择全部分类
+/*
 const chooseAllCategories = () => {
   if (isAllCategories.value) {
     currentCategories.value = [];
@@ -195,7 +204,7 @@ watch(currentCategories, () => {
     queryPosts.value = posts.filter((post) => currentCategories.value.includes(post.category));
   }
 });
-
+*/
 
 // 切换颜色模式
 const handleColorMode = () => {
