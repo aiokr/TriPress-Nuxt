@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@nuxt/content": "^3.3.0",
-    "@nuxt/kit": "^3.16.0",
     "@nuxtjs/color-mode": "^3.4.1",
     "@nuxtjs/seo": "3.0.1",
     "@nuxtjs/tailwindcss": "^6.13.2",

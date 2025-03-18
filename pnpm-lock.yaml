@@ -11,9 +11,6 @@ importers:
       '@nuxt/content':
         specifier: ^3.3.0
         version: 3.3.0(magicast@0.3.5)(typescript@5.8.2)
-      '@nuxt/kit':
-        specifier: ^3.16.0
-        version: 3.16.0(magicast@0.3.5)
       '@nuxtjs/color-mode':
         specifier: ^3.4.1
         version: 3.5.2(magicast@0.3.5)
