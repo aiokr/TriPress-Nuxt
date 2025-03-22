@@ -3,7 +3,7 @@ title: 新玩意｜Incase City Compact Backpack w/ 1680D 背包
 category: 新玩意
 cover: 'https://imgur.lzmun.com/picgo/after2022/202212261617507.jpg_itp'
 author: aiokr
-abbrlink: 5f36
+type: post
 date: 2022-12-26 08:18:52
 ---
 

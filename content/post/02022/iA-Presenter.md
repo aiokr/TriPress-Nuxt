@@ -2,7 +2,7 @@
 title: App Plus | iA Presenter 初体验
 author: aiokr
 category: 'App Plus'
-url: 7cce
+type: post
 date: 2022-10-26 08:54:19
 cover: https://imgur.lzmun.com/picgo/after2022/202211011420163.png_itp
 ---
