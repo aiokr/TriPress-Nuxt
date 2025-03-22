@@ -21,7 +21,6 @@
     "@vueuse/motion": "^2.2.3",
     "feed": "^4.2.2",
     "motion": "^10.18.0",
-    "nuxt-og-image": "3.0.0-rc.53",
     "pinia": "^2.1.7",
     "vue": "^3.4.29",
     "vue-router": "^4.3.3"
