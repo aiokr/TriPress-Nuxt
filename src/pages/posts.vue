@@ -49,7 +49,10 @@ const queryPosts = ref<any>();
 const isAllPosts = ref(true);
 
 const { data: posts } = await useAsyncData('post', () => {
-  return queryCollection('post').order('date', 'DESC').all()
+  return queryCollection('post')
+    .where('type', '<>', 'draft')
+  .order('date', 'DESC')
+  .all()
 })
 
 </script>

@@ -14,6 +14,9 @@
       <div v-else class="pt-16 md:pt-44 pb-20 px-4 container max-w-[800px] mx-auto">
         <h1 class="text-3xl font-semibold text-text dark:text-dtext">{{ post?.title }}</h1>
       </div>
+      <div v-if="post.type === 'rc'" class="container max-w-[800px] px-4 mx-auto py-4 border border-red-400 dark:border-red-700 rounded-lg bg-red-100 dark:bg-red-900">
+        This article is a Pre-release version, and its content may be updated at any time.
+      </div>
       <!--Post Content-->
       <article class="container max-w-[800px] px-4 mx-auto pb-12">
         <template v-if="post">

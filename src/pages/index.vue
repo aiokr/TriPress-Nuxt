@@ -138,7 +138,7 @@ const { data: posts } = await useAsyncData('post', () => {
   return queryCollection('post')
     .order('date', 'DESC')
     .where('type', '<>', 'draft')
-    .limit(6)
+    .limit(3)
     .all()
 })
 
