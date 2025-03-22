@@ -46,8 +46,7 @@ const { data: post } = await useAsyncData(route.path, () => {
   return queryCollection('post').path(route.path).first()
 })
 
-
-console.log(post.value)
+// console.log(post.value)
 
 </script>
 
