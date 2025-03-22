@@ -68,5 +68,7 @@ export default defineNuxtConfig({
     classSuffix: '',
   },
 
+  ssr: true,
+
   compatibilityDate: '2024-07-05'
 })
