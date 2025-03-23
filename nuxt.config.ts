@@ -68,6 +68,12 @@ export default defineNuxtConfig({
     classSuffix: '',
   },
 
+  nitro: {
+    prerender: {
+      routes: ['/', '/atom.xml']
+    }
+  },
+
   ssr: true,
 
   compatibilityDate: '2024-07-05'
