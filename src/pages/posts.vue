@@ -10,7 +10,7 @@
           <NuxtLink v-if="isAllPosts" v-for="post in posts" :key="post.path" :to="post.path"
             class="postCard w-full rounded-xl mb-8 grid grid-cols-5">
             <img v-if="post.cover" :src="post.cover" alt="cover" class="w-full object-cover rounded-xl aspect-square" />
-            <div v-else class="postCoverWoCover opacity-40 w-full object-cover rounded-xl p-1 bg-main flex items-end justify-end">
+            <div v-else class="postCoverWoCover opacity-40 w-full object-cover rounded-xl p-1 bg-main dark:bg-slate-600 flex items-end justify-end">
               <span class="text-4xl font-serif font-bold text-white" v-if="post.date">{{ new
                 Date(post.date).toISOString().split('T')[0].split('-').slice(1).join('/') }}</span>
             </div>
