@@ -12,6 +12,7 @@ import Header from '@/components/Header.vue';
       </div>
       <Header />
       <slot />
+      <Footer />
     </div>
   </main>
 </template>
