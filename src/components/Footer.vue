@@ -1,7 +1,7 @@
 <template>
-  <main class="container w-[1040px] font-serif border-t mx-auto mb-16 pt-4 lg:pt-8 mt-12 md:mt-16 px-4">
-    <div class="flex gap-4 justify-between items-start pr-16">
-      <div class="md:col-span-3 flex flex-row items-center justify-start">
+  <main class="container w-[1040px] font-serif border-t mx-auto mb-24 pt-4 lg:pt-8 mt-12 md:mt-16 px-4">
+    <div class="grid gap-4 justify-between items-start pr-16 grid-cols-1 md:grid-cols-4">
+      <div class="col-span-1 md:col-span-2 flex flex-row items-center justify-start">
         <router-link to="/">
           <img src="https://imgur.lzmun.com/picgo/after2022/tripper2whitefull.png_avatar" alt="logo"
             class="dark:hidden rounded-full w-8 h-8  mr-auto" />
@@ -15,7 +15,13 @@
           </div>
         </div>
       </div>
-      <div class="md:col-span-1">
+      <div class="col-span-1">
+        <h2 class="text-xl text-text dark:text-dtext pt-8">Links</h2>
+        <div class="flex flex-col gap-2 pt-3 pl-1">
+          <NuxtLink to="/okr/2025" class="block text-zinc-500 dark:text-dtext/80">OKR</NuxtLink>
+        </div>
+      </div>
+      <div class="col-span-1">
         <h2 class="text-xl text-text dark:text-dtext pt-8">Contact</h2>
         <div class="flex flex-col gap-2 pt-3 pl-1">
           <a href="mailto:i@tripper.press" target="_blank" class="block text-zinc-500 dark:text-dtext/80">Email</a>

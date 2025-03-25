@@ -19,6 +19,7 @@
     "@unhead/ssr": "^1.11.20",
     "@vueuse/core": "^10.11.0",
     "@vueuse/motion": "^2.2.3",
+    "echarts": "^5.6.0",
     "feed": "^4.2.2",
     "motion": "^10.18.0",
     "pinia": "^2.1.7",

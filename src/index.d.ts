@@ -10,7 +10,7 @@ declare module 'nuxt/schema' {
       uses: {
         camera: { model: string, status: 'using' | 'used' | 'sold' | 'broken' }[]
         lens: { model: string, status: 'using' | 'sold' | 'broken' }[]
-        film: { model: string, status: 'using' | 'sold' | 'broken', image?: string }[]
+        film: { model: string, status: 'using' | 'sold' | 'plan', image?: string }[]
         laptop: { model: string, status: 'using' | 'sold' | 'broken' }[]
         PC: {
           mouse: { model: string }
