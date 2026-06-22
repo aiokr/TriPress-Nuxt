@@ -6,9 +6,19 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, nextTick } from 'vue'
 import '@/assets/article.css'
 import '@/assets/tripper.css'
+
+const route = useRoute()
+
+watch(() => route.path, async () => {
+  await nextTick()
+  const mainElement = document.querySelector('main')
+  if (mainElement) {
+    mainElement.scrollTo({ top: 0, behavior: 'instant' })
+  }
+})
 
 useHead({
   title: 'Tripper Press - Take Photo, Think Seriously',
