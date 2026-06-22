@@ -18,24 +18,8 @@
     </section>
 
     <div class="flex items-center justify-between px-2 md:px-8 lg:px-0  pt-12">
-      <h1 class="text-2xl font-light pb-6 pt-8">Posts</h1>
-      <NuxtLink to="/posts" class="text-sm text-main">All Posts</NuxtLink>
+      <h1 class="text-2xl font-semibold pb-6 pt-8">Works</h1>
     </div>
-    <section class="container mx-auto px-2 md:px-8 lg:px-0 pb-16 gap-6">
-      <NuxtLink v-for="post in posts" :to="post.path" class="postCard block w-full">
-        <div class="pb-4 md:pb-6 lg:px-0 flex flex-col justify-between">
-          <div>
-            <h2 class="text-xl text-text dark:text-dtext pb-2 font-light">{{ post.title }}</h2>
-            <div class="text-sm text-zinc-400 dark:text-dtext/80 pb-2">
-              <span v-if="post.date">{{ new Date(post.date).toISOString().split('T')[0] }}</span>
-              <span v-if="post.category" class="mx-2">·</span>
-              <span v-if="post.category">{{ post.category }}</span>
-            </div>
-            <p v-if="post.excerpt" class="pb-6 text-xs text-zinc-400">{{ post.excerpt }}</p>
-          </div>
-        </div>
-      </NuxtLink>
-    </section>
   </div>
   
 </template>

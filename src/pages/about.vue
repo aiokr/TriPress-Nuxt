@@ -5,20 +5,17 @@
         <div class="pt-24">
           <div class="inline-block text-2xl font-bold marked mx-2 p-2 mb-16">Chen WJP</div>
         </div>
-        <!--About-->
-        <div class="flex items-center justify-between px-3 md:px-2">
-          <div class="text-lg font-bold md:font-light pb-6">About</div>
-        </div>
         <!--Work Experience-->
         <div class="flex items-center justify-between px-3 md:px-2">
-          <div class="text-lg font-bold md:font-light pb-6">Work Experience</div>
+          <div class="text-lg font-bold md:font-light pb-6">Work Experiences</div>
         </div>
         <section class="text-lg font-light">
-          <div class=" mx-auto px-3 md:px-2 pb-8 grid grid-cols-1 md:grid-cols-6 gap-2">
+          <div class=" mx-auto px-3 md:px-2 pb-4 grid grid-cols-1 md:grid-cols-6 gap-2">
             <div class="col-span-1 md:col-span-1 text-slate-400">
               <div>2022 - Now</div>
             </div>
             <div class="col-span-1 md:col-span-5 text-slate-800 dark:text-slate-50">
+              <div class="font-normal">沐甜科技股份有限公司</div>
               <div>MuTian Technology Co., Ltd</div>
             </div>
           </div>
@@ -27,6 +24,7 @@
               <div>2022</div>
             </div>
             <div class="col-span-1 md:col-span-5 text-slate-800 dark:text-slate-50">
+              <div class="font-normal">柳州市城中区融媒体中心（实习）</div>
               <div>Media Operation Intern at Propaganda Department of Liuzhou Chengzhong District</div>
               <div class="text-slate-400 text-base">Liuzhou</div>
             </div>
@@ -37,11 +35,21 @@
           <div class="text-lg font-bold md:font-light pb-6">Certifications</div>
         </div>
         <section class="text-lg font-light">
+          <div class=" mx-auto px-3 md:px-2 pb-4 grid grid-cols-1 md:grid-cols-6 gap-2">
+            <div class="col-span-1 md:col-span-1 text-slate-400">
+              <div>2025</div>
+            </div>
+            <div class="col-span-1 md:col-span-5 text-slate-800 dark:text-slate-50">
+              <div class="font-normal">证券从业资格证</div>
+              <div>Certificate of Security Qualification</div>
+            </div>
+          </div>
           <div class=" mx-auto px-3 md:px-2 pb-8 grid grid-cols-1 md:grid-cols-6 gap-2">
             <div class="col-span-1 md:col-span-1 text-slate-400">
               <div>2021</div>
             </div>
             <div class="col-span-1 md:col-span-5 text-slate-800 dark:text-slate-50">
+              <div class="font-normal">大学英语四级</div>
               <div>College English Test Level 4 (CET4)</div>
             </div>
           </div>
@@ -72,7 +80,9 @@
               <div>2018-2022</div>
             </div>
             <div class="col-span-1 md:col-span-5 text-slate-800 dark:text-slate-50">
+              <div class="font-normal">南宁师范大学</div>
               <div>Nanning Normal University</div>
+              <div class="font-normal">文化产业管理学 学士</div>
               <div>Bachelor of Cultural Industry Management</div>
             </div>
           </div>
