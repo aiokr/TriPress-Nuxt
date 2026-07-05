@@ -3,6 +3,7 @@ title: What in My Bag
 date: 2026-07-04 22:05:12
 type: post
 lang: en
+description: After a year of refining my everyday carry through frequent business trips and travel, this is the gear that has stood the test of time. From tech and travel essentials to clothing and a compact first aid kit, here's what stays in my backpack—and why.
 ---
 
 Since late 2024, frequent business trips have become a regular part of my job. Whenever I find myself in a new city, I try to make the most of my free time by exploring it. Over the past year, I've spent more weekends away from home than at home.
@@ -17,7 +18,7 @@ This article is a record of the things that almost always end up in my backpack�
 
 Since this is a **What's in My Bag** post, let's start with the backpack itself.
 
-From 2022 to 2026, my everyday backpack was the Incase City Compact Backpack with 1680D. It stayed with me until a trip to Vietnam, where one of the zipper seams finally gave way, forcing me to replace it.
+From 2022 to 2026, my everyday backpack was the [Incase City Compact Backpack w/ 1680D](/post/02022/2022-12-26-incase-city-compact-backpack-with-1680d). It stayed with me until a trip to Vietnam, where one of the zipper seams finally gave way, forcing me to replace it.
 
 Overall, I was very happy with it. I especially liked the magnetic water bottle pocket, its excellent water resistance, and the level of protection it provided for my laptop. Over time, however, a few shortcomings became increasingly noticeable:
 
@@ -102,6 +103,26 @@ Since I wear prescription glasses every day, fit-over sunglasses are really my o
 **ZEISS Lens Cleaning Wipes**
 
 These are great for cleaning not only my glasses, but also phone, tablet, and laptop screens. I usually buy the 220-pack for home and simply throw a few individually wrapped wipes into my backpack before each trip.
+
+## Miscellaneous
+
+**Card Holder**: I use MUJI's retractable card holder, although I removed the original lanyard. It carries my ID card, a China T-Union transit card, and my travel permits. I bought it after accidentally losing my ID during a trip to Xiamen, and I've since attached an AirTag so that, if I ever lose it again, I'll have a much better chance of finding it.
+
+**Passport Case**：For international trips, I also carry a dedicated passport wallet. I'm currently using MUJI Passport Case, and its biggest advantage is the modular insert system, which lets me rearrange or expand the contents as needed. I use the three included zipper pockets to store Hong Kong dollars, Vietnamese dong, and my Hong Kong landing slip. As I travel to more countries, I can simply add extra inserts for additional currencies or travel documents instead of replacing the entire wallet.
+
+## Clothing
+
+Beyond that, my travel clothing choices are fairly flexible and mostly depend on what clean and available items I have at the time, rather than a fixed set of preferences. So here, I'll only cover the types of clothing I usually bring, rather than listing specific brands or models.
+
+**Shoes**: Nike AJ312 / Nike Trail 4 / ASICS GT-2000 13
+
+These three pairs of shoes serve very different purposes. The AJ312 is a lifestyle sneaker focused on aesthetics, with slightly better comfort compared to the Dunk, but still primarily design-driven. The Trail 4 is a trail running shoe equipped with GORE-TEX, making it suitable for wet conditions and uneven terrain. The GT-2000 13 is a stability running shoe, available in a wide-fit option, offering balanced comfort for daily training and workouts.
+
+**Base Layer**: HeatGear / Nike Pro / any Jock Briefs
+
+Whether I'm traveling or at home, I usually wear jock briefs, Under Armour HeatGear, or Nike Pro. They're lightweight, pack small, and dry quickly, making them ideal for both everyday wear and workouts during business trips. Because they dry so fast after washing, I can comfortably pack fewer changes of clothes. Their body-hugging, subtly sexy design is another reason I like them, as it naturally shows the results of my daily training without feeling over the top.
+
+**Swimwear**: Low-rise briefs are my go-to swimwear. I like how they highlight my physique in a natural, confident way. They reflect the results of months of consistent training rather than trying to create an illusion. Confidence isn't built in front of a mirror—it's earned through daily training.
 
 ## First Aid Kit
 
