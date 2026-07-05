@@ -1,7 +1,7 @@
 <template>
   <div class="container max-w-[800px] px-2 md:px-0 mx-auto">
     <section
-      class="w-full transition-shadow rounded px-2 md:px-8 lg:px-0 pt-16 md:pt-32 pb-20 md:pb-36 flex flex-col md:flex-row md:items-center justify-between gap-12">
+      class="w-full transition-shadow rounded px-2 md:px-8 lg:px-0 pt-12 md:pt-20 pb-12 flex flex-col md:flex-row md:items-center justify-between gap-12">
       <div class="relative md:hidden">
 
         <img class="hidden dark:block" src="https://imgur.lzmun.com/picgo/logo/notionavatarwhite.png" width="108px" height="108px" />
@@ -17,14 +17,42 @@
       </div>
     </section>
 
-    <div class="flex items-center justify-between px-2 md:px-8 lg:px-0  pt-12">
-      <h1 class="text-2xl font-semibold pb-6 pt-8">Works</h1>
-    </div>
+    <section class="px-2 md:px-8 lg:px-0">
+      <div class="pb-6">
+        <div class="text-2xl font-bold text-text dark:text-dtext pb-6">文章</div>
+        <hr />
+      </div>
+      <div class="grid grid-cols-5">
+        <div class="col-span-5 md:col-span-4">
+          <NuxtLink v-for="post in posts" :key="post.path" :to="post.path"
+            class="postCard w-full rounded-xl mb-8 grid grid-cols-5">
+            <img v-if="post.cover" :src="post.cover" alt="cover" class="w-full object-cover rounded-xl aspect-square" />
+            <div v-else class="postCoverWoCover opacity-40 w-full object-cover rounded-xl p-1 bg-main dark:bg-slate-600 flex items-end justify-end">
+              <span class="text-4xl font-serif font-bold text-white" v-if="post.date">{{ new
+                Date(post.date).toISOString().split('T')[0].split('-').slice(1).join('/') }}</span>
+            </div>
+            <div class="pl-4 pt-2 md:px-6 md:pt-2 rounded-b-xl col-span-4">
+              <div class="text-xs text-zinc-400 dark:text-dtext/80 pb-2 flex items-center gap-2">
+                <span v-if="post.date">{{ new Date(post.date).toISOString().split('T')[0] }}</span>
+                <span v-if="post.category" class="mx-1">·</span>
+                <span v-if="post.category">{{ post.category }}</span>
+                <span v-if="hasZh(post.path)" class="ml-1 px-1.5 py-0.5 rounded border border-main/50 text-main text-[10px]">中</span>
+              </div>
+              <h2 class="text-xl text-text dark:text-dtext pb-6">{{ post.title }}</h2>
+              <div>
+              </div>
+            </div>
+          </NuxtLink>
+        </div>
+      </div>
+    </section>
   </div>
   
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { getOtherLangPath, normalizePath } from '~/utils/content'
+
 const appConfig = useAppConfig()
 
 useHead({
@@ -41,14 +69,22 @@ useSeoMeta({
   ogDescription: 'Take Photo, Think Seriously',
 })
 
-const { data: posts } = await useAsyncData('post', () => {
-  return queryCollection('post')
+// 列表只展示默认语言（en）版本；过滤掉 .zh 翻译副本
+const { data: posts } = await useAsyncData('post', async () => {
+  const all = await queryCollection('post')
     .order('date', 'DESC')
     .where('type', '<>', 'draft')
-    .limit(3)
     .all()
+  return all.filter((p: any) => p.lang !== 'zh').slice(0, 8)
 })
 
+// 查询每个 en 文章是否存在中文翻译，用于显示"中"徽章
+const { data: zhMap } = await useAsyncData('post-zh-map', async () => {
+  const zhPosts = await queryCollection('post').all()
+  return zhPosts.filter((p: any) => p.lang === 'zh').map((p: any) => getOtherLangPath(p.path))
+})
+
+const hasZh = (path: string) => zhMap.value?.includes(normalizePath(path)) ?? false
 </script>
 
 <style scoped>
@@ -58,6 +94,16 @@ const { data: posts } = await useAsyncData('post', () => {
 
 .postCard:hover {
   transition: transform 0.3s, background-color 0.3s, box-shadow 0.6s;
+  transform: translateX(5px);
+}
+
+.postCard:hover .postCoverWoCover {
+  transition: transform 0.3s, background-color 0.3s, box-shadow 0.6s, opacity 0.3s;
+  opacity: 1;
+}
+
+.postCoverWoCover {
+  transition: transform 0.3s, background-color 0.3s, box-shadow 0.6s, opacity 0.3s;
 }
 
 .postCategory {

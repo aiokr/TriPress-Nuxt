@@ -15,10 +15,11 @@
                 Date(post.date).toISOString().split('T')[0].split('-').slice(1).join('/') }}</span>
             </div>
             <div class="pl-4 pt-2 md:px-6 md:pt-2 rounded-b-xl col-span-4">
-              <div class="text-xs text-zinc-400 dark:text-dtext/80 pb-2">
+              <div class="text-xs text-zinc-400 dark:text-dtext/80 pb-2 flex items-center gap-2">
                 <span v-if="post.date">{{ new Date(post.date).toISOString().split('T')[0] }}</span>
-                <span v-if="post.category" class="mx-2">·</span>
+                <span v-if="post.category" class="mx-1">·</span>
                 <span v-if="post.category">{{ post.category }}</span>
+                <span v-if="hasZh(post.path)" class="ml-1 px-1.5 py-0.5 rounded border border-main/50 text-main text-[10px]">中</span>
               </div>
               <h2 class="text-xl text-text dark:text-dtext pb-6">{{ post.title }}</h2>
               <div>
@@ -33,6 +34,7 @@
 
 <script lang="ts" setup>
 import { ref, onMounted } from "vue";
+import { getOtherLangPath, normalizePath } from "~/utils/content";
 
 useHead({
   title: '文章 - Tripper Press',
@@ -52,12 +54,22 @@ const queryCategory = ref("");
 const queryPosts = ref<any>();
 const isAllPosts = ref(true);
 
+// 列表只展示默认语言（en）版本
 const { data: posts } = await useAsyncData('post', () => {
   return queryCollection('post')
     .where('type', '<>', 'draft')
+    .where('lang', '=', 'en')
     .order('date', 'DESC')
     .all()
 })
+
+// 查询中文版本集合，用于在列表中显示徽章
+const { data: zhMap } = await useAsyncData('post-zh-map', async () => {
+  const zhPosts = await queryCollection('post').where('lang', '=', 'zh').all()
+  return zhPosts.map(p => getOtherLangPath(p.path))
+})
+
+const hasZh = (path: string) => zhMap.value?.includes(normalizePath(path)) ?? false
 
 </script>
 

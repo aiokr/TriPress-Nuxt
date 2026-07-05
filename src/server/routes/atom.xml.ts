@@ -18,7 +18,10 @@ export default defineEventHandler(async (event) => {
 
   const postsData = await queryCollection(event, 'post').all()
 
-  for (const post of postsData) {
+  // 仅输出默认语言（en），避免翻译副本重复
+  const enPosts = postsData.filter((p: any) => p.lang !== 'zh')
+
+  for (const post of enPosts) {
     const postDate = new Date(post.date);
     feed.addItem({
       title: post.title,
