@@ -7,6 +7,8 @@ export default defineContentConfig({
       source: 'post/**/*.md',
       schema: z.object({
         title: z.string(),
+        lang: z.enum(['en', 'zh']).default('en'),
+        translationKey: z.string().optional(),
         date: z.string(),
         cover: z.string().optional(),
         tags: z.array(z.string()).optional(),

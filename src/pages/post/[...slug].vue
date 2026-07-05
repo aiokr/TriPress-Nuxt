@@ -11,7 +11,10 @@
               <span v-if="post.category" class="mx-2">·</span>
               <span v-if="post.category">{{ post.category }}</span>
             </div>
-            <h1 class="text-3xl font-semibold text-text dark:text-dtext">{{ post?.title }}</h1>
+            <div>
+              <h1 class="text-3xl font-semibold text-text dark:text-dtext">{{ post?.title }}</h1>
+              <LangSwitcher v-if="post" :path="post.path" :has-alt="Boolean(altExists)" />
+            </div>
           </div>
         </div>
       </div>
@@ -22,7 +25,10 @@
           <span v-if="post.category" class="mx-2">·</span>
           <span v-if="post.category">{{ post.category }}</span>
         </div>
-        <h1 class="text-3xl font-semibold text-text dark:text-dtext">{{ post?.title }}</h1>
+        <div>
+          <h1 class="text-3xl font-semibold text-text dark:text-dtext">{{ post?.title }}</h1>
+          <LangSwitcher v-if="post" :path="post.path" :has-alt="Boolean(altExists)" />
+        </div>
       </div>
       <div v-if="post?.type === 'rc'"
         class="container max-w-[800px] px-4 mx-auto py-4 border border-red-400 dark:border-red-700 rounded-lg bg-red-100 dark:bg-red-900">
@@ -47,6 +53,7 @@
 </template>
 
 <script setup lang="ts">
+import { getOtherLangPath, normalizePath, detectLangFromPath } from '~/utils/content'
 
 definePageMeta({
   layout: 'default',
@@ -56,6 +63,27 @@ const route = useRoute()
 const { data: post } = await useAsyncData(route.path, () => {
   return queryCollection('post').path(route.path).first()
 })
+
+// 检测是否存在另一语言版本，输出 hreflang SEO 标签
+const candidatePath = computed(() => post.value ? getOtherLangPath(normalizePath(post.value.path)) : '')
+const { data: altExists } = await useAsyncData(
+  `post-alt:${route.path}`,
+  () => queryCollection('post').path(candidatePath.value).first().then(r => Boolean(r)),
+  { watch: [candidatePath] },
+)
+
+if (post.value) {
+  const currentLang = detectLangFromPath(post.value.path)
+  const baseUrl = 'https://tripper.press'
+  const links: Array<{ rel: string; hreflang: string; href: string }> = [
+    { rel: 'canonical', hreflang: currentLang, href: `${baseUrl}${post.value.path}` },
+  ]
+  if (altExists.value) {
+    const altLang = currentLang === 'en' ? 'zh' : 'en'
+    links.push({ rel: 'alternate', hreflang: altLang, href: `${baseUrl}${candidatePath.value}` })
+  }
+  useHead({ link: links as any })
+}
 
 // console.log(post.value)
 

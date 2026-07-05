@@ -18,7 +18,7 @@
       <div class="col-span-1">
         <h2 class="text-xl text-text dark:text-dtext pt-8">Links</h2>
         <div class="flex flex-col gap-2 pt-3 pl-1">
-          <NuxtLink to="/okr/2025" class="block text-zinc-500 dark:text-dtext/80">OKR</NuxtLink>
+          <a href="https://web.archive.org/web/*/tripper.press" target="_blank" rel="noopener" class="block text-zinc-500 dark:text-dtext/80">Web Archive</a>
         </div>
       </div>
       <div class="col-span-1">
