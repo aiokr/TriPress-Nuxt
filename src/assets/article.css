@@ -34,6 +34,8 @@ article h1, article h2, article h3, article h4, article h5, article h6 {
   color: #222831;
   text-align: left !important;
   font-weight: 600;
+  /* 锚点跳转时给固定 Header 留出偏移 */
+  scroll-margin-top: 80px;
 }
 
 .dark article h1,

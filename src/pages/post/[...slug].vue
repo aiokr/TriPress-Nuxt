@@ -49,6 +49,11 @@
         </template>
       </article>
     </div>
+    <!-- 浮动目录栏 (桌面/平板可见) -->
+    <ArticleToc
+      v-if="post?.body?.toc?.links?.length"
+      :links="post.body.toc.links"
+    />
   </div>
 </template>
 
