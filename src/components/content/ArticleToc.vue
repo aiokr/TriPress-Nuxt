@@ -39,6 +39,7 @@
                     ? '!text-text dark:!text-dtext font-medium border-zinc-500 dark:border-zinc-400'
                     : 'border-transparent',
                 ]"
+                :style="{ marginLeft: indent(link.depth) }"
                 @click.prevent="scrollToSection(link.id)"
               >
                 {{ link.text }}
