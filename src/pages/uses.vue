@@ -42,4 +42,17 @@
 const appConfig: any = useAppConfig()
 const usesData: any = appConfig.content.uses
 
+useHead({
+  title: 'My Kit - Tripper Press',
+  meta: [
+    { name: 'description', content: 'The equipment I using for creating and life.' }
+  ]
+})
+
+useSeoMeta({
+  title: 'My Kit - Tripper Press',
+  ogTitle: 'My Kit - Tripper Press',
+  description: 'The equipment I using for creating and life.',
+  ogDescription: 'The equipment I using for creating and life.',
+})
 </script>

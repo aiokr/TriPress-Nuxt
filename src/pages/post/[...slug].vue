@@ -80,6 +80,7 @@ const { data: altExists } = await useAsyncData(
 if (post.value) {
   const currentLang = detectLangFromPath(post.value.path)
   const baseUrl = 'https://tripper.press'
+
   const links: Array<{ rel: string; hreflang: string; href: string }> = [
     { rel: 'canonical', hreflang: currentLang, href: `${baseUrl}${post.value.path}` },
   ]
@@ -87,7 +88,17 @@ if (post.value) {
     const altLang = currentLang === 'en' ? 'zh' : 'en'
     links.push({ rel: 'alternate', hreflang: altLang, href: `${baseUrl}${candidatePath.value}` })
   }
-  useHead({ link: links as any })
+  useHead({
+    // 覆盖 @nuxtjs/seo 默认的 "%s | Tripper Press - Take Photo, Think Seriously."
+    titleTemplate: '%s - Tripper Press',
+    link: links as any,
+  })
+  useSeoMeta({
+    title: post.value.title,
+    ogTitle: post.value.title,
+    description: post.value.description || post.value.excerpt || 'Take Photo, Think Seriously',
+    ogDescription: post.value.description || post.value.excerpt || 'Take Photo, Think Seriously',
+  })
 
   // 为博客文章生成 OG Image（暗色模式 + 顶部渐变条）
   defineOgImage({
@@ -99,6 +110,15 @@ if (post.value) {
       date: post.value.date,
       lang: currentLang,
     },
+  })
+} else {
+  useHead({
+    titleTemplate: '%s - Tripper Press',
+    title: 'Page Not Found',
+  })
+  useSeoMeta({
+    title: 'Page Not Found',
+    ogTitle: 'Page Not Found',
   })
 }
 
