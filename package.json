@@ -10,9 +10,9 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxt/content": "^3.3.0",
+    "@nuxt/content": "^3.15.0",
     "@nuxtjs/color-mode": "^3.4.1",
-    "@nuxtjs/seo": "3.0.1",
+    "@nuxtjs/seo": "5.3.2",
     "@nuxtjs/tailwindcss": "^6.13.2",
     "@nuxtjs/turnstile": "^0.8.0",
     "@pinia/nuxt": "^0.5.1",
@@ -23,13 +23,14 @@
     "feed": "^4.2.2",
     "motion": "^10.18.0",
     "pinia": "^2.1.7",
+    "satori": "^0.26.0",
     "vue": "^3.4.29",
     "vue-router": "^4.3.3"
   },
   "devDependencies": {
     "@nuxt/image": "^1.7.0",
     "autoprefixer": "^10.4.19",
-    "nuxt": "^3.16.0",
+    "nuxt": "^3.19.0",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.17"
   },
