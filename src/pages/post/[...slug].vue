@@ -91,6 +91,7 @@ if (post.value) {
   useHead({
     // 覆盖 @nuxtjs/seo 默认的 "%s | Tripper Press - Take Photo, Think Seriously."
     titleTemplate: '%s - Tripper Press',
+    htmlAttrs: { lang: currentLang },
     link: links as any,
   })
   useSeoMeta({

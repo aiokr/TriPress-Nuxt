@@ -1,6 +1,10 @@
 <template>
-  <main class="">
-    <div class="fixed top-0 right-0 left-0 h-12 w-full px-36 flex blur-3xl -z-50">
+  <div class="">
+    <a href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:px-3 focus:py-1.5 focus:rounded focus:bg-main focus:text-white focus:shadow">
+      Skip to content
+    </a>
+    <div aria-hidden="true" class="fixed top-0 right-0 left-0 h-12 w-full px-36 flex blur-3xl -z-50">
       <div class="bg-main/40 flex-1 h-full"></div>
       <div class="bg-purple-300/40 w-1/5 h-full"></div>
       <div class="bg-pink-300/30 w-2/5 h-full"></div>
@@ -35,10 +39,13 @@
         <div v-if="!isPostsListCollapsed" class="posts dark:border-white/20 flex flex-col gap-1" style="width: 320px;">
           <div class="p-2 h-12 flex gap-2 items-center">
             <button @click="handleCategoryCollapse" class="p-3 hidden md:block transition duration-500"
-              :style="isCategoriesListCollapsed ? 'transform: rotateY(180deg);' : ''">
+              :style="isCategoriesListCollapsed ? 'transform: rotateY(180deg);' : ''"
+              :aria-label="isCategoriesListCollapsed ? 'Expand category list' : 'Collapse category list'"
+              :aria-expanded="!isCategoriesListCollapsed">
               <IconsExpandLeft />
             </button>
-            <input placeholder="Search"
+            <label for="posts-search-input" class="sr-only">Search posts</label>
+            <input id="posts-search-input" type="search" placeholder="Search"
               class="w-full h-8 p-2 text-sm pring-1 ring-slate-900/10 hover:ring-slate-300 focus:outline-none focus:ring-2 focus:ring-main shadow-sm rounded-lg text-slate-400 dark:bg-slate-800 dark:ring-0 dark:text-slate-300 dark:highlight-white/5 dark:hover:bg-slate-700 transition" />
           </div>
           <div class=" h-[calc(100vh-54px)] overflow-y-scroll no-scrollbar">
@@ -77,11 +84,13 @@
           </ClientOnly>
         </div>
         <div class="max-h-[calc(100vh-48px)]">
-          <slot />
+          <main id="main-content" tabindex="-1">
+            <slot />
+          </main>
         </div>
       </div>
     </div>
-  </main>
+  </div>
 </template>
 
 <script setup lang="ts">

@@ -8,9 +8,9 @@
         <img class="dark:hidden" src="https://imgur.lzmun.com/picgo/logo/notionavatarblack.png" width="108px" height="108px" />        <div class="absolute inset-0 -z-10 bg-gradient-to-tl from-main/60 to-main/10 opacity-0 blur-2xl md:opacity-50">
         </div>
       </div>
-      <div class="text-3xl font-bold font-serif drop-shadow-lg">
+      <h1 class="text-3xl font-bold font-serif drop-shadow-lg">
         Tripper Press
-      </div>
+      </h1>
       <div class="hidden md:block md:relative">
         <img class="hidden dark:block" src="https://imgur.lzmun.com/picgo/logo/notionavatarwhite.png" width="144px" height="144px" />
         <img class="dark:hidden" src="https://imgur.lzmun.com/picgo/logo/notionavatarblack.png" width="144px" height="144px" />
