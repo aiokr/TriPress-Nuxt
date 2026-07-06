@@ -102,15 +102,12 @@ if (post.value) {
   })
 
   // 为博客文章生成 OG Image（暗色模式 + 顶部渐变条）
-  defineOgImage({
-    component: 'OgImagePost',
-    props: {
-      title: post.value.title,
-      description: post.value.description || post.value.excerpt || '',
-      category: post.value.category,
-      date: post.value.date,
-      lang: currentLang,
-    },
+  defineOgImage('Post', {
+    title: post.value.title,
+    description: post.value.description || post.value.excerpt || '',
+    category: post.value.category,
+    date: post.value.date,
+    lang: currentLang,
   })
 } else {
   useHead({
