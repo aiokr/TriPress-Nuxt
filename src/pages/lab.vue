@@ -1,5 +1,5 @@
 <template>
-  <main class="container max-w-[1000px] mx-auto pt-20 px-4">
+  <div class="container max-w-[1000px] mx-auto pt-20 px-4">
     <div class="pb-6">
       <div class="text-3xl font-bold text-text dark:text-dtext pb-2">Lab</div>
       <div class="text-dtext pb-16">
@@ -28,7 +28,7 @@
         </div>
       </NuxtLink>
     </div>
-  </main>
+  </div>
 </template>
 
 <script setup lang="ts">

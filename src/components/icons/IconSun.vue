@@ -1,5 +1,6 @@
 <template>
-  <svg width="24" height="24" viewBox="0 0 48 48" fill="none" class="w-5 h-5" xmlns="http://www.w3.org/2000/svg">
+  <svg width="24" height="24" viewBox="0 0 48 48" fill="none" class="w-5 h-5" xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true" focusable="false">
     <path
       d="M24 37C31.1797 37 37 31.1797 37 24C37 16.8203 31.1797 11 24 11C16.8203 11 11 16.8203 11 24C11 31.1797 16.8203 37 24 37Z"
       fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round" />

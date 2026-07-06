@@ -13,15 +13,17 @@
         <router-link to="/posts" class="headerLink">Posts</router-link>
         <ClientOnly>
           <button v-if="colorMode.value === 'dark'" @click="handleColorMode" data-umami-event="changeColorModeToLight"
-            class="themeBtn">
+            class="themeBtn" aria-label="Switch to light mode">
             <IconsIconMoon />
           </button>
           <button v-else-if="colorMode.value === 'light'" @click="handleColorMode"
-            data-umami-event="changeColorModeToDark" class="themeBtn">
+            data-umami-event="changeColorModeToDark" class="themeBtn" aria-label="Switch to dark mode">
             <IconsIconSun />
           </button>
         </ClientOnly>
-        <button @click="clickHeaderMenuBtn" class="headerMenu headerMenuBtn md:hidden">
+        <button @click="clickHeaderMenuBtn" class="headerMenu headerMenuBtn md:hidden"
+          :aria-label="headerMenuOpen ? 'Close menu' : 'Open menu'"
+          :aria-expanded="headerMenuOpen">
           <IconsMenu />
         </button>
       </div>
