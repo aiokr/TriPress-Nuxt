@@ -149,27 +149,16 @@ article em {
 
 /* 链接 --------------------------------------------------------------- */
 article a {
-  color: #006bff; /* Geist blue-700 */
-  text-decoration: underline;
-  text-decoration-color: rgba(0, 107, 255, 0.3);
-  text-decoration-thickness: 1px;
+  font-weight: 700;
+  color: inherit;
+  text-decoration: underline 2px;
+  text-decoration-color: #71afdd;
   text-underline-offset: 3px;
-  transition: text-decoration-color 0.15s ease, color 0.15s ease;
-}
-
-article a:hover {
-  color: #0059ec; /* Geist blue-800 */
-  text-decoration-color: #006bff;
 }
 
 .dark article a {
-  color: #48aeff; /* Geist blue-600 */
-  text-decoration-color: rgba(72, 174, 255, 0.35);
-}
-
-.dark article a:hover {
-  color: #94ccff; /* Geist blue-500 */
-  text-decoration-color: #48aeff;
+  color: inherit;
+  text-decoration-color: #71afdd;
 }
 
 /* 列表 --------------------------------------------------------------- */
