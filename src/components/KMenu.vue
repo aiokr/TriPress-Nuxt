@@ -13,18 +13,33 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useMagicKeys } from '@vueuse/core'
 
 const kMenuVisiable = ref(false)
 const kSearch = ref('')
 
-const { alt_k, ctrl_k } = useMagicKeys()
+const { meta_k, ctrl_k, alt_k } = useMagicKeys()
 
 watchEffect(() => {
-  if (ctrl_k.value || alt_k.value) {
+  if (meta_k.value || ctrl_k.value || alt_k.value) {
     kMenuVisiable.value = !kMenuVisiable.value
   }
+})
+
+// 阻止 ⌘K 在 Mac 浏览器中的默认行为（聚焦地址栏等）
+const onKeydown = (e: KeyboardEvent) => {
+  if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+    e.preventDefault()
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('keydown', onKeydown)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('keydown', onKeydown)
 })
 
 const closekMenu = () => {
