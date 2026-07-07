@@ -18,8 +18,8 @@ export default defineEventHandler(async (event) => {
 
   const postsData = await queryCollection(event, 'post').all()
 
-  // 仅输出默认语言（en），避免翻译副本重复
-  const enPosts = postsData.filter((p: any) => p.lang !== 'zh')
+  // 仅输出默认语言（en）的文章，排除 type=page 的独立页面
+  const enPosts = postsData.filter((p: any) => p.lang !== 'zh' && p.type !== 'page')
 
   for (const post of enPosts) {
     const postDate = new Date(post.date);

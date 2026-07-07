@@ -69,17 +69,17 @@ useSeoMeta({
   ogDescription: 'Take Photo, Think Seriously',
 })
 
-// 列表只展示默认语言（en）版本；过滤掉 .zh 翻译副本
-const { data: posts } = await useAsyncData('post', async () => {
+// 列表只展示默认语言（en）版本；过滤掉 .zh 翻译副本和 type=page 的独立页面
+const { data: posts } = await useAsyncData('home-posts', async () => {
   const all = await queryCollection('post')
     .order('date', 'DESC')
     .where('type', '<>', 'draft')
     .all()
-  return all.filter((p: any) => p.lang !== 'zh').slice(0, 8)
+  return all.filter((p: any) => p.lang !== 'zh' && p.type !== 'page').slice(0, 8)
 })
 
 // 查询每个 en 文章是否存在中文翻译，用于显示"中"徽章
-const { data: zhMap } = await useAsyncData('post-zh-map', async () => {
+const { data: zhMap } = await useAsyncData('home-posts-zh-map', async () => {
   const zhPosts = await queryCollection('post').all()
   return zhPosts.filter((p: any) => p.lang === 'zh').map((p: any) => getOtherLangPath(p.path))
 })
