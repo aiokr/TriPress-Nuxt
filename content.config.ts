@@ -4,7 +4,10 @@ export default defineContentConfig({
   collections: {
     post: defineCollection({
       type: 'page',
-      source: 'post/**/*.md',
+      source: [
+        { include: 'post/**/*.md' },
+        { include: 'page/**/*.md' },
+      ],
       schema: z.object({
         title: z.string(),
         lang: z.enum(['en', 'zh']).default('en'),

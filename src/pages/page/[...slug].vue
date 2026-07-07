@@ -1,5 +1,5 @@
 <template>
-  <ArticleLayout :post="post" :alt-exists="Boolean(altExists)">
+  <ArticleLayout :post="page" :alt-exists="Boolean(altExists)">
     <template #not-found>
       <div class="empty-page">
         <p>{{ route.path }}</p>
@@ -19,49 +19,39 @@ definePageMeta({
 })
 
 const route = useRoute()
-const { data: post } = await useAsyncData(route.path, () => {
+const { data: page } = await useAsyncData(`page:${route.path}`, () => {
   return queryCollection('post').path(route.path).first()
 })
 
 // 检测是否存在另一语言版本，输出 hreflang SEO 标签
-const candidatePath = computed(() => post.value ? getOtherLangPath(normalizePath(post.value.path)) : '')
+const candidatePath = computed(() => page.value ? getOtherLangPath(normalizePath(page.value.path)) : '')
 const { data: altExists } = await useAsyncData(
-  `post-alt:${route.path}`,
+  `page-alt:${route.path}`,
   () => queryCollection('post').path(candidatePath.value).first().then(r => Boolean(r)),
   { watch: [candidatePath] },
 )
 
-if (post.value) {
-  const currentLang = detectLangFromPath(post.value.path)
+if (page.value) {
+  const currentLang = detectLangFromPath(page.value.path)
   const baseUrl = 'https://tripper.press'
 
   const links: Array<{ rel: string; hreflang: string; href: string }> = [
-    { rel: 'canonical', hreflang: currentLang, href: `${baseUrl}${post.value.path}` },
+    { rel: 'canonical', hreflang: currentLang, href: `${baseUrl}${page.value.path}` },
   ]
   if (altExists.value) {
     const altLang = currentLang === 'en' ? 'zh' : 'en'
     links.push({ rel: 'alternate', hreflang: altLang, href: `${baseUrl}${candidatePath.value}` })
   }
   useHead({
-    // 覆盖 @nuxtjs/seo 默认的 "%s | Tripper Press - Take Photo, Think Seriously."
     titleTemplate: '%s - Tripper Press',
     htmlAttrs: { lang: currentLang },
     link: links as any,
   })
   useSeoMeta({
-    title: post.value.title,
-    ogTitle: post.value.title,
-    description: post.value.description || post.value.excerpt || 'Take Photo, Think Seriously',
-    ogDescription: post.value.description || post.value.excerpt || 'Take Photo, Think Seriously',
-  })
-
-  // 为博客文章生成 OG Image（暗色模式 + 顶部渐变条）
-  defineOgImage('Post', {
-    title: post.value.title,
-    description: post.value.description || post.value.excerpt || '',
-    category: post.value.category,
-    date: post.value.date,
-    lang: currentLang,
+    title: page.value.title,
+    ogTitle: page.value.title,
+    description: page.value.description || page.value.excerpt || 'Take Photo, Think Seriously',
+    ogDescription: page.value.description || page.value.excerpt || 'Take Photo, Think Seriously',
   })
 } else {
   useHead({
