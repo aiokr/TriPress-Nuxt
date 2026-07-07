@@ -8,25 +8,28 @@
         <img src="https://imgur.lzmun.com/picgo/after2022/tripper2colorfull.png_avatar" alt="logo"
           class="hidden dark:block rounded-full w-8 h-8  mr-auto" />
       </router-link>
-      <div class="flex gap-6 items-center justify-center">
+      <div class="flex gap-4 items-center justify-center">
         <router-link to="/" class="headerLink">Home</router-link>
         <router-link to="/posts" class="headerLink">Posts</router-link>
+        <router-link to="/page/about" class="headerLink">About</router-link>
         <ClientOnly>
           <button v-if="colorMode.value === 'dark'" @click="handleColorMode" data-umami-event="changeColorModeToLight"
-            class="themeBtn" aria-label="Switch to light mode">
+            class="themeBtn hover:bg-gray-100 dark:hover:bg-zinc-700 rounded-full p-2 transition-all" aria-label="Switch to light mode">
             <IconsIconMoon />
           </button>
           <button v-else-if="colorMode.value === 'light'" @click="handleColorMode"
-            data-umami-event="changeColorModeToDark" class="themeBtn" aria-label="Switch to dark mode">
+            data-umami-event="changeColorModeToDark" class="themeBtn hover:bg-gray-100 dark:hover:bg-zinc-700 rounded-full p-2 transition-all"
+            aria-label="Switch to dark mode">
             <IconsIconSun />
           </button>
         </ClientOnly>
-        <button @click="clickHeaderMenuBtn" class="headerMenu headerMenuBtn md:hidden"
-          :aria-label="headerMenuOpen ? 'Close menu' : 'Open menu'"
-          :aria-expanded="headerMenuOpen">
+        <button @click="clickHeaderMenuBtn"
+          class="headerMenu headerMenuBtn md:hidden hover:bg-gray-100 dark:hover:bg-zinc-700 rounded-full p-2 transition-all"
+          :aria-label="headerMenuOpen ? 'Close menu' : 'Open menu'" :aria-expanded="headerMenuOpen">
           <IconsMenu />
         </button>
-        <button @click="openKMenu" class="themeBtn" aria-label="Open search (⌘K)" title="Search · ⌘K" data-umami-event="openKMenu">
+        <button @click="openKMenu" class="themeBtn hover:bg-gray-100 dark:hover:bg-zinc-700 rounded-full p-2 transition-all"
+          aria-label="Open search (⌘K)" title="Search · ⌘K" data-umami-event="openKMenu">
           <IconsCommand />
         </button>
       </div>
@@ -38,7 +41,7 @@
     <router-link to="/" class="headerMenuLink">Home</router-link>
     <router-link to="/posts" class="headerMenuLink">Posts</router-link>
     <router-link to="/lab" class="headerMenuLink">Lab</router-link>
-    <router-link to="/about" class="headerMenuLink">About</router-link>
+    <router-link to="/page/about" class="headerMenuLink">About</router-link>
   </div>
 </template>
 
@@ -98,7 +101,7 @@ const headerMenuStyle = computed(() => {
 
 <style scoped>
 .headerLink {
-  @apply text-sm text-text py-4 transition-all duration-300 ease-in-out dark:text-dtext hidden md:block;
+  @apply text-sm text-text py-4 pr-2 transition-all duration-300 ease-in-out dark:text-dtext hidden md:block;
 }
 
 .headerLink::before {
