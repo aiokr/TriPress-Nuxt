@@ -9,7 +9,7 @@
         type="button"
         aria-label="Close search"
         class="background fixed top-0 bottom-0 left-0 right-0 w-screen h-screen bg-black/20 z-40 cursor-default"
-        @click="closekMenu"></button>
+        @click="close"></button>
       <div
         class="fixed top-12 left-3 right-3 sm:left-0 sm:right-0 container max-w-xl mx-auto min-h-48 bg-white/80 dark:bg-dbg/80 backdrop-blur rounded-2xl shadow-xl p-3 flex flex-col z-50 max-h-[80vh]">
         <label for="kmenu-search-input" class="sr-only">Search</label>
@@ -51,7 +51,7 @@
                 :class="selected === i
                   ? 'bg-main/15 text-text dark:text-dtext'
                   : 'text-zinc-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'"
-                @click="closekMenu"
+                @click="close"
                 @mouseenter="selected = i">
                 <div class="font-medium truncate">
                   <span v-if="item.snippets?.title" v-html="item.snippets.title"></span>
@@ -93,7 +93,9 @@ interface SearchHit {
 // 索引按需构建（immediate: false），在用户首次打开菜单时再启动，节省首屏资源
 const { status, search, init } = useSearchCollection('post', { immediate: false })
 
-const kMenuVisiable = ref(false)
+// 可见性使用全局状态，让 Header 上的命令按钮也能开关
+const { isOpen: kMenuVisiable, close, toggle } = useKMenu()
+
 const kSearch = ref('')
 const results = ref<SearchHit[]>([])
 const selected = ref(0)
@@ -102,33 +104,28 @@ let lastFocused: HTMLElement | null = null
 
 const { alt_k, ctrl_k, meta_k, escape } = useMagicKeys()
 
-const openkMenu = async () => {
-  lastFocused = (document.activeElement as HTMLElement) ?? null
-  kMenuVisiable.value = true
-  // 首次打开时按需构建 FTS 索引
-  if (status.value === 'idle') {
-    init()
+// 监听全局开关：处理聚焦、恢复焦点、首次初始化索引、清理搜索等副作用
+watch(kMenuVisiable, async (visible) => {
+  if (visible) {
+    lastFocused = (document.activeElement as HTMLElement) ?? null
+    // 首次打开时按需构建 FTS 索引
+    if (status.value === 'idle') {
+      init()
+    }
+    await nextTick()
+    inputRef.value?.focus()
   }
-  await nextTick()
-  inputRef.value?.focus()
-}
-
-const closekMenu = () => {
-  kMenuVisiable.value = false
-  kSearch.value = ''
-  results.value = []
-  selected.value = 0
-  // 恢复打开前焦点
-  if (lastFocused && typeof lastFocused.focus === 'function') {
-    lastFocused.focus()
+  else {
+    kSearch.value = ''
+    results.value = []
+    selected.value = 0
+    // 恢复打开前焦点
+    if (lastFocused && typeof lastFocused.focus === 'function') {
+      lastFocused.focus()
+    }
+    lastFocused = null
   }
-  lastFocused = null
-}
-
-const togglekMenu = () => {
-  if (kMenuVisiable.value) closekMenu()
-  else openkMenu()
-}
+})
 
 // 实际执行搜索（带 debounce），覆盖标题与全文（FTS5 默认同时索引两者）
 const runSearch = useDebounceFn(async (q: string) => {
@@ -171,7 +168,7 @@ const moveSel = (delta: number) => {
 const openSelected = () => {
   const item = results.value[selected.value]
   if (!item) return
-  closekMenu()
+  close()
   navigateTo(item.id)
 }
 
@@ -179,13 +176,13 @@ const openSelected = () => {
 // ⌘+K (Mac) / Ctrl+K (Win/Linux) / Alt+K 都能打开
 watchEffect(() => {
   if (ctrl_k.value || alt_k.value || meta_k.value) {
-    togglekMenu()
+    toggle()
   }
 })
 
 watch(escape, (pressed) => {
   if (pressed && kMenuVisiable.value) {
-    closekMenu()
+    close()
   }
 })
 </script>

@@ -26,6 +26,9 @@
           :aria-expanded="headerMenuOpen">
           <IconsMenu />
         </button>
+        <button @click="openKMenu" class="themeBtn" aria-label="Open search (⌘K)" title="Search · ⌘K" data-umami-event="openKMenu">
+          <IconsCommand />
+        </button>
       </div>
     </div>
   </main>
@@ -50,6 +53,9 @@ const handleColorMode = () => {
   }
 };
 const headerMenuOpen = ref(false);
+
+// 命令按钮：直接打开搜索面板（再次点击会由 KMenu 内部的快捷键逻辑维持，这里只负责"打开"）
+const { open: openKMenu } = useKMenu();
 
 const clickHeaderMenuBtn = () => {
   headerMenuOpen.value = !headerMenuOpen.value;
