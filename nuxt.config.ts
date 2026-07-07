@@ -9,7 +9,8 @@ export default defineNuxtConfig({
     "@nuxtjs/seo",
     "@nuxt/image",
     '@nuxt/content',
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    'nuxt-studio'
   ],
 
   srcDir: 'src/',
@@ -71,11 +72,25 @@ export default defineNuxtConfig({
 
   nitro: {
     prerender: {
-      routes: ['/', '/atom.xml']
+      routes: ['/', '/atom.xml'],
+      crawlLinks: true
     }
   },
 
   ssr: true,
+
+  studio: {
+    dev: true,
+    repository: {
+      provider: 'github',
+      owner: 'aiokr',
+      repo: 'TriPress-Nuxt',
+      branch: 'studio',
+    },
+    i18n: {
+      defaultLocale: 'zh',
+    }
+  },
 
   compatibilityDate: '2024-07-05'
 })
