@@ -6,18 +6,86 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, nextTick } from 'vue'
+import { onMounted, nextTick, onBeforeUnmount } from 'vue'
 import '@/assets/article.css'
 import '@/assets/tripper.css'
 
 const route = useRoute()
 
+// 找到 main 元素最近的可滚动祖先（处理 default.vue 用 w-screen h-screen overflow-auto
+// 作为滚动容器的情况；如果没有可滚动祖先，则回退到 window）
+function findScrollContainer(el: HTMLElement | null): HTMLElement | Window {
+  let cur: HTMLElement | null = el
+  while (cur && cur !== document.body) {
+    const style = getComputedStyle(cur)
+    if (
+      style.overflowY === 'auto' || style.overflowY === 'scroll' ||
+      style.overflowX === 'auto' || style.overflowX === 'scroll'
+    ) {
+      return cur
+    }
+    cur = cur.parentElement
+  }
+  return window
+}
+
+// 每个路由的滚动位置记忆（用于返回时恢复原位置）
+const scrollPositions = new Map<string, number>()
+
+let activeContainer: HTMLElement | Window | null = null
+let activeHandler: (() => void) | null = null
+
+function unbindScrollListener() {
+  if (activeContainer && activeHandler) {
+    if (activeContainer === window) {
+      window.removeEventListener('scroll', activeHandler)
+    } else {
+      activeContainer.removeEventListener('scroll', activeHandler)
+    }
+  }
+  activeContainer = null
+  activeHandler = null
+}
+
+function bindScrollListener(container: HTMLElement | Window) {
+  unbindScrollListener()
+  activeContainer = container
+  activeHandler = () => {
+    const top = container === window
+      ? window.scrollY
+      : (container as HTMLElement).scrollTop
+    scrollPositions.set(route.path, top)
+  }
+  if (container === window) {
+    window.addEventListener('scroll', activeHandler, { passive: true })
+  } else {
+    container.addEventListener('scroll', activeHandler, { passive: true })
+  }
+}
+
+function scrollContainerTo(container: HTMLElement | Window, top: number) {
+  if (container === window) {
+    window.scrollTo({ top, behavior: 'instant' as ScrollBehavior })
+  } else {
+    ;(container as HTMLElement).scrollTo({ top, behavior: 'instant' as ScrollBehavior })
+  }
+}
+
 watch(() => route.path, async () => {
   await nextTick()
   const mainElement = document.querySelector('main')
-  if (mainElement) {
-    mainElement.scrollTo({ top: 0, behavior: 'instant' })
-  }
+  const container = findScrollContainer(mainElement)
+
+  // 在新的容器上监听滚动，实时记录当前位置
+  bindScrollListener(container)
+
+  // 优先恢复上次保存的滚动位置；新页面则回顶部
+  const saved = scrollPositions.get(route.path)
+  scrollContainerTo(container, saved ?? 0)
+})
+
+onBeforeUnmount(() => {
+  unbindScrollListener()
 })
 
 useHead({
