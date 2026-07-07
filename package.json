@@ -5,6 +5,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "dev:proxy": "node --import ./proxy.mjs node_modules/nuxt/bin/nuxt.mjs dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -16,9 +17,11 @@
     "@nuxtjs/tailwindcss": "^6.13.2",
     "@nuxtjs/turnstile": "^0.8.0",
     "@pinia/nuxt": "^0.5.1",
+    "@resvg/resvg-js": "^2.6.2",
     "@unhead/ssr": "^1.11.20",
     "@vueuse/core": "^10.11.0",
     "@vueuse/motion": "^2.2.3",
+    "better-sqlite3": "^12.11.1",
     "echarts": "^5.6.0",
     "feed": "^4.2.2",
     "motion": "^10.18.0",
@@ -31,8 +34,14 @@
     "@nuxt/image": "^1.7.0",
     "autoprefixer": "^10.4.19",
     "nuxt": "^3.19.0",
+    "nuxt-studio": "1.7.0",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.17"
+  },
+  "pnpm": {
+    "overrides": {
+      "debug": "4.3.7"
+    }
   },
   "packageManager": "pnpm@9.3.0+sha512.ee7b93e0c2bd11409c6424f92b866f31d3ea1bef5fbe47d3c7500cdc3c9668833d2e55681ad66df5b640c61fa9dc25d546efa54d76d7f8bf54b13614ac293631"
 }
