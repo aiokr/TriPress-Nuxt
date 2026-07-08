@@ -85,7 +85,8 @@ export default defineNuxtConfig({
 
   ogImage: {
     defaults: {
-      renderer: 'satori'
+      width: 1200,
+      height: 630,
     }
   },
 
