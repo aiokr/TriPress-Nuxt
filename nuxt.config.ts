@@ -74,6 +74,18 @@ export default defineNuxtConfig({
     prerender: {
       routes: ['/', '/atom.xml'],
       crawlLinks: true
+    },
+    experimental: {
+      wasm: false
+    },
+    rollupConfig: {
+      external: ['@resvg/resvg-wasm', '@resvg/resvg-wasm/index_bg.wasm']
+    }
+  },
+
+  ogImage: {
+    defaults: {
+      renderer: 'satori'
     }
   },
 
