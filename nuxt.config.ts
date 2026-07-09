@@ -10,7 +10,6 @@ export default defineNuxtConfig({
     "@nuxt/image",
     '@nuxt/content',
     '@nuxtjs/tailwindcss',
-    'nuxt-studio'
   ],
 
   srcDir: 'src/',
@@ -91,19 +90,6 @@ export default defineNuxtConfig({
   },
 
   ssr: true,
-
-  studio: {
-    dev: true,
-    repository: {
-      provider: 'github',
-      owner: 'aiokr',
-      repo: 'TriPress-Nuxt',
-      branch: 'studio',
-    },
-    i18n: {
-      defaultLocale: 'zh',
-    }
-  },
 
   compatibilityDate: '2024-07-05'
 })
