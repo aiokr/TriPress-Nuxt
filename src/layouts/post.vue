@@ -72,16 +72,7 @@
             /
             <span>{{ currentPost.title }}</span>
           </div>
-          <ClientOnly>
-            <button v-if="colorMode.value === 'light'" class="p-2" @click="handleColorMode"
-              data-umami-event="changeColorModeToDark">
-              <IconsIconSun />
-            </button>
-            <button v-else-if="colorMode.value === 'dark'" class="p-2" @click="handleColorMode"
-              data-umami-event="changeColorModeToLight">
-              <IconsIconMoon />
-            </button>
-          </ClientOnly>
+          <ColorModeSwitch button-class="p-2" />
         </div>
         <div class="max-h-[calc(100vh-48px)]">
           <main id="main-content" tabindex="-1">
@@ -133,8 +124,6 @@ onMounted(() => {
     };
   });
 });
-
-const colorMode = useColorMode(); // 颜色模式
 
 // 侧边栏是否折叠
 const isAsideCollapsed = ref<boolean>(false); // true 为折叠侧边栏 / false 为展示侧边栏
@@ -214,15 +203,6 @@ watch(currentCategories, () => {
   }
 });
 */
-
-// 切换颜色模式
-const handleColorMode = () => {
-  if (colorMode.preference === 'dark') {
-    colorMode.preference = 'light';
-  } else {
-    colorMode.preference = 'dark';
-  }
-};
 
 </script>
 

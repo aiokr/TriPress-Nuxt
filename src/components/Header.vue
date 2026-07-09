@@ -12,17 +12,7 @@
         <router-link to="/" class="headerLink">Home</router-link>
         <router-link to="/posts" class="headerLink">Posts</router-link>
         <router-link to="/page/about" class="headerLink">About</router-link>
-        <ClientOnly>
-          <button v-if="colorMode.value === 'dark'" @click="handleColorMode" data-umami-event="changeColorModeToLight"
-            class="themeBtn hover:bg-gray-100 dark:hover:bg-zinc-700 rounded-full p-2 transition-all" aria-label="Switch to light mode">
-            <IconsIconMoon />
-          </button>
-          <button v-else-if="colorMode.value === 'light'" @click="handleColorMode"
-            data-umami-event="changeColorModeToDark" class="themeBtn hover:bg-gray-100 dark:hover:bg-zinc-700 rounded-full p-2 transition-all"
-            aria-label="Switch to dark mode">
-            <IconsIconSun />
-          </button>
-        </ClientOnly>
+        <ColorModeSwitch />
         <button @click="clickHeaderMenuBtn"
           class="headerMenu headerMenuBtn md:hidden hover:bg-gray-100 dark:hover:bg-zinc-700 rounded-full p-2 transition-all"
           :aria-label="headerMenuOpen ? 'Close menu' : 'Open menu'" :aria-expanded="headerMenuOpen">
@@ -46,15 +36,6 @@
 </template>
 
 <script setup lang="ts">
-const colorMode = useColorMode();
-
-const handleColorMode = () => {
-  if (colorMode.preference === 'dark') {
-    colorMode.preference = 'light';
-  } else {
-    colorMode.preference = 'dark';
-  }
-};
 const headerMenuOpen = ref(false);
 
 // 命令按钮：直接打开搜索面板（再次点击会由 KMenu 内部的快捷键逻辑维持，这里只负责"打开"）
