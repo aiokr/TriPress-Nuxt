@@ -15,6 +15,12 @@ export default defineNuxtConfig({
 
   srcDir: 'src/',
 
+  runtimeConfig: {
+    public: {
+      mapboxToken: ''
+    }
+  },
+
   imports: {
     dirs: ['./stores']
   },
@@ -26,6 +32,10 @@ export default defineNuxtConfig({
     },
     {
       path: '~/components/content/',
+      pathPrefix: true,
+    },
+    {
+      path: '~/components/travel/',
       pathPrefix: true,
     }
   ],
