@@ -236,7 +236,9 @@ onMounted(async () => {
         trackBounds = data.bounds
         renderTrack()
         if (props.showStartEndMarkers) addStartEndMarkers()
-      } catch (err) {
+      } catch (err: any) {
+        status.value = 'error'
+        errorMsg.value = err?.message || 'Failed to load GPX track'
         console.error('Failed to load GPX track', err)
       } finally {
         loading.value = false
