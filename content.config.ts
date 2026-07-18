@@ -20,6 +20,22 @@ export default defineContentConfig({
         excerpt: z.string().optional(),
         description: z.string().optional(),
       })
+    }),
+    travel: defineCollection({
+      type: 'page',
+      source: [{ include: 'travel/**/*.md' }],
+      schema: z.object({
+        title: z.string(),
+        city: z.string(),
+        country: z.string(),
+        date: z.string(),
+        days: z.number().optional(),
+        lat: z.number(),
+        lng: z.number(),
+        gpx: z.string().optional(),
+        cover: z.string().optional(),
+        description: z.string().optional(),
+      })
     })
   }
 })

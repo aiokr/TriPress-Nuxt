@@ -96,9 +96,9 @@ useHead({
   link: [
     { type: 'application/atom+xml', rel: 'alternate', title: 'Tripper Press Atom Feed', href: '/atom.xml' },
   ],
-  script: [
-    { src: 'https://analytics.tripper.press/script.js', 'data-website-id': '75e35015-2599-4413-a688-da55060b9599' },
-  ],
+  // script: [
+  //   { src: 'https://analytics.tripper.press/script.js', 'data-website-id': '75e35015-2599-4413-a688-da55060b9599' },
+  // ],
 })
 useSeoMeta({
   title: 'Tripper Press - Take Photo, Think Seriously',
