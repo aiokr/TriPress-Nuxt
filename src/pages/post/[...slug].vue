@@ -1,5 +1,5 @@
 <template>
-  <ArticleLayout :post="post" :alt-exists="Boolean(altExists)">
+  <ArticleLayout :post="post" :alt-exists="Boolean(altExists)" :edit-url="editUrl">
     <template #not-found>
       <div class="empty-page">
         <p>{{ route.path }}</p>
@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { getOtherLangPath, normalizePath, detectLangFromPath } from '~/utils/content'
+import { getOtherLangPath, normalizePath, detectLangFromPath, getGitHubEditUrl } from '~/utils/content'
 
 definePageMeta({
   layout: 'default',
@@ -22,6 +22,8 @@ const route = useRoute()
 const { data: post } = await useAsyncData(route.path, () => {
   return queryCollection('post').path(route.path).first()
 })
+
+const editUrl = computed(() => post.value ? getGitHubEditUrl(post.value.path) : '')
 
 // 检测是否存在另一语言版本，输出 hreflang SEO 标签
 const candidatePath = computed(() => post.value ? getOtherLangPath(normalizePath(post.value.path)) : '')
