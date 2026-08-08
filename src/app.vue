@@ -108,12 +108,18 @@ useSeoMeta({
 })
 
 onMounted(() => {
+  // 仅在生产环境加载 GTM，避免开发环境因网络问题产生控制台报错
+  if (import.meta.env.DEV) return
+
   const script = document.createElement('script')
   script.textContent = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-NFSZVFRX');`
+  script.onerror = () => {
+    // 静默处理 GTM 加载失败（如大陆网络环境无法访问）
+  }
   document.head.appendChild(script)
 })
 
