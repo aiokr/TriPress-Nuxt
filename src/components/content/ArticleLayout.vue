@@ -40,6 +40,13 @@
           <ContentRenderer :value="post" />
         </template>
         <slot v-else name="not-found" />
+
+        <div v-if="editUrl"
+          class="mt-8 py-4 px-4 border border-main/40 dark:border-main/50 rounded-lg bg-main/10 dark:bg-main/15">
+          <a :href="editUrl" target="_blank" rel="noopener" class="text-main transition-colors">
+            Edit this article on GitHub
+          </a>
+        </div>
       </article>
     </div>
     <ArticleToc
@@ -53,6 +60,7 @@
 defineProps<{
   post: any
   altExists?: boolean
+  editUrl?: string
 }>()
 
 const formatDate = (date: string) => new Date(date).toISOString().split('T')[0]
