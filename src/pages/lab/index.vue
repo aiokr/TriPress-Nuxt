@@ -32,21 +32,16 @@
 </template>
 
 <script setup lang="ts">
-const tools = [
+const tools = [ 
   {
-    name: 'Trade Lab',
-    description: '投资研究工具集 — 跟踪市场、记录交易、分析收益。',
-    link: '/lab/trade',
+    name: 'Sport Heatmap',
+    description: 'Visualize my running and cycling routes on an interactive heatmap.',
+    link: '/heatmap',
   },
   {
-    name: '运动热力图',
-    description: '基于 Mapbox MTS 的运动轨迹热力图，展示跑步与骑行足迹。',
-    link: '/lab/heatmap',
-  },
-  {
-    name: 'Englisg Learning Tools',
-    description: 'C',
-    link: '',
+    name: 'Travel',
+    description: 'Cities I have visited and the footprints I left.',
+    link: '/travel',
   },
 ]
 

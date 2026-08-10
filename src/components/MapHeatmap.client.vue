@@ -21,7 +21,7 @@ const errorMsg = ref('')
 let map: Map | null = null
 
 const tilesetUrl = 'mapbox://aiokr.lfapj3zsn6r7' as const
-const sourceLayer = 'tracks' as const
+const sourceLayer = '0d3d69f7f36b02455901' as const
 
 function styleUrl(isDark: boolean): string {
   return isDark
@@ -51,11 +51,35 @@ onMounted(async () => {
     map = new mapboxgl.Map({
       container: mapEl.value,
       style: styleUrl(colorMode.value === 'dark'),
-      center: [116.4, 39.9],
-      zoom: 9,
+      center: [109.4283, 24.3265],
+      zoom: 11,
     })
 
     map.addControl(new mapboxgl.NavigationControl())
+
+    function fitToData(mbgl: typeof mapboxgl, layer: string) {
+      if (!map) return
+
+      const features = map.querySourceFeatures('tracks', { sourceLayer: layer })
+      if (!features.length) {
+        setTimeout(() => fitToData(mbgl, layer), 1000)
+        return
+      }
+
+      const bounds = new mbgl.LngLatBounds()
+      let hasPoint = false
+      for (const f of features) {
+        if (f.geometry.type === 'Point') {
+          const [lon, lat] = f.geometry.coordinates
+          bounds.extend([lon, lat])
+          hasPoint = true
+        }
+      }
+
+      if (hasPoint) {
+        map.fitBounds(bounds, { padding: 40, maxZoom: 14, duration: 800 })
+      }
+    }
 
     map.on('load', () => {
       map?.addSource('tracks', {
@@ -64,39 +88,31 @@ onMounted(async () => {
       })
 
       map?.addLayer({
-        id: 'tracks-heat',
-        type: 'heatmap',
+        id: 'tracks-line',
+        type: 'line',
         source: 'tracks',
         'source-layer': sourceLayer,
         paint: {
-          'heatmap-weight': 1,
-          'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 3, 1, 14, 3],
-          'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 3, 2, 14, 20],
-          'heatmap-color': [
-            'interpolate', ['linear'], ['heatmap-density'],
-            0, 'rgba(0,0,0,0)',
-            0.2, 'rgba(65,105,225,0.6)',
-            0.4, 'rgba(0,200,150,0.7)',
-            0.6, 'rgba(255,220,0,0.8)',
-            0.8, 'rgba(255,80,0,0.9)',
-            1, 'rgba(255,0,0,1)',
-          ],
-          'heatmap-opacity': ['interpolate', ['linear'], ['zoom'], 13, 1, 15, 0],
+          'line-color': '#ff5500',
+          'line-width': ['interpolate', ['linear'], ['zoom'], 0, 1, 11, 1.5, 16, 3],
+          'line-opacity': ['interpolate', ['linear'], ['zoom'], 0, 0.5, 11, 0.7, 16, 0.9],
         },
       })
 
       map?.addLayer({
-        id: 'tracks-point',
-        type: 'circle',
+        id: 'tracks-glow',
+        type: 'line',
         source: 'tracks',
         'source-layer': sourceLayer,
-        minzoom: 13,
         paint: {
-          'circle-radius': 1.5,
-          'circle-color': '#ff5500',
-          'circle-opacity': ['interpolate', ['linear'], ['zoom'], 13, 0, 15, 0.8],
+          'line-color': '#ff5500',
+          'line-width': ['interpolate', ['linear'], ['zoom'], 0, 2, 11, 4, 16, 9],
+          'line-opacity': ['interpolate', ['linear'], ['zoom'], 0, 0.08, 11, 0.1, 16, 0.15],
+          'line-blur': ['interpolate', ['linear'], ['zoom'], 0, 1, 11, 3, 16, 7],
         },
-      })
+      }, 'tracks-line')
+
+      fitToData(mapboxgl, sourceLayer)
 
       status.value = 'ready'
     })
