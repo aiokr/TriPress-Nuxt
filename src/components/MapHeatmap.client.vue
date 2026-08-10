@@ -14,6 +14,14 @@
 import type { Map, MapboxGeoJSONFeature } from 'mapbox-gl'
 import { nextTick } from 'vue'
 
+interface Props {
+  filter?: 'all' | 'running' | 'cycling'
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  filter: 'all',
+})
+
 const mapEl = ref<HTMLElement>()
 const colorMode = useColorMode()
 const config = useRuntimeConfig()
@@ -30,6 +38,28 @@ function styleUrl(isDark: boolean): string {
   return isDark
     ? 'mapbox://styles/mapbox/dark-v11'
     : 'mapbox://styles/mapbox/light-v11'
+}
+
+function setLayerVisibility(filter: Props['filter']) {
+  if (!map) return
+
+  const visibility = {
+    running: filter === 'all' || filter === 'running',
+    cycling: filter === 'all' || filter === 'cycling',
+  }
+
+  for (const [id, visible] of Object.entries(visibility)) {
+    const lineId = `${id}-line`
+    const glowId = `${id}-glow`
+    const value = visible ? 'visible' : 'none'
+
+    if (map.getLayer(lineId)) {
+      map.setLayoutProperty(lineId, 'visibility', value)
+    }
+    if (map.getLayer(glowId)) {
+      map.setLayoutProperty(glowId, 'visibility', value)
+    }
+  }
 }
 
 onMounted(async () => {
@@ -121,24 +151,43 @@ onMounted(async () => {
       }
     }
 
-    map.on('load', () => {
-      map?.addSource('tracks', {
-        type: 'vector',
-        url: tilesetUrl,
-      })
+    function initLayers() {
+      if (!map) return
+
+      if (!map.getSource('tracks')) {
+        map.addSource('tracks', {
+          type: 'vector',
+          url: tilesetUrl,
+        })
+      }
 
       addTrackLine('running', runningLayer, '#ff5500')
       addTrackLine('cycling', cyclingLayer, '#00c3ff')
 
+      setLayerVisibility(props.filter)
+
       fitToData(mapboxgl, [runningLayer, cyclingLayer])
 
       status.value = 'ready'
+    }
+
+    map.on('load', initLayers)
+
+    map.on('style.load', () => {
+      initLayers()
     })
 
     watch(
       () => colorMode.value,
       (mode) => {
         map?.setStyle(styleUrl(mode === 'dark'))
+      }
+    )
+
+    watch(
+      () => props.filter,
+      (filter) => {
+        setLayerVisibility(filter)
       }
     )
   } catch (err: any) {
