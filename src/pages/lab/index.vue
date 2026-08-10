@@ -41,7 +41,7 @@ const tools = [
   {
     name: '运动热力图',
     description: '基于 Mapbox MTS 的运动轨迹热力图，展示跑步与骑行足迹。',
-    link: '/heatmap',
+    link: '/lab/heatmap',
   },
   {
     name: 'Englisg Learning Tools',
