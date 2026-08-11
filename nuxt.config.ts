@@ -77,6 +77,9 @@ export default defineNuxtConfig({
 
   content: {
     build: {
+      transformers: [
+        '~~/transformers/geojson',
+      ],
       markdown: {
         toc: {
           depth: 4,

@@ -36,6 +36,14 @@ export default defineContentConfig({
         cover: z.string().optional(),
         description: z.string().optional(),
       })
+    }),
+    heatmap: defineCollection({
+      type: 'data',
+      source: 'heatmap/**/*.geojson',
+      schema: z.object({
+        type: z.string(),
+        features: z.array(z.any()),
+      }).passthrough()
     })
   }
 })
