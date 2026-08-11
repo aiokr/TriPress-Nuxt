@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import type { Map, GeoJSONSource, Marker as MapboxMarker } from 'mapbox-gl'
 import { useGpx } from '~/composables/useGpx'
-import { haversine } from '~/utils/geo'
+import { simplifyCoords } from '~/utils/geo'
 import type { Feature, FeatureCollection, LineString, MultiLineString, MultiPoint } from 'geojson'
 
 const props = withDefaults(
@@ -44,7 +44,6 @@ const errorMsg = ref('')
 let map: Map | null = null
 let trackGeojson: FeatureCollection<LineString> | null = null
 let trackPointsGeojson: Feature<MultiPoint> | null = null
-let trackSegmentsGeojson: FeatureCollection<LineString> | null = null
 let trackBounds: [[number, number], [number, number]] | null = null
 // 保存开始/结束标记引用，避免 style.load 重新触发时重复添加
 let startMarker: MapboxMarker | null = null
@@ -66,51 +65,16 @@ function extractPositions(geojson: FeatureCollection<LineString>): [number, numb
 }
 
 function buildPointsGeojson(geojson: FeatureCollection<LineString>): Feature<MultiPoint> {
+  const positions = extractPositions(geojson)
+  const sampled = positions.length > 600 ? simplifyCoords(positions, 600) : positions
   return {
     type: 'Feature',
     properties: {},
     geometry: {
       type: 'MultiPoint',
-      coordinates: extractPositions(geojson) as [number, number][],
+      coordinates: sampled as [number, number][],
     },
   }
-}
-
-function buildSegmentGeojson(geojson: FeatureCollection<LineString>): FeatureCollection<LineString> {
-  const positions = extractPositions(geojson)
-  const features: Feature<LineString>[] = []
-  let segment: [number, number][] = []
-
-  for (let i = 0; i < positions.length; i++) {
-    if (i === 0) {
-      segment.push(positions[i])
-      continue
-    }
-    const [lng1, lat1] = positions[i - 1]
-    const [lng2, lat2] = positions[i]
-    const distance = haversine(lat1, lng1, lat2, lng2)
-    if (distance <= 1) {
-      segment.push(positions[i])
-    } else {
-      if (segment.length > 1) {
-        features.push({
-          type: 'Feature',
-          properties: {},
-          geometry: { type: 'LineString', coordinates: segment },
-        })
-      }
-      segment = [positions[i]]
-    }
-  }
-  if (segment.length > 1) {
-    features.push({
-      type: 'Feature',
-      properties: {},
-      geometry: { type: 'LineString', coordinates: segment },
-    })
-  }
-
-  return { type: 'FeatureCollection', features }
 }
 
 function styleUrl(isDark: boolean): string {
@@ -145,27 +109,7 @@ onMounted(async () => {
     map.addControl(new mapboxgl.NavigationControl())
 
     function renderTrack() {
-      if (!map || !trackPointsGeojson || !trackSegmentsGeojson) return
-
-      if (map.getSource('track-segments')) {
-        ;(map.getSource('track-segments') as GeoJSONSource).setData(trackSegmentsGeojson)
-      } else {
-        map.addSource('track-segments', { type: 'geojson', data: trackSegmentsGeojson })
-        map.addLayer({
-          id: 'track-segments',
-          type: 'line',
-          source: 'track-segments',
-          layout: {
-            'line-join': 'round',
-            'line-cap': 'round',
-          },
-          paint: {
-            'line-color': '#71afdd',
-            'line-width': 2,
-            'line-opacity': 0.8,
-          },
-        })
-      }
+      if (!map || !trackPointsGeojson) return
 
       if (map.getSource('track-points')) {
         ;(map.getSource('track-points') as GeoJSONSource).setData(trackPointsGeojson)
@@ -176,7 +120,7 @@ onMounted(async () => {
           type: 'circle',
           source: 'track-points',
           paint: {
-            'circle-radius': 2,
+            'circle-radius': 3,
             'circle-color': '#71afdd',
             'circle-opacity': 0.85,
           },
@@ -232,7 +176,6 @@ onMounted(async () => {
         const data = await useGpx(props.gpxUrl)
         trackGeojson = data.geojson
         trackPointsGeojson = buildPointsGeojson(data.geojson)
-        trackSegmentsGeojson = buildSegmentGeojson(data.geojson)
         trackBounds = data.bounds
         renderTrack()
         if (props.showStartEndMarkers) addStartEndMarkers()

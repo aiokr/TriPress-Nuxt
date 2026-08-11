@@ -32,16 +32,16 @@
 </template>
 
 <script setup lang="ts">
-const tools = [
+const tools = [ 
   {
-    name: 'Trade Lab',
-    description: '投资研究工具集 — 跟踪市场、记录交易、分析收益。',
-    link: '/lab/trade',
+    name: 'Sport Heatmap',
+    description: 'Visualize my running and cycling routes on an interactive heatmap.',
+    link: '/heatmap',
   },
   {
-    name: 'Englisg Learning Tools',
-    description: 'C',
-    link: '',
+    name: 'Travel',
+    description: 'Cities I have visited and the footprints I left.',
+    link: '/travel',
   },
 ]
 

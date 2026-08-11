@@ -11,7 +11,7 @@
       <div class="flex gap-4 items-center justify-center">
         <router-link to="/" class="headerLink">Home</router-link>
         <router-link to="/posts" class="headerLink">Posts</router-link>
-        <router-link to="/travel" class="headerLink">Travel</router-link>
+        <router-link to="/lab" class="headerLink">Lab</router-link>
         <router-link to="/page/about" class="headerLink">About</router-link>
         <ColorModeSwitch />
         <button @click="clickHeaderMenuBtn"
