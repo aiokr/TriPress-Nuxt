@@ -22,6 +22,10 @@ const props = withDefaults(defineProps<Props>(), {
   filter: 'all',
 })
 
+const emit = defineEmits<{
+  (e: 'debug-update', payload: DebugInfo): void
+}>()
+
 const mapEl = ref<HTMLElement>()
 const colorMode = useColorMode()
 const config = useRuntimeConfig()
@@ -34,10 +38,87 @@ const tilesetUrl = 'mapbox://aiokr.lfapj3zsn6r7' as const
 const runningLayer = '0d3d69f7f36b02455901' as const
 const cyclingLayer = '1c9ee4e3752da27bc064' as const
 
+interface LayerMeta {
+  id: string
+  sourceLayer: string
+  visibility: 'visible' | 'none' | 'unknown'
+}
+
+interface DebugInfo {
+  source: { id: string; url: string; type: 'vector'; loaded: boolean }
+  layers: LayerMeta[]
+  sourceFeatures: Record<string, number>
+  renderedFeatures: Record<string, number>
+}
+
 function styleUrl(isDark: boolean): string {
   return isDark
     ? 'mapbox://styles/mapbox/dark-v11'
     : 'mapbox://styles/mapbox/light-v11'
+}
+
+function getLayerVisibility(layerId: string): 'visible' | 'none' | 'unknown' {
+  if (!map?.getLayer(layerId)) return 'unknown'
+  const v = map.getLayoutProperty(layerId, 'visibility')
+  if (v === 'visible' || v === 'none') return v
+  return 'unknown'
+}
+
+function getSourceInfo(): DebugInfo['source'] {
+  const loaded = !!map && !!map.getSource('tracks')
+  return {
+    id: 'tracks',
+    url: tilesetUrl,
+    type: 'vector',
+    loaded,
+  }
+}
+
+function getLayersInfo(): LayerMeta[] {
+  return [
+    { id: 'running-line', sourceLayer: runningLayer, visibility: getLayerVisibility('running-line') },
+    { id: 'running-glow', sourceLayer: runningLayer, visibility: getLayerVisibility('running-glow') },
+    { id: 'cycling-line', sourceLayer: cyclingLayer, visibility: getLayerVisibility('cycling-line') },
+    { id: 'cycling-glow', sourceLayer: cyclingLayer, visibility: getLayerVisibility('cycling-glow') },
+  ]
+}
+
+function countSourceFeatures(sourceLayer: string): number {
+  if (!map) return 0
+  try {
+    return map.querySourceFeatures('tracks', { sourceLayer }).length
+  } catch {
+    return 0
+  }
+}
+
+function countRenderedFeatures(layerIds: string[]): number {
+  if (!map) return 0
+  try {
+    return map.queryRenderedFeatures({ layers: layerIds }).length
+  } catch {
+    return 0
+  }
+}
+
+function buildDebugInfo(): DebugInfo {
+  return {
+    source: getSourceInfo(),
+    layers: getLayersInfo(),
+    sourceFeatures: {
+      [runningLayer]: countSourceFeatures(runningLayer),
+      [cyclingLayer]: countSourceFeatures(cyclingLayer),
+    },
+    renderedFeatures: {
+      running: countRenderedFeatures(['running-line', 'running-glow']),
+      cycling: countRenderedFeatures(['cycling-line', 'cycling-glow']),
+    },
+  }
+}
+
+function emitDebugUpdate() {
+  if (!map || status.value !== 'ready') return
+  emit('debug-update', buildDebugInfo())
 }
 
 function setLayerVisibility(filter: Props['filter']) {
@@ -60,6 +141,8 @@ function setLayerVisibility(filter: Props['filter']) {
       map.setLayoutProperty(glowId, 'visibility', value)
     }
   }
+
+  nextTick(emitDebugUpdate)
 }
 
 onMounted(async () => {
@@ -169,12 +252,24 @@ onMounted(async () => {
       fitToData(mapboxgl, [runningLayer, cyclingLayer])
 
       status.value = 'ready'
+
+      map.once('idle', () => {
+        emitDebugUpdate()
+      })
     }
 
     map.on('load', initLayers)
 
     map.on('style.load', () => {
       initLayers()
+    })
+
+    map.on('moveend', () => {
+      emitDebugUpdate()
+    })
+
+    map.on('zoomend', () => {
+      emitDebugUpdate()
     })
 
     watch(
@@ -200,5 +295,13 @@ onMounted(async () => {
 onUnmounted(() => {
   map?.remove()
   map = null
+})
+
+defineExpose({
+  tilesetUrl,
+  runningLayer,
+  cyclingLayer,
+  map: computed(() => map),
+  refreshDebug: () => emitDebugUpdate(),
 })
 </script>

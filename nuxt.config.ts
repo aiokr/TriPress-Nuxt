@@ -1,3 +1,18 @@
+import { execSync } from 'node:child_process'
+
+function getIsDevBranch(): boolean {
+  try {
+    const vercelBranch = process.env.VERCEL_GIT_COMMIT_REF
+    if (vercelBranch) {
+      return vercelBranch === 'dev'
+    }
+    const localBranch = execSync('git branch --show-current', { encoding: 'utf-8' }).trim()
+    return localBranch === 'dev'
+  } catch {
+    return false
+  }
+}
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 export default defineNuxtConfig({
@@ -16,7 +31,8 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      mapboxToken: ''
+      mapboxToken: '',
+      isDevBranch: getIsDevBranch()
     }
   },
 
