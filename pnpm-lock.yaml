@@ -6,7 +6,6 @@ settings:
 
 overrides:
   debug: 4.3.7
-  vue-tsc>typescript: npm:@typescript/typescript6@^6.0.2
 
 importers:
 
@@ -6771,7 +6770,7 @@ packages:
     resolution: {integrity: sha512-TS3Y1ux/IRoE8OCP2PpACAeOseuIs0UvWrcr7u+w3PmfY+SlCfEf8zjrBgnQksHUgLpthi5vHlffcQTQTdPBZA==}
     hasBin: true
     peerDependencies:
-      typescript: npm:@typescript/typescript6@^6.0.2
+      typescript: '>=5.0.0'
 
   vue@3.5.39:
     resolution: {integrity: sha512-xmZCYabFGcirU8r0fTuvl/LICc1OU620rnqepaJDL/a141ZigkG7AyaxQLdqJ02ZRYzWe6YPaDHeQx7MfknQfA==}
