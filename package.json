@@ -8,7 +8,8 @@
     "dev:proxy": "node --import ./proxy.mjs node_modules/nuxt/bin/nuxt.mjs dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "typecheck": "node -e \"import('vue-tsc').then(m => m.run(require.resolve('@typescript/typescript6/lib/tsc')))\" -- --noEmit"
   },
   "dependencies": {
     "@nuxt/content": "^3.15.0",
@@ -36,10 +37,13 @@
     "@nuxt/image": "^1.7.0",
     "@types/geojson": "^7946.0.16",
     "@types/mapbox-gl": "^3.5.0",
+    "@typescript/typescript6": "^6.0.2",
     "autoprefixer": "^10.4.19",
     "nuxt": "^3.19.0",
     "postcss": "^8.4.38",
-    "tailwindcss": "^3.4.17"
+    "tailwindcss": "^3.4.17",
+    "typescript": "^7.0.2",
+    "vue-tsc": "^3.3.9"
   },
   "pnpm": {
     "overrides": {

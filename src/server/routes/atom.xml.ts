@@ -2,6 +2,15 @@ import { Feed } from "feed";
 import { defineEventHandler, appendHeader } from "h3";
 import { useAppConfig } from "#imports";
 
+interface Post {
+  path: string
+  title: string
+  description?: string
+  date: string
+  lang: 'en' | 'zh'
+  type?: string
+}
+
 export default defineEventHandler(async (event) => {
   const appConfig = useAppConfig();
   const nowYear = new Date().getFullYear();
@@ -16,10 +25,10 @@ export default defineEventHandler(async (event) => {
     copyright: `© $2016 - ${nowYear} Tripper Press`,
   });
 
-  const postsData = await queryCollection(event, 'post').all()
+  const postsData = await queryCollection(event, 'post').all() as Post[]
 
   // 仅输出默认语言（en）的文章，排除 type=page 的独立页面
-  const enPosts = postsData.filter((p: any) => p.lang !== 'zh' && p.type !== 'page')
+  const enPosts = postsData.filter((p) => p.lang !== 'zh' && p.type !== 'page')
 
   for (const post of enPosts) {
     const postDate = new Date(post.date);

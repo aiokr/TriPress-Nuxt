@@ -16,11 +16,17 @@
 const SITE = 'https://tripper.press'
 
 type Lang = 'en' | 'zh'
+type HrefLang = Lang | 'x-default'
 
 interface Post {
   path: string
   date?: string
   lang?: Lang
+}
+
+interface Alternative {
+  hreflang: HrefLang
+  href: string
 }
 
 function getBaseSlug(path: string): string {
@@ -57,7 +63,7 @@ export default defineEventHandler(async (event) => {
     if (!defaultItem) continue
 
     // 为每个语言版本生成 hreflang 标注
-    const alternatives = items.map((item) => ({
+    const alternatives: Alternative[] = items.map((item) => ({
       hreflang: getLang(item.path),
       href: toAbs(item.path),
     }))
