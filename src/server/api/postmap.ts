@@ -43,7 +43,7 @@ function toAbs(path: string): string {
 }
 
 export default defineEventHandler(async (event) => {
-  const posts = await queryCollection('post').all() as Post[]
+  const posts = await queryCollection(event, 'post').all() as Post[]
 
   // 按 baseSlug 分组（同篇文章的不同语言版本）
   const groups = new Map<string, Post[]>()

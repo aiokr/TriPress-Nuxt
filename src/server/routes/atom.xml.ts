@@ -25,7 +25,7 @@ export default defineEventHandler(async (event) => {
     copyright: `© $2016 - ${nowYear} Tripper Press`,
   });
 
-  const postsData = await queryCollection('post').all() as Post[]
+  const postsData = await queryCollection(event, 'post').all() as Post[]
 
   // 仅输出默认语言（en）的文章，排除 type=page 的独立页面
   const enPosts = postsData.filter((p) => p.lang !== 'zh' && p.type !== 'page')
