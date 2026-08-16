@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import type { FeatureCollection, LineString } from 'geojson'
+import type { FeatureCollection } from 'geojson'
 import type { GeoJSONSource, Map } from 'mapbox-gl'
 
 interface Props {
@@ -30,7 +30,6 @@ const status = ref<'loading' | 'error' | 'ready'>('loading')
 const errorMsg = ref('')
 
 let map: Map | null = null
-let mbgl: typeof import('mapbox-gl').default | null = null
 
 function styleUrl(isDark: boolean): string {
   return isDark
@@ -57,26 +56,6 @@ function setLayerVisibility(filter: Props['filter']) {
     if (map.getLayer(glowId)) {
       map.setLayoutProperty(glowId, 'visibility', value)
     }
-  }
-}
-
-function fitToData(features: FeatureCollection['features']) {
-  if (!map || !mbgl) return
-
-  const bounds = new mbgl.LngLatBounds()
-  let hasCoord = false
-  for (const f of features) {
-    if (f.geometry?.type === 'LineString') {
-      for (const coord of (f.geometry as LineString).coordinates) {
-        const [lng, lat] = coord
-        bounds.extend([lng, lat] as [number, number])
-        hasCoord = true
-      }
-    }
-  }
-
-  if (hasCoord) {
-    map.fitBounds(bounds, { padding: 40, maxZoom: 14, duration: 800 })
   }
 }
 
@@ -141,8 +120,6 @@ function initLayers() {
 
   setLayerVisibility(props.filter)
 
-  fitToData(props.geojson.features)
-
   status.value = 'ready'
 }
 
@@ -158,7 +135,6 @@ onMounted(async () => {
   try {
     const mapboxgl = (await import('mapbox-gl')).default
     await import('mapbox-gl/dist/mapbox-gl.css')
-    mbgl = mapboxgl
 
     if (!mapboxgl || !mapboxgl.Map) {
       throw new Error('mapbox-gl did not load correctly')
@@ -169,8 +145,8 @@ onMounted(async () => {
     map = new mapboxgl.Map({
       container: mapEl.value,
       style: styleUrl(colorMode.value === 'dark'),
-      center: [109.4343, 24.3678],
-      zoom: 11.17,
+      center: [109.4157, 24.36],
+      zoom: 11,
     })
 
     map.addControl(new mapboxgl.NavigationControl())
@@ -202,7 +178,6 @@ onMounted(async () => {
         const source = map.getSource('tracks')
         if (source && 'setData' in source) {
           (source as GeoJSONSource).setData(newGeojson)
-          fitToData(newGeojson.features)
         } else {
           initLayers()
         }
@@ -218,6 +193,5 @@ onMounted(async () => {
 onUnmounted(() => {
   map?.remove()
   map = null
-  mbgl = null
 })
 </script>
