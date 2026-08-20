@@ -30,12 +30,12 @@
           <LangSwitcher v-if="post" :path="post.path" :has-alt="altExists" />
         </div>
       </div>
-      <div v-if="post?.type === 'rc'"
-        class="container max-w-[800px] px-4 mx-auto py-4 border border-red-400 dark:border-red-700 rounded-lg bg-red-100 dark:bg-red-900">
-        This article is a Pre-release version, and its content may be updated at any time.
-      </div>
       <!--Content-->
       <article class="container max-w-[800px] px-4 mx-auto pb-12">
+        <div v-if="post?.type === 'rc'"
+          class="mb-8 py-4 px-4 border border-red-400 dark:border-red-700 rounded-lg bg-red-100 dark:bg-red-900">
+          This article is a Pre-release version, and its content may be updated at any time.
+        </div>
         <template v-if="post">
           <ContentRenderer :value="post" />
         </template>
