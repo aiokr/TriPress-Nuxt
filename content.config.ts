@@ -7,6 +7,7 @@ export default defineContentConfig({
       source: [
         { include: 'post/**/*.md' },
         { include: 'page/**/*.md' },
+        { include: 'heatmap/**/*.md' },
       ],
       schema: z.object({
         title: z.string(),

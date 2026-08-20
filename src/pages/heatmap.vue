@@ -1,11 +1,11 @@
 <template>
   <main class="container max-w-[1000px] mx-auto pt-20 px-4 pb-20">
-    <div class="pb-6">
+    <div class="pb-6 hidden sm:block">
       <div class="text-3xl font-bold text-text dark:text-dtext pb-2">运动热力图</div>
     </div>
 
-    <section class="mb-10">
-      <div class="flex flex-wrap items-center gap-3 pb-4">
+    <section class="mb-10 -mx-4 sm:mx-0 -mt-20 sm:mt-0 relative">
+      <div class="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-3 absolute bottom-4 left-4 z-10 sm:static sm:pb-4">
         <button v-for="item in filters" :key="item.value" type="button" @click="activeFilter = item.value"
           class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-sm transition-all"
           :class="activeFilter === item.value
@@ -16,7 +16,7 @@
         </button>
 
         <a href="https://www.strava.com/athletes/152925000" target="_blank" rel="noopener noreferrer"
-          class="ml-auto inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-dbg/60 text-sm text-zinc-600 dark:text-dtext/70 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all">
+          class="hidden sm:inline-flex ml-auto items-center gap-2 px-3 py-1.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-dbg/60 text-sm text-zinc-600 dark:text-dtext/70 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all">
           <span class="w-2.5 h-2.5 rounded-full bg-[#fc5200]" />
           <span>Follow me on Strava</span>
         </a>
@@ -60,6 +60,15 @@
         <div v-if="!fileStats.length" class="text-sm text-zinc-400 dark:text-dtext/60">No geojson files found.</div>
       </div>
     </section>
+
+    <section v-if="heatmapPage" class="mb-10">
+      <div class="pb-4">
+        <div class="text-xl font-bold text-text dark:text-dtext">{{ heatmapPage.title }}</div>
+      </div>
+      <article class="prose dark:prose-invert max-w-none">
+        <ContentRenderer :value="heatmapPage" />
+      </article>
+    </section>
   </main>
 </template>
 
@@ -91,6 +100,7 @@ const runtime = useRuntimeConfig()
 const showDebug = computed(() => import.meta.env.DEV || runtime.public.isDevBranch)
 
 const { data: heatmapItems } = await useAsyncData('heatmap2-tracks', () => queryCollection('heatmap').all())
+const { data: heatmapPage } = await useAsyncData('heatmap-page', () => queryCollection('post').path('/heatmap').first())
 
 function inferActivityFromStem(stem: string): 'running' | 'cycling' | undefined {
   const name = stem.split('/').pop() || stem

@@ -1,6 +1,7 @@
 <template>
   <div
-    class="w-full h-[480px] rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 relative bg-zinc-50 dark:bg-zinc-900">
+    class="w-full h-[80vh] sm:h-[480px] overflow-hidden relative bg-zinc-50 dark:bg-zinc-900
+      sm:rounded-xl sm:border sm:border-zinc-200 dark:sm:border-zinc-800">
     <div ref="mapEl" class="w-full h-full" />
     <div v-if="status !== 'ready'"
       class="absolute inset-0 flex items-center justify-center text-sm text-zinc-500 dark:text-dtext/70 pointer-events-none">
