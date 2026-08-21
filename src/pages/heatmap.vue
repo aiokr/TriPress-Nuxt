@@ -11,6 +11,8 @@
           :class="heatmapRef?.isFullscreen
             ? 'border-zinc-400 dark:border-zinc-600 bg-zinc-100 dark:bg-zinc-800 text-text dark:text-dtext'
             : 'border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-dbg/60 text-zinc-600 dark:text-dtext/70 hover:border-zinc-300 dark:hover:border-zinc-700'">
+          <IconsFullscreenExit v-if="heatmapRef?.isFullscreen" />
+          <IconsFullscreen v-else />
           <span>{{ heatmapRef?.isFullscreen ? '退出全屏' : '全屏' }}</span>
         </button>
 
@@ -37,6 +39,8 @@
             :class="heatmapRef?.isFullscreen
               ? 'border-zinc-400 dark:border-zinc-600 bg-zinc-100 dark:bg-zinc-800 text-text dark:text-dtext'
               : 'border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-dbg/60 text-zinc-600 dark:text-dtext/70 hover:border-zinc-300 dark:hover:border-zinc-700'">
+            <IconsFullscreenExit v-if="heatmapRef?.isFullscreen" />
+            <IconsFullscreen v-else />
             <span>{{ heatmapRef?.isFullscreen ? '退出全屏' : '全屏' }}</span>
           </button>
 
