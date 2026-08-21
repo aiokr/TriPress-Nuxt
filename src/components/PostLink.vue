@@ -3,7 +3,7 @@
     class="h-24 flex justify-between gap-1 mx-1 mb-1 p-1 rounded-lg hover:bg-main/20 transition-all"
     :style="props.currentPost._path === post._path ? 'background-color: #71afdd; color: #fff' : ''">
     <div class="p-1 text-sm mr-auto">
-      <div class="text-xs text-text/30 dark:text-dtext/30 pb-1">{{ new Date(post.date).toISOString().split('T')[0] }}
+      <div class="text-xs text-text/30 dark:text-dtext/30 pb-1">{{ formatDate(post.date) }}
       </div>
       <div>{{ post.title }}</div>
     </div>

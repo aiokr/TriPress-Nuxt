@@ -50,6 +50,8 @@
 </template>
 
 <script setup lang="ts">
+import { formatDate } from '~/utils/date'
+
 const props = defineProps<{
   title: string
   description?: string
@@ -60,11 +62,7 @@ const props = defineProps<{
 
 const formattedDate = computed(() => {
   if (!props.date) return ''
-  try {
-    return new Date(props.date).toISOString().split('T')[0]
-  } catch {
-    return props.date
-  }
+  return formatDate(props.date)
 })
 
 // Satori 不稳定支持 -webkit-line-clamp / text-overflow:ellipsis，
