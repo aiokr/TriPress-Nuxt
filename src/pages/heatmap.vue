@@ -6,6 +6,14 @@
 
     <section class="mb-10 -mx-4 sm:mx-0 -mt-20 sm:mt-0 relative">
       <div class="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-3 absolute bottom-4 left-4 z-10 sm:static sm:pb-4">
+        <button type="button" @click="heatmapRef?.toggleFullscreen()"
+          class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-sm transition-all"
+          :class="heatmapRef?.isFullscreen
+            ? 'border-zinc-400 dark:border-zinc-600 bg-zinc-100 dark:bg-zinc-800 text-text dark:text-dtext'
+            : 'border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-dbg/60 text-zinc-600 dark:text-dtext/70 hover:border-zinc-300 dark:hover:border-zinc-700'">
+          <span>{{ heatmapRef?.isFullscreen ? '退出全屏' : '全屏' }}</span>
+        </button>
+
         <button v-for="item in filters" :key="item.value" type="button" @click="activeFilter = item.value"
           class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-sm transition-all"
           :class="activeFilter === item.value
@@ -22,7 +30,26 @@
         </a>
       </div>
 
-      <Heatmap :filter="activeFilter" :geojson="mergedGeojson" />
+      <Heatmap ref="heatmapRef" :filter="activeFilter" :geojson="mergedGeojson">
+        <template #fullscreen-controls>
+          <button type="button" @click="heatmapRef?.toggleFullscreen()"
+            class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-sm transition-all"
+            :class="heatmapRef?.isFullscreen
+              ? 'border-zinc-400 dark:border-zinc-600 bg-zinc-100 dark:bg-zinc-800 text-text dark:text-dtext'
+              : 'border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-dbg/60 text-zinc-600 dark:text-dtext/70 hover:border-zinc-300 dark:hover:border-zinc-700'">
+            <span>{{ heatmapRef?.isFullscreen ? '退出全屏' : '全屏' }}</span>
+          </button>
+
+          <button v-for="item in filters" :key="item.value" type="button" @click="activeFilter = item.value"
+            class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-sm transition-all"
+            :class="activeFilter === item.value
+              ? 'border-zinc-400 dark:border-zinc-600 bg-zinc-100 dark:bg-zinc-800 text-text dark:text-dtext'
+              : 'border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-dbg/60 text-zinc-600 dark:text-dtext/70 hover:border-zinc-300 dark:hover:border-zinc-700'">
+            <span class="w-2.5 h-2.5 rounded-full" :style="{ backgroundColor: item.color }" />
+            <span>{{ item.label }}</span>
+          </button>
+        </template>
+      </Heatmap>
     </section>
 
     <section v-if="showDebug" class="mb-10">
@@ -89,6 +116,7 @@ interface FileStat {
 }
 
 const activeFilter = ref<ActivityFilter>('all')
+const heatmapRef = ref<{ toggleFullscreen: () => void; isFullscreen: boolean }>()
 
 const filters: { value: ActivityFilter; label: string; color: string }[] = [
   { value: 'all', label: '全部', color: '#a1a1aa' },
