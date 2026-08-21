@@ -13,6 +13,8 @@
  *
  * 我们直接输出 xhtml:link 以保证 hreflang 标注正确（不依赖 i18n 模块）。
  */
+import { queryCollection } from '@nuxt/content/server'
+
 const SITE = 'https://tripper.press'
 
 type Lang = 'en' | 'zh'

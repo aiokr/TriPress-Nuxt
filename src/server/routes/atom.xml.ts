@@ -1,6 +1,7 @@
 import { Feed } from "feed";
 import { defineEventHandler, appendHeader } from "h3";
 import { useAppConfig } from "#imports";
+import { queryCollection } from '@nuxt/content/server';
 
 interface Post {
   path: string
