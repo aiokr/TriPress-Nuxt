@@ -28,12 +28,11 @@
             class="postCard w-full rounded-xl mb-8 grid grid-cols-5">
             <img v-if="post.cover" :src="post.cover" alt="cover" class="w-full object-cover rounded-xl aspect-square" />
             <div v-else class="postCoverWoCover opacity-40 w-full object-cover rounded-xl p-1 bg-main dark:bg-slate-600 flex items-end justify-end">
-              <span class="text-4xl font-serif font-bold text-white" v-if="post.date">{{ new
-                Date(post.date).toISOString().split('T')[0].split('-').slice(1).join('/') }}</span>
+              <span class="text-4xl font-serif font-bold text-white" v-if="post.date">{{ formatMonthDay(post.date) }}</span>
             </div>
             <div class="pl-4 pt-2 md:px-6 md:pt-2 rounded-b-xl col-span-4">
               <div class="text-xs text-zinc-400 dark:text-dtext/80 pb-2 flex items-center gap-2">
-                <span v-if="post.date">{{ new Date(post.date).toISOString().split('T')[0] }}</span>
+                <span v-if="post.date">{{ formatDate(post.date) }}</span>
                 <span v-if="post.category" class="mx-1">·</span>
                 <span v-if="post.category">{{ post.category }}</span>
                 <span v-if="hasZh(post.path)" class="ml-1 px-1.5 py-0.5 rounded border border-main/50 text-main text-[10px]">中</span>

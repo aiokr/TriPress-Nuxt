@@ -1,7 +1,14 @@
 <template>
   <div
-    class="w-full h-[480px] rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 relative bg-zinc-50 dark:bg-zinc-900">
+    ref="containerEl"
+    class="w-full h-[80vh] sm:h-[480px] overflow-hidden relative bg-zinc-50 dark:bg-zinc-900"
+    :class="isFullscreen
+      ? 'rounded-none border-0 h-screen'
+      : 'sm:rounded-xl sm:border sm:border-zinc-200 dark:sm:border-zinc-800'">
     <div ref="mapEl" class="w-full h-full" />
+    <div v-if="isFullscreen" class="absolute bottom-4 left-4 z-10 flex flex-col items-start gap-3">
+      <slot name="fullscreen-controls" />
+    </div>
     <div v-if="status !== 'ready'"
       class="absolute inset-0 flex items-center justify-center text-sm text-zinc-500 dark:text-dtext/70 pointer-events-none">
       <span v-if="status === 'loading'">Loading heatmap…</span>
@@ -24,12 +31,31 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const mapEl = ref<HTMLElement>()
+const containerEl = ref<HTMLElement>()
 const colorMode = useColorMode()
 const config = useRuntimeConfig()
 const status = ref<'loading' | 'error' | 'ready'>('loading')
 const errorMsg = ref('')
+const isFullscreen = ref(false)
 
 let map: Map | null = null
+
+async function toggleFullscreen() {
+  if (!containerEl.value) return
+
+  if (document.fullscreenElement) {
+    await document.exitFullscreen()
+  } else {
+    await containerEl.value.requestFullscreen()
+  }
+}
+
+function handleFullscreenChange() {
+  isFullscreen.value = document.fullscreenElement === containerEl.value
+  nextTick(() => map?.resize())
+}
+
+defineExpose({ isFullscreen, toggleFullscreen })
 
 function styleUrl(isDark: boolean): string {
   return isDark
@@ -126,6 +152,8 @@ function initLayers() {
 onMounted(async () => {
   await nextTick()
 
+  document.addEventListener('fullscreenchange', handleFullscreenChange)
+
   if (!mapEl.value) {
     status.value = 'error'
     errorMsg.value = 'Container not found'
@@ -191,6 +219,7 @@ onMounted(async () => {
 })
 
 onUnmounted(() => {
+  document.removeEventListener('fullscreenchange', handleFullscreenChange)
   map?.remove()
   map = null
 })

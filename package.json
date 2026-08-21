@@ -3,10 +3,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
+    "build": "node scripts/fetch-geojson.mjs && nuxt build",
     "dev": "nuxt dev",
     "dev:proxy": "node --import ./proxy.mjs node_modules/nuxt/bin/nuxt.mjs dev",
-    "generate": "nuxt generate",
+    "generate": "node scripts/fetch-geojson.mjs && nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "typecheck": "node -e \"import('vue-tsc').then(m => m.run(require.resolve('@typescript/typescript6/lib/tsc')))\" -- --noEmit"
