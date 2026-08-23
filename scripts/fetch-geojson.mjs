@@ -35,8 +35,8 @@ function parseLfsPointer(text) {
   return { oid: oidMatch[1], size: Number(sizeMatch[1]) }
 }
 
-async function fetchGitHubRaw() {
-  const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${ref}`
+async function fetchGitHubRaw(filePath) {
+  const url = `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}?ref=${ref}`
   const res = await fetch(url, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -109,16 +109,26 @@ async function fetchLfsFile(pointer) {
   return fileRes.text()
 }
 
-async function main() {
-  const raw = await fetchGitHubRaw()
+async function fetchAndWrite(filePath, outPath) {
+  const raw = await fetchGitHubRaw(filePath)
   const pointer = parseLfsPointer(raw)
   const content = pointer ? await fetchLfsFile(pointer) : raw
 
-  const out = resolve(rootDir, 'content', 'heatmap', 'running.geojson')
-  await mkdir(dirname(out), { recursive: true })
-  await writeFile(out, content, 'utf-8')
+  await mkdir(dirname(outPath), { recursive: true })
+  await writeFile(outPath, content, 'utf-8')
 
-  console.log('[fetch-geojson] 已写入', out)
+  console.log('[fetch-geojson] 已写入', outPath)
+}
+
+async function main() {
+  await fetchAndWrite(
+    'GeoJson/running.geojson',
+    resolve(rootDir, 'content', 'heatmap', 'running.geojson'),
+  )
+  await fetchAndWrite(
+    'GeoJson/running.json',
+    resolve(rootDir, 'src', 'public', 'GeoJson', 'running.json'),
+  )
 }
 
 main().catch((err) => {
