@@ -18,31 +18,46 @@
     </section>
 
     <section class="px-2 md:px-8 lg:px-0">
-      <div class="pb-6">
-        <div class="text-2xl font-bold text-text dark:text-dtext pb-6">文章</div>
-        <hr />
-      </div>
-      <div class="grid grid-cols-5">
-        <div class="col-span-5 md:col-span-4">
-          <NuxtLink v-for="post in posts" :key="post.path" :to="post.path"
-            class="postCard w-full rounded-xl mb-8 grid grid-cols-5">
-            <img v-if="post.cover" :src="post.cover" alt="cover" class="w-full object-cover rounded-xl aspect-square" />
-            <div v-else class="postCoverWoCover opacity-40 w-full object-cover rounded-xl p-1 bg-main dark:bg-slate-600 flex items-end justify-end">
-              <span class="text-4xl font-serif font-bold text-white" v-if="post.date">{{ formatMonthDay(post.date) }}</span>
-            </div>
-            <div class="pl-4 pt-2 md:px-6 md:pt-2 rounded-b-xl col-span-4">
-              <div class="text-xs text-zinc-400 dark:text-dtext/80 pb-2 flex items-center gap-2">
-                <span v-if="post.date">{{ formatDate(post.date) }}</span>
-                <span v-if="post.category" class="mx-1">·</span>
-                <span v-if="post.category">{{ post.category }}</span>
-                <span v-if="hasZh(post.path)" class="ml-1 px-1.5 py-0.5 rounded border border-main/50 text-main text-[10px]">中</span>
-              </div>
-              <h2 class="text-xl text-text dark:text-dtext pb-6">{{ post.title }}</h2>
-              <div>
-              </div>
-            </div>
-          </NuxtLink>
+      <NuxtLink to="/heatmap"
+        class="group flex h-[300px] rounded-2xl p-2 shadow-feature-card dark:shadow-feature-card-dark lg:p-4 mb-6 overflow-hidden">
+        <div class="w-1/3 flex flex-col justify-center items-center gap-6">
+          <div class="text-center">
+            <div class="text-4xl font-bold text-text dark:text-dtext">{{ runningStats?.count ?? '-' }}</div>
+            <div class="text-sm text-zinc-500 dark:text-dtext/70 mt-1">Runs</div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl font-bold text-text dark:text-dtext">{{ runningStats?.distance ?? '-' }}</div>
+            <div class="text-sm text-zinc-500 dark:text-dtext/70 mt-1">km</div>
+          </div>
         </div>
+        <div class="w-2/3 h-full rounded-xl overflow-hidden">
+          <img v-if="thumbUrl" :src="thumbUrl" alt="运动热力图"
+            class="w-full h-full object-cover transition duration-500 group-hover:scale-105" />
+          <div v-else
+            class="w-full h-full rounded-xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-sm text-zinc-400 dark:text-dtext/50">
+            Loading map…
+          </div>
+        </div>
+      </NuxtLink>
+      <div class="flex flex-col gap-6 rounded-2xl p-4 shadow-feature-card dark:shadow-feature-card-dark lg:p-6">
+        <div class="pb-4 border-b border-zinc-200 dark:border-zinc-700 flex items-center justify-between">
+          <div class="text-xl font-bold text-text dark:text-dtext">文章</div>
+          <NuxtLink to="/posts" class="text-main transition-colors">All Posts</NuxtLink>
+        </div>
+        <NuxtLink v-for="post in posts" :key="post.path" :to="post.path"
+          class="postCard w-full rounded-xl block">
+          <div class="md:px-2 md:pt-2 rounded-b-xl">
+            <div class="text-xs text-zinc-400 dark:text-dtext/80 pb-2 flex items-center gap-2">
+              <span v-if="post.date">{{ formatDate(post.date) }}</span>
+              <span v-if="post.category" class="mx-1">·</span>
+              <span v-if="post.category">{{ post.category }}</span>
+              <span v-if="hasZh(post.path)" class="ml-1 px-1.5 py-0.5 rounded border border-main/50 text-main text-[10px]">中</span>
+            </div>
+            <h2 class="text-xl text-text dark:text-dtext pb-2">{{ post.title }}</h2>
+            <div>
+            </div>
+          </div>
+        </NuxtLink>
       </div>
     </section>
   </div>
@@ -51,8 +66,11 @@
 
 <script setup lang="ts">
 import { getOtherLangPath, normalizePath } from '~/utils/content'
+import type { FeatureCollection } from 'geojson'
 
 const appConfig = useAppConfig()
+const colorMode = useColorMode()
+const thumbUrl = ref('')
 
 useHead({
   title: 'Tripper Press - Take Photo, Think Seriously',
@@ -74,7 +92,7 @@ const { data: posts } = await useAsyncData('home-posts', async () => {
     .order('date', 'DESC')
     .where('type', '<>', 'draft')
     .all()
-  return all.filter((p: any) => p.lang !== 'zh' && p.type !== 'page').slice(0, 8)
+  return all.filter((p: any) => p.lang !== 'zh' && p.type !== 'page').slice(0, 6)
 })
 
 // 查询每个 en 文章是否存在中文翻译，用于显示"中"徽章
@@ -84,6 +102,90 @@ const { data: zhMap } = await useAsyncData('home-posts-zh-map', async () => {
 })
 
 const hasZh = (path: string) => zhMap.value?.includes(normalizePath(path)) ?? false
+
+// 首页运动热力图缩略图
+const { data: heatmapItems } = await useAsyncData('home-heatmap-tracks', () => queryCollection('heatmap').all())
+
+interface RunningStatsJson {
+  summary?: {
+    totalCount?: number
+    totalDistance?: number
+  }
+}
+
+const { data: runningJson } = await useAsyncData('home-running-stats', async () => {
+  try {
+    return await $fetch<RunningStatsJson>('/GeoJson/running.json')
+  } catch {
+    return undefined
+  }
+})
+
+function inferActivityFromStem(stem: string): 'running' | 'cycling' | undefined {
+  const name = stem.split('/').pop() || stem
+  const lower = name.toLowerCase()
+  if (lower.includes('run')) return 'running'
+  if (lower.includes('ride') || lower.includes('cycl') || lower.includes('bike')) return 'cycling'
+  return undefined
+}
+
+function classifyActivity(feature: any, fallback?: 'running' | 'cycling'): 'running' | 'cycling' | undefined {
+  const explicit = feature?.properties?.activity
+  if (explicit === 'running' || explicit === 'cycling') {
+    return explicit
+  }
+  const type = String(feature?.properties?.type || '').toLowerCase()
+  if (type.includes('running') || type.includes('run')) return 'running'
+  if (type.includes('cycling') || type.includes('ride') || type.includes('cycl') || type.includes('bike')) return 'cycling'
+  return fallback
+}
+
+const mergedGeojson = computed<FeatureCollection>(() => {
+  const items = heatmapItems.value || []
+  const features = items.flatMap((item: any) => {
+    const fallback = inferActivityFromStem(item.stem || item.id || '')
+    return (item.features || []).map((feature: any) => {
+      const activity = classifyActivity(feature, fallback)
+      if (!activity) return feature
+      return {
+        ...feature,
+        properties: {
+          ...feature.properties,
+          activity,
+        },
+      }
+    })
+  })
+  return {
+    type: 'FeatureCollection',
+    features,
+  }
+})
+
+const runningStats = computed(() => {
+  const json = runningJson.value
+  const summary = json?.summary
+  if (summary?.totalCount != null && summary?.totalDistance != null) {
+    return {
+      count: summary.totalCount,
+      distance: Number(summary.totalDistance).toFixed(1),
+    }
+  }
+  return null
+})
+
+async function updateThumb() {
+  if (!mergedGeojson.value.features.length) return
+  thumbUrl.value = await useHeatmapThumb(mergedGeojson.value, colorMode.value === 'dark')
+}
+
+onMounted(() => {
+  updateThumb()
+})
+
+watch(() => colorMode.value, () => {
+  updateThumb()
+})
 </script>
 
 <style scoped>
