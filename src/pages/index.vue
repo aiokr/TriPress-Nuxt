@@ -19,23 +19,24 @@
 
     <section class="px-2 md:px-8 lg:px-0">
       <NuxtLink to="/heatmap"
-        class="group flex h-[300px] rounded-2xl p-2 shadow-feature-card dark:shadow-feature-card-dark lg:p-4 mb-6 overflow-hidden">
-        <div class="w-1/3 flex flex-col justify-center items-center gap-6">
-          <div class="text-center">
-            <div class="text-4xl font-bold text-text dark:text-dtext">{{ runningStats?.count ?? '-' }}</div>
-            <div class="text-sm text-zinc-500 dark:text-dtext/70 mt-1">Runs</div>
-          </div>
-          <div class="text-center">
-            <div class="text-4xl font-bold text-text dark:text-dtext">{{ runningStats?.distance ?? '-' }}</div>
-            <div class="text-sm text-zinc-500 dark:text-dtext/70 mt-1">km</div>
-          </div>
-        </div>
-        <div class="w-2/3 h-full rounded-xl overflow-hidden">
+        class="group relative block h-[300px] rounded-2xl shadow-feature-card dark:shadow-feature-card-dark mb-6 overflow-hidden">
+        <div class="absolute inset-0 rounded-2xl overflow-hidden">
           <img v-if="thumbUrl" :src="thumbUrl" alt="运动热力图"
             class="w-full h-full object-cover transition duration-500 group-hover:scale-105" />
           <div v-else
-            class="w-full h-full rounded-xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-sm text-zinc-400 dark:text-dtext/50">
+            class="w-full h-full bg-zinc-100 dark:bg-zinc-800 rounded-2xl flex items-center justify-center text-zinc-400">
             Loading map…
+          </div>
+        </div>
+        <div
+          class="absolute inset-y-0 left-0 z-10 flex flex-col gap-4 justify-center px-5 py-4 rounded-l-2xl bg-gradient-to-r from-black/20 to-transparent">
+          <div>
+            <div class="text-4xl font-bold text-white">{{ runningStats?.count ?? '-' }}</div>
+            <div class="text-sm text-white/70 mt-1">Runs</div>
+          </div>
+          <div>
+            <div class="text-4xl font-bold text-white">{{ runningStats?.distance ?? '-' }}</div>
+            <div class="text-sm text-white/70 mt-1">km</div>
           </div>
         </div>
       </NuxtLink>
