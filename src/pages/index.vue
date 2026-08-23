@@ -1,58 +1,63 @@
 <template>
   <div class="container max-w-[800px] px-2 md:px-0 mx-auto">
     <section
-      class="w-full transition-shadow rounded px-2 md:px-8 lg:px-0 pt-12 md:pt-20 pb-12 flex flex-col md:flex-row md:items-center justify-between gap-12">
+      class="w-full transition-shadow rounded px-2 md:px-8 lg:px-0 pt-12 md:pt-20 pb-20 flex flex-col md:flex-row md:items-center justify-between gap-12">
       <div class="relative md:hidden">
 
-        <img class="hidden dark:block" src="https://imgur.lzmun.com/picgo/logo/notionavatarwhite.png" width="108px" height="108px" />
-        <img class="dark:hidden" src="https://imgur.lzmun.com/picgo/logo/notionavatarblack.png" width="108px" height="108px" />        <div class="absolute inset-0 -z-10 bg-gradient-to-tl from-main/60 to-main/10 opacity-0 blur-2xl md:opacity-50">
+        <img class="hidden dark:block" src="https://imgur.lzmun.com/picgo/logo/notionavatarwhite.png" width="108px"
+          height="108px" />
+        <img class="dark:hidden" src="https://imgur.lzmun.com/picgo/logo/notionavatarblack.png" width="108px"
+          height="108px" />
+        <div class="absolute inset-0 -z-10 bg-gradient-to-tl from-main/60 to-main/10 opacity-0 blur-2xl md:opacity-50">
         </div>
       </div>
       <h1 class="text-3xl font-bold font-serif drop-shadow-lg">
         Tripper Press
       </h1>
       <div class="hidden md:block md:relative">
-        <img class="hidden dark:block" src="https://imgur.lzmun.com/picgo/logo/notionavatarwhite.png" width="144px" height="144px" />
-        <img class="dark:hidden" src="https://imgur.lzmun.com/picgo/logo/notionavatarblack.png" width="144px" height="144px" />
+        <img class="hidden dark:block" src="https://imgur.lzmun.com/picgo/logo/notionavatarwhite.png" width="144px"
+          height="144px" />
+        <img class="dark:hidden" src="https://imgur.lzmun.com/picgo/logo/notionavatarblack.png" width="144px"
+          height="144px" />
       </div>
     </section>
 
     <section class="px-2 md:px-8 lg:px-0">
       <NuxtLink to="/heatmap"
-        class="group relative block h-[300px] rounded-2xl shadow-feature-card dark:shadow-feature-card-dark mb-6 overflow-hidden">
+        class="group relative block h-[300px] rounded-2xl shadow-feature-card dark:shadow-feature-card-dark mb-12 overflow-hidden">
         <div class="absolute inset-0 rounded-2xl overflow-hidden">
-          <img v-if="thumbUrl" :src="thumbUrl" alt="运动热力图"
-            class="w-full h-full object-cover transition duration-500 group-hover:scale-105" />
+          <img v-if="thumbUrl" :src="thumbUrl" alt="sport heatmap"
+            class="w-full h-full object-cover transition duration-500 scale-[120%] group-hover:scale-100" />
           <div v-else
             class="w-full h-full bg-zinc-100 dark:bg-zinc-800 rounded-2xl flex items-center justify-center text-zinc-400">
             Loading map…
           </div>
         </div>
         <div
-          class="absolute inset-y-0 left-0 z-10 flex flex-col gap-4 justify-center px-5 py-4 rounded-l-2xl bg-gradient-to-r from-black/20 to-transparent">
+          class="absolute inset-y-0 left-0 z-10 flex flex-col gap-4 justify-center px-5 py-4 rounded-l-2xl bg-gradient-to-r from-black/20 to-transparent min-w-[200px]">
           <div>
             <div class="text-4xl font-bold text-white">{{ runningStats?.count ?? '-' }}</div>
-            <div class="text-sm text-white/70 mt-1">Runs</div>
+            <div class="text-lg text-white/70 mt-1">Runs</div>
           </div>
           <div>
             <div class="text-4xl font-bold text-white">{{ runningStats?.distance ?? '-' }}</div>
-            <div class="text-sm text-white/70 mt-1">km</div>
+            <div class="text-lg  text-white/70 mt-1">km</div>
           </div>
         </div>
       </NuxtLink>
       <div class="flex flex-col gap-6 rounded-2xl p-4 shadow-feature-card dark:shadow-feature-card-dark lg:p-6">
-        <div class="pb-4 border-b border-zinc-200 dark:border-zinc-700 flex items-center justify-between">
-          <div class="text-xl font-bold text-text dark:text-dtext">文章</div>
+        <div class="pb-1 flex items-center justify-between">
+          <div class="text-xl font-bold text-text dark:text-dtext">Recently Posts</div>
           <NuxtLink to="/posts" class="text-main transition-colors">All Posts</NuxtLink>
         </div>
-        <NuxtLink v-for="post in posts" :key="post.path" :to="post.path"
-          class="postCard w-full rounded-xl block">
+        <NuxtLink v-for="post in posts" :key="post.path" :to="post.path" class="postCard w-full rounded-xl block">
           <div class="md:px-2 md:pt-2 rounded-b-xl">
             <div class="text-xs text-zinc-400 dark:text-dtext/80 pb-2 flex items-center gap-2">
               <span v-if="post.date">{{ formatDate(post.date) }}</span>
               <span v-if="post.category" class="mx-1">·</span>
               <span v-if="post.category">{{ post.category }}</span>
-              <span v-if="hasZh(post.path)" class="ml-1 px-1.5 py-0.5 rounded border border-main/50 text-main text-[10px]">中</span>
+              <span v-if="hasZh(post.path)"
+                class="ml-1 px-1.5 py-0.5 rounded border border-main/50 text-main text-[10px]">中</span>
             </div>
             <h2 class="text-xl text-text dark:text-dtext pb-2">{{ post.title }}</h2>
             <div>
@@ -62,7 +67,7 @@
       </div>
     </section>
   </div>
-  
+
 </template>
 
 <script setup lang="ts">
