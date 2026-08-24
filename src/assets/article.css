@@ -221,7 +221,7 @@ article blockquote {
   padding: 16px 20px 16px 24px;
   margin: 1.6em 0;
   background: #fafafa; /* Geist background-200 */
-  border-left: 3px solid #006bff; /* Geist blue-700 */
+  border-left: 3px solid #71afdd; /* Geist blue-700 */
   border-radius: 0 8px 8px 0;
   color: #4d4d4d; /* Geist gray-900 */
   font-size: 15px;
@@ -230,7 +230,7 @@ article blockquote {
 
 .dark article blockquote {
   background: #1a1a1a;
-  border-left-color: #48aeff;
+  border-left-color: #71afdd;
   color: #a8a8a8;
 }
 
@@ -249,7 +249,7 @@ article .stressed-quote::before {
   display: block;
   font-style: normal;
   font-size: 32px;
-  color: #006bff;
+  color: #71afdd;
   font-weight: 600;
   line-height: 0.5;
   margin-bottom: 0.2em;
@@ -257,7 +257,7 @@ article .stressed-quote::before {
 
 .dark article blockquote::before,
 .dark article .stressed-quote::before {
-  color: #48aeff;
+  color: #71afdd;
 }
 
 /* 行内代码 ----------------------------------------------------------- */
