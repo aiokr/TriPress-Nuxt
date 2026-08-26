@@ -34,7 +34,7 @@
           </div>
         </div>
         <div
-          class="absolute inset-y-0 left-0 z-10 flex flex-col gap-4 justify-center px-5 py-4 rounded-l-2xl bg-gradient-to-r from-black/20 to-transparent min-w-[200px]">
+          class="absolute inset-y-0 left-0 z-0 flex flex-col gap-4 justify-center px-5 py-4 rounded-l-2xl bg-gradient-to-r from-black/20 to-transparent min-w-[200px]">
           <div>
             <div class="text-4xl font-bold text-white">{{ runningStats?.count ?? '-' }}</div>
             <div class="text-lg text-white/70 mt-1">Runs</div>
