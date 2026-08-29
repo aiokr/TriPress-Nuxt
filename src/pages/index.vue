@@ -29,11 +29,12 @@
           <div class="text-lg pb-2 md:text-base text-zinc-500 dark:text-dtext/70 mt-1">Runs in {{ currentYear }}</div>
           <div class="flex items-end gap-6 md:gap-10">
             <div>
-              <div class="text-4xl md:text-5xl font-bold text-text dark:text-dtext italic">{{ currentYearStats?.count ??
-                '-' }} <span class="text-xl md:text-2xl">runs</span></div>
+              <div class="text-4xl md:text-5xl font-bold text-text dark:text-dtext italic"><CountUp
+                  :value="currentYearStats?.count ?? 0" /> <span class="text-xl md:text-2xl">runs</span></div>
             </div>
             <div>
-              <div class="text-4xl md:text-5xl font-bold text-main italic">{{ currentYearStats?.distance ?? '-' }} <span
+              <div class="text-4xl md:text-5xl font-bold text-main italic"><CountUp
+                  :value="currentYearStats?.distance ?? 0" :decimals="1" /> <span
                   class="text-xl md:text-2xl">km</span></div>
             </div>
           </div>
@@ -133,7 +134,7 @@ const currentYearStats = computed(() => {
   if (year?.count != null && year?.distance != null) {
     return {
       count: year.count,
-      distance: Number(year.distance).toFixed(1),
+      distance: Number(year.distance),
     }
   }
   return null
