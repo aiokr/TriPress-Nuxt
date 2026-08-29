@@ -25,3 +25,4 @@ logs
 
 # Generated GeoJSON data (fetched during build)
 src/public/GeoJson/running.json
+content/heatmap/running.geojson

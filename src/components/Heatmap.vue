@@ -55,7 +55,20 @@ function handleFullscreenChange() {
   nextTick(() => map?.resize())
 }
 
-defineExpose({ isFullscreen, toggleFullscreen })
+defineExpose({ isFullscreen, toggleFullscreen, captureScreenshot })
+
+function captureScreenshot(filename?: string): string | undefined {
+  if (!map) return
+  const canvas = map.getCanvas()
+  const dataUrl = canvas.toDataURL('image/png')
+  const link = document.createElement('a')
+  link.href = dataUrl
+  link.download = filename || `heatmap-${new Date().toISOString().slice(0, 10)}.png`
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+  return dataUrl
+}
 
 function styleUrl(isDark: boolean): string {
   return isDark
@@ -175,6 +188,7 @@ onMounted(async () => {
       style: styleUrl(colorMode.value === 'dark'),
       center: [109.4157, 24.36],
       zoom: 11,
+      preserveDrawingBuffer: true,
     })
 
     map.addControl(new mapboxgl.NavigationControl())

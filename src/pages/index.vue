@@ -24,24 +24,27 @@
 
     <section class="px-2 md:px-8 lg:px-0">
       <NuxtLink to="/heatmap"
-        class="group relative block h-[300px] rounded-2xl shadow-feature-card dark:shadow-feature-card-dark mb-12 overflow-hidden">
-        <div class="absolute inset-0 rounded-2xl overflow-hidden">
-          <img v-if="thumbUrl" :src="thumbUrl" alt="sport heatmap"
-            class="w-full h-full object-cover transition duration-500 scale-[120%] group-hover:scale-100" />
-          <div v-else
-            class="w-full h-full bg-zinc-100 dark:bg-zinc-800 rounded-2xl flex items-center justify-center text-zinc-400">
-            Loading map…
+        class="relative block rounded-2xl shadow-feature-card dark:shadow-feature-card-dark mb-12 overflow-hidden transition-shadow">
+        <div class="relative z-[1] p-4 lg:p-6 md:pr-[48%]">
+          <div class="text-lg pb-2 md:text-base text-zinc-500 dark:text-dtext/70 mt-1">Runs in {{ currentYear }}</div>
+          <div class="flex items-end gap-6 md:gap-10">
+            <div>
+              <div class="text-4xl md:text-5xl font-bold text-text dark:text-dtext italic">{{ currentYearStats?.count ??
+                '-' }} <span class="text-xl md:text-2xl">runs</span></div>
+            </div>
+            <div>
+              <div class="text-4xl md:text-5xl font-bold text-main italic">{{ currentYearStats?.distance ?? '-' }} <span
+                  class="text-xl md:text-2xl">km</span></div>
+            </div>
           </div>
         </div>
-        <div
-          class="absolute inset-y-0 left-0 z-0 flex flex-col gap-4 justify-center px-5 py-4 rounded-l-2xl bg-gradient-to-r from-black/20 to-transparent min-w-[200px]">
-          <div>
-            <div class="text-4xl font-bold text-white">{{ runningStats?.count ?? '-' }}</div>
-            <div class="text-lg text-white/70 mt-1">Runs</div>
-          </div>
-          <div>
-            <div class="text-4xl font-bold text-white">{{ runningStats?.distance ?? '-' }}</div>
-            <div class="text-lg  text-white/70 mt-1">km</div>
+        <div class="absolute inset-y-0 right-0 w-[45%]">
+          <img class="hidden dark:block w-full h-full object-cover object-left" src="/images/running-page-dark.png"
+            alt="Running heatmap dark" />
+          <img class="dark:hidden w-full h-full object-cover object-left" src="/images/running-page.png"
+            alt="Running heatmap" />
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-white via-white/60 dark:from-[#18181B] dark:via-[#18181B]/60 to-transparent">
           </div>
         </div>
       </NuxtLink>
@@ -72,11 +75,8 @@
 
 <script setup lang="ts">
 import { getOtherLangPath, normalizePath } from '~/utils/content'
-import type { FeatureCollection } from 'geojson'
 
-const appConfig = useAppConfig()
-const colorMode = useColorMode()
-const thumbUrl = ref('')
+const currentYear = new Date().getFullYear()
 
 useHead({
   title: 'Tripper Press - Take Photo, Think Seriously',
@@ -109,14 +109,15 @@ const { data: zhMap } = await useAsyncData('home-posts-zh-map', async () => {
 
 const hasZh = (path: string) => zhMap.value?.includes(normalizePath(path)) ?? false
 
-// 首页运动热力图缩略图
-const { data: heatmapItems } = await useAsyncData('home-heatmap-tracks', () => queryCollection('heatmap').all())
-
 interface RunningStatsJson {
   summary?: {
     totalCount?: number
     totalDistance?: number
   }
+  years?: Record<string, {
+    count?: number
+    distance?: number
+  }>
 }
 
 const { data: runningJson } = await useAsyncData('home-running-stats', async () => {
@@ -127,50 +128,19 @@ const { data: runningJson } = await useAsyncData('home-running-stats', async () 
   }
 })
 
-function inferActivityFromStem(stem: string): 'running' | 'cycling' | undefined {
-  const name = stem.split('/').pop() || stem
-  const lower = name.toLowerCase()
-  if (lower.includes('run')) return 'running'
-  if (lower.includes('ride') || lower.includes('cycl') || lower.includes('bike')) return 'cycling'
-  return undefined
-}
-
-function classifyActivity(feature: any, fallback?: 'running' | 'cycling'): 'running' | 'cycling' | undefined {
-  const explicit = feature?.properties?.activity
-  if (explicit === 'running' || explicit === 'cycling') {
-    return explicit
+const currentYearStats = computed(() => {
+  const year = runningJson.value?.years?.[String(currentYear)]
+  if (year?.count != null && year?.distance != null) {
+    return {
+      count: year.count,
+      distance: Number(year.distance).toFixed(1),
+    }
   }
-  const type = String(feature?.properties?.type || '').toLowerCase()
-  if (type.includes('running') || type.includes('run')) return 'running'
-  if (type.includes('cycling') || type.includes('ride') || type.includes('cycl') || type.includes('bike')) return 'cycling'
-  return fallback
-}
-
-const mergedGeojson = computed<FeatureCollection>(() => {
-  const items = heatmapItems.value || []
-  const features = items.flatMap((item: any) => {
-    const fallback = inferActivityFromStem(item.stem || item.id || '')
-    return (item.features || []).map((feature: any) => {
-      const activity = classifyActivity(feature, fallback)
-      if (!activity) return feature
-      return {
-        ...feature,
-        properties: {
-          ...feature.properties,
-          activity,
-        },
-      }
-    })
-  })
-  return {
-    type: 'FeatureCollection',
-    features,
-  }
+  return null
 })
 
-const runningStats = computed(() => {
-  const json = runningJson.value
-  const summary = json?.summary
+const totalStats = computed(() => {
+  const summary = runningJson.value?.summary
   if (summary?.totalCount != null && summary?.totalDistance != null) {
     return {
       count: summary.totalCount,
@@ -178,19 +148,6 @@ const runningStats = computed(() => {
     }
   }
   return null
-})
-
-async function updateThumb() {
-  if (!mergedGeojson.value.features.length) return
-  thumbUrl.value = await useHeatmapThumb(mergedGeojson.value, colorMode.value === 'dark')
-}
-
-onMounted(() => {
-  updateThumb()
-})
-
-watch(() => colorMode.value, () => {
-  updateThumb()
 })
 </script>
 

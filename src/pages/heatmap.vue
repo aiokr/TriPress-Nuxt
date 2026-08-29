@@ -16,6 +16,12 @@
           <span>{{ heatmapRef?.isFullscreen ? '退出全屏' : '全屏' }}</span>
         </button>
 
+        <button type="button" @click="heatmapRef?.captureScreenshot()"
+          class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-sm transition-all border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-dbg/60 text-zinc-600 dark:text-dtext/70 hover:border-zinc-300 dark:hover:border-zinc-700">
+          <IconsCamera />
+          <span>截图</span>
+        </button>
+
         <button v-for="item in filters" :key="item.value" type="button" @click="activeFilter = item.value"
           class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-sm transition-all"
           :class="activeFilter === item.value
@@ -42,6 +48,12 @@
             <IconsFullscreenExit v-if="heatmapRef?.isFullscreen" />
             <IconsFullscreen v-else />
             <span>{{ heatmapRef?.isFullscreen ? '退出全屏' : '全屏' }}</span>
+          </button>
+
+          <button type="button" @click="heatmapRef?.captureScreenshot()"
+            class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-sm transition-all border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-dbg/60 text-zinc-600 dark:text-dtext/70 hover:border-zinc-300 dark:hover:border-zinc-700">
+            <IconsCamera />
+            <span>截图</span>
           </button>
 
           <button v-for="item in filters" :key="item.value" type="button" @click="activeFilter = item.value"
@@ -120,7 +132,7 @@ interface FileStat {
 }
 
 const activeFilter = ref<ActivityFilter>('all')
-const heatmapRef = ref<{ toggleFullscreen: () => void; isFullscreen: boolean }>()
+const heatmapRef = ref<{ toggleFullscreen: () => void; isFullscreen: boolean; captureScreenshot: (filename?: string) => string | undefined }>()
 
 const filters: { value: ActivityFilter; label: string; color: string }[] = [
   { value: 'all', label: '全部', color: '#a1a1aa' },
