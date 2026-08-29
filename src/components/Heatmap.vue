@@ -58,16 +58,21 @@ function handleFullscreenChange() {
 defineExpose({ isFullscreen, toggleFullscreen, captureScreenshot })
 
 function captureScreenshot(filename?: string): string | undefined {
-  if (!map) return
-  const canvas = map.getCanvas()
-  const dataUrl = canvas.toDataURL('image/png')
-  const link = document.createElement('a')
-  link.href = dataUrl
-  link.download = filename || `heatmap-${new Date().toISOString().slice(0, 10)}.png`
-  document.body.appendChild(link)
-  link.click()
-  document.body.removeChild(link)
-  return dataUrl
+  try {
+    if (!map) return undefined
+    const canvas = map.getCanvas()
+    const dataUrl = canvas.toDataURL('image/png')
+    const link = document.createElement('a')
+    link.href = dataUrl
+    link.download = filename || `heatmap-${new Date().toISOString().slice(0, 10)}.png`
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+    return dataUrl
+  } catch (e) {
+    console.error('Failed to capture screenshot', e)
+    return undefined
+  }
 }
 
 function styleUrl(isDark: boolean): string {
