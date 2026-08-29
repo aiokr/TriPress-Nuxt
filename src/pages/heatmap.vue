@@ -1,11 +1,17 @@
 <template>
   <main class="container max-w-[1000px] mx-auto pt-20 px-4 pb-20">
     <div class="pb-6 hidden sm:block">
-      <div class="text-3xl font-bold text-text dark:text-dtext pb-2">运动热力图</div>
+      <section v-if="heatmapPage" class="mb-10">
+        <div class="text-3xl font-bold text-text dark:text-dtext pb-2">{{ heatmapPage.title }}</div>
+      </section>
+      <section v-else>
+        <div class="text-3xl font-bold text-text dark:text-dtext pb-2">运动热力图</div>
+      </section>
     </div>
 
     <section class="mb-10 -mx-4 sm:mx-0 -mt-20 sm:mt-0 relative">
-      <div class="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-3 absolute bottom-4 left-4 z-10 sm:static sm:pb-4">
+      <div
+        class="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-3 absolute bottom-4 left-4 z-10 sm:static sm:pb-4">
         <button type="button" @click="heatmapRef?.toggleFullscreen()"
           class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-sm transition-all"
           :class="heatmapRef?.isFullscreen
@@ -82,7 +88,9 @@
           <div class="flex items-center justify-between pb-3">
             <div class="flex items-center gap-2">
               <span class="font-mono text-text dark:text-dtext">{{ file.name }}</span>
-              <span class="text-xs px-1.5 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-dtext/70">{{ file.count }}</span>
+              <span
+                class="text-xs px-1.5 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-dtext/70">{{
+                  file.count }}</span>
             </div>
           </div>
           <div class="space-y-1.5">
@@ -94,7 +102,9 @@
                 <span class="truncate">{{ feature.name }}</span>
               </div>
               <div class="flex items-center gap-2 shrink-0">
-                <span v-if="feature.activity" class="text-[10px] px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-dtext/60 uppercase">{{ feature.activity }}</span>
+                <span v-if="feature.activity"
+                  class="text-[10px] px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-dtext/60 uppercase">{{
+                    feature.activity }}</span>
                 <span class="font-mono text-zinc-400 dark:text-dtext/50">{{ feature.type }}</span>
               </div>
             </div>
@@ -103,11 +113,7 @@
         <div v-if="!fileStats.length" class="text-sm text-zinc-400 dark:text-dtext/60">No geojson files found.</div>
       </div>
     </section>
-
     <section v-if="heatmapPage" class="mb-10">
-      <div class="pb-4">
-        <div class="text-xl font-bold text-text dark:text-dtext">{{ heatmapPage.title }}</div>
-      </div>
       <article class="prose dark:prose-invert max-w-none">
         <ContentRenderer :value="heatmapPage" />
       </article>
@@ -213,16 +219,16 @@ const fileStats = computed<FileStat[]>(() => {
 const totalFeatures = computed(() => fileStats.value.reduce((sum, file) => sum + file.count, 0))
 
 useHead({
-  title: '运动热力图 - Lab - Tripper Press',
+  title: heatmapPage.value?.title || '运动热力图',
   meta: [
-    { name: 'description', content: '基于 content GeoJSON 的轨迹图。' }
+    { name: 'description', content: heatmapPage.value?.description || '基于 content GeoJSON 的轨迹图。' }
   ]
 })
 
 useSeoMeta({
-  title: '运动热力图- Lab - Tripper Press',
-  ogTitle: '运动热力图 - Lab - Tripper Press',
-  description: '基于 content GeoJSON 的轨迹图。',
-  ogDescription: '基于 content GeoJSON 的轨迹图。'
+  title: heatmapPage.value?.title || '运动热力图',
+  ogTitle: heatmapPage.value?.title || '运动热力图',
+  description: heatmapPage.value?.description || '基于 content GeoJSON 的轨迹图。',
+  ogDescription: heatmapPage.value?.description || '基于 content GeoJSON 的轨迹图。'
 })
 </script>
