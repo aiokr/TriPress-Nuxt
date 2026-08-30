@@ -24,7 +24,7 @@
 
     <section class="px-2 md:px-8 lg:px-0">
       <NuxtLink to="/heatmap"
-        class="relative block rounded-2xl shadow-feature-card dark:shadow-feature-card-dark mb-12 overflow-hidden transition-shadow">
+        class="relative block rounded-feature-card shadow-feature-card dark:shadow-feature-card-dark mb-12 overflow-hidden transition-shadow">
         <div class="relative z-[1] p-4 lg:p-6 md:pr-[48%]">
           <div class="text-lg pb-2 md:text-base text-zinc-500 dark:text-dtext/70 mt-1">Runs in {{ currentYear }}</div>
           <div class="flex items-end gap-6 md:gap-10">
@@ -49,7 +49,7 @@
           </div>
         </div>
       </NuxtLink>
-      <div class="flex flex-col gap-6 rounded-2xl p-4 shadow-feature-card dark:shadow-feature-card-dark lg:p-6">
+      <div class="flex flex-col gap-6 rounded-feature-card p-4 shadow-feature-card dark:shadow-feature-card-dark lg:p-6">
         <div class="pb-1 flex items-center justify-between">
           <div class="text-xl font-bold text-text dark:text-dtext">Recently Posts</div>
           <NuxtLink to="/posts" class="text-main transition-colors">All Posts</NuxtLink>

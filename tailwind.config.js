@@ -22,8 +22,11 @@ export default {
       boxShadow: {
         'card': '0 -1px 3px 0 rgb(0 0 0 / 0.05)',
         'card-dark': '0 0 0 1px rgb(255 255 255 / 0.06), 0 -1px rgb(255 255 255 / 0.1)',
-        'feature-card': '0 -1px 4px 0 rgb(0 0 0 / 0.08)',
-        'feature-card-dark': '0 0 0 1px rgb(255 255 255 / 0.06), 0 -1px rgb(255 255 255 / 0.1)'
+        'feature-card': '1px 1px 5px 0 rgb(0 0 0 / 0.02), 1px 1px 15px 0 rgb(0 0 0 / 0.03)',
+        'feature-card-dark': '1px 1px 5px 0 rgb(0 0 0 / 0.15), 1px 1px 15px 0 rgb(0 0 0 / 0.2)'
+      },
+      borderRadius: {
+        'feature-card': '5px'
       }
     },
   },
