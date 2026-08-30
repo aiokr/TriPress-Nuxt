@@ -8,6 +8,8 @@ type: rc
 
 ---
 
+请你阅读以下链接，配置对应的 API，注意请根据文档内容，准确填写包括上下文长度、温度、采样率以及价格等参数。
+
 - Kimi-Code：https://www.kimi.com/code/docs/#api-%E6%8E%A5%E5%85%A5
 - Xiaomi-mimo：https://mimo.mi.com/docs/zh-CN/quick-start/summary/first-api-call
 - Deepseek：https://api-docs.deepseek.com/zh-cn/index.html
