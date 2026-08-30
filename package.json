@@ -30,6 +30,7 @@
     "mermaid": "^11.17.2",
     "motion": "^10.18.0",
     "pinia": "^2.1.7",
+    "qrcode": "^1.5.4",
     "satori": "^0.26.0",
     "vue": "^3.4.29",
     "vue-router": "^4.3.3"
@@ -38,6 +39,7 @@
     "@nuxt/image": "^1.7.0",
     "@types/geojson": "^7946.0.16",
     "@types/mapbox-gl": "^3.5.0",
+    "@types/qrcode": "^1.5.6",
     "@typescript/typescript6": "^6.0.2",
     "autoprefixer": "^10.4.19",
     "nuxt": "^3.19.0",
