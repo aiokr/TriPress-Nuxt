@@ -173,7 +173,7 @@ function popupHTML(props_: GeoJSON.GeoJsonProperties): string {
   const name = props_?.name || ''
   const date = props_?.date
   const description = props_?.description
-  const image = props_?.image
+  const image = Array.isArray(props_?.image) ? props_.image[0] : props_?.image
   const url = props_?.url
   const urlLabel = props_?.urlLabel || '查看详情'
   const categories: string[] = props_?.categories ?? []
