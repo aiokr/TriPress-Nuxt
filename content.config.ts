@@ -23,19 +23,19 @@ export default defineContentConfig({
       })
     }),
     travel: defineCollection({
-      type: 'page',
-      source: [{ include: 'travel/**/*.md' }],
+      type: 'data',
+      source: [{ include: 'travel/**/*.yaml' }],
       schema: z.object({
-        title: z.string(),
-        city: z.string(),
-        country: z.string(),
-        date: z.string(),
-        days: z.number().optional(),
+        name: z.string(),
         lat: z.number(),
         lng: z.number(),
-        gpx: z.string().optional(),
-        cover: z.string().optional(),
+        date: z.string().optional(),
         description: z.string().optional(),
+        categories: z.array(z.string()).optional(),
+        color: z.string().optional(),
+        image: z.string().optional(),
+        url: z.string().optional(),
+        urlLabel: z.string().optional(),
       })
     }),
     heatmap: defineCollection({
