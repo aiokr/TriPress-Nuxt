@@ -33,7 +33,7 @@ export default defineContentConfig({
         description: z.string().optional(),
         categories: z.array(z.string()).optional(),
         color: z.string().optional(),
-        image: z.string().optional(),
+        image: z.union([z.string(), z.array(z.string())]).optional(),
         url: z.string().optional(),
         urlLabel: z.string().optional(),
       })
