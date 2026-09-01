@@ -13,11 +13,64 @@ export default {
   theme: {
     extend: {
       colors: {
-        'main': '#71afdd',
-        'accent': '#e67e22',
-        'text': '#222831',
-        'dtext': '#E2E2E2',
-        'dbg': '#18181B',
+        // 主色系
+        'main': '#71afdd', // 主色
+        'primary-50': '#eaf3fa', // 主色-50
+        'primary-100': '#cae1f2', // 主色-100
+        'primary-200': '#a0cae8', // 主色-200
+        'primary-300': '#71afdd', // 主色-300
+        'primary-400': '#4697d3', // 主色-400  
+        'primary-500': '#2c7db9', // 主色-500
+        'primary-600': '#236494', // 主色-600
+        'primary-700': '#1c4e73', // 主色-700
+        'primary-800': '#143852', // 主色-800
+
+        // 配色系
+        'accent-warm': '#e69d65', // 暖色配色
+        'accent-warm-50': '#fbf1e9', // 暖色-50
+        'accent-warm-100': '#f6dbc6', // 暖色-100
+        'accent-warm-200': '#efbf9a', // 暖色-200
+        'accent-warm-300': '#e69d65', // 暖色-300
+        'accent-warm-400': '#df813a', // 暖色-400
+        'accent-warm-500': '#c56820', // 暖色-500
+        'accent-warm-600': '#9e531a', // 暖色-600
+        'accent-warm-700': '#7b4114', // 暖色-700
+        'accent-warm-800': '#582e0e', // 暖色-800
+
+        'accent-cold': '#8279d2', // 冷色配色
+        'accent-cold-50': '#edecf9', // 冷色-50
+        'accent-cold-100': '#d1cdee', // 冷色-100
+        'accent-cold-200': '#ada7e2', // 冷色-200
+        'accent-cold-300': '#8279d2', // 冷色-300
+        'accent-cold-400': '#5e53c6', // 冷色-400
+        'accent-cold-500': '#4539ac', // 冷色-500
+        'accent-cold-600': '#372e8a', // 冷色-600
+        'accent-cold-700': '#2b246b', // 冷色-700
+        'accent-cold-800': '#1f194d', // 冷色-800
+
+        // 辅助色系
+        'text': '#222831', // 文字主色
+        'sub-text': '#b7c0cd', // 辅助文字
+        'dtext': '#E2E2E2', // 暗色模式下的文字主色
+        'dbg': '#18181B', // 暗色模式背景
+        'sub-bg': '#fafafa', // 辅助背景
+
+        // 语义色系
+        'success': '#3fa97a', // 成功色
+        'success-bg': '#e6f5ee', // 成功色背景
+        'success-text': '#1e6b4c', // 成功色文字
+
+        'warning': '#e0a23c', // 警告色
+        'warning-bg': '#fbf1de', // 警告色背景
+        'warning-text': '#96620f', // 警告色文字
+
+        'danger': '#d95d5d ', // 危险色
+        'danger-bg': '#faeaea ', // 危险色背景
+        'danger-text': '#a83232', // 危险色文字
+
+        'info': '#71afdd ', // 信息色
+        'info-bg': '#eaf3fa', // 信息色背景
+        'info-text': '#236494', // 信息色文字
       },
       boxShadow: {
         'card': '0 -1px 3px 0 rgb(0 0 0 / 0.05)',

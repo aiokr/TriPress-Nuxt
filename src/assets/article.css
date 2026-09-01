@@ -1,6 +1,6 @@
 /* ----------------------------------------------------------------------------
- * 文章正文排版 - 参考 Vercel Geist 设计系统
- * 设计原则：高对比、克制留白、清晰的字号阶梯、内容宽度克制（640px 最佳阅读）
+ * TriPress Design System
+ * Last Updated: 2026-09-01
  * --------------------------------------------------------------------------*/
 
 article p,
@@ -18,15 +18,13 @@ article li {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-feature-settings: "kern", "liga", "calt";
+  font-feature-settings: 'kern', 'liga', 'calt';
 }
 
 /* 基础排印 ----------------------------------------------------------- */
 article {
-  color: #171717; /* Geist gray-1000 */
-  font-family:
-    "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
-    "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  @apply !text-text;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
   font-size: 16px;
   line-height: 1.7;
   letter-spacing: -0.005em;
@@ -43,7 +41,11 @@ article p {
   font-weight: 400;
   line-height: 1.75;
   letter-spacing: -0.003em;
-  color: inherit;
+  @apply text-text;
+}
+
+.dark article p {
+  @apply !text-dtext;
 }
 
 /* 标题 --------------------------------------------------------------- */
@@ -54,12 +56,12 @@ article h4,
 article h5,
 article h6 {
   font-weight: 600;
-  color: #171717; /* Geist gray-1000 */
   text-align: left;
   letter-spacing: -0.02em;
   /* 锚点跳转时给固定 Header 留出偏移 */
   scroll-margin-top: 80px;
   line-height: 1.3;
+  @apply !text-text;
 }
 
 .dark article h1,
@@ -112,11 +114,6 @@ article h5 {
   letter-spacing: -0.005em;
   font-weight: 600;
   margin: 1.3em 0 0.3em 0;
-  color: #4d4d4d; /* Geist gray-900 */
-}
-
-.dark article h5 {
-  color: #a8a8a8; /* Geist gray-600 */
 }
 
 article h6 {
@@ -126,21 +123,11 @@ article h6 {
   font-weight: 500;
   text-transform: uppercase;
   margin: 1.3em 0 0.3em 0;
-  color: #8f8f8f; /* Geist gray-700 */
-}
-
-.dark article h6 {
-  color: #8f8f8f;
 }
 
 /* 强调 --------------------------------------------------------------- */
 article strong {
   font-weight: 600;
-  color: #171717;
-}
-
-.dark article strong {
-  color: #ededed;
 }
 
 article em {
@@ -229,9 +216,9 @@ article blockquote {
 }
 
 .dark article blockquote {
-  background: #1a1a1a;
+  background: #18181B;
   border-left-color: #71afdd;
-  color: #a8a8a8;
+  color: #E2E2E2;
 }
 
 article blockquote p {
@@ -245,7 +232,7 @@ article blockquote p + p {
 
 article blockquote::before,
 article .stressed-quote::before {
-  content: "“";
+  content: '“';
   display: block;
   font-style: normal;
   font-size: 32px;
@@ -262,30 +249,26 @@ article .stressed-quote::before {
 
 /* 行内代码 ----------------------------------------------------------- */
 article code {
-  font-family:
-    "Geist Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
-    "Liberation Mono", monospace;
+  font-family: 'Geist Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
   font-size: 0.875em; /* 14px (相对 16px 上下文) */
   font-weight: 500;
   padding: 0.15em 0.4em;
   background: #f2f2f2; /* Geist gray-100 */
   border: 1px solid #ebebeb; /* Geist gray-200 */
   border-radius: 6px;
-  color: #171717;
+  color: #222831;
   word-break: break-word;
 }
 
 .dark article code {
-  background: #1a1a1a;
+  background: #222831;
   border-color: #2a2a2a;
   color: #ededed;
 }
 
 /* 代码块 ------------------------------------------------------------- */
 article pre {
-  font-family:
-    "Geist Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
-    "Liberation Mono", monospace;
+  font-family: 'Geist Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
   padding: 16px 20px;
   margin: 1.6em 0;
   overflow: auto;
@@ -294,7 +277,7 @@ article pre {
   border-radius: 8px;
   font-size: 13.5px;
   line-height: 1.65;
-  color: #171717;
+  color: #222831;
   scrollbar-width: thin;
   scrollbar-color: #c9c9c9 transparent;
 }
@@ -324,7 +307,7 @@ article hr {
 }
 
 .dark article hr {
-  border-top-color: #2a2a2a;
+  border-top-color: #222831;
 }
 
 /* 图片 --------------------------------------------------------------- */
@@ -378,7 +361,7 @@ article tr:last-child td {
 article th {
   background: #fafafa;
   font-weight: 600;
-  color: #171717;
+  color: #222831;
   font-size: 13px;
   letter-spacing: -0.005em;
 }
@@ -399,9 +382,7 @@ article th {
 
 /* 键盘按键 ----------------------------------------------------------- */
 article kbd {
-  font-family:
-    "Geist Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
-    monospace;
+  font-family: 'Geist Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
   font-size: 0.85em;
   font-weight: 500;
   padding: 0.15em 0.5em;
