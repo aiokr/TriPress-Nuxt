@@ -1,8 +1,8 @@
 <template>
   <div
-    class="w-full h-[520px] min-h-[480px] rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 relative bg-zinc-50 dark:bg-zinc-900 flex flex-col"
+    class="w-full h-[520px] min-h-[480px] rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 relative bg-zinc-50 dark:bg-zinc-900"
   >
-    <div ref="mapEl" class="w-full flex-1" />
+    <div ref="mapEl" class="w-full h-full" />
     <div
       v-if="status !== 'ready'"
       class="absolute inset-0 flex items-center justify-center text-sm text-zinc-500 dark:text-dtext/70 pointer-events-none"
@@ -173,7 +173,7 @@ function popupHTML(props_: GeoJSON.GeoJsonProperties): string {
   const name = props_?.name || ''
   const date = props_?.date
   const description = props_?.description
-  const image = Array.isArray(props_?.image) ? props_.image[0] : props_?.image
+  const image = props_?.image
   const url = props_?.url
   const urlLabel = props_?.urlLabel || '查看详情'
   const categories: string[] = props_?.categories ?? []

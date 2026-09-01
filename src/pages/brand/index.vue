@@ -1,7 +1,8 @@
 <template>
-  <section class="container max-w-[1000px] mx-auto pt-16 px-4">
+  <section class="container max-w-[1000px] mx-auto pt-24 px-4">
     <div class="pb-12">
-      <div class="text-4xl font-bold text-text text-center dark:text-dtext pb-12">TriPress Brand</div>
+      <div class="text-4xl font-bold text-text text-center dark:text-dtext pb-2">TriPress Brand</div>
+      <a v-if="brandUpdatedAt" class="block text-sm text-sub-text dark:text-dtext text-center pb-12" href="https://github.com/aiokr/TriPress-Nuxt/" target="_blank">Last Updated: {{ brandUpdatedAt }}</a>
     </div>
 
     <h2 class="text-2xl font-bold text-text dark:text-dtext pb-6">Color System</h2>
@@ -98,14 +99,14 @@
 
     <h2 class="text-2xl font-bold text-text dark:text-dtext pb-6 pt-32">Combination</h2>
 
-    <div class="flex w-full gap-2">
-      <div class="flex-1 w-full rounded text-text bg-white border p-4 flex flex-col justify-between">
+    <div class="flex w-full gap-2 overflow-x-auto">
+      <div class="flex-1 min-w-[85%] sm:min-w-0 w-full rounded  bg-white border p-4 flex flex-col justify-between">
         <article>
-          <div class="text-lg font-bold pb-2 text-text dark:text-text">在阳光下</div>
-          <p class="text-text dark:text-text">
+          <div class="text-lg font-bold pb-2 !text-text">在阳光下</div>
+          <p class="!text-text">
             红日初升，其道大光。河出伏流，一泻汪洋。潜龙腾渊，鳞爪飞扬。乳虎啸谷，百兽震惶。
           </p>
-          <p class="text-text dark:text-text">
+          <p class="!text-text">
             I too am not a bit tamed, I too am untranslatable, <br />
             I sound my barbaric yawp over the roofs of the world.
           </p>
@@ -125,13 +126,13 @@
           </div>
         </div>
       </div>
-      <div class="flex-1 w-full rounded text-text bg-sub-bg border p-4 flex flex-col justify-between">
+      <div class="flex-1 min-w-[85%] sm:min-w-0 w-full rounded bg-sub-bg border p-4 flex flex-col justify-between">
         <article>
-          <div class="text-lg font-bold pb-2 text-text dark:text-text">在阴天</div>
-          <p class="text-text dark:text-text">
+          <div class="text-lg font-bold pb-2 !text-text ">在阴天</div>
+          <p class="!text-text">
             鹰隼试翼，风尘翕张。奇花初胎，矞矞皇皇。干将发硎，有作其芒。天戴其苍，地履其黄。纵有千古，横有八荒。前途似海，来日方长。
           </p>
-          <p class="text-text dark:text-text">
+          <p class="!text-text">
             To see a World in a Grain of Sand <br />
             And a Heaven in a Wild Flower, <br />
             Hold Infinity in the palm of your hand <br />
@@ -153,7 +154,7 @@
           </div>
         </div>
       </div>
-      <div class="flex-1 w-full rounded  bg-dbg border p-4 flex flex-col justify-between">
+      <div class="flex-1 min-w-[85%] sm:min-w-0 w-full rounded  bg-dbg border p-4 flex flex-col justify-between">
         <article>
           <div class="text-lg font-bold pb-2 text-dtext">在月光下</div>
           <p class="text-dtext">
@@ -184,16 +185,32 @@
     </div>
 
     <h2 class="text-2xl font-bold text-text dark:text-dtext pb-6 pt-32">Reference</h2>
-    <div>
-      <a class="text-text bg-sub-bg" href="https://www.kimi.ai/zh-hans/resources/kimi-brand" target="_blank"
-        rel="noopener noreferrer">
-        Kimi Brand
-      </a>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div class="flex-1 flex flex-col rounded shadow-feature-card dark:shadow-feature-card-dark">
+        <div class="bg-primary-800 text-white p-4 text-lg font-bold rounded-t">Kimi Brand</div>
+        <div class="bg-sub-bg p-4 rounded-b h-full">
+          <a target="_blank" class="text-text underline decoration-[2px] underline-offset-[3px] decoration-[#71afdd]"
+            href="https://www.kimi.ai/zh-hans/resources/kimi-brand">
+            https://www.kimi.ai/zh-hans/resources/kimi-brand
+          </a>
+        </div>
+      </div>
+      <div class="flex-1 flex flex-col rounded shadow-feature-card dark:shadow-feature-card-dark">
+        <div class="bg-primary-600 text-white p-4 text-lg font-bold rounded-t">Vercel Geist Design System</div>
+        <div class="bg-sub-bg p-4 rounded-b h-full">
+          <a target="_blank" class="text-text underline decoration-[2px] underline-offset-[3px] decoration-[#71afdd]"
+            href="https://vercel.com/geist/brands">
+            https://vercel.com/geist/brands
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+const { public: { brandUpdatedAt } } = useRuntimeConfig()
+
 useHead({
   title: 'Brand',
 })

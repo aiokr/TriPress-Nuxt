@@ -23,7 +23,7 @@ article li {
 
 /* 基础排印 ----------------------------------------------------------- */
 article {
-  @apply !text-text;
+  @apply text-text;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
   font-size: 16px;
   line-height: 1.7;
@@ -31,7 +31,7 @@ article {
 }
 
 .dark article {
-  @apply !text-dtext;
+  @apply text-dtext;
 }
 
 /* 段落 --------------------------------------------------------------- */
@@ -45,7 +45,7 @@ article p {
 }
 
 .dark article p {
-  @apply !text-dtext;
+  @apply text-dtext;
 }
 
 /* 标题 --------------------------------------------------------------- */
@@ -61,7 +61,7 @@ article h6 {
   /* 锚点跳转时给固定 Header 留出偏移 */
   scroll-margin-top: 80px;
   line-height: 1.3;
-  @apply !text-text;
+  @apply text-text;
 }
 
 .dark article h1,
@@ -70,7 +70,7 @@ article h6 {
 .dark article h4,
 .dark article h5,
 .dark article h6 {
-  @apply !text-dtext;
+  @apply text-dtext;
 }
 
 article h1 {

@@ -3,6 +3,15 @@ import { readdirSync } from 'node:fs'
 import { join, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
+function getBrandUpdatedAt(): string {
+  try {
+    const date = execSync('git log -1 --format=%cI -- src/pages/brand/index.vue', { encoding: 'utf-8' }).trim()
+    return date.slice(0, 10)
+  } catch {
+    return ''
+  }
+}
+
 function getIsDevBranch(): boolean {
   try {
     const vercelBranch = process.env.VERCEL_GIT_COMMIT_REF
@@ -65,7 +74,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       mapboxToken: '',
-      isDevBranch: getIsDevBranch()
+      isDevBranch: getIsDevBranch(),
+      brandUpdatedAt: getBrandUpdatedAt()
     }
   },
 
