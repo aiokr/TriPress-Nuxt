@@ -94,11 +94,39 @@
       <p>此外，基于核心主色衍生出三种功能性语义色，分别用于不同场景下的状态反馈与信息提示；其中，信息提示「Info」直接由品牌主色承担，因其本身不带有情绪倾向，与品牌核心色调天然契合。</p>
     </article>
 
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="bg-success-bg text-success-text rounded border-l-[16px] border-success p-2 pl-3">Success</div>
-      <div class="bg-warning-bg text-warning-text rounded border-l-[16px] border-warning p-2 pl-3">Warning</div>
-      <div class="bg-danger-bg text-danger-text rounded border-l-[16px] border-danger p-2 pl-3">Danger</div>
-      <div class="bg-info-bg text-info-text rounded border-l-[16px] border-info p-2 pl-3">Info</div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pb-6">
+      <div>
+        <div class="bg-success-bg text-success-text rounded border-l-[16px] border-success p-2 pl-3 mb-4">Success</div>
+        <div class="h-16 overflow-hidden rounded mb-4 grid grid-cols-3">
+          <ColorSwatch name="success-bg" hex="#e6f5ee" class="bg-success-bg text-success-text" />
+          <ColorSwatch name="success" hex="#3fa97a" class="bg-success text-white" />
+          <ColorSwatch name="success-text" hex="#1e6b4c" class="bg-success-text text-white" />
+        </div>
+      </div>
+      <div>
+        <div class="bg-warning-bg text-warning-text rounded border-l-[16px] border-warning p-2 pl-3 mb-4">Warning</div>
+        <div class="h-16 overflow-hidden rounded mb-4 grid grid-cols-3">
+          <ColorSwatch name="warning-bg" hex="#fbf1de" class="bg-warning-bg text-warning-text" />
+          <ColorSwatch name="warning" hex="#e0a23c" class="bg-warning text-white" />
+          <ColorSwatch name="warning-text" hex="#96620f" class="bg-warning-text text-white" />
+        </div>
+      </div>
+      <div>
+        <div class="bg-danger-bg text-danger-text rounded border-l-[16px] border-danger p-2 pl-3 mb-4">Danger</div>
+        <div class="h-16 overflow-hidden rounded mb-4 grid grid-cols-3">
+          <ColorSwatch name="danger-bg" hex="#faeaea" class="bg-danger-bg text-danger-text" />
+          <ColorSwatch name="danger" hex="#d95d5d" class="bg-danger text-white" />
+          <ColorSwatch name="danger-text" hex="#a83232" class="bg-danger-text text-white" />
+        </div>
+      </div>
+      <div>
+        <div class="bg-info-bg text-info-text rounded border-l-[16px] border-info p-2 pl-3 mb-4">Info</div>
+        <div class="h-16 overflow-hidden rounded mb-4 grid grid-cols-3">
+          <ColorSwatch name="info-bg" hex="#eaf3fa" class="bg-info-bg text-info-text" />
+          <ColorSwatch name="info" hex="#71afdd" class="bg-info text-white" />
+          <ColorSwatch name="info-text" hex="#236494" class="bg-info-text text-white" />
+        </div>
+      </div>
     </div>
 
     <h2 class="text-2xl font-bold text-text dark:text-dtext pb-6 pt-32">Combination</h2>
