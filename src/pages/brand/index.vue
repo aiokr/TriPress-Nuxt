@@ -1,8 +1,9 @@
 <template>
   <section class="container max-w-[1000px] mx-auto pt-24 px-4">
-    <div class="pb-12">
+    <div class="flex flex-col items-center justify-center pb-12 ">
       <div class="text-4xl font-bold text-text text-center dark:text-dtext pb-2">TriPress Brand</div>
-      <a v-if="brandUpdatedAt" class="block text-sm text-sub-text dark:text-dtext text-center pb-12" href="https://github.com/aiokr/TriPress-Nuxt/" target="_blank">Last Updated: {{ brandUpdatedAt }}</a>
+      <a v-if="brandUpdatedAt" class="inline-block text-sm text-sub-text dark:text-dtext text-center pb-12"
+        href="https://github.com/aiokr/TriPress-Nuxt/" target="_blank">Last Updated: {{ brandUpdatedAt }}</a>
     </div>
 
     <h2 class="text-2xl font-bold text-text dark:text-dtext pb-6">Color System</h2>
@@ -64,21 +65,24 @@
 
     <h3 class="text-xl font-bold text-text dark:text-dtext pt-12 pb-6">Foundational Color</h3>
     <article class="text-text dark:text-dtext">
-      <p>Concurrently, six foundational colors have been designated for the
+      <p>Concurrently, foundational colors have been designated for the
         display of primary elements, including text and backgrounds, with the deliberate aim of ensuring maximum visual
         prominence and legibility.</p>
-      <p>同时，另设六种基础色，专用于文字、背景等核心视觉元素的呈现，以确保视觉层次清晰、信息传达醒目有力。</p>
+      <p>同时，另设基础色，专用于文字、背景等核心视觉元素的呈现，以确保视觉层次清晰、信息传达醒目有力。</p>
     </article>
 
-    <div class="grid grid-cols-3 md:grid-cols-7 gap-4 pb-6">
-      <div class="flex-1 h-20 bg-text rounded flex items-end justify-start p-2 text-white uppercase">#222831</div>
-      <div class="flex-1 h-20 bg-sub-text rounded flex items-end justify-start p-2 text-white uppercase">#b7c0cd</div>
-      <div class="flex-1 h-20 bg-dtext rounded flex items-end justify-start p-2 text-text uppercase">#E2E2E2</div>
-      <div class="flex-1 h-20 bg-white rounded flex items-end justify-start p-2 text-text border uppercase">#ffffff
-      </div>
-      <div class="flex-1 h-20 bg-sub-bg rounded flex items-end justify-start p-2 text-text border uppercase">#fafafa
-      </div>
-      <div class="flex-1 h-20 bg-dbg rounded flex items-end justify-start p-2 text-white border uppercase">#18181B</div>
+    <div class="w-full h-48 md:h-16 overflow-hidden rounded mb-4 grid grid-cols-4 md:grid-cols-11">
+      <ColorSwatch name="neutral-25" hex="#f9fafb" class="bg-neutral-25 text-text" />
+      <ColorSwatch name="neutral-50" hex="#f3f4f7" class="bg-neutral-50 text-text" />
+      <ColorSwatch name="neutral-100" hex="#eaedf0" class="bg-neutral-100 text-text" />
+      <ColorSwatch name="neutral-200" hex="#d8dde4" class="bg-neutral-200 text-text" />
+      <ColorSwatch name="neutral-300" hex="#bdc5d1" class="bg-neutral-300 text-text" />
+      <ColorSwatch name="neutral-400" hex="#99a5b8" class="bg-neutral-400 text-text" />
+      <ColorSwatch name="neutral-500" hex="#74859f" class="bg-neutral-500 text-white" />
+      <ColorSwatch name="neutral-600" hex="#58677e" class="bg-neutral-600 text-white" />
+      <ColorSwatch name="neutral-700" hex="#3f4a5a" class="bg-neutral-700 text-white" />
+      <ColorSwatch name="neutral-800" hex="#222831" class="bg-neutral-800 text-white" />
+      <ColorSwatch name="neutral-900" hex="#13161b" class="bg-neutral-900 text-white" />
     </div>
 
     <h3 class="text-xl font-bold text-text dark:text-dtext pb-6 pt-12">Semantic Color</h3>
@@ -100,92 +104,51 @@
     <h2 class="text-2xl font-bold text-text dark:text-dtext pb-6 pt-32">Combination</h2>
 
     <div class="flex w-full gap-2 overflow-x-auto">
-      <div class="flex-1 min-w-[85%] sm:min-w-0 w-full rounded  bg-white border p-4 flex flex-col justify-between">
+      <div
+        class="flex-1 min-w-[85%] sm:min-w-0 w-full rounded backdrop:bg-white border p-4 flex flex-col justify-between">
         <article>
           <div class="text-lg font-bold pb-2 !text-text">在阳光下</div>
           <p class="!text-text">
             红日初升，其道大光。河出伏流，一泻汪洋。潜龙腾渊，鳞爪飞扬。乳虎啸谷，百兽震惶。
+            <span class="block w-full text-right !text-sub-text">
+              ——《少年中国说》 梁启超
+            </span>
           </p>
           <p class="!text-text">
             I too am not a bit tamed, I too am untranslatable, <br />
             I sound my barbaric yawp over the roofs of the world.
+            <span class="block w-full text-right !text-sub-text">
+              — Walt Whitman, Song of Myself (1855)
+            </span>
           </p>
         </article>
-        <div class="flex flex-row gap-4 pb-2">
-          <div class="bg-main rounded-full w-8 h-8" />
-          <div class="bg-accent-warm rounded-full w-8 h-8" />
-          <div class="bg-accent-cold rounded-full w-8 h-8" />
-          <div class="bg-success rounded-full w-8 h-8 text-center flex items-center justify-center">
-            <IconsSuccess class="w-5 h-5 text-white" />
-          </div>
-          <div class="bg-warning rounded-full w-8 h-8 text-center flex items-center justify-center">
-            <IconsWarning class="w-5 h-5 text-white" />
-          </div>
-          <div class="bg-danger rounded-full w-8 h-8 text-center flex items-center justify-center">
-            <IconsClose class="w-5 h-5 text-white" />
-          </div>
-        </div>
+        <BrandColorPalette />
       </div>
-      <div class="flex-1 min-w-[85%] sm:min-w-0 w-full rounded bg-sub-bg border p-4 flex flex-col justify-between">
-        <article>
-          <div class="text-lg font-bold pb-2 !text-text ">在阴天</div>
-          <p class="!text-text">
-            鹰隼试翼，风尘翕张。奇花初胎，矞矞皇皇。干将发硎，有作其芒。天戴其苍，地履其黄。纵有千古，横有八荒。前途似海，来日方长。
-          </p>
-          <p class="!text-text">
-            To see a World in a Grain of Sand <br />
-            And a Heaven in a Wild Flower, <br />
-            Hold Infinity in the palm of your hand <br />
-            And Eternity in an hour.
-          </p>
-        </article>
-        <div class="flex flex-row gap-4 pb-2">
-          <div class="bg-main rounded-full w-8 h-8" />
-          <div class="bg-accent-warm rounded-full w-8 h-8" />
-          <div class="bg-accent-cold rounded-full w-8 h-8" />
-          <div class="bg-success rounded-full w-8 h-8 text-center flex items-center justify-center">
-            <IconsSuccess class="w-5 h-5 text-white" />
-          </div>
-          <div class="bg-warning rounded-full w-8 h-8 text-center flex items-center justify-center">
-            <IconsWarning class="w-5 h-5 text-white" />
-          </div>
-          <div class="bg-danger rounded-full w-8 h-8 text-center flex items-center justify-center">
-            <IconsClose class="w-5 h-5 text-white" />
-          </div>
-        </div>
-      </div>
-      <div class="flex-1 min-w-[85%] sm:min-w-0 w-full rounded  bg-dbg border p-4 flex flex-col justify-between">
+      <div class="flex-1 min-w-[85%] sm:min-w-0 w-full rounded  bg-dsub-bg border p-4 flex flex-col justify-between">
         <article>
           <div class="text-lg font-bold pb-2 text-dtext">在月光下</div>
           <p class="text-dtext">
             庭下如积水空明，水中藻、荇交横，盖竹柏影也。
+            <span class="block w-full text-right !text-dsub-text">
+              ——《记承天寺夜游》 苏轼
+            </span>
           </p>
           <p class="text-dtext">
             How sweet the moonlight sleeps upon this bank! <br />
             Here will we sit and let the sounds of music <br />
             Creep in our ears: soft stillness and the night <br />
             Become the touches of sweet harmony.
+            <span class="block w-full text-right !text-dsub-text">
+              — William Shakespeare, The Merchant of Venice, Act V, Scene 1
+            </span>
           </p>
         </article>
-        <div class="flex flex-row gap-4 pb-2">
-          <div class="bg-main rounded-full w-8 h-8" />
-          <div class="bg-accent-warm rounded-full w-8 h-8" />
-          <div class="bg-accent-cold rounded-full w-8 h-8" />
-          <div class="bg-success rounded-full w-8 h-8 text-center flex items-center justify-center">
-            <IconsSuccess class="w-5 h-5 text-white" />
-          </div>
-          <div class="bg-warning rounded-full w-8 h-8 text-center flex items-center justify-center">
-            <IconsWarning class="w-5 h-5 text-white" />
-          </div>
-          <div class="bg-danger rounded-full w-8 h-8 text-center flex items-center justify-center">
-            <IconsClose class="w-5 h-5 text-white" />
-          </div>
-        </div>
+        <BrandColorPalette />
       </div>
     </div>
 
     <h2 class="text-2xl font-bold text-text dark:text-dtext pb-6 pt-32">Reference</h2>
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
       <div class="flex-1 flex flex-col rounded shadow-feature-card dark:shadow-feature-card-dark">
         <div class="bg-primary-800 text-white p-4 text-lg font-bold rounded-t">Kimi Brand</div>
         <div class="bg-sub-bg p-4 rounded-b h-full">
