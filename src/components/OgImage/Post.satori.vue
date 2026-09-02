@@ -4,8 +4,8 @@
     纯色底 #222831 + 白色字体
   -->
   <div
-    class="og-root relative w-[1200px] h-[630px] overflow-hidden flex flex-col font-serif"
-    style="background: #222831; color: #ffffff;"
+    class="og-root relative w-[1200px] h-[630px] overflow-hidden flex flex-col"
+    style="background: #222831; color: #ffffff; font-family: 'Smiley Sans', sans-serif;"
   >
     <!-- 顶部品牌行 -->
     <div class="relative z-10 flex items-center gap-3 px-16 pt-12 text-white">

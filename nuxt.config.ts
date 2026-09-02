@@ -67,6 +67,24 @@ export default defineNuxtConfig({
     "@nuxt/image",
     '@nuxt/content',
     '@nuxtjs/tailwindcss',
+    '@nuxt/fonts',
+    // @nuxt/fonts 的 local provider 会忽略手动设置的 unicodeRange，导致 nuxt-og-image
+    // 认为 Smiley Sans 只覆盖拉丁字符，中文标题渲染成 NO GLYPH。
+    // 这里在模板生成后补上 unicode-range，让 Satori 把 CJK 字符也交给该字体处理。
+    function (_options: any, nuxt: any) {
+      const tpl = nuxt.options.build.templates.find(
+        (t: any) => t.filename?.endsWith('nuxt-fonts-global.css')
+      )
+      if (!tpl) return
+      const original = tpl.getContents
+      tpl.getContents = async (...args: any[]) => {
+        const css = await original(...args)
+        return css.replace(
+          /(@font-face\s*\{[^}]*font-family:\s*['"]Smiley Sans['"][^}]*\})/,
+          (match: string) => match.replace(/\}$/, '  unicode-range: U+0-9FFF, U+FF00-FFEF;\n}')
+        )
+      }
+    }
   ],
 
   srcDir: 'src/',
@@ -148,7 +166,8 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       routes: ['/', '/atom.xml'],
-      crawlLinks: true
+      crawlLinks: true,
+      failOnError: false
     },
     experimental: {
       wasm: false
@@ -169,13 +188,40 @@ export default defineNuxtConfig({
           maxAge: 60 * 60 * 24 * 7
         })
       }
-    }
+    },
   },
 
   ogImage: {
     defaults: {
       width: 1200,
-      height: 630,
+      height: 630
+    }
+  },
+
+  // 通过 @nuxt/fonts 把本地 CJK 字体（Smiley Sans 得意黑）注册为全局字体。
+  // nuxt-og-image 会从模板 font-family 中解析并加载该字体，takumi/satori 渲染器即可正确显示中文。
+  // 禁用所有远程字体源，避免大陆网络下构建时请求 Google Fonts 等超时。
+  fonts: {
+    families: [
+      {
+        name: 'Smiley Sans',
+        global: true,
+        provider: 'local',
+        src: '/fonts/SmileySans-Oblique.ttf',
+        weights: [400],
+        styles: ['normal'],
+        // 覆盖常用中西文字符，确保 Satori 在渲染中文标题时使用该字体而非显示 NO GLYPH
+        unicodeRange: 'U+0-9FFF, U+FF00-FFEF'
+      }
+    ],
+    providers: {
+      adobe: false,
+      bunny: false,
+      fontshare: false,
+      fontsource: false,
+      google: false,
+      googleicons: false,
+      npm: false
     }
   },
 

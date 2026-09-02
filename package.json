@@ -3,10 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node scripts/fetch-geojson.mjs && nuxt build",
+    "prebuild": "node scripts/prebuild.mjs",
+    "build": "pnpm prebuild && nuxt build",
     "dev": "nuxt dev",
     "dev:proxy": "node --import ./proxy.mjs node_modules/nuxt/bin/nuxt.mjs dev",
-    "generate": "node scripts/fetch-geojson.mjs && nuxt generate",
+    "generate": "pnpm prebuild && nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "typecheck": "node -e \"import('vue-tsc').then(m => m.run(require.resolve('@typescript/typescript6/lib/tsc')))\" -- --noEmit"
@@ -36,6 +37,7 @@
     "vue-router": "^4.3.3"
   },
   "devDependencies": {
+    "@nuxt/fonts": "^0.14.0",
     "@nuxt/image": "^1.7.0",
     "@types/geojson": "^7946.0.16",
     "@types/mapbox-gl": "^3.5.0",
