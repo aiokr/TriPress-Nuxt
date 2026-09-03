@@ -85,10 +85,45 @@
       <ColorSwatch name="neutral-900" hex="#13161b" class="bg-neutral-900 text-white" />
     </div>
 
+    <h4 class="text-lg font-bold text-text dark:text-dtext pt-8 pb-4">Background</h4>
+
+    <div>
+      <div class="flex h-10 items-center gap-3 border-b item">
+        <div class="w-5 h-5 rounded-full bg-white border border-neutral-400" />
+        <p class="text-[14px] leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Background 1</p>
+        <p class="text-text dark:text-dtext w-[260px]">Default element background in Light</p>
+        <p class=" text-sub-text dark:text-dsub-text ml-auto uppercase">#FFFFFF</p>
+        <p class=" text-sub-text dark:text-dsub-text w-[120px] text-right">white</p>
+      </div>
+      <div class="flex h-10 items-center gap-3 border-b">
+        <div class="w-5 h-5 rounded-full bg-neutral-50 border border-neutral-400" />
+        <p class="text-[14px] leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Background 2</p>
+        <p class=" text-text dark:text-dtext w-[260px]">Secondary background in Light</p>
+        <p class=" text-sub-text dark:text-dsub-text ml-auto uppercase">#f3f4f7</p>
+        <p class=" text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-50</p>
+      </div>
+      <div class="flex h-10 items-center gap-3 border-b">
+        <div class="w-5 h-5 rounded-full bg-neutral-900 border border-neutral-400" />
+        <p class="text-[14px] leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Background 1</p>
+        <p class="text-text dark:text-dtext w-[260px]">Default element background in Dark</p>
+        <p class=" text-sub-text dark:text-dsub-text ml-auto uppercase">#13161b</p>
+        <p class=" text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-900</p>
+      </div>
+      <div class="flex h-10 items-center gap-3 border-none">
+        <div class="w-5 h-5 rounded-full bg-neutral-800 border border-neutral-400" />
+        <p class="text-[14px] leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Background 2</p>
+        <p class=" text-text dark:text-dtext w-[260px]">Secondary background in Dark</p>
+        <p class=" text-sub-text dark:text-dsub-text ml-auto uppercase">#222831</p>
+        <p class=" text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-800</p>
+      </div>
+    </div>
+
+
     <h3 class="text-xl font-bold text-text dark:text-dtext pb-6 pt-12">Semantic Color</h3>
     <article class="text-text dark:text-dtext">
       <p>Furthermore, three functional semantic colors are derived from the core primary hue, respectively applied to
-        status feedback and informational prompts across various contexts. Among them, the "Info" indicator is directly
+        status feedback and informational prompts across various contexts. Among them, the "Info" indicator is
+        directly
         represented by the brand's primary color, as it carries no inherent emotional bias and thus naturally aligns
         with the brand's core chromatic identity.</p>
       <p>此外，基于核心主色衍生出三种功能性语义色，分别用于不同场景下的状态反馈与信息提示；其中，信息提示「Info」直接由品牌主色承担，因其本身不带有情绪倾向，与品牌核心色调天然契合。</p>
@@ -96,7 +131,8 @@
 
     <div class="grid grid-cols-1 md:grid-cols-4 gap-4 pb-6">
       <div>
-        <div class="bg-success-bg text-success-text rounded border-l-[16px] border-success p-2 pl-3 mb-4">Success</div>
+        <div class="bg-success-bg text-success-text rounded border-l-[16px] border-success p-2 pl-3 mb-4">Success
+        </div>
         <div class="h-16 overflow-hidden rounded mb-4 grid grid-cols-3">
           <ColorSwatch name="success-bg" hex="#e6f5ee" class="bg-success-bg text-success-text" />
           <ColorSwatch name="success" hex="#3fa97a" class="bg-success text-white" />
@@ -104,7 +140,8 @@
         </div>
       </div>
       <div>
-        <div class="bg-warning-bg text-warning-text rounded border-l-[16px] border-warning p-2 pl-3 mb-4">Warning</div>
+        <div class="bg-warning-bg text-warning-text rounded border-l-[16px] border-warning p-2 pl-3 mb-4">Warning
+        </div>
         <div class="h-16 overflow-hidden rounded mb-4 grid grid-cols-3">
           <ColorSwatch name="warning-bg" hex="#fbf1de" class="bg-warning-bg text-warning-text" />
           <ColorSwatch name="warning" hex="#e0a23c" class="bg-warning text-white" />
@@ -132,8 +169,7 @@
     <h2 class="text-2xl font-bold text-text dark:text-dtext pb-6 pt-32">Combination</h2>
 
     <div class="flex w-full gap-2 overflow-x-auto">
-      <div
-        class="flex-1 min-w-[85%] sm:min-w-0 w-full rounded bg-white border p-4 flex flex-col justify-between">
+      <div class="flex-1 min-w-[85%] sm:min-w-0 w-full rounded bg-white border p-4 flex flex-col justify-between">
         <article>
           <div class="text-lg font-bold pb-2 !text-text">在阳光下</div>
           <p class="!text-text">
