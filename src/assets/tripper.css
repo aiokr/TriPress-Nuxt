@@ -1,3 +1,11 @@
+:root {
+  --border-color: #d8dde4; /* neutral-200 */
+}
+
+.dark {
+  --border-color: #3f4a5a; /* neutral-700 */
+}
+
 .no-scrollbar {
   scrollbar-width: none;
   -ms-overflow-style: none;

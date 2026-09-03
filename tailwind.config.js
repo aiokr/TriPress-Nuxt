@@ -87,6 +87,9 @@ export default {
         'info-bg': '#eaf3fa', // 信息色背景
         'info-text': '#236494', // 信息色文字
       },
+      borderColor: {
+        DEFAULT: 'var(--border-color)',
+      },
       boxShadow: {
         'card': '0 -1px 3px 0 rgb(0 0 0 / 0.05)',
         'card-dark': '0 0 0 1px rgb(255 255 255 / 0.06), 0 -1px rgb(255 255 255 / 0.1)',
