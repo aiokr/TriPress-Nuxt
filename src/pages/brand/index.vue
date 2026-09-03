@@ -94,7 +94,7 @@
       <p>此外，基于核心主色衍生出三种功能性语义色，分别用于不同场景下的状态反馈与信息提示；其中，信息提示「Info」直接由品牌主色承担，因其本身不带有情绪倾向，与品牌核心色调天然契合。</p>
     </article>
 
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pb-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 pb-6">
       <div>
         <div class="bg-success-bg text-success-text rounded border-l-[16px] border-success p-2 pl-3 mb-4">Success</div>
         <div class="h-16 overflow-hidden rounded mb-4 grid grid-cols-3">
@@ -133,7 +133,7 @@
 
     <div class="flex w-full gap-2 overflow-x-auto">
       <div
-        class="flex-1 min-w-[85%] sm:min-w-0 w-full rounded backdrop:bg-white border p-4 flex flex-col justify-between">
+        class="flex-1 min-w-[85%] sm:min-w-0 w-full rounded bg-white border p-4 flex flex-col justify-between">
         <article>
           <div class="text-lg font-bold pb-2 !text-text">在阳光下</div>
           <p class="!text-text">
