@@ -87,37 +87,113 @@
 
     <h4 class="text-lg font-bold text-text dark:text-dtext pt-8 pb-4">Background</h4>
 
-    <div>
-      <div class="flex h-10 items-center gap-3 border-b item">
+    <div class="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
         <div class="w-5 h-5 rounded-full bg-white border border-neutral-400" />
-        <p class="text-[14px] leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Background 1</p>
-        <p class="text-text dark:text-dtext w-[260px]">Default element background in Light</p>
-        <p class=" text-sub-text dark:text-dsub-text ml-auto uppercase">#FFFFFF</p>
-        <p class=" text-sub-text dark:text-dsub-text w-[120px] text-right">white</p>
+        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Background 1</p>
+        <div
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
+          Light</div>
+        <p class="text-sm text-text dark:text-dtext w-[260px]">Default element background</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#FFFFFF</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">white</p>
       </div>
-      <div class="flex h-10 items-center gap-3 border-b">
+      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
         <div class="w-5 h-5 rounded-full bg-neutral-50 border border-neutral-400" />
-        <p class="text-[14px] leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Background 2</p>
-        <p class=" text-text dark:text-dtext w-[260px]">Secondary background in Light</p>
-        <p class=" text-sub-text dark:text-dsub-text ml-auto uppercase">#f3f4f7</p>
-        <p class=" text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-50</p>
+        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Background 2</p>
+        <div
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
+          Light</div>
+        <p class="text-sm text-text dark:text-dtext w-[260px]">Secondary background</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#f3f4f7</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-50</p>
       </div>
-      <div class="flex h-10 items-center gap-3 border-b">
+      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
         <div class="w-5 h-5 rounded-full bg-neutral-900 border border-neutral-400" />
-        <p class="text-[14px] leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Background 1</p>
-        <p class="text-text dark:text-dtext w-[260px]">Default element background in Dark</p>
-        <p class=" text-sub-text dark:text-dsub-text ml-auto uppercase">#13161b</p>
-        <p class=" text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-900</p>
+        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Background 1</p>
+        <div
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
+          Dark</div>
+        <p class="text-sm text-text dark:text-dtext w-[260px]">Default element background</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#13161b</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-900</p>
       </div>
-      <div class="flex h-10 items-center gap-3 border-none">
+      <div class="flex h-12 items-center gap-3 border-none min-w-[800px]">
         <div class="w-5 h-5 rounded-full bg-neutral-800 border border-neutral-400" />
-        <p class="text-[14px] leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Background 2</p>
-        <p class=" text-text dark:text-dtext w-[260px]">Secondary background in Dark</p>
-        <p class=" text-sub-text dark:text-dsub-text ml-auto uppercase">#222831</p>
-        <p class=" text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-800</p>
+        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Background 2</p>
+        <div
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
+          Dark</div>
+        <p class="text-sm text-text dark:text-dtext w-[260px]">Secondary background</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#222831</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-800</p>
       </div>
     </div>
 
+    <h4 class="text-lg font-bold text-text dark:text-dtext pt-8 pb-4">Text</h4>
+
+    <div class="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
+        <div class="w-5 h-5 rounded-full bg-neutral-800 border border-neutral-400" />
+        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Text 1</p>
+        <div
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
+          Light</div>
+        <p class="text-sm text-text dark:text-dtext w-[260px]">Primary text, headings</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#222831</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-800</p>
+      </div>
+      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
+        <div class="w-5 h-5 rounded-full bg-neutral-600 border border-neutral-400" />
+        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Text 2</p>
+        <div
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
+          Light</div>
+        <p class="text-sm text-text dark:text-dtext w-[260px]">Secondary text, captions</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#58677e</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-600</p>
+      </div>
+      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
+        <div class="w-5 h-5 rounded-full bg-neutral-400 border border-neutral-400" />
+        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Text 3</p>
+        <div
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
+          Light</div>
+        <p class="text-sm text-text dark:text-dtext w-[260px]">Placeholder, disabled</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#99a5b8</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-400</p>
+      </div>
+      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
+        <div class="w-5 h-5 rounded-full bg-neutral-100 border border-neutral-400" />
+        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Text 1</p>
+        <div
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
+          Dark</div>
+        <p class="text-sm text-text dark:text-dtext w-[260px]">Primary text, headings</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#eaedf0</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-100</p>
+      </div>
+      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
+        <div class="w-5 h-5 rounded-full bg-neutral-400 border border-neutral-400" />
+        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Text 2</p>
+        <div
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
+          Dark</div>
+        <p class="text-sm text-text dark:text-dtext w-[260px]">Secondary text, captions</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#99a5b8</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-400</p>
+      </div>
+      <div class="flex h-12 items-center gap-3 border-none min-w-[800px]">
+        <div class="w-5 h-5 rounded-full bg-neutral-600 border border-neutral-400" />
+        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Text 3</p>
+        <div
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
+          Dark</div>
+        <p class="text-sm text-text dark:text-dtext w-[260px]">Placeholder, disabled</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#58677e</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-600</p>
+      </div>
+    </div>
 
     <h3 class="text-xl font-bold text-text dark:text-dtext pb-6 pt-12">Semantic Color</h3>
     <article class="text-text dark:text-dtext">
