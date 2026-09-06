@@ -1,7 +1,8 @@
 <template>
   <Transition>
     <div v-if="kMenuVisiable" role="dialog" aria-modal="true" aria-label="Search" class="fixed inset-0 z-40">
-      <button type="button" aria-label="Close search" class="background fixed inset-0 bg-black/20 dark:bg-black/80 backdrop-blur z-40 cursor-default"
+      <button type="button" aria-label="Close search"
+        class="background fixed inset-0 bg-black/20 dark:bg-black/80 backdrop-blur z-40 cursor-default"
         @click="close"></button>
       <div
         class="fixed top-12 left-3 right-3 sm:left-0 sm:right-0 max-w-xl mx-auto min-h-48 bg-white/80 dark:bg-dbg/80 backdrop-blur rounded shadow-xl p-3 flex flex-col z-50 max-h-[80vh]">
@@ -29,7 +30,14 @@
             <div class="text-center text-xs text-zinc-400 dark:text-slate-500">
               Type to search across all posts titles &amp; content
             </div>
-            <div class="text-sm text-zinc-400 px-2 pb-1">Tools</div>
+            <div class="text-sm text-zinc-400 px-2 pb-1">More Pages</div>
+            <NuxtLink to="/brand"
+              class="block px-3 py-2 rounded transition text-zinc-600 dark:text-slate-300 hover:bg-main/30 dark:hover:bg-slate-800"
+              @click="close">
+              TriPress Brand
+            </NuxtLink>
+
+            <div class="text-sm text-zinc-400 px-2 pb-1 pt-3">Tools</div>
             <button type="button" class="block w-full px-3 py-2 rounded text-left font-medium transition" :class="copied
               ? 'bg-green-400 text-text dark:text-dtext'
               : 'text-zinc-600 dark:text-slate-300 hover:bg-main/30 dark:hover:bg-slate-800'" @click="copyLink">
