@@ -195,6 +195,91 @@
       </div>
     </div>
 
+    <h4 class="text-lg font-bold text-text dark:text-dtext pt-8 pb-4">Structure</h4>
+
+    <div class="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
+        <div class="w-5 h-5 rounded-full bg-neutral-25 border border-neutral-400" />
+        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Input</p>
+        <div
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
+          Light</div>
+        <p class="text-sm text-text dark:text-dtext w-[260px]">Input fields, sunken area background</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#f9fafb</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-25</p>
+      </div>
+      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
+        <div class="w-5 h-5 rounded-full bg-neutral-200 border border-neutral-400" />
+        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Border 1</p>
+        <div
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
+          Light</div>
+        <p class="text-sm text-text dark:text-dtext w-[260px]">Default border, divider</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#d8dde4</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-200</p>
+      </div>
+      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
+        <div class="w-5 h-5 rounded-full bg-neutral-300 border border-neutral-400" />
+        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Border 2</p>
+        <div
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
+          Light</div>
+        <p class="text-sm text-text dark:text-dtext w-[260px]">Emphasized border, input hover</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#bdc5d1</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-300</p>
+      </div>
+      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
+        <div class="w-5 h-5 rounded-full bg-neutral-100 border border-neutral-400" />
+        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">List Hover</p>
+        <div
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
+          Light</div>
+        <p class="text-sm text-text dark:text-dtext w-[260px]">List item, menu item hover background</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#eaedf0</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-100</p>
+      </div>
+      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
+        <div class="w-5 h-5 rounded-full bg-neutral-900 border border-neutral-400" />
+        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Input</p>
+        <div
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
+          Dark</div>
+        <p class="text-sm text-text dark:text-dtext w-[260px]">Input fields, sunken area background</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#13161b</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-900</p>
+      </div>
+      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
+        <div class="w-5 h-5 rounded-full bg-neutral-700 border border-neutral-400" />
+        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Border 1</p>
+        <div
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
+          Dark</div>
+        <p class="text-sm text-text dark:text-dtext w-[260px]">Default border, divider</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#3f4a5a</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-700</p>
+      </div>
+      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
+        <div class="w-5 h-5 rounded-full bg-neutral-600 border border-neutral-400" />
+        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Border 2</p>
+        <div
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
+          Dark</div>
+        <p class="text-sm text-text dark:text-dtext w-[260px]">Emphasized border, input hover</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#58677e</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-600</p>
+      </div>
+      <div class="flex h-12 items-center gap-3 border-none min-w-[800px]">
+        <div class="w-5 h-5 rounded-full bg-neutral-800 border border-neutral-400" />
+        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">List Hover</p>
+        <div
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
+          Dark</div>
+        <p class="text-sm text-text dark:text-dtext w-[260px]">List item, menu item hover background</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#222831</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-800</p>
+      </div>
+    </div>
+
     <h3 class="text-xl font-bold text-text dark:text-dtext pb-6 pt-12">Semantic Color</h3>
     <article class="text-text dark:text-dtext">
       <p>Furthermore, three functional semantic colors are derived from the core primary hue, respectively applied to
