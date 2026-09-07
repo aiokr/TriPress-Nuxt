@@ -7,11 +7,11 @@
         Updated: {{ brandUpdatedAt }}</a>
     </div>
 
-    <h2 class="text-2xl font-bold text-text dark:text-dtext pb-6">Color System</h2>
+    <h2 class="text-2xl font-bold text-fg pb-6">Color System</h2>
 
-    <h3 class="text-xl font-bold text-text dark:text-dtext pb-6">Brand Color</h3>
+    <h3 class="text-xl font-bold text-fg pb-6">Brand Color</h3>
 
-    <article class="text-text dark:text-dtext">
+    <article class="text-fg">
       <p>The brand color palette of TriPress is anchored by sky blue as its
         primary hue, complemented by a vibrant
         orange that conveys fervor and intensity, and a cool purple that underscores calmness and composure, from which
@@ -21,7 +21,7 @@
 
     <div class="grid grid-cols-3 md:grid-cols-7 gap-4 pb-6">
       <ColorSwatch name="primary" hex="#71afdd" class="h-20 bg-main rounded text-white" />
-      <ColorSwatch name="accent-warm" hex="#efbf9a" class="h-20 bg-accent-warm rounded text-white" />
+      <ColorSwatch name="accent-warm" hex="#e69d65" class="h-20 bg-accent-warm rounded text-white" />
       <ColorSwatch name="accent-cold" hex="#8279d2" class="h-20 bg-accent-cold rounded text-white" />
     </div>
 
@@ -62,8 +62,8 @@
     </div>
 
 
-    <h3 class="text-xl font-bold text-text dark:text-dtext pt-12 pb-6">Foundational Color</h3>
-    <article class="text-text dark:text-dtext">
+    <h3 class="text-xl font-bold text-fg pt-12 pb-6">Foundational Color</h3>
+    <article class="text-fg">
       <p>Concurrently, foundational colors have been designated for the
         display of primary elements, including text and backgrounds, with the deliberate aim of ensuring maximum visual
         prominence and legibility.</p>
@@ -84,203 +84,203 @@
       <ColorSwatch name="neutral-900" hex="#13161b" class="bg-neutral-900 text-white" />
     </div>
 
-    <h4 class="text-lg font-bold text-text dark:text-dtext pt-8 pb-4">Background</h4>
+    <h4 class="text-lg font-bold text-fg pt-8 pb-4">Background</h4>
 
     <div class="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
       <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
         <div class="w-5 h-5 rounded-full bg-white border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Background 1</p>
+        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Background 1</p>
         <div
           class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
           Light</div>
-        <p class="text-sm text-text dark:text-dtext w-[260px]">Default element background</p>
+        <p class="text-sm text-fg w-[260px]">Default element background</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#FFFFFF</p>
         <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">white</p>
       </div>
       <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
         <div class="w-5 h-5 rounded-full bg-neutral-50 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Background 2</p>
+        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Background 2</p>
         <div
           class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
           Light</div>
-        <p class="text-sm text-text dark:text-dtext w-[260px]">Secondary background</p>
+        <p class="text-sm text-fg w-[260px]">Secondary background</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#f3f4f7</p>
         <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-50</p>
       </div>
       <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
         <div class="w-5 h-5 rounded-full bg-neutral-900 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Background 1</p>
+        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Background 1</p>
         <div
           class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
           Dark</div>
-        <p class="text-sm text-text dark:text-dtext w-[260px]">Default element background</p>
+        <p class="text-sm text-fg w-[260px]">Default element background</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#13161b</p>
         <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-900</p>
       </div>
       <div class="flex h-12 items-center gap-3 border-none min-w-[800px]">
         <div class="w-5 h-5 rounded-full bg-neutral-800 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Background 2</p>
+        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Background 2</p>
         <div
           class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
           Dark</div>
-        <p class="text-sm text-text dark:text-dtext w-[260px]">Secondary background</p>
+        <p class="text-sm text-fg w-[260px]">Secondary background</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#222831</p>
         <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-800</p>
       </div>
     </div>
 
-    <h4 class="text-lg font-bold text-text dark:text-dtext pt-8 pb-4">Text</h4>
+    <h4 class="text-lg font-bold text-fg pt-8 pb-4">Text</h4>
 
     <div class="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
       <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
         <div class="w-5 h-5 rounded-full bg-neutral-800 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Text 1</p>
+        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Text 1</p>
         <div
           class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
           Light</div>
-        <p class="text-sm text-text dark:text-dtext w-[260px]">Primary text, headings</p>
+        <p class="text-sm text-fg w-[260px]">Primary text, headings</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#222831</p>
         <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-800</p>
       </div>
       <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
         <div class="w-5 h-5 rounded-full bg-neutral-600 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Text 2</p>
+        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Text 2</p>
         <div
           class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
           Light</div>
-        <p class="text-sm text-text dark:text-dtext w-[260px]">Secondary text, captions</p>
+        <p class="text-sm text-fg w-[260px]">Secondary text, captions</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#58677e</p>
         <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-600</p>
       </div>
       <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
         <div class="w-5 h-5 rounded-full bg-neutral-400 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Text 3</p>
+        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Text 3</p>
         <div
           class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
           Light</div>
-        <p class="text-sm text-text dark:text-dtext w-[260px]">Placeholder, disabled</p>
+        <p class="text-sm text-fg w-[260px]">Placeholder, disabled</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#99a5b8</p>
         <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-400</p>
       </div>
       <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
         <div class="w-5 h-5 rounded-full bg-neutral-100 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Text 1</p>
+        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Text 1</p>
         <div
           class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
           Dark</div>
-        <p class="text-sm text-text dark:text-dtext w-[260px]">Primary text, headings</p>
+        <p class="text-sm text-fg w-[260px]">Primary text, headings</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#eaedf0</p>
         <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-100</p>
       </div>
       <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
         <div class="w-5 h-5 rounded-full bg-neutral-400 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Text 2</p>
+        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Text 2</p>
         <div
           class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
           Dark</div>
-        <p class="text-sm text-text dark:text-dtext w-[260px]">Secondary text, captions</p>
+        <p class="text-sm text-fg w-[260px]">Secondary text, captions</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#99a5b8</p>
         <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-400</p>
       </div>
       <div class="flex h-12 items-center gap-3 border-none min-w-[800px]">
         <div class="w-5 h-5 rounded-full bg-neutral-600 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Text 3</p>
+        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Text 3</p>
         <div
           class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
           Dark</div>
-        <p class="text-sm text-text dark:text-dtext w-[260px]">Placeholder, disabled</p>
+        <p class="text-sm text-fg w-[260px]">Placeholder, disabled</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#58677e</p>
         <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-600</p>
       </div>
     </div>
 
-    <h4 class="text-lg font-bold text-text dark:text-dtext pt-8 pb-4">Structure</h4>
+    <h4 class="text-lg font-bold text-fg pt-8 pb-4">Structure</h4>
 
     <div class="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
       <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
         <div class="w-5 h-5 rounded-full bg-neutral-25 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Input</p>
+        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Input</p>
         <div
           class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
           Light</div>
-        <p class="text-sm text-text dark:text-dtext w-[260px]">Input fields, sunken area background</p>
+        <p class="text-sm text-fg w-[260px]">Input fields, sunken area background</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#f9fafb</p>
         <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-25</p>
       </div>
       <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
         <div class="w-5 h-5 rounded-full bg-neutral-200 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Border 1</p>
+        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Border 1</p>
         <div
           class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
           Light</div>
-        <p class="text-sm text-text dark:text-dtext w-[260px]">Default border, divider</p>
+        <p class="text-sm text-fg w-[260px]">Default border, divider</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#d8dde4</p>
         <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-200</p>
       </div>
       <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
         <div class="w-5 h-5 rounded-full bg-neutral-300 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Border 2</p>
+        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Border 2</p>
         <div
           class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
           Light</div>
-        <p class="text-sm text-text dark:text-dtext w-[260px]">Emphasized border, input hover</p>
+        <p class="text-sm text-fg w-[260px]">Emphasized border, input hover</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#bdc5d1</p>
         <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-300</p>
       </div>
       <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
         <div class="w-5 h-5 rounded-full bg-neutral-100 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">List Hover</p>
+        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">List Hover</p>
         <div
           class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
           Light</div>
-        <p class="text-sm text-text dark:text-dtext w-[260px]">List item, menu item hover background</p>
+        <p class="text-sm text-fg w-[260px]">List item, menu item hover background</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#eaedf0</p>
         <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-100</p>
       </div>
       <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
         <div class="w-5 h-5 rounded-full bg-neutral-900 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Input</p>
+        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Input</p>
         <div
           class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
           Dark</div>
-        <p class="text-sm text-text dark:text-dtext w-[260px]">Input fields, sunken area background</p>
+        <p class="text-sm text-fg w-[260px]">Input fields, sunken area background</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#13161b</p>
         <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-900</p>
       </div>
       <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
         <div class="w-5 h-5 rounded-full bg-neutral-700 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Border 1</p>
+        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Border 1</p>
         <div
           class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
           Dark</div>
-        <p class="text-sm text-text dark:text-dtext w-[260px]">Default border, divider</p>
+        <p class="text-sm text-fg w-[260px]">Default border, divider</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#3f4a5a</p>
         <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-700</p>
       </div>
       <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
         <div class="w-5 h-5 rounded-full bg-neutral-600 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">Border 2</p>
+        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Border 2</p>
         <div
           class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
           Dark</div>
-        <p class="text-sm text-text dark:text-dtext w-[260px]">Emphasized border, input hover</p>
+        <p class="text-sm text-fg w-[260px]">Emphasized border, input hover</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#58677e</p>
         <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-600</p>
       </div>
       <div class="flex h-12 items-center gap-3 border-none min-w-[800px]">
         <div class="w-5 h-5 rounded-full bg-neutral-800 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-text dark:text-dtext w-[120px]">List Hover</p>
+        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">List Hover</p>
         <div
           class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
           Dark</div>
-        <p class="text-sm text-text dark:text-dtext w-[260px]">List item, menu item hover background</p>
+        <p class="text-sm text-fg w-[260px]">List item, menu item hover background</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#222831</p>
         <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-800</p>
       </div>
     </div>
 
-    <h3 class="text-xl font-bold text-text dark:text-dtext pb-6 pt-12">Semantic Color</h3>
-    <article class="text-text dark:text-dtext">
+    <h3 class="text-xl font-bold text-fg pb-6 pt-12">Semantic Color</h3>
+    <article class="text-fg">
       <p>Furthermore, three functional semantic colors are derived from the core primary hue, respectively applied to
         status feedback and informational prompts across various contexts. Among them, the "Info" indicator is
         directly
@@ -326,22 +326,61 @@
       </div>
     </div>
 
-    <h2 class="text-2xl font-bold text-text dark:text-dtext pb-6 pt-32">Combination</h2>
+    <h2 class="text-2xl font-bold text-fg pb-6 pt-32">Typography</h2>
+
+    <h3 class="text-xl font-bold text-fg pb-6">Type Scale</h3>
+
+    <div>
+      <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b py-5">
+        <p class="heading-1 text-fg">页面标题 Heading 1</p>
+        <p class="text-sm text-fg-subtle md:ml-auto">heading-1</p>
+      </div>
+      <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b py-5">
+        <p class="heading-2 text-fg">章节标题 Heading 2</p>
+        <p class="text-sm text-fg-subtle md:ml-auto">heading-2</p>
+      </div>
+      <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b py-5">
+        <p class="heading-3 text-fg">小节标题 Heading 3</p>
+        <p class="text-sm text-fg-subtle md:ml-auto">heading-3</p>
+      </div>
+      <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b py-5">
+        <p class="heading-4 text-fg">段落标题 Heading 4</p>
+        <p class="text-sm text-fg-subtle md:ml-auto">heading-4</p>
+      </div>
+      <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b py-5">
+        <p class="heading-5 text-fg">强调小标题 Heading 5</p>
+        <p class="text-sm text-fg-subtle md:ml-auto">heading-5</p>
+      </div>
+      <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b py-5">
+        <p class="heading-6 text-fg">眉题 Heading 6 · Eyebrow</p>
+        <p class="text-sm text-fg-subtle md:ml-auto">heading-6</p>
+      </div>
+      <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b py-5">
+        <p class="article-body text-fg">正文段落 Article Body</p>
+        <p class="text-sm text-fg-subtle md:ml-auto">article-body</p>
+      </div>
+      <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1  py-5">
+        <p class="caption text-fg-subtle">图注与辅助说明 Caption</p>
+        <p class="text-sm text-fg-subtle md:ml-auto">caption</p>
+      </div>
+    </div>
+
+    <h2 class="text-2xl font-bold text-fg pb-6 pt-32">Combination</h2>
 
     <div class="flex w-full gap-2 overflow-x-auto">
       <div class="flex-1 min-w-[85%] sm:min-w-0 w-full rounded bg-[#ffffff] border p-4 flex flex-col justify-between">
         <article>
-          <div class="text-lg font-bold pb-2 !text-[#222831]">在阳光下</div>
+          <div class="heading-3 font-bold pb-2 !text-[#222831]">在阳光下</div>
           <p class="!text-[#222831]">
             红日初升，其道大光。河出伏流，一泻汪洋。潜龙腾渊，鳞爪飞扬。乳虎啸谷，百兽震惶。
-            <span class="block w-full text-right !text-[#58677e]">
+            <span class="block w-full text-right !text-[#58677e] caption">
               ——《少年中国说》 梁启超
             </span>
           </p>
           <p class="!text-[#222831]">
             I too am not a bit tamed, I too am untranslatable, <br />
             I sound my barbaric yawp over the roofs of the world.
-            <span class="block w-full text-right !text-[#58677e]">
+            <span class="block w-full text-right !text-[#58677e] caption">
               — Walt Whitman, Song of Myself (1855)
             </span>
           </p>
@@ -350,10 +389,10 @@
       </div>
       <div class="flex-1 min-w-[85%] sm:min-w-0 w-full rounded  bg-[#13161b] border p-4 flex flex-col justify-between">
         <article>
-          <div class="text-lg font-bold pb-2 !text-[#eaedf0]">在月光下</div>
+          <div class="heading-3 font-bold pb-2 !text-[#eaedf0]">在月光下</div>
           <p class="!text-[#eaedf0]">
             庭下如积水空明，水中藻、荇交横，盖竹柏影也。
-            <span class="block w-full text-right !text-[#99a5b8]">
+            <span class="block w-full text-right !text-[#99a5b8] caption">
               ——《记承天寺夜游》 苏轼
             </span>
           </p>
@@ -362,7 +401,7 @@
             Here will we sit and let the sounds of music <br />
             Creep in our ears: soft stillness and the night <br />
             Become the touches of sweet harmony.
-            <span class="block w-full text-right !text-[#99a5b8]">
+            <span class="block w-full text-right !text-[#99a5b8] caption">
               — William Shakespeare, The Merchant of Venice, Act V, Scene 1
             </span>
           </p>
@@ -371,7 +410,7 @@
       </div>
     </div>
 
-    <h2 class="text-2xl font-bold text-text dark:text-dtext pb-6 pt-32">Reference</h2>
+    <h2 class="text-2xl font-bold text-fg pb-6 pt-32">Reference</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
       <div class="flex-1 flex flex-col rounded shadow-feature-card dark:shadow-feature-card-dark">
         <div class="bg-primary-800 text-white p-4 text-lg font-bold rounded-t">Kimi Brand</div>

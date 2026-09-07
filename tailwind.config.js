@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import plugin from 'tailwindcss/plugin'
+
 export default {
   content: [
     "*/components/**/*.{js,vue,ts}",
@@ -106,6 +108,73 @@ export default {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addComponents }) {
+      addComponents({
+        // 页面标题
+        '.heading-1': {
+          fontSize: '36px',
+          fontWeight: 700,
+          lineHeight: 1.2,
+          letterSpacing: '-0.035em',
+          '@media (max-width: 640px)': { fontSize: '30px' },
+        },
+        // 章节标题
+        '.heading-2': {
+          fontSize: '28px',
+          fontWeight: 600,
+          lineHeight: 1.3,
+          letterSpacing: '-0.028em',
+          '@media (max-width: 640px)': { fontSize: '24px' },
+        },
+        // 小节标题
+        '.heading-3': {
+          fontSize: '22px',
+          fontWeight: 600,
+          lineHeight: 1.4,
+          letterSpacing: '-0.02em',
+          '@media (max-width: 640px)': { fontSize: '20px' },
+        },
+        // 段落标题
+        '.heading-4': {
+          fontSize: '18px',
+          fontWeight: 600,
+          lineHeight: 1.5,
+          letterSpacing: '-0.012em',
+          '@media (max-width: 640px)': { fontSize: '17px' },
+        },
+        // 强调小标题
+        '.heading-5': {
+          fontSize: '16px',
+          fontWeight: 600,
+          lineHeight: 1.5,
+        },
+        // 眉题
+        '.heading-6': {
+          fontSize: '16px',
+          fontWeight: 500,
+          lineHeight: 1.5,
+          letterSpacing: '0.02em',
+          textTransform: 'uppercase',
+        },
+        // 正文段落
+        '.article-body': {
+          fontSize: '16px',
+          fontWeight: 400,
+          lineHeight: 1.75,
+          letterSpacing: '-0.003em',
+          textAlign: 'justify',
+          '@media (max-width: 640px)': { fontSize: '15.5px' },
+        },
+        // 图注与辅助说明
+        '.caption': {
+          fontSize: '14px',
+          fontWeight: 400,
+          lineHeight: 1.5,
+          color: 'var(--fg-muted)',
+        },
+      })
+    }),
+  ],
 }
 
