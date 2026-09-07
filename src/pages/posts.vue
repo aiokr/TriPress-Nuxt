@@ -39,7 +39,7 @@
                 'w-full text-left px-2 py-1.5 rounded text-sm transition-colors flex justify-between',
                 selectedCategory === ''
                   ? 'text-main font-semibold bg-main/10'
-                  : 'text-zinc-500 dark:text-dtext/70 hover:text-text dark:hover:text-dtext hover:bg-zinc-100 dark:hover:bg-dtext/10'
+                  : 'text-zinc-500 dark:text-dtext/70 hover:text-text hover:bg-hover'
               ]">
                 <span>全部</span>
                 <span class="inline-block w-5 text-xs text-zinc-400">{{ totalCount }}</span>
@@ -50,7 +50,7 @@
                 'w-full text-left px-2 py-1.5 rounded text-sm transition-colors flex justify-between',
                 selectedCategory === cat.name
                   ? 'text-main font-semibold bg-main/10'
-                  : 'text-zinc-500 dark:text-dtext/70 hover:text-text dark:hover:text-dtext hover:bg-zinc-100 dark:hover:bg-dtext/10'
+                  : 'text-zinc-500 dark:text-dtext/70 hover:text-text hover:bg-hover'
               ]">
                 <span>{{ cat.name }}</span>
                 <span class="inline-block w-5 text-xs text-zinc-400">{{ cat.count }}</span>
@@ -143,7 +143,7 @@ const filteredPosts = computed(() => {
 }
 
 .postCategory {
-  @apply text-xs font-semibold text-zinc-500 bg-zinc-100 py-2 px-2 rounded opacity-80 dark:bg-dtext/10 dark:text-dtext;
+  @apply text-xs font-semibold text-zinc-500 bg-zinc-100 py-2 px-2 rounded opacity-80 bg-subtle text-fg hover:bg-hover;
 }
 
 .marked {

@@ -13,79 +13,84 @@ export default {
   theme: {
     extend: {
       colors: {
-        // 主色系
+
         'main': '#71afdd', // 主色
-        'primary-50': '#eaf3fa', // 主色-50
-        'primary-100': '#cae1f2', // 主色-100
-        'primary-200': '#a0cae8', // 主色-200
-        'primary-300': '#71afdd', // 主色-300
-        'primary-400': '#4697d3', // 主色-400  
-        'primary-500': '#2c7db9', // 主色-500
-        'primary-600': '#236494', // 主色-600
-        'primary-700': '#1c4e73', // 主色-700
-        'primary-800': '#143852', // 主色-800
 
-        // 配色系
-        'accent-warm': '#e69d65', // 暖色配色
-        'accent-warm-50': '#fbf1e9', // 暖色-50
-        'accent-warm-100': '#f6dbc6', // 暖色-100
-        'accent-warm-200': '#efbf9a', // 暖色-200
-        'accent-warm-300': '#e69d65', // 暖色-300
-        'accent-warm-400': '#df813a', // 暖色-400
-        'accent-warm-500': '#c56820', // 暖色-500
-        'accent-warm-600': '#9e531a', // 暖色-600
-        'accent-warm-700': '#7b4114', // 暖色-700
-        'accent-warm-800': '#582e0e', // 暖色-800
+        // 主色
+        primary: {
+          DEFAULT: '#71afdd',
+          50: '#eaf3fa',
+          100: '#cae1f2',
+          200: '#a0cae8',
+          300: '#71afdd',
+          400: '#4697d3',
+          500: '#2c7db9',
+          600: '#236494',
+          700: '#1c4e73',
+          800: '#143852',
+        },
 
-        'accent-cold': '#8279d2', // 冷色配色
-        'accent-cold-50': '#edecf9', // 冷色-50
-        'accent-cold-100': '#d1cdee', // 冷色-100
-        'accent-cold-200': '#ada7e2', // 冷色-200
-        'accent-cold-300': '#8279d2', // 冷色-300
-        'accent-cold-400': '#5e53c6', // 冷色-400
-        'accent-cold-500': '#4539ac', // 冷色-500
-        'accent-cold-600': '#372e8a', // 冷色-600
-        'accent-cold-700': '#2b246b', // 冷色-700
-        'accent-cold-800': '#1f194d', // 冷色-800
+        // 配色
+        accent: {
+          warm: {
+            DEFAULT: '#e69d65',
+            50: '#fbf1e9', 100: '#f6dbc6', 200: '#efbf9a', 300: '#e69d65',
+            400: '#df813a', 500: '#c56820', 600: '#9e531a', // 600 = 白底文字安全档
+            700: '#7b4114', 800: '#582e0e',
+          },
+          cold: {
+            DEFAULT: '#8279d2',
+            50: '#edecf9', 100: '#d1cdee', 200: '#ada7e2', 300: '#8279d2',
+            400: '#5e53c6', // 400 = 白底文字安全档
+            500: '#4539ac', 600: '#372e8a', 700: '#2b246b', 800: '#1f194d',
+          },
+        },
 
-        // 辅助色系
-        'text': '#222831', // 浅色文字主色
-        'dtext': '#eaedf0', // 暗色文字主色
-        'sub-text': '#58677e', // 浅色辅助文字
-        'dsub-text': '#99a5b8', // 暗色辅助文字
-        'dbg': '#13161b', // 暗色模式背景
-        'sub-bg': '#f3f4f7', // 辅助背景
-        'dsub-bg': '#222831', // 暗色辅助背景
+        // 中性色
+        neutral: {
+          25: '#f9fafb',
+          50: '#f3f4f7',
+          100: '#eaedf0',
+          200: '#d8dde4',
+          300: '#bdc5d1',
+          400: '#99a5b8',
+          500: '#74859f',
+          600: '#58677e',
+          700: '#3f4a5a',
+          800: '#222831',
+          900: '#13161b',
+        },
 
-        // 中性色阶
-        'neutral-25': '#f9fafb', // 浅色底色
-        'neutral-50': '#f3f4f7', 
-        'neutral-100': '#eaedf0', // 暗色文字主色 // 浅色悬停填充
-        'neutral-200': '#d8dde4', // 浅色默认边框
-        'neutral-300': '#bdc5d1', // 浅色强调边框
-        'neutral-400': '#99a5b8', // 暗色辅助文字 // 浅色禁用标识
-        'neutral-500': '#74859f',
-        'neutral-600': '#58677e', // 浅色辅助文字 // 暗色禁用标识 // 暗色强调边框
-        'neutral-700': '#3f4a5a', // 暗色卡片底色 // 暗色默认边框
-        'neutral-800': '#222831', // 浅色文字主色 // 暗色悬停填充
-        'neutral-900': '#13161b', // 暗色底色
+        // 语义色
+        success: { DEFAULT: '#3fa97a', bg: '#e6f5ee', text: '#1e6b4c' },
+        warning: { DEFAULT: '#e0a23c', bg: '#fbf1de', text: '#96620f' },
+        danger: { DEFAULT: '#d95d5d', bg: '#faeaea', text: '#a83232' },
+        info: { DEFAULT: '#71afdd', bg: '#eaf3fa', text: '#236494' },
 
-        // 语义色系
-        'success': '#3fa97a', // 成功色
-        'success-bg': '#e6f5ee', // 成功色背景
-        'success-text': '#1e6b4c', // 成功色文字
+        // 辅助色
+        canvas: 'var(--bg-canvas)',       // 主背景，绝大多数场景  
+        subtle: 'var(--bg-subtle)',       // 淡灰分区（侧栏、代码块，少用）
+        sunken: 'var(--bg-sunken)',       // 输入框、凹陷区
+        fg: {
+          DEFAULT: 'var(--fg)',           // 主要文字、标题
+          muted: 'var(--fg-muted)',       // 次要文字、说明信息
+          subtle: 'var(--fg-subtle)',     // 占位、禁用（不承担信息）
+        },
+        line: {
+          DEFAULT: 'var(--line)',          // 默认边框、分隔线
+          strong: 'var(--line-strong)',    // 强调边框、输入框 hover
+        },
+        hover: 'var(--fill-hover)',        // 列表项、菜单项悬停底色
 
-        'warning': '#e0a23c', // 警告色
-        'warning-bg': '#fbf1de', // 警告色背景
-        'warning-text': '#96620f', // 警告色文字
+        // 辅助色系 // 保留兼容性
+        'text': 'var(--fg)',
+        'dtext': 'var(--fg)',
+        'sub-text': 'var(--fg-subtle)',
+        'dsub-text': 'var(--fg-subtle)',
+        'dbg': 'var(--bg-canvas)',
+        'sub-bg': 'var(--bg-subtle)',
+        'dsub-bg': 'var(--bg-subtle)',
 
-        'danger': '#d95d5d ', // 危险色
-        'danger-bg': '#faeaea ', // 危险色背景
-        'danger-text': '#a83232', // 危险色文字
-
-        'info': '#71afdd ', // 信息色
-        'info-bg': '#eaf3fa', // 信息色背景
-        'info-text': '#236494', // 信息色文字
       },
       borderColor: {
         DEFAULT: 'var(--border-color)',

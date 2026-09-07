@@ -2,10 +2,10 @@
   <Transition>
     <div v-if="kMenuVisiable" role="dialog" aria-modal="true" aria-label="Search" class="fixed inset-0 z-40">
       <button type="button" aria-label="Close search"
-        class="background fixed inset-0 bg-black/20 dark:bg-black/80 backdrop-blur z-40 cursor-default"
+        class="background fixed inset-0 bg-black/20 dark:bg-black/20 backdrop-blur z-40 cursor-default overflow-hidden"
         @click="close"></button>
       <div
-        class="fixed top-12 left-3 right-3 sm:left-0 sm:right-0 max-w-xl mx-auto min-h-48 bg-white/80 dark:bg-dbg/80 backdrop-blur rounded shadow-xl p-3 flex flex-col z-50 max-h-[80vh]">
+        class="fixed top-12 left-3 right-3 sm:left-0 sm:right-0 max-w-xl mx-auto min-h-48 bg-white/80 dark:bg-neutral-800/80 backdrop-blur rounded shadow-xl p-3 flex flex-col z-50 max-h-[80vh]">
         <label for="kmenu-search-input" class="sr-only">Search</label>
         <input id="kmenu-search-input" ref="inputRef" v-model="kSearch" type="search"
           placeholder="Search posts (title & content)" autocomplete="off" spellcheck="false"
@@ -27,7 +27,7 @@
           </div>
           <!-- 空查询：提示 + 功能链接 -->
           <div v-else-if="!kSearch.trim()" class="py-4 flex flex-col">
-            <div class="text-center text-xs text-zinc-400 dark:text-slate-500 pb-4">
+            <div class="text-center text-xs text-zinc-400 dark:text-slate-500">
               Type to search across all posts titles &amp; content
             </div>
             <div class="text-sm text-zinc-400 px-2 pb-1">More Pages</div>
@@ -39,9 +39,9 @@
 
             <div class="text-sm text-zinc-400 px-2 pb-1 pt-3">Tools</div>
             <button type="button" class="block w-full px-3 py-2 rounded text-left font-medium transition" :class="copied
-              ? 'bg-green-400 text-text dark:text-dtext'
+              ? 'bg-success text-text dark:text-dtext'
               : 'text-zinc-600 dark:text-slate-300 hover:bg-main/30 dark:hover:bg-slate-800'" @click="copyLink">
-              {{ copied ? 'Link copied' : 'Copy current page link' }}
+              {{ copied ? 'Link copied!' : 'Copy current page link' }}
             </button>
             <button type="button" class="block w-full px-3 py-2 rounded text-left font-medium transition" :class="showQr
               ? 'bg-main/15 text-text dark:text-dtext'

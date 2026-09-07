@@ -3,7 +3,8 @@
     <div class="flex flex-col items-center justify-center pb-12 ">
       <div class="text-4xl font-bold text-text text-center dark:text-dtext pb-2">TriPress Brand</div>
       <a v-if="brandUpdatedAt" class="inline-block text-sm text-sub-text dark:text-dtext text-center pb-12"
-        href="https://github.com/aiokr/TriPress-Nuxt/" target="_blank">Last Updated: {{ brandUpdatedAt }}</a>
+        href="https://github.com/aiokr/TriPress-Nuxt/commits/master/src/pages/brand/index.vue" target="_blank">Last
+        Updated: {{ brandUpdatedAt }}</a>
     </div>
 
     <h2 class="text-2xl font-bold text-text dark:text-dtext pb-6">Color System</h2>
@@ -25,9 +26,9 @@
     </div>
 
     <div class="w-full h-48 md:h-16 overflow-hidden rounded mb-4 grid grid-cols-4 md:grid-cols-9">
-      <ColorSwatch name="primary-50" hex="#eaf3fa" class="bg-primary-50 text-text" />
-      <ColorSwatch name="primary-100" hex="#cae1f2" class="bg-primary-100 text-text" />
-      <ColorSwatch name="primary-200" hex="#a0cae8" class="bg-primary-200 text-text" />
+      <ColorSwatch name="primary-50" hex="#eaf3fa" class="bg-primary-50 text-[#222831]" />
+      <ColorSwatch name="primary-100" hex="#cae1f2" class="bg-primary-100 text-[#222831]" />
+      <ColorSwatch name="primary-200" hex="#a0cae8" class="bg-primary-200 text-[#222831]" />
       <ColorSwatch name="primary-300" hex="#71afdd" class="bg-primary-300 text-white" />
       <ColorSwatch name="primary-400" hex="#4697d3" class="bg-primary-400 text-white" />
       <ColorSwatch name="primary-500" hex="#2c7db9" class="bg-primary-500 text-white" />
@@ -37,9 +38,9 @@
     </div>
 
     <div class="w-full h-48 md:h-16 overflow-hidden rounded mb-4 grid grid-cols-4 md:grid-cols-9">
-      <ColorSwatch name="accent-warm-50" hex="#fbf1e9" class="bg-accent-warm-50 text-text" />
-      <ColorSwatch name="accent-warm-100" hex="#f6dbc6" class="bg-accent-warm-100 text-text" />
-      <ColorSwatch name="accent-warm-200" hex="#efbf9a" class="bg-accent-warm-200 text-text" />
+      <ColorSwatch name="accent-warm-50" hex="#fbf1e9" class="bg-accent-warm-50 text-[#222831]" />
+      <ColorSwatch name="accent-warm-100" hex="#f6dbc6" class="bg-accent-warm-100 text-[#222831]" />
+      <ColorSwatch name="accent-warm-200" hex="#efbf9a" class="bg-accent-warm-200 text-[#222831]" />
       <ColorSwatch name="accent-warm-300" hex="#e69d65" class="bg-accent-warm-300 text-white" />
       <ColorSwatch name="accent-warm-400" hex="#df813a" class="bg-accent-warm-400 text-white" />
       <ColorSwatch name="accent-warm-500" hex="#c56820" class="bg-accent-warm-500 text-white" />
@@ -49,9 +50,9 @@
     </div>
 
     <div class="w-full h-48 md:h-16 overflow-hidden rounded mb-4 grid grid-cols-4 md:grid-cols-9">
-      <ColorSwatch name="accent-cold-50" hex="#edecf9" class="bg-accent-cold-50 text-text" />
-      <ColorSwatch name="accent-cold-100" hex="#d1cdee" class="bg-accent-cold-100 text-text" />
-      <ColorSwatch name="accent-cold-200" hex="#ada7e2" class="bg-accent-cold-200 text-text" />
+      <ColorSwatch name="accent-cold-50" hex="#edecf9" class="bg-accent-cold-50 text-[#222831]" />
+      <ColorSwatch name="accent-cold-100" hex="#d1cdee" class="bg-accent-cold-100 text-[#222831]" />
+      <ColorSwatch name="accent-cold-200" hex="#ada7e2" class="bg-accent-cold-200 text-[#222831]" />
       <ColorSwatch name="accent-cold-300" hex="#8279d2" class="bg-accent-cold-300 text-white" />
       <ColorSwatch name="accent-cold-400" hex="#5e53c6" class="bg-accent-cold-400 text-white" />
       <ColorSwatch name="accent-cold-500" hex="#4539ac" class="bg-accent-cold-500 text-white" />
@@ -70,12 +71,12 @@
     </article>
 
     <div class="w-full h-48 md:h-16 overflow-hidden rounded mb-4 grid grid-cols-4 md:grid-cols-11">
-      <ColorSwatch name="neutral-25" hex="#f9fafb" class="bg-neutral-25 text-text" />
-      <ColorSwatch name="neutral-50" hex="#f3f4f7" class="bg-neutral-50 text-text" />
-      <ColorSwatch name="neutral-100" hex="#eaedf0" class="bg-neutral-100 text-text" />
-      <ColorSwatch name="neutral-200" hex="#d8dde4" class="bg-neutral-200 text-text" />
-      <ColorSwatch name="neutral-300" hex="#bdc5d1" class="bg-neutral-300 text-text" />
-      <ColorSwatch name="neutral-400" hex="#99a5b8" class="bg-neutral-400 text-text" />
+      <ColorSwatch name="neutral-25" hex="#f9fafb" class="bg-neutral-25 text-[#222831]" />
+      <ColorSwatch name="neutral-50" hex="#f3f4f7" class="bg-neutral-50 text-[#222831]" />
+      <ColorSwatch name="neutral-100" hex="#eaedf0" class="bg-neutral-100 text-[#222831]" />
+      <ColorSwatch name="neutral-200" hex="#d8dde4" class="bg-neutral-200 text-[#222831]" />
+      <ColorSwatch name="neutral-300" hex="#bdc5d1" class="bg-neutral-300 text-[#222831]" />
+      <ColorSwatch name="neutral-400" hex="#99a5b8" class="bg-neutral-400 text-[#222831]" />
       <ColorSwatch name="neutral-500" hex="#74859f" class="bg-neutral-500 text-white" />
       <ColorSwatch name="neutral-600" hex="#58677e" class="bg-neutral-600 text-white" />
       <ColorSwatch name="neutral-700" hex="#3f4a5a" class="bg-neutral-700 text-white" />
@@ -328,40 +329,40 @@
     <h2 class="text-2xl font-bold text-text dark:text-dtext pb-6 pt-32">Combination</h2>
 
     <div class="flex w-full gap-2 overflow-x-auto">
-      <div class="flex-1 min-w-[85%] sm:min-w-0 w-full rounded bg-white border p-4 flex flex-col justify-between">
+      <div class="flex-1 min-w-[85%] sm:min-w-0 w-full rounded bg-[#ffffff] border p-4 flex flex-col justify-between">
         <article>
-          <div class="text-lg font-bold pb-2 !text-text">在阳光下</div>
-          <p class="!text-text">
+          <div class="text-lg font-bold pb-2 !text-[#222831]">在阳光下</div>
+          <p class="!text-[#222831]">
             红日初升，其道大光。河出伏流，一泻汪洋。潜龙腾渊，鳞爪飞扬。乳虎啸谷，百兽震惶。
-            <span class="block w-full text-right !text-sub-text">
+            <span class="block w-full text-right !text-[#58677e]">
               ——《少年中国说》 梁启超
             </span>
           </p>
-          <p class="!text-text">
+          <p class="!text-[#222831]">
             I too am not a bit tamed, I too am untranslatable, <br />
             I sound my barbaric yawp over the roofs of the world.
-            <span class="block w-full text-right !text-sub-text">
+            <span class="block w-full text-right !text-[#58677e]">
               — Walt Whitman, Song of Myself (1855)
             </span>
           </p>
         </article>
         <BrandColorPalette />
       </div>
-      <div class="flex-1 min-w-[85%] sm:min-w-0 w-full rounded  bg-dsub-bg border p-4 flex flex-col justify-between">
+      <div class="flex-1 min-w-[85%] sm:min-w-0 w-full rounded  bg-[#13161b] border p-4 flex flex-col justify-between">
         <article>
-          <div class="text-lg font-bold pb-2 text-dtext">在月光下</div>
-          <p class="text-dtext">
+          <div class="text-lg font-bold pb-2 !text-[#eaedf0]">在月光下</div>
+          <p class="!text-[#eaedf0]">
             庭下如积水空明，水中藻、荇交横，盖竹柏影也。
-            <span class="block w-full text-right !text-dsub-text">
+            <span class="block w-full text-right !text-[#99a5b8]">
               ——《记承天寺夜游》 苏轼
             </span>
           </p>
-          <p class="text-dtext">
+          <p class="!text-[#eaedf0]">
             How sweet the moonlight sleeps upon this bank! <br />
             Here will we sit and let the sounds of music <br />
             Creep in our ears: soft stillness and the night <br />
             Become the touches of sweet harmony.
-            <span class="block w-full text-right !text-dsub-text">
+            <span class="block w-full text-right !text-[#99a5b8]">
               — William Shakespeare, The Merchant of Venice, Act V, Scene 1
             </span>
           </p>

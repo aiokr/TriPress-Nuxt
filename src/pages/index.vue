@@ -172,7 +172,7 @@ const totalStats = computed(() => {
 }
 
 .postCategory {
-  @apply text-xs font-semibold text-zinc-500 bg-zinc-100 p-2 rounded-lg opacity-80 dark:bg-dtext/10 dark:text-dtext;
+  @apply text-xs font-semibold text-zinc-500 bg-zinc-100 p-2 rounded-lg opacity-80 bg-subtle text-fg;
 }
 
 .travlePlanAlready {
