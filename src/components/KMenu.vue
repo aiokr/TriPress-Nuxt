@@ -27,7 +27,7 @@
           </div>
           <!-- 空查询：提示 + 功能链接 -->
           <div v-else-if="!kSearch.trim()" class="py-4 flex flex-col">
-            <div class="text-center text-xs text-zinc-400 dark:text-slate-500">
+            <div class="text-center text-xs text-zinc-400 dark:text-slate-500 pb-4">
               Type to search across all posts titles &amp; content
             </div>
             <div class="text-sm text-zinc-400 px-2 pb-1">More Pages</div>
