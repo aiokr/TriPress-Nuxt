@@ -19,11 +19,9 @@
     </article>
 
     <div class="grid grid-cols-3 md:grid-cols-7 gap-4 pb-6">
-      <div class="flex-1 h-20 bg-main rounded flex items-end justify-start p-2 text-white uppercase">#71afdd</div>
-      <div class="flex-1 h-20 bg-accent-warm rounded flex items-end justify-start p-2 text-white uppercase">#efbf9a
-      </div>
-      <div class="flex-1 h-20 bg-accent-cold rounded flex items-end justify-start p-2 text-white uppercase">#8279d2
-      </div>
+      <ColorSwatch name="primary" hex="#71afdd" class="h-20 bg-main rounded text-white" />
+      <ColorSwatch name="accent-warm" hex="#efbf9a" class="h-20 bg-accent-warm rounded text-white" />
+      <ColorSwatch name="accent-cold" hex="#8279d2" class="h-20 bg-accent-cold rounded text-white" />
     </div>
 
     <div class="w-full h-48 md:h-16 overflow-hidden rounded mb-4 grid grid-cols-4 md:grid-cols-9">
