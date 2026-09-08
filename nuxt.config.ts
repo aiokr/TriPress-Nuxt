@@ -142,6 +142,7 @@ export default defineNuxtConfig({
         '~~/transformers/geojson',
       ],
       markdown: {
+        contentHeading: false,
         toc: {
           depth: 4,
           searchDepth: 4

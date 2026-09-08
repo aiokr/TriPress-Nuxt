@@ -1,11 +1,11 @@
 <template>
   <div class="container max-w-[1000px] mx-auto px-4 py-12 min-h-[60vh]">
     <div class="pb-6">
-      <div class="text-2xl font-bold text-text dark:text-dtext pb-6">文档</div>
+      <div class="text-2xl font-bold text-text dark:text-dtext pb-6">Tripper Press Docs Center</div>
       <hr />
     </div>
     <div v-if="!seriesList.length" class="text-zinc-400 dark:text-dtext/60 text-sm py-12 text-center">
-      暂无文档
+      No docs yet
     </div>
     <section v-for="series in seriesList" :key="series.key" class="mb-10">
       <div class="flex items-baseline gap-3 pb-3">
@@ -15,7 +15,7 @@
           </NuxtLink>
           <span v-else>{{ series.name }}</span>
         </h2>
-        <span class="text-xs text-zinc-400 dark:text-dtext/60">{{ series.docs.length }} 篇</span>
+        <span class="text-xs text-zinc-400 dark:text-dtext/60">{{ series.docs.length }} docs</span>
       </div>
       <p v-if="series.description" class="text-sm text-zinc-500 dark:text-dtext/70 pb-3">{{ series.description }}</p>
       <ul class="space-y-1">
@@ -38,10 +38,10 @@ definePageMeta({
   layout: 'default',
 })
 
-useHead({ title: '文档' })
+useHead({ title: 'Docs' })
 useSeoMeta({
-  title: '文档 - Tripper Press',
-  ogTitle: '文档 - Tripper Press',
+  title: 'Docs - Tripper Press',
+  ogTitle: 'Docs - Tripper Press',
   description: 'Take Photo, Think Seriously',
   ogDescription: 'Take Photo, Think Seriously',
 })
