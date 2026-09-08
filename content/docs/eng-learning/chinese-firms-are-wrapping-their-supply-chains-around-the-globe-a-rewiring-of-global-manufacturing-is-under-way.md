@@ -2,9 +2,6 @@
 title: Chinese firms are wrapping their supply chains around the globe
 date: 2026-08-20
 source: https://github.com/hehonghui/awesome-english-ebooks/tree/master/01_economist/te_2026.08.22
-type: post
-category: 
-  - The Economist
 ---
 A rewiring of global manufacturing is under way
 
@@ -36,7 +33,7 @@ The pace of this investment has **accelerated sharply**. In the past three years
 - Second, they have grown deeper, with many Chinese suppliers following manufacturers into new sites, replicating the tight-knit ecosystems back home. 
 - Third, they are increasingly dominated by strategic industries, from electric vehicles and clean energy to data-centre gear. The consequence is that a rewiring of global manufacturing is under way.
 
-![](/post/2026/eng-leanrning/images/image.png)
+![](/docs/eng-learning/images/image.png)
 
 > accelerated: 加速
 > 

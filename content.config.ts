@@ -22,6 +22,19 @@ export default defineContentConfig({
         description: z.string().optional(),
       })
     }),
+    docs: defineCollection({
+      type: 'page',
+      source: [{ include: 'docs/**/*.md' }],
+      schema: z.object({
+        title: z.string(),
+        series: z.string().optional(),
+        lang: z.enum(['en', 'zh']).default('en'),
+        date: z.string().optional(),
+        order: z.number().optional(),
+        description: z.string().optional(),
+        source: z.string().optional(),
+      })
+    }),
     travel: defineCollection({
       type: 'data',
       source: [{ include: 'travel/**/*.yaml' }],
