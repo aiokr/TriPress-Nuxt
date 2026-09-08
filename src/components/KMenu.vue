@@ -37,6 +37,12 @@
               TriPress Brand
             </NuxtLink>
 
+            <NuxtLink to="/lab"
+              class="block px-3 py-2 rounded transition text-zinc-600 dark:text-slate-300 hover:bg-main/30 dark:hover:bg-slate-800"
+              @click="close">
+              Lab
+            </NuxtLink>
+
             <div class="text-sm text-zinc-400 px-2 pb-1 pt-3">Tools</div>
             <button type="button" class="block w-full px-3 py-2 rounded text-left font-medium transition" :class="copied
               ? 'bg-success text-text dark:text-dtext'
