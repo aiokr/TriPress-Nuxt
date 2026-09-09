@@ -1,10 +1,6 @@
 <template>
-  <main :class="[
-    'container mx-auto bg-white/60 dark:bg-[#13161b]/80 backdrop-blur sticky top-0 px-4 z-10',
-    isDocsRoute
-      ? 'max-w-full border-b border-gray-200 dark:border-zinc-800'
-      : 'max-w-[1040px] rounded-b-2xl shadow-lg shadow-gray-100/50 dark:shadow-zinc-900/25'
-  ]">
+  <main
+    class="container mx-auto bg-white/60 dark:bg-[#13161b]/80 backdrop-blur sticky top-0 px-4 z-10 max-w-full border-b border-gray-200 dark:border-zinc-800">
     <div class="container max-w-[1200px] mx-auto px-3 flex items-center justify-between  h-16">
       <router-link to="/">
         <img src="https://imgur.lzmun.com/picgo/after2022/tripper2whitefull.png_avatar" alt="logo"
@@ -43,9 +39,6 @@
 
 <script setup lang="ts">
 const headerMenuOpen = ref(false);
-
-const route = useRoute();
-const isDocsRoute = computed(() => route.path.startsWith('/docs'));
 
 // 命令按钮：直接打开搜索面板（再次点击会由 KMenu 内部的快捷键逻辑维持，这里只负责"打开"）
 const { open: openKMenu } = useKMenu();
