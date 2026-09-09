@@ -2,8 +2,16 @@
   <aside class="hidden md:block w-64 shrink-0">
     <div class="sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto no-scrollbar px-4 py-6">
       <nav v-if="group">
-        <div class="px-2 pb-2 text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
-          {{ group.displayName }}
+        <div class="px-2 pb-2 text-xs font-semibold uppercase tracking-wider">
+          <NuxtLink v-if="group.indexPath" :to="group.indexPath" :class="[
+            'block rounded transition-colors',
+            isCurrent(group.indexPath)
+              ? 'text-main'
+              : 'text-zinc-400 dark:text-zinc-500 hover:text-text dark:hover:text-dtext'
+          ]">
+            {{ group.displayName }}
+          </NuxtLink>
+          <span v-else class="text-zinc-400 dark:text-zinc-500">{{ group.displayName }}</span>
         </div>
         <ul class="space-y-1">
           <li v-for="doc in group.docs" :key="doc.path">
@@ -19,7 +27,7 @@
         </ul>
       </nav>
       <div v-else class="px-2 text-sm text-zinc-400 dark:text-dtext/60">
-        暂无文档
+        No docs yet
       </div>
     </div>
   </aside>
@@ -66,6 +74,7 @@ const group = computed(() => {
     .sort((a, b) => (a.order ?? 999) - (b.order ?? 999) || (b.date ?? '').localeCompare(a.date ?? ''))
   return {
     displayName: indexDoc?.title ?? props.series,
+    indexPath: indexDoc?.path,
     docs: articles,
   }
 })
