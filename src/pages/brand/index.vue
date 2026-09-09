@@ -1,448 +1,33 @@
 <template>
-  <section class="container max-w-[1000px] mx-auto pt-24 px-4">
-    <div class="flex flex-col items-center justify-center pb-12 ">
-      <div class="text-4xl font-bold text-text text-center dark:text-dtext pb-2">TriPress Brand</div>
-      <a v-if="brandUpdatedAt" class="inline-block text-sm text-sub-text dark:text-dtext text-center pb-12"
-        href="https://github.com/aiokr/TriPress-Nuxt/commits/master/src/pages/brand/index.vue" target="_blank">Last
+  <section class="max-w-[1000px] mx-auto py-10 lg:py-16">
+    <div class="pb-4">
+      <h1 class="heading-1 text-fg pb-4">TriPress Brand Guidelines</h1>
+      <p class="article-body text-fg-muted">
+        The design language of TriPress: color, typography, and the principles that keep every surface consistent.
+      </p>
+      <a v-if="brandUpdatedAt" class="inline-block text-sm text-sub-text dark:text-dsub-text pt-4"
+        href="https://github.com/aiokr/TriPress-Nuxt/commits/master/src/pages/brand" target="_blank">Last
         Updated: {{ brandUpdatedAt }}</a>
     </div>
 
-    <h2 class="text-2xl font-bold text-fg pb-6">Color System</h2>
-
-    <h3 class="text-xl font-bold text-fg pb-6">Brand Color</h3>
-
-    <article class="text-fg">
-      <p>The brand color palette of TriPress is anchored by sky blue as its
-        primary hue, complemented by a vibrant
-        orange that conveys fervor and intensity, and a cool purple that underscores calmness and composure, from which
-        a nine-tier chromatic scale is derived.</p>
-      <p>TriPress 品牌视觉体系以天空蓝为核心主色，辅以表现热烈张力的橙色与传递冷静质感的紫色作为品牌辅色，并在此基础上构建包含九个层级的色阶系统。</p>
-    </article>
-
-    <div class="grid grid-cols-3 md:grid-cols-7 gap-4 pb-6">
-      <ColorSwatch name="primary" hex="#71afdd" class="h-20 bg-main rounded text-white" />
-      <ColorSwatch name="accent-warm" hex="#e69d65" class="h-20 bg-accent-warm rounded text-white" />
-      <ColorSwatch name="accent-cold" hex="#8279d2" class="h-20 bg-accent-cold rounded text-white" />
-    </div>
-
-    <div class="w-full h-48 md:h-16 overflow-hidden rounded mb-4 grid grid-cols-4 md:grid-cols-9">
-      <ColorSwatch name="primary-50" hex="#eaf3fa" class="bg-primary-50 text-[#222831]" />
-      <ColorSwatch name="primary-100" hex="#cae1f2" class="bg-primary-100 text-[#222831]" />
-      <ColorSwatch name="primary-200" hex="#a0cae8" class="bg-primary-200 text-[#222831]" />
-      <ColorSwatch name="primary-300" hex="#71afdd" class="bg-primary-300 text-white" />
-      <ColorSwatch name="primary-400" hex="#4697d3" class="bg-primary-400 text-white" />
-      <ColorSwatch name="primary-500" hex="#2c7db9" class="bg-primary-500 text-white" />
-      <ColorSwatch name="primary-600" hex="#236494" class="bg-primary-600 text-white" />
-      <ColorSwatch name="primary-700" hex="#1c4e73" class="bg-primary-700 text-white" />
-      <ColorSwatch name="primary-800" hex="#143852" class="bg-primary-800 text-white" />
-    </div>
-
-    <div class="w-full h-48 md:h-16 overflow-hidden rounded mb-4 grid grid-cols-4 md:grid-cols-9">
-      <ColorSwatch name="accent-warm-50" hex="#fbf1e9" class="bg-accent-warm-50 text-[#222831]" />
-      <ColorSwatch name="accent-warm-100" hex="#f6dbc6" class="bg-accent-warm-100 text-[#222831]" />
-      <ColorSwatch name="accent-warm-200" hex="#efbf9a" class="bg-accent-warm-200 text-[#222831]" />
-      <ColorSwatch name="accent-warm-300" hex="#e69d65" class="bg-accent-warm-300 text-white" />
-      <ColorSwatch name="accent-warm-400" hex="#df813a" class="bg-accent-warm-400 text-white" />
-      <ColorSwatch name="accent-warm-500" hex="#c56820" class="bg-accent-warm-500 text-white" />
-      <ColorSwatch name="accent-warm-600" hex="#9e531a" class="bg-accent-warm-600 text-white" />
-      <ColorSwatch name="accent-warm-700" hex="#7b4114" class="bg-accent-warm-700 text-white" />
-      <ColorSwatch name="accent-warm-800" hex="#582e0e" class="bg-accent-warm-800 text-white" />
-    </div>
-
-    <div class="w-full h-48 md:h-16 overflow-hidden rounded mb-4 grid grid-cols-4 md:grid-cols-9">
-      <ColorSwatch name="accent-cold-50" hex="#edecf9" class="bg-accent-cold-50 text-[#222831]" />
-      <ColorSwatch name="accent-cold-100" hex="#d1cdee" class="bg-accent-cold-100 text-[#222831]" />
-      <ColorSwatch name="accent-cold-200" hex="#ada7e2" class="bg-accent-cold-200 text-[#222831]" />
-      <ColorSwatch name="accent-cold-300" hex="#8279d2" class="bg-accent-cold-300 text-white" />
-      <ColorSwatch name="accent-cold-400" hex="#5e53c6" class="bg-accent-cold-400 text-white" />
-      <ColorSwatch name="accent-cold-500" hex="#4539ac" class="bg-accent-cold-500 text-white" />
-      <ColorSwatch name="accent-cold-600" hex="#372e8a" class="bg-accent-cold-600 text-white" />
-      <ColorSwatch name="accent-cold-700" hex="#2b246b" class="bg-accent-cold-700 text-white" />
-      <ColorSwatch name="accent-cold-800" hex="#1f194d" class="bg-accent-cold-800 text-white" />
-    </div>
-
-
-    <h3 class="text-xl font-bold text-fg pt-12 pb-6">Foundational Color</h3>
-    <article class="text-fg">
-      <p>Concurrently, foundational colors have been designated for the
-        display of primary elements, including text and backgrounds, with the deliberate aim of ensuring maximum visual
-        prominence and legibility.</p>
-      <p>同时，另设基础色，专用于文字、背景等核心视觉元素的呈现，以确保视觉层次清晰、信息传达醒目有力。</p>
-    </article>
-
-    <div class="w-full h-48 md:h-16 overflow-hidden rounded mb-4 grid grid-cols-4 md:grid-cols-11">
-      <ColorSwatch name="neutral-25" hex="#f9fafb" class="bg-neutral-25 text-[#222831]" />
-      <ColorSwatch name="neutral-50" hex="#f3f4f7" class="bg-neutral-50 text-[#222831]" />
-      <ColorSwatch name="neutral-100" hex="#eaedf0" class="bg-neutral-100 text-[#222831]" />
-      <ColorSwatch name="neutral-200" hex="#d8dde4" class="bg-neutral-200 text-[#222831]" />
-      <ColorSwatch name="neutral-300" hex="#bdc5d1" class="bg-neutral-300 text-[#222831]" />
-      <ColorSwatch name="neutral-400" hex="#99a5b8" class="bg-neutral-400 text-[#222831]" />
-      <ColorSwatch name="neutral-500" hex="#74859f" class="bg-neutral-500 text-white" />
-      <ColorSwatch name="neutral-600" hex="#58677e" class="bg-neutral-600 text-white" />
-      <ColorSwatch name="neutral-700" hex="#3f4a5a" class="bg-neutral-700 text-white" />
-      <ColorSwatch name="neutral-800" hex="#222831" class="bg-neutral-800 text-white" />
-      <ColorSwatch name="neutral-900" hex="#13161b" class="bg-neutral-900 text-white" />
-    </div>
-
-    <h4 class="text-lg font-bold text-fg pt-8 pb-4">Background</h4>
-
-    <div class="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-white border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Background 1</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
-          Light</div>
-        <p class="text-sm text-fg w-[260px]">Default element background</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#FFFFFF</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">white</p>
-      </div>
-      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-50 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Background 2</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
-          Light</div>
-        <p class="text-sm text-fg w-[260px]">Secondary background</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#f3f4f7</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-50</p>
-      </div>
-      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-900 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Background 1</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
-          Dark</div>
-        <p class="text-sm text-fg w-[260px]">Default element background</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#13161b</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-900</p>
-      </div>
-      <div class="flex h-12 items-center gap-3 border-none min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-800 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Background 2</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
-          Dark</div>
-        <p class="text-sm text-fg w-[260px]">Secondary background</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#222831</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-800</p>
-      </div>
-    </div>
-
-    <h4 class="text-lg font-bold text-fg pt-8 pb-4">Text</h4>
-
-    <div class="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-800 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Text 1</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
-          Light</div>
-        <p class="text-sm text-fg w-[260px]">Primary text, headings</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#222831</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-800</p>
-      </div>
-      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-600 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Text 2</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
-          Light</div>
-        <p class="text-sm text-fg w-[260px]">Secondary text, captions</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#58677e</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-600</p>
-      </div>
-      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-400 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Text 3</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
-          Light</div>
-        <p class="text-sm text-fg w-[260px]">Placeholder, disabled</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#99a5b8</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-400</p>
-      </div>
-      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-100 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Text 1</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
-          Dark</div>
-        <p class="text-sm text-fg w-[260px]">Primary text, headings</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#eaedf0</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-100</p>
-      </div>
-      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-400 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Text 2</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
-          Dark</div>
-        <p class="text-sm text-fg w-[260px]">Secondary text, captions</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#99a5b8</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-400</p>
-      </div>
-      <div class="flex h-12 items-center gap-3 border-none min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-600 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Text 3</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
-          Dark</div>
-        <p class="text-sm text-fg w-[260px]">Placeholder, disabled</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#58677e</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-600</p>
-      </div>
-    </div>
-
-    <h4 class="text-lg font-bold text-fg pt-8 pb-4">Structure</h4>
-
-    <div class="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-25 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Input</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
-          Light</div>
-        <p class="text-sm text-fg w-[260px]">Input fields, sunken area background</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#f9fafb</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-25</p>
-      </div>
-      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-200 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Border 1</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
-          Light</div>
-        <p class="text-sm text-fg w-[260px]">Default border, divider</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#d8dde4</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-200</p>
-      </div>
-      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-300 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Border 2</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
-          Light</div>
-        <p class="text-sm text-fg w-[260px]">Emphasized border, input hover</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#bdc5d1</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-300</p>
-      </div>
-      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-100 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">List Hover</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
-          Light</div>
-        <p class="text-sm text-fg w-[260px]">List item, menu item hover background</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#eaedf0</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-100</p>
-      </div>
-      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-900 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Input</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
-          Dark</div>
-        <p class="text-sm text-fg w-[260px]">Input fields, sunken area background</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#13161b</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-900</p>
-      </div>
-      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-700 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Border 1</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
-          Dark</div>
-        <p class="text-sm text-fg w-[260px]">Default border, divider</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#3f4a5a</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-700</p>
-      </div>
-      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-600 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Border 2</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
-          Dark</div>
-        <p class="text-sm text-fg w-[260px]">Emphasized border, input hover</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#58677e</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-600</p>
-      </div>
-      <div class="flex h-12 items-center gap-3 border-none min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-800 border border-neutral-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">List Hover</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
-          Dark</div>
-        <p class="text-sm text-fg w-[260px]">List item, menu item hover background</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#222831</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-800</p>
-      </div>
-    </div>
-
-    <h3 class="text-xl font-bold text-fg pb-6 pt-12">Semantic Color</h3>
-    <article class="text-fg">
-      <p>Furthermore, three functional semantic colors are derived from the core primary hue, respectively applied to
-        status feedback and informational prompts across various contexts. Among them, the "Info" indicator is
-        directly
-        represented by the brand's primary color, as it carries no inherent emotional bias and thus naturally aligns
-        with the brand's core chromatic identity.</p>
-      <p>此外，基于核心主色衍生出三种功能性语义色，分别用于不同场景下的状态反馈与信息提示；其中，信息提示「Info」直接由品牌主色承担，因其本身不带有情绪倾向，与品牌核心色调天然契合。</p>
-    </article>
-
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 pb-6">
-      <div>
-        <div class="bg-success-bg text-success-text rounded border-l-[16px] border-success p-2 pl-3 mb-4">Success
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-8">
+      <NuxtLink v-for="item in entries" :key="item.to" :to="item.to"
+        class="group flex flex-col rounded border p-6 transition-colors hover:border-main">
+        <div class="flex items-baseline justify-between pb-3">
+          <h2 class="text-lg font-bold text-fg">{{ item.title }}</h2>
+          <span class="text-fg-subtle transition-transform duration-200 group-hover:translate-x-1">→</span>
         </div>
-        <div class="h-16 overflow-hidden rounded mb-4 grid grid-cols-3">
-          <ColorSwatch name="success-bg" hex="#e6f5ee" class="bg-success-bg text-success-text" />
-          <ColorSwatch name="success" hex="#3fa97a" class="bg-success text-white" />
-          <ColorSwatch name="success-text" hex="#1e6b4c" class="bg-success-text text-white" />
-        </div>
-      </div>
-      <div>
-        <div class="bg-warning-bg text-warning-text rounded border-l-[16px] border-warning p-2 pl-3 mb-4">Warning
-        </div>
-        <div class="h-16 overflow-hidden rounded mb-4 grid grid-cols-3">
-          <ColorSwatch name="warning-bg" hex="#fbf1de" class="bg-warning-bg text-warning-text" />
-          <ColorSwatch name="warning" hex="#e0a23c" class="bg-warning text-white" />
-          <ColorSwatch name="warning-text" hex="#96620f" class="bg-warning-text text-white" />
-        </div>
-      </div>
-      <div>
-        <div class="bg-danger-bg text-danger-text rounded border-l-[16px] border-danger p-2 pl-3 mb-4">Danger</div>
-        <div class="h-16 overflow-hidden rounded mb-4 grid grid-cols-3">
-          <ColorSwatch name="danger-bg" hex="#faeaea" class="bg-danger-bg text-danger-text" />
-          <ColorSwatch name="danger" hex="#d95d5d" class="bg-danger text-white" />
-          <ColorSwatch name="danger-text" hex="#a83232" class="bg-danger-text text-white" />
-        </div>
-      </div>
-      <div>
-        <div class="bg-info-bg text-info-text rounded border-l-[16px] border-info p-2 pl-3 mb-4">Info</div>
-        <div class="h-16 overflow-hidden rounded mb-4 grid grid-cols-3">
-          <ColorSwatch name="info-bg" hex="#eaf3fa" class="bg-info-bg text-info-text" />
-          <ColorSwatch name="info" hex="#71afdd" class="bg-info text-white" />
-          <ColorSwatch name="info-text" hex="#236494" class="bg-info-text text-white" />
-        </div>
-      </div>
-    </div>
-
-    <h2 class="text-2xl font-bold text-fg pb-6 pt-32">Typography</h2>
-
-    <h3 class="text-xl font-bold text-fg pb-6">Type Scale</h3>
-
-    <div>
-      <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b py-5">
-        <p class="heading-1 text-fg">页面标题 Heading 1</p>
-        <p class="text-sm text-fg-subtle md:ml-auto">heading-1</p>
-        <p class="w-full caption text-fg-subtle pt-1">font-size 36px (30px in mobile) · font-weight 700 · line-height 1.2 · letter-spacing -0.035em</p>
-      </div>
-      <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b py-5">
-        <p class="heading-2 text-fg">章节标题 Heading 2</p>
-        <p class="text-sm text-fg-subtle md:ml-auto">heading-2</p>
-        <p class="w-full caption text-fg-subtle pt-1">font-size 28px (24px in mobile) · font-weight 600 · line-height 1.3 · letter-spacing -0.028em</p>
-      </div>
-      <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b py-5">
-        <p class="heading-3 text-fg">小节标题 Heading 3</p>
-        <p class="text-sm text-fg-subtle md:ml-auto">heading-3</p>
-        <p class="w-full caption text-fg-subtle pt-1">font-size 22px (20px in mobile) · font-weight 600 · line-height 1.4 · letter-spacing -0.02em</p>
-      </div>
-      <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b py-5">
-        <p class="heading-4 text-fg">段落标题 Heading 4</p>
-        <p class="text-sm text-fg-subtle md:ml-auto">heading-4</p>
-        <p class="w-full caption text-fg-subtle pt-1">font-size 18px (17px in mobile) · font-weight 600 · line-height 1.5 · letter-spacing -0.012em</p>
-      </div>
-      <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b py-5">
-        <p class="heading-5 text-fg">强调小标题 Heading 5</p>
-        <p class="text-sm text-fg-subtle md:ml-auto">heading-5</p>
-        <p class="w-full caption text-fg-subtle pt-1">font-size 16px · font-weight 600 · line-height 1.5 · letter-spacing normal</p>
-      </div>
-      <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b py-5">
-        <p class="heading-6 text-fg">眉题 Heading 6 · Eyebrow</p>
-        <p class="text-sm text-fg-subtle md:ml-auto">heading-6</p>
-        <p class="w-full caption text-fg-subtle pt-1">font-size 16px · font-weight 500 · line-height 1.5 · letter-spacing 0.02em · uppercase</p>
-      </div>
-      <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b py-5">
-        <p class="article-body text-fg">正文段落 Article Body</p>
-        <p class="text-sm text-fg-subtle md:ml-auto">article-body</p>
-        <p class="w-full caption text-fg-subtle pt-1">font-size 16px (15.5px in mobile) · font-weight 400 · line-height 1.75 · letter-spacing -0.003em</p>
-      </div>
-      <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1  py-5">
-        <p class="caption text-fg-subtle">图注与辅助说明 Caption</p>
-        <p class="text-sm text-fg-subtle md:ml-auto">caption</p>
-        <p class="w-full caption text-fg-subtle pt-1">font-size 14px · font-weight 400 · line-height 1.5 · letter-spacing normal</p>
-      </div>
-    </div>
-
-    <h2 class="text-2xl font-bold text-fg pb-6 pt-32">Combination</h2>
-
-    <div class="flex w-full gap-2 overflow-x-auto">
-      <div class="flex-1 min-w-[85%] sm:min-w-0 w-full rounded bg-[#ffffff] border p-4 flex flex-col justify-between">
-        <article>
-          <div class="heading-3 font-bold pb-2 !text-[#222831]">在阳光下</div>
-          <p class="!text-[#222831]">
-            红日初升，其道大光。河出伏流，一泻汪洋。潜龙腾渊，鳞爪飞扬。乳虎啸谷，百兽震惶。
-            <span class="block w-full text-right !text-[#58677e] caption">
-              ——《少年中国说》 梁启超
-            </span>
-          </p>
-          <p class="!text-[#222831]">
-            I too am not a bit tamed, I too am untranslatable, <br />
-            I sound my barbaric yawp over the roofs of the world.
-            <span class="block w-full text-right !text-[#58677e] caption">
-              — Walt Whitman, Song of Myself (1855)
-            </span>
-          </p>
-        </article>
-        <BrandColorPalette />
-      </div>
-      <div class="flex-1 min-w-[85%] sm:min-w-0 w-full rounded  bg-[#13161b] border p-4 flex flex-col justify-between">
-        <article>
-          <div class="heading-3 font-bold pb-2 !text-[#eaedf0]">在月光下</div>
-          <p class="!text-[#eaedf0]">
-            庭下如积水空明，水中藻、荇交横，盖竹柏影也。
-            <span class="block w-full text-right !text-[#99a5b8] caption">
-              ——《记承天寺夜游》 苏轼
-            </span>
-          </p>
-          <p class="!text-[#eaedf0]">
-            How sweet the moonlight sleeps upon this bank! <br />
-            Here will we sit and let the sounds of music <br />
-            Creep in our ears: soft stillness and the night <br />
-            Become the touches of sweet harmony.
-            <span class="block w-full text-right !text-[#99a5b8] caption">
-              — William Shakespeare, The Merchant of Venice, Act V, Scene 1
-            </span>
-          </p>
-        </article>
-        <BrandColorPalette />
-      </div>
-    </div>
-
-    <h2 class="text-2xl font-bold text-fg pb-6 pt-32">Reference</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div class="flex-1 flex flex-col rounded shadow-feature-card dark:shadow-feature-card-dark">
-        <div class="bg-[#007CFF] text-white p-4 text-lg font-bold rounded-t">Kimi Brand</div>
-        <div class="bg-sub-bg p-4 rounded-b h-full">
-          <a target="_blank" class="text-text underline decoration-[2px] underline-offset-[3px] decoration-[#71afdd]"
-            href="https://www.kimi.ai/zh-hans/resources/kimi-brand">
-            https://www.kimi.ai/zh-hans/resources/kimi-brand
-          </a>
-        </div>
-      </div>
-      <div class="flex-1 flex flex-col rounded shadow-feature-card dark:shadow-feature-card-dark">
-        <div class="bg-[#171717] text-white p-4 text-lg font-bold rounded-t">Vercel Geist Design System</div>
-        <div class="bg-sub-bg p-4 rounded-b h-full">
-          <a target="_blank" class="text-text underline decoration-[2px] underline-offset-[3px] decoration-[#71afdd]"
-            href="https://vercel.com/geist/brands">
-            https://vercel.com/geist/brands
-          </a>
-        </div>
-      </div>
+        <p class="caption">{{ item.desc }}</p>
+      </NuxtLink>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+  layout: 'brand',
+})
+
 const { public: { brandUpdatedAt } } = useRuntimeConfig()
 
 useHead({
@@ -453,4 +38,27 @@ useSeoMeta({
   title: 'Brand',
   ogTitle: 'Brand',
 })
+
+const entries = [
+  {
+    to: '/brand/color',
+    title: 'Color',
+    desc: 'Brand, foundational, and semantic color system.',
+  },
+  {
+    to: '/brand/typography',
+    title: 'Typography',
+    desc: 'Type scale and typography guidelines.',
+  },
+  {
+    to: '/brand/combination',
+    title: 'Combination',
+    desc: 'Color and typography in combination, in light and dark.',
+  },
+  {
+    to: '/brand/reference',
+    title: 'Reference',
+    desc: 'Design references and inspirations.',
+  },
+]
 </script>

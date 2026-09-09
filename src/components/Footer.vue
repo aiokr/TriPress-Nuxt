@@ -1,5 +1,10 @@
+<script setup lang="ts">
+const route = useRoute()
+</script>
+
 <template>
-  <main class="container w-full max-w-[1040px] font-serif border-t mx-auto mb-24 pt-4 lg:pt-8 mt-12 md:mt-16 px-4">
+  <main v-if="!route.path.startsWith('/brand')"
+    class="container w-full max-w-[1040px] font-serif border-t mx-auto mb-24 pt-4 lg:pt-8 mt-12 md:mt-16 px-4">
     <div class="grid gap-4 justify-between items-start md:pr-16 grid-cols-1 md:grid-cols-4">
       <div class="col-span-1 md:col-span-2 flex flex-row items-center justify-start">
         <router-link to="/">

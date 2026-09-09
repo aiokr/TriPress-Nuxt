@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import Header from '@/components/Header.vue';
+
+const route = useRoute()
+const isBrandRoute = computed(() => route.path.startsWith('/brand'))
 </script>
 
 <template>
-  <div class="w-screen h-screen overflow-auto">
+  <div class="w-screen h-screen" :class="isBrandRoute ? 'overflow-hidden' : 'overflow-auto'">
     <a href="#main-content"
       class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:px-3 focus:py-1.5 focus:rounded focus:bg-main focus:text-white focus:shadow">
       Skip to content
@@ -18,7 +21,7 @@ import Header from '@/components/Header.vue';
       <main id="main-content" tabindex="-1">
         <slot />
       </main>
-      <Footer />
+      <Footer v-if="!isBrandRoute" />
     </div>
   </div>
 </template>

@@ -2,11 +2,12 @@
   <main
     class="container mx-auto bg-white/60 dark:bg-[#13161b]/80 backdrop-blur sticky top-0 px-4 z-10 max-w-full border-b border-gray-200 dark:border-zinc-800">
     <div class="container max-w-[1200px] mx-auto px-3 flex items-center justify-between  h-16">
-      <router-link to="/">
+      <router-link to="/" class="flex items-center gap-6">
         <img src="https://imgur.lzmun.com/picgo/after2022/tripper2whitefull.png_avatar" alt="logo"
           class="dark:hidden rounded-full w-8 h-8  mr-auto" />
         <img src="https://imgur.lzmun.com/picgo/after2022/tripper2colorfull.png_avatar" alt="logo"
           class="hidden dark:block rounded-full w-8 h-8  mr-auto" />
+        <span v-if="isBrand" class="text-lg font-medium text-text dark:text-dtext whitespace-nowrap">TriPress Brand</span>
       </router-link>
       <div class="flex gap-4 items-center justify-center">
         <router-link to="/" class="headerLink">Home</router-link>
@@ -38,6 +39,9 @@
 </template>
 
 <script setup lang="ts">
+const route = useRoute()
+const isBrand = computed(() => route.path.startsWith('/brand'))
+
 const headerMenuOpen = ref(false);
 
 // 命令按钮：直接打开搜索面板（再次点击会由 KMenu 内部的快捷键逻辑维持，这里只负责"打开"）
