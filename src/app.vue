@@ -12,24 +12,40 @@ import '@/assets/tripper.css'
 
 const route = useRoute()
 
-// 找到 main 元素最近的可滚动祖先（处理 default.vue 用 w-screen h-screen overflow-auto
-// 作为滚动容器的情况；如果没有可滚动祖先，则回退到 window）
+function isScrollable(el: HTMLElement): boolean {
+  const style = getComputedStyle(el)
+  return (
+    style.overflowY === 'auto' || style.overflowY === 'scroll' ||
+    style.overflowX === 'auto' || style.overflowX === 'scroll'
+  )
+}
+
+function isVerticallyScrollable(el: HTMLElement): boolean {
+  const style = getComputedStyle(el)
+  return (
+    (style.overflowY === 'auto' || style.overflowY === 'scroll') &&
+    el.scrollHeight > el.clientHeight
+  )
+}
+
 function findScrollContainer(el: HTMLElement | null): HTMLElement | Window {
   let cur: HTMLElement | null = el
   while (cur && cur !== document.body) {
-    const style = getComputedStyle(cur)
-    if (
-      style.overflowY === 'auto' || style.overflowY === 'scroll' ||
-      style.overflowX === 'auto' || style.overflowX === 'scroll'
-    ) {
+    if (isScrollable(cur)) {
       return cur
     }
     cur = cur.parentElement
   }
+  if (el) {
+    for (const node of Array.from(el.querySelectorAll<HTMLElement>('*'))) {
+      if (isVerticallyScrollable(node)) {
+        return node
+      }
+    }
+  }
   return window
 }
 
-// 每个路由的滚动位置记忆（用于返回时恢复原位置）
 const scrollPositions = new Map<string, number>()
 
 let activeContainer: HTMLElement | Window | null = null
@@ -71,18 +87,21 @@ function scrollContainerTo(container: HTMLElement | Window, top: number) {
   }
 }
 
-watch(() => route.path, async () => {
+async function setupScrollContainer(restore: boolean) {
   await nextTick()
-  const mainElement = document.querySelector('main')
+  const mainElement = document.querySelector('#main-content') ?? document.querySelector('main')
   const container = findScrollContainer(mainElement)
 
-  // 在新的容器上监听滚动，实时记录当前位置
   bindScrollListener(container)
 
-  // 优先恢复上次保存的滚动位置；新页面则回顶部
+  if (!restore) return
   const saved = scrollPositions.get(route.path)
   scrollContainerTo(container, saved ?? 0)
-})
+}
+
+// 初始加载只绑定监听，强制回顶会打断浏览器原生的刷新后滚动恢复
+onMounted(() => setupScrollContainer(false))
+watch(() => route.path, () => setupScrollContainer(true))
 
 onBeforeUnmount(() => {
   unbindScrollListener()
@@ -96,9 +115,6 @@ useHead({
   link: [
     { type: 'application/atom+xml', rel: 'alternate', title: 'Tripper Press Atom Feed', href: '/atom.xml' },
   ],
-  // script: [
-  //   { src: 'https://analytics.tripper.press/script.js', 'data-website-id': '75e35015-2599-4413-a688-da55060b9599' },
-  // ],
 })
 useSeoMeta({
   title: 'Tripper Press - Take Photo, Think Seriously',
@@ -108,7 +124,6 @@ useSeoMeta({
 })
 
 onMounted(() => {
-  // 仅在生产环境加载 GTM，避免开发环境因网络问题产生控制台报错
   if (import.meta.env.DEV) return
 
   const script = document.createElement('script')
@@ -117,9 +132,7 @@ onMounted(() => {
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-NFSZVFRX');`
-  script.onerror = () => {
-    // 静默处理 GTM 加载失败（如大陆网络环境无法访问）
-  }
+  script.onerror = () => {}
   document.head.appendChild(script)
 })
 
