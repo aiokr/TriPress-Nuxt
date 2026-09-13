@@ -82,9 +82,15 @@ function bindScrollListener(container: HTMLElement | Window) {
 function scrollContainerTo(container: HTMLElement | Window, top: number) {
   if (container === window) {
     window.scrollTo({ top, behavior: 'instant' as ScrollBehavior })
-  } else {
-    ;(container as HTMLElement).scrollTo({ top, behavior: 'instant' as ScrollBehavior })
+    return
   }
+  const el = container as HTMLElement
+  // 切换 overflow 强制中断 Safari 惯性滚动，否则 scrollTop 会被滚动动画覆盖
+  const prevOverflow = el.style.overflowY
+  el.style.overflowY = 'hidden'
+  void el.offsetHeight
+  el.scrollTop = top
+  el.style.overflowY = prevOverflow
 }
 
 async function setupScrollContainer(restore: boolean) {

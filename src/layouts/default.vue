@@ -6,7 +6,7 @@ const isBrandRoute = computed(() => route.path.startsWith('/brand'))
 </script>
 
 <template>
-  <div class="w-screen h-screen" :class="isBrandRoute ? 'overflow-hidden' : 'overflow-auto'">
+  <div class="w-screen h-screen overflow-auto">
     <a href="#main-content"
       class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:px-3 focus:py-1.5 focus:rounded focus:bg-main focus:text-white focus:shadow">
       Skip to content

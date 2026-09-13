@@ -16,8 +16,8 @@ function isActive(item: (typeof navItems)[number]) {
 
 <template>
   <NuxtLayout name="default">
-    <div class="h-[calc(100vh-4rem)] flex flex-col lg:flex-row">
-      <nav class="lg:hidden flex gap-2 overflow-x-auto px-4 py-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden shrink-0 w-full">
+    <div class="flex flex-col lg:flex-row -mt-px">
+      <nav class="lg:hidden sticky top-16 z-[5] flex gap-2 overflow-x-auto px-4 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden shrink-0 w-full bg-white/60 dark:bg-[#13161b]/80 backdrop-blur">
         <NuxtLink v-for="item in navItems" :key="item.path" :to="item.path"
           class="shrink-0 px-3 py-1.5 rounded-full text-sm transition-colors"
           :class="isActive(item)
@@ -28,7 +28,7 @@ function isActive(item: (typeof navItems)[number]) {
       </nav>
 
       <aside
-        class="hidden lg:block shrink-0 w-52 ml-[max(1rem,calc((100vw-1200px)/2+1rem))] mr-10 overflow-y-auto py-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        class="hidden lg:block shrink-0 w-52 ml-[max(1rem,calc((100vw-1200px)/2+1rem))] mr-10 overflow-y-auto py-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:sticky lg:top-16 lg:self-start lg:max-h-[calc(100vh-4rem)]">
         <nav class="flex flex-col gap-1">
           <NuxtLink v-for="item in navItems" :key="item.path" :to="item.path"
             class="flex items-baseline justify-between px-3 py-2 rounded text-sm transition-colors"
@@ -40,7 +40,7 @@ function isActive(item: (typeof navItems)[number]) {
         </nav>
       </aside>
 
-      <div class="flex-1 min-w-0 min-h-0 overflow-y-auto">
+      <div class="flex-1 min-w-0">
         <div class="px-4 lg:pl-0 lg:pr-[max(1rem,calc((100vw-1200px)/2+1rem))]">
           <slot />
         </div>
