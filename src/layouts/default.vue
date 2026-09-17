@@ -3,6 +3,7 @@ import Header from '@/components/Header.vue';
 
 const route = useRoute()
 const isBrandRoute = computed(() => route.path.startsWith('/brand'))
+const isStudioRoute = computed(() => route.path.startsWith('/studio'))
 </script>
 
 <template>
@@ -17,11 +18,11 @@ const isBrandRoute = computed(() => route.path.startsWith('/brand'))
         <div class="bg-purple-300/40 w-1/5 h-full"></div>
         <div class="bg-pink-300/30 w-2/5 h-full"></div>
       </div>
-      <Header />
+      <Header v-if="!isStudioRoute" />
       <main id="main-content" tabindex="-1">
         <slot />
       </main>
-      <Footer v-if="!isBrandRoute" />
+      <Footer v-if="!isBrandRoute && !isStudioRoute" />
     </div>
   </div>
 </template>

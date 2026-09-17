@@ -43,6 +43,15 @@
               Lab
             </NuxtLink>
 
+            <template v-if="isLocalDev">
+              <div class="text-sm text-zinc-400 px-2 pb-1 pt-3">Dev Mode</div>
+              <NuxtLink to="/studio"
+                class="block px-3 py-2 rounded transition text-zinc-600 dark:text-slate-300 hover:bg-main/30 dark:hover:bg-slate-800"
+                @click="close">
+                Studio
+              </NuxtLink>
+            </template>
+
             <div class="text-sm text-zinc-400 px-2 pb-1 pt-3">Tools</div>
             <button type="button" class="block w-full px-3 py-2 rounded text-left font-medium transition" :class="copied
               ? 'bg-success text-text dark:text-dtext'
@@ -93,6 +102,8 @@
 import { ref, nextTick } from 'vue'
 import { useMagicKeys, useDebounceFn } from '@vueuse/core'
 import QRCode from 'qrcode'
+
+const isLocalDev = import.meta.dev
 
 // 搜索结果项的本地类型（与 @nuxt/content 的 SearchResult 保持一致）
 interface SearchHit {

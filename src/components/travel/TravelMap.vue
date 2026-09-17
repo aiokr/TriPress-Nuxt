@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full h-[520px] min-h-[480px] rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 relative bg-zinc-50 dark:bg-zinc-900"
+    class="w-full h-full relative"
   >
     <div ref="mapEl" class="w-full h-full" />
     <div
@@ -34,15 +34,23 @@ export interface Footprint {
   image?: string | string[]
   url?: string
   urlLabel?: string
+  file?: string
 }
 
-const props = defineProps<{
-  footprints: Footprint[]
-  activeCategory: string
-}>()
+const props = withDefaults(
+  defineProps<{
+    footprints: Footprint[]
+    activeCategory?: string
+    disablePopup?: boolean
+  }>(),
+  {
+    activeCategory: 'all',
+    disablePopup: false,
+  }
+)
 
 const emit = defineEmits<{
-  select: [name: string | null]
+  select: [identifier: string | null]
 }>()
 
 const mapEl = ref<HTMLElement>()
@@ -56,8 +64,11 @@ const errorMsg = ref('')
 // "onUnmounted is called when there is no active component instance" 问题
 let map: Map | null = null
 let onWindowResize: (() => void) | null = null
+let resizeObserver: ResizeObserver | null = null
 onUnmounted(() => {
   if (onWindowResize) window.removeEventListener('resize', onWindowResize)
+  resizeObserver?.disconnect()
+  resizeObserver = null
   map?.remove()
   map = null
 })
@@ -89,6 +100,7 @@ function buildFeatureCollection(list: Footprint[]): FeatureCollection<Point> {
         geometry: { type: 'Point', coordinates: [f.lng, f.lat] },
         properties: {
           name: f.name,
+          file: f.file,
           date: f.date,
           description: f.description,
           categories: f.categories ?? [],
@@ -288,11 +300,14 @@ onMounted(async () => {
     mapRef.on('click', 'unclustered-point', (e) => {
       const feature = e.features?.[0] as Feature<Point> | undefined
       if (!feature?.geometry) return
+      const file = feature.properties?.file as string | undefined
       const name = feature.properties?.name as string | undefined
-      if (name) emit('select', name)
-      const coordinates = feature.geometry.coordinates.slice() as [number, number]
-      const html = popupHTML(feature.properties)
-      popup.setLngLat(coordinates).setHTML(html).addTo(mapRef)
+      if (file || name) emit('select', file || name || null)
+      if (!props.disablePopup) {
+        const coordinates = feature.geometry.coordinates.slice() as [number, number]
+        const html = popupHTML(feature.properties)
+        popup.setLngLat(coordinates).setHTML(html).addTo(mapRef)
+      }
     })
 
     for (const layer of ['clusters', 'unclustered-point']) {
@@ -314,6 +329,19 @@ onMounted(async () => {
       }, 100)
     }
     window.addEventListener('resize', onWindowResize)
+
+    // 容器尺寸变化（如父级 flex 布局中兄弟元素出现/隐藏导致宽度变化）时也需要 resize
+    if (mapEl.value) {
+      let roTimer: ReturnType<typeof setTimeout> | null = null
+      resizeObserver = new ResizeObserver(() => {
+        if (status.value !== 'ready') return
+        if (roTimer) clearTimeout(roTimer)
+        roTimer = setTimeout(() => {
+          mapRef.resize()
+        }, 100)
+      })
+      resizeObserver.observe(mapEl.value)
+    }
 
     watch(
       () => colorMode.value,

@@ -7,94 +7,65 @@
       </div>
 
       <div class="flex flex-wrap gap-2 mb-4">
-        <button
-          v-for="cat in categories"
-          :key="cat"
-          @click="activeCategory = cat"
-          class="px-3 py-1.5 rounded-full text-sm border transition"
-          :class="
-            activeCategory === cat
+        <button v-for="cat in categories" :key="cat" @click="activeCategory = cat"
+          class="px-3 py-1.5 rounded-full text-sm border transition" :class="activeCategory === cat
               ? 'bg-main text-white border-main'
               : 'border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-dtext/70 hover:border-main hover:text-main'
-          "
-        >
+            ">
           {{ cat }}
         </button>
       </div>
 
-      <div class="flex flex-col lg:flex-row gap-4 items-stretch mb-8">
-        <TravelMap
-          :footprints="footprints ?? []"
-          :active-category="activeCategory"
-          class="flex-1"
-          @select="onSelect"
-        />
-
+      <div class="flex flex-col lg:flex-row gap-4 items-stretch mb-8 ">
         <div
-          v-if="selectedFootprint"
-          class="rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dbg lg:w-[340px] p-4 md:p-5"
-        >
+          class="flex-1 min-w-0 h-[520px] min-h-[480px] rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900">
+          <TravelMap :footprints="footprints ?? []" :active-category="activeCategory" class="w-full h-full"
+            @select="onSelect" />
+        </div>
+
+        <div v-if="selectedFootprint"
+          class="rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dbg lg:w-[340px] p-4 md:p-5">
           <div v-if="footprintImages.length" class="mb-3">
-            <img
-              :src="footprintImages[activeImageIndex]"
-              :alt="selectedFootprint.name"
-              class="w-full h-40 lg:h-auto lg:max-h-[300px] rounded-xl object-cover lg:object-contain shrink-0"
-            />
-            <div
-              v-if="footprintImages.length > 1"
-              class="mt-2 flex gap-2 overflow-x-auto"
-            >
-              <button
-                v-for="(img, i) in footprintImages"
-                :key="img"
-                type="button"
-                @click="activeImageIndex = i"
+            <img :src="footprintImages[activeImageIndex]" :alt="selectedFootprint.name"
+              class="w-full h-40 lg:h-auto lg:max-h-[300px] rounded-xl object-cover lg:object-contain shrink-0" />
+            <div v-if="footprintImages.length > 1" class="mt-2 flex gap-2 overflow-x-auto">
+              <button v-for="(img, i) in footprintImages" :key="img" type="button" @click="activeImageIndex = i"
                 class="min-w-[60px] h-12 rounded-lg overflow-hidden border-2 shrink-0 transition"
-                :class="i === activeImageIndex ? 'border-main' : 'border-transparent opacity-70 hover:opacity-100'"
-              >
-                <img
-                  :src="img"
-                  :alt="`${selectedFootprint.name} ${i + 1}`"
-                  class="w-full h-full object-cover"
-                />
+                :class="i === activeImageIndex ? 'border-main' : 'border-transparent opacity-70 hover:opacity-100'">
+                <img :src="img" :alt="`${selectedFootprint.name} ${i + 1}`" class="w-full h-full object-cover" />
               </button>
             </div>
           </div>
           <div v-else class="mb-3">
-            <span
-              class="shrink-0 w-16 h-16 rounded-xl"
-              :style="{ background: selectedFootprint.color || '#71afdd' }"
-            />
+            <span class="shrink-0 w-16 h-16 rounded-xl" :style="{ background: selectedFootprint.color || '#71afdd' }" />
           </div>
           <div class="min-w-0 lg:block lg:w-full">
             <div class="flex items-center gap-3">
               <h2 class="text-xl font-bold text-text dark:text-dtext">
-                <a v-if="selectedFootprint.url" :href="selectedFootprint.url" class="hover:text-main">{{ selectedFootprint.name }}</a>
+                <a v-if="selectedFootprint.url" :href="selectedFootprint.url" class="hover:text-main">{{
+                  selectedFootprint.name }}</a>
                 <span v-else>{{ selectedFootprint.name }}</span>
               </h2>
             </div>
             <div class="mt-1 text-sm text-zinc-500 dark:text-dtext/60">
-              {{ selectedFootprint.date || '' }}<template v-if="selectedFootprint.date && selectedFootprint.categories?.length"> · </template>{{
-                selectedFootprint.categories?.join(' / ')
-              }}
+              {{ selectedFootprint.date || '' }}<template
+                v-if="selectedFootprint.date && selectedFootprint.categories?.length"> · </template>{{
+                  selectedFootprint.categories?.join(' / ')
+                }}
             </div>
-            <p v-if="selectedFootprint.description" class="mt-3 text-sm text-zinc-600 dark:text-dtext/75 leading-relaxed">
+            <p v-if="selectedFootprint.description"
+              class="mt-3 text-sm text-zinc-600 dark:text-dtext/75 leading-relaxed">
               {{ selectedFootprint.description }}
             </p>
-            <a
-              v-if="selectedFootprint.url"
-              :href="selectedFootprint.url"
+            <a v-if="selectedFootprint.url" :href="selectedFootprint.url"
               class="mt-4 inline-block px-4 py-2 rounded-full text-sm"
-              :style="{ background: selectedFootprint.color || '#71afdd' }"
-            >
+              :style="{ background: selectedFootprint.color || '#71afdd' }">
               <span class="text-white">{{ selectedFootprint.urlLabel || '查看详情' }}</span>
             </a>
           </div>
         </div>
-        <div
-          v-else
-          class="rounded-xl border border-dashed border-zinc-300 dark:border-zinc-700 lg:w-[340px] p-10 text-center text-sm text-zinc-400 dark:text-dtext/50 flex items-center justify-center"
-        >
+        <div v-else
+          class="rounded-xl border border-dashed border-zinc-300 dark:border-zinc-700 lg:w-[340px] p-10 text-center text-sm text-zinc-400 dark:text-dtext/50 flex items-center justify-center">
           在地图上点击一个足迹点，查看对应详情
         </div>
       </div>

@@ -113,6 +113,10 @@ export default defineNuxtConfig({
     {
       path: '~/components/travel/',
       pathPrefix: true,
+    },
+    {
+      path: '~/components/studio/',
+      pathPrefix: true,
     }
   ],
 
