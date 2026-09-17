@@ -4,6 +4,8 @@ lng: 114.1694
 date: 2025-12-01
 description: 穿行香港，感受维港两岸的繁华与街巷。
 categories:
-  - 旅行
-color: '#FF6200'
-image: /images/2025/Choi-Hung.jpeg
+  - 大湾区
+color: "#FF6200"
+image:
+  - /images/2025/Choi-Hung.jpeg
+  - /images/2025/Central.jpeg
