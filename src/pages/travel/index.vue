@@ -16,10 +16,10 @@
         </button>
       </div>
 
-      <div class="flex flex-col lg:flex-row gap-4 items-stretch mb-8 ">
+      <div class="flex flex-col lg:flex-row gap-4 items-stretch mb-8">
         <div
-          class="flex-1 min-w-0 h-[520px] min-h-[480px] rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900">
-          <TravelMap :footprints="footprints ?? []" :active-category="activeCategory" class="w-full h-full"
+          class="flex-1 min-w-0 min-h-[320px] h-[min(520px,60svh)] rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 flex flex-col">
+          <TravelMap :footprints="footprints ?? []" :active-category="activeCategory" class="w-full flex-1"
             @select="onSelect" />
         </div>
 

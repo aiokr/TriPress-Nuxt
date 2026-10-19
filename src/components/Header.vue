@@ -13,6 +13,13 @@
         <router-link to="/" class="headerLink">Home</router-link>
         <router-link to="/posts" class="headerLink">Posts</router-link>
         <router-link to="/docs" class="headerLink">Docs</router-link>
+        <button v-if="isDocs" type="button" @click="docPreferences.toggleFootnotePlacement"
+          class="themeBtn hover:bg-gray-100 dark:hover:bg-zinc-700 rounded-full p-2 transition-all"
+          :aria-label="docPreferences.footnotePlacement === 'side' ? '切换为底部脚注' : '切换为侧边脚注'"
+          :title="docPreferences.footnotePlacement === 'side' ? '切换为底部脚注' : '切换为侧边脚注'"
+          :aria-pressed="docPreferences.footnotePlacement === 'side'">
+          <FootnoteLayoutIcon />
+        </button>
         <ColorModeSwitch />
         <button @click="clickHeaderMenuBtn"
           class="headerMenu headerMenuBtn md:hidden hover:bg-gray-100 dark:hover:bg-zinc-700 rounded-full p-2 transition-all"
@@ -39,8 +46,13 @@
 </template>
 
 <script setup lang="ts">
+import { useDocPreferencesStore } from '~/stores/docPreferences'
+import FootnoteLayoutIcon from '~/components/icons/FootnoteLayout.vue'
+
 const route = useRoute()
 const isBrand = computed(() => route.path.startsWith('/brand'))
+const isDocs = computed(() => route.path === '/docs' || route.path.startsWith('/docs/'))
+const docPreferences = useDocPreferencesStore()
 
 const headerMenuOpen = ref(false);
 

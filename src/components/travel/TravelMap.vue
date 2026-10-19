@@ -1,19 +1,14 @@
 <template>
-  <div
-    class="w-full h-full relative"
-  >
-    <div ref="mapEl" class="w-full h-full" />
-    <div
-      v-if="status !== 'ready'"
-      class="absolute inset-0 flex items-center justify-center text-sm text-zinc-500 dark:text-dtext/70 pointer-events-none"
-    >
+  <div class="w-full h-full relative flex flex-col">
+    <div ref="mapEl" class="w-full flex-1 min-h-0" />
+    <div v-if="status !== 'ready'"
+      class="absolute inset-0 flex items-center justify-center text-sm text-zinc-500 dark:text-dtext/70 pointer-events-none">
       <span v-if="status === 'loading'">Loading map…</span>
-      <span v-else-if="status === 'error'" class="text-red-500 px-4 text-center">Map failed to load: {{ errorMsg }}</span>
+      <span v-else-if="status === 'error'" class="text-red-500 px-4 text-center">Map failed to load: {{ errorMsg
+        }}</span>
     </div>
-    <div
-      v-else-if="pointCount === 0"
-      class="absolute inset-0 flex items-center justify-center text-sm text-zinc-500 dark:text-dtext/70 pointer-events-none z-10"
-    >
+    <div v-else-if="pointCount === 0"
+      class="absolute inset-0 flex items-center justify-center text-sm text-zinc-500 dark:text-dtext/70 pointer-events-none z-10">
       该分类下暂无足迹
     </div>
   </div>
@@ -199,8 +194,8 @@ function popupHTML(props_: GeoJSON.GeoJsonProperties): string {
   const catHtml =
     categories.length > 0
       ? `<div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:8px;">${categories
-          .map((c) => `<span style="font-size:11px;padding:2px 8px;border-radius:999px;background:rgba(113,175,221,0.15);color:inherit;">${c}</span>`)
-          .join('')}</div>`
+        .map((c) => `<span style="font-size:11px;padding:2px 8px;border-radius:999px;background:rgba(113,175,221,0.15);color:inherit;">${c}</span>`)
+        .join('')}</div>`
       : ''
   const linkHtml = url
     ? `<div style="margin-top:10px;"><a href="${url}" target="_blank" rel="noreferrer" style="display:inline-block;padding:6px 14px;border-radius:999px;background:${color};color:#fff;font-size:13px;text-decoration:none;">${urlLabel}</a></div>`
@@ -226,6 +221,12 @@ onMounted(async () => {
     return
   }
 
+  // 防御性检查：如果容器还没有实际尺寸，等待一帧让浏览器完成布局
+  const rect = mapEl.value?.getBoundingClientRect()
+  if (rect && (rect.width === 0 || rect.height === 0)) {
+    await new Promise((resolve) => requestAnimationFrame(resolve))
+  }
+
   try {
     const mapboxgl = (await import('mapbox-gl')).default
     await import('mapbox-gl/dist/mapbox-gl.css')
@@ -241,6 +242,7 @@ onMounted(async () => {
       style: styleUrl(colorMode.value === 'dark'),
       center: [105, 20],
       zoom: 2,
+      preserveDrawingBuffer: true,
     })
     const mapRef = map
     mapRef.addControl(new mapboxgl.NavigationControl())
@@ -274,14 +276,21 @@ onMounted(async () => {
       if (source) source.setData(data)
     }
 
-    // 参照 Heatmap.vue：load 与 style.load 都走同一幂等重建，此期间不主动 resize/triggerRepaint，
-    // 避免在样式/瓦片尚未就绪时强制重绘导致 canvas 永久灰屏
+    // 只在首个 style.load 初始化一次地理数据，避免 load + style.load 重复执行
+    // 导致 source/layer 被多次添加或 fitBounds 竞争
+    let initialized = false
     const initGeo = () => {
+      if (initialized) return
+      initialized = true
       setupGeo(mapRef, currentFootprints())
       status.value = 'ready'
-      fitToFootprints(currentFootprints())
+      // 延迟一次 resize + triggerRepaint，确保容器在动态布局稳定后 canvas 尺寸正确
+      requestAnimationFrame(() => {
+        mapRef.resize()
+        fitToFootprints(currentFootprints())
+        mapRef.triggerRepaint()
+      })
     }
-    mapRef.on('load', initGeo)
     mapRef.on('style.load', initGeo)
 
     // 地图交互事件只挂载一次（点击/悬浮依赖已渲染的图层，注册时机无碍）

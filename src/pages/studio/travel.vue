@@ -1,28 +1,46 @@
 <template>
   <!-- 顶部总览地图（可折叠） -->
-  <div class="shrink-0 border-b border-zinc-200 dark:border-zinc-800">
-    <button type="button"
-      class="w-full flex items-center justify-between px-4 py-2.5 text-sm text-zinc-600 dark:text-dtext/70 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition"
-      @click="mapCollapsed = !mapCollapsed">
-      <span class="flex items-center gap-2">
-        <span class="text-base">🗺️</span>
-        <span class="font-medium text-text dark:text-dtext">Travel 足迹</span>
-        <span class="text-xs text-zinc-400">({{ overviewPoints.length }} 个点)</span>
-      </span>
-      <span class="text-zinc-400 transition-transform duration-300" :class="mapCollapsed ? '' : 'rotate-180'">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round">
-          <path d="m18 15-6-6-6 6" />
-        </svg>
-      </span>
-    </button>
-    <div class="overflow-hidden transition-all duration-300 ease-in-out"
-      :class="mapCollapsed ? 'max-h-0' : 'max-h-[320px]'">
-      <div class="w-full h-[280px]">
-        <TravelMap :footprints="overviewPoints" disable-popup @select="onMapSelect" />
+  <ClientOnly>
+    <div class="shrink-0 border-b border-zinc-200 dark:border-zinc-800">
+      <button type="button"
+        class="w-full flex items-center justify-between px-4 py-2.5 text-sm text-zinc-600 dark:text-dtext/70 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition"
+        @click="mapCollapsed = !mapCollapsed">
+        <span class="flex items-center gap-2">
+          <span class="text-base">🗺️</span>
+          <span class="font-medium text-text dark:text-dtext">Travel 足迹</span>
+          <span class="text-xs text-zinc-400">({{ overviewPoints.length }} 个点)</span>
+        </span>
+        <span class="text-zinc-400 transition-transform duration-300" :class="mapCollapsed ? '' : 'rotate-180'">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="m18 15-6-6-6 6" />
+          </svg>
+        </span>
+      </button>
+      <div class="overflow-hidden transition-all duration-300 ease-in-out"
+        :class="mapCollapsed ? 'max-h-0' : 'max-h-[320px]'">
+        <div class="w-full h-[280px]">
+          <TravelMap :footprints="overviewPoints" disable-popup @select="onMapSelect" />
+        </div>
       </div>
     </div>
-  </div>
+    <template #fallback>
+      <div class="shrink-0 border-b border-zinc-200 dark:border-zinc-800">
+        <div class="w-full flex items-center justify-between px-4 py-2.5 text-sm text-zinc-600 dark:text-dtext/70">
+          <span class="flex items-center gap-2">
+            <span class="text-base">🗺️</span>
+            <span class="font-medium text-text dark:text-dtext">Travel 足迹</span>
+          </span>
+          <span class="text-zinc-400">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="m18 15-6-6-6 6" />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </template>
+  </ClientOnly>
 
   <!-- 下方内容区 -->
   <div class="flex-1 flex overflow-hidden">
@@ -30,10 +48,22 @@
     <div class="w-[260px] shrink-0 border-r border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dbg flex flex-col">
       <div class="px-4 py-3 border-b border-zinc-100 dark:border-zinc-800 flex items-center justify-between">
         <span class="text-sm font-medium text-text dark:text-dtext">足迹点</span>
-        <button type="button" class="px-2.5 py-1 rounded-full text-xs bg-main text-white hover:opacity-90 transition"
-          @click="createNew">
-          + 新建
-        </button>
+        <div class="flex items-center gap-2">
+          <a href="/travel" target="_blank"
+            class="px-2.5 py-1 rounded-full text-xs border border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-dtext/70 hover:border-main hover:text-main transition flex items-center gap-1">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+            预览
+          </a>
+          <button type="button" class="px-2.5 py-1 rounded-full text-xs bg-main text-white hover:opacity-90 transition"
+            @click="createNew">
+            + 新建
+          </button>
+        </div>
       </div>
       <div class="flex-1 overflow-y-auto p-2">
         <button v-for="fp in sortedFootprints" :key="fp._file" type="button"
@@ -64,10 +94,10 @@
               <input v-model="form.name" type="text"
                 class="w-full px-3 py-2 h-12 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-transparent text-text dark:text-dtext focus:outline-none focus:border-main" />
             </div>
-            <button type="button"
-              class="px-5 py-2 h-12  rounded-lg text-sm bg-main text-white hover:opacity-90 transition disabled:opacity-50 shrink-0"
-              :disabled="saving" @click="save">
-              {{ saving ? '保存中…' : '保存' }}
+            <button type="button" class="w-[120px] px-5 py-2 h-12 rounded-lg text-sm text-white transition shrink-0"
+              :class="justSaved ? 'bg-[#3fa97a]' : isDirty ? 'bg-[#71afdd] hover:opacity-90' : 'bg-[#74859f] cursor-not-allowed'"
+              :disabled="saving || !isDirty" @click="save">
+              {{ saving ? '保存中…' : justSaved ? '已保存' : '保存' }}
             </button>
           </div>
 
@@ -210,8 +240,78 @@ const imageInput = ref('')
 const saving = ref(false)
 const uploading = ref(false)
 const message = ref('')
+const justSaved = ref(false)
 const studioTravelStore = useStudioTravelStore()
 const { mapCollapsed } = storeToRefs(studioTravelStore)
+
+function isEqualArray(a?: string | string[], b?: string | string[]): boolean {
+  const aa = Array.isArray(a) ? a : a ? [a] : []
+  const bb = Array.isArray(b) ? b : b ? [b] : []
+  if (aa.length !== bb.length) return false
+  return aa.every((v, i) => v === bb[i])
+}
+
+function isEqualFootprint(a: FootprintFile, b: FootprintFile): boolean {
+  return (
+    a.name === b.name &&
+    a.lat === b.lat &&
+    a.lng === b.lng &&
+    a.date === b.date &&
+    a.description === b.description &&
+    isEqualArray(a.categories, b.categories) &&
+    a.color === b.color &&
+    isEqualArray(a.image, b.image) &&
+    a.url === b.url &&
+    a.urlLabel === b.urlLabel
+  )
+}
+
+// 保存后记录的干净状态，用于判断是否有未保存的修改
+const savedForm = ref<FootprintFile | null>(null)
+
+function buildPayload(): FootprintFile | null {
+  if (!form.value) return null
+  const categories = categoriesText.value
+    .split(/[,，]/)
+    .map((s) => s.trim())
+    .filter(Boolean)
+  return {
+    name: form.value.name.trim(),
+    lat: Number(form.value.lat),
+    lng: Number(form.value.lng),
+    date: form.value.date || undefined,
+    description: form.value.description || undefined,
+    categories: categories.length ? categories : undefined,
+    color: form.value.color || undefined,
+    image: images.value.length ? images.value : undefined,
+    url: form.value.url || undefined,
+    urlLabel: form.value.urlLabel || undefined,
+    _file: form.value._file,
+  }
+}
+
+const isDirty = computed(() => {
+  if (!form.value || !savedForm.value) return false
+  const current = buildPayload()
+  if (!current) return false
+  return !isEqualFootprint(current, savedForm.value)
+})
+
+// 刷新/关闭页面时提示未保存
+function onBeforeUnload(e: BeforeUnloadEvent) {
+  if (isDirty.value) {
+    e.preventDefault()
+    e.returnValue = '当前有未保存的修改，确定要离开吗？'
+  }
+}
+
+// 离开当前页面（SPA 路由切换）时提示未保存
+onBeforeRouteLeave((_, __, next) => {
+  if (isDirty.value && !confirm('当前有未保存的修改，确定要离开吗？')) {
+    return next(false)
+  }
+  next()
+})
 
 // 总览地图数据
 const overviewPoints = computed(() =>
@@ -260,6 +360,8 @@ function select(fp: FootprintFile) {
   categoriesText.value = (fp.categories ?? []).join(', ')
   imageInput.value = ''
   message.value = ''
+  justSaved.value = false
+  savedForm.value = buildPayload()
 }
 
 function onMapPick(lat: number, lng: number) {
@@ -286,6 +388,8 @@ function createNew() {
   categoriesText.value = ''
   imageInput.value = ''
   message.value = ''
+  justSaved.value = false
+  savedForm.value = buildPayload()
 }
 
 function removeImage(idx: number) {
@@ -320,25 +424,7 @@ async function onUpload(e: Event) {
   }
 }
 
-function buildPayload() {
-  if (!form.value) return null
-  const categories = categoriesText.value
-    .split(/[,，]/)
-    .map((s) => s.trim())
-    .filter(Boolean)
-  return {
-    name: form.value.name.trim(),
-    lat: Number(form.value.lat),
-    lng: Number(form.value.lng),
-    date: form.value.date || undefined,
-    description: form.value.description || undefined,
-    categories: categories.length ? categories : undefined,
-    color: form.value.color || undefined,
-    image: images.value.length ? images.value : undefined,
-    url: form.value.url || undefined,
-    urlLabel: form.value.urlLabel || undefined,
-  }
-}
+let saveSuccessTimer: ReturnType<typeof setTimeout> | null = null
 
 async function save() {
   const payload = buildPayload()
@@ -349,6 +435,8 @@ async function save() {
   }
   saving.value = true
   message.value = ''
+  justSaved.value = false
+  if (saveSuccessTimer) clearTimeout(saveSuccessTimer)
   try {
     if (selectedFile.value) {
       await $fetch('/api/studio/travel', { method: 'PUT', query: { file: selectedFile.value }, body: payload })
@@ -359,6 +447,12 @@ async function save() {
       message.value = '已创建'
     }
     await load()
+    const updated = footprints.value.find((f) => f._file === selectedFile.value)
+    if (updated) select(updated)
+    justSaved.value = true
+    saveSuccessTimer = setTimeout(() => {
+      justSaved.value = false
+    }, 2000)
   } catch (err: any) {
     message.value = err?.data?.message || err?.message || '保存失败'
   } finally {
@@ -383,5 +477,24 @@ async function remove() {
   }
 }
 
-onMounted(load)
+onMounted(() => {
+  load()
+  window.addEventListener('beforeunload', onBeforeUnload)
+
+  // 从 localStorage 恢复地图总览折叠状态
+  const stored = localStorage.getItem('studio-travel-map-collapsed')
+  if (stored !== null) {
+    mapCollapsed.value = stored === 'true'
+  }
+})
+
+// 记忆地图总览折叠状态
+watch(mapCollapsed, (value) => {
+  localStorage.setItem('studio-travel-map-collapsed', String(value))
+})
+
+onUnmounted(() => {
+  window.removeEventListener('beforeunload', onBeforeUnload)
+  if (saveSuccessTimer) clearTimeout(saveSuccessTimer)
+})
 </script>

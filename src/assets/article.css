@@ -142,6 +142,37 @@ article a {
   text-decoration-color: #71afdd;
 }
 
+/* 脚注 --------------------------------------------------------------- */
+article a[data-footnote-ref],
+article .footnotes li[id] {
+  scroll-margin-top: 80px;
+}
+
+article a[data-footnote-ref],
+article a[data-footnote-backref] {
+  font-weight: 400;
+  color: #71717a;
+  text-decoration: none;
+}
+
+/* 在上标容器上设置字号，避免与浏览器默认的 sup 缩放叠加。 */
+article sup:has(> a[data-footnote-ref]) {
+  font-size: 0.6875em;
+}
+
+article a[data-footnote-ref] {
+  font-size: inherit;
+}
+
+article a[data-footnote-backref] {
+  font-size: 0.75em;
+}
+
+.dark article a[data-footnote-ref],
+.dark article a[data-footnote-backref] {
+  color: #a1a1aa;
+}
+
 /* 列表 --------------------------------------------------------------- */
 article ol,
 article ul {
