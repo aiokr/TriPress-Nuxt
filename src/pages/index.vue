@@ -39,14 +39,11 @@
             </div>
           </div>
         </div>
-        <div class="absolute inset-y-0 right-0 w-[45%]">
+        <div class="running-preview absolute inset-y-0 right-0 w-[45%]">
           <img class="hidden dark:block w-full h-full object-cover object-left" src="/images/running-page-dark.png"
             alt="Running heatmap dark" />
           <img class="dark:hidden w-full h-full object-cover object-left" src="/images/running-page.png"
             alt="Running heatmap" />
-          <div
-            class="absolute inset-0 bg-gradient-to-r from-white via-white/60 dark:from-[#18181B] dark:via-[#18181B]/60 to-transparent">
-          </div>
         </div>
       </NuxtLink>
       <div class="flex flex-col gap-6 rounded-feature-card p-4 shadow-feature-card dark:shadow-feature-card-dark lg:p-6">
@@ -153,6 +150,11 @@ const totalStats = computed(() => {
 </script>
 
 <style scoped>
+.running-preview {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.4) 50%, #000 100%);
+  mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.4) 50%, #000 100%);
+}
+
 .postCard {
   transition: transform 0.3s, background-color 0.3s, box-shadow 0.6s;
 }
