@@ -26,6 +26,12 @@ interface Post {
   lang?: Lang
 }
 
+interface Quote {
+  path: string
+  date?: string
+  type?: string
+}
+
 interface Alternative {
   hreflang: HrefLang
   href: string
@@ -46,6 +52,7 @@ function toAbs(path: string): string {
 
 export default defineEventHandler(async (event) => {
   const posts = await queryCollection(event, 'post').all() as Post[]
+  const quotes = await queryCollection(event, 'quote').all() as Quote[]
 
   // 按 baseSlug 分组（同篇文章的不同语言版本）
   const groups = new Map<string, Post[]>()
@@ -94,6 +101,17 @@ export default defineEventHandler(async (event) => {
         alternatives,
       })
     }
+  }
+
+  // Quote 页面没有多语言分组，直接追加独立 URL（排除草稿）
+  for (const q of quotes) {
+    if (q.type === 'draft') continue
+    urls.push({
+      loc: toAbs(q.path),
+      lastmod: q.date,
+      changefreq: 'weekly',
+      priority: 0.6,
+    })
   }
 
   return urls

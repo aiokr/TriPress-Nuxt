@@ -58,6 +58,18 @@ export default defineContentConfig({
         type: z.string(),
         features: z.array(z.any()),
       }).passthrough()
+    }),
+    quote: defineCollection({
+      type: 'page',
+      source: [{ include: 'quote/**/*.md' }],
+      schema: z.object({
+        title: z.string().optional(),
+        date: z.string(),
+        cover: z.string().optional(),
+        tags: z.array(z.string()).optional(),
+        description: z.string().optional(),
+        type: z.string().optional(),
+      })
     })
   }
 })

@@ -46,23 +46,24 @@
             alt="Running heatmap" />
         </div>
       </NuxtLink>
-      <div class="flex flex-col gap-6 rounded-feature-card p-4 shadow-feature-card dark:shadow-feature-card-dark lg:p-6">
-        <div class="pb-1 flex items-center justify-between">
-          <div class="text-xl font-bold text-text dark:text-dtext">Recently Posts</div>
-          <NuxtLink to="/posts" class="text-main transition-colors">All Posts</NuxtLink>
-        </div>
-        <NuxtLink v-for="post in posts" :key="post.path" :to="post.path" class="postCard w-full rounded-xl block">
-          <div class="md:px-2 md:pt-2 rounded-b-xl">
-            <div class="text-xs text-zinc-400 dark:text-dtext/80 pb-2 flex items-center gap-2">
-              <span v-if="post.date">{{ formatDate(post.date) }}</span>
-              <span v-if="post.category" class="mx-1">·</span>
-              <span v-if="post.category">{{ post.category }}</span>
-              <span v-if="hasZh(post.path)"
+      <div class="flex flex-col gap-8 px-4 md:px-8">
+        <NuxtLink v-for="item in homeItems" :key="item.path" :to="item.path" :class="['homeItem block', item._kind === 'quote' && 'border-l-2 border-zinc-200 pl-4 dark:border-zinc-700']">
+          <div class="text-xs text-zinc-400 dark:text-dtext/80 pb-2 flex items-center gap-2">
+            <span v-if="item.date">{{ formatDate(item.date) }}</span>
+            <template v-if="item._kind === 'post'">
+              <span v-if="item.category" class="mx-1">·</span>
+              <span v-if="item.category">{{ item.category }}</span>
+              <span v-if="hasZh(item.path)"
                 class="ml-1 px-1.5 py-0.5 rounded border border-main/50 text-main text-[10px]">中</span>
-            </div>
-            <h2 class="text-xl text-text dark:text-dtext pb-2">{{ post.title }}</h2>
-            <div>
-            </div>
+            </template>
+            <template v-if="item._kind === 'quote' && item.tags?.length">
+              <span class="mx-1">·</span>
+              <span v-for="tag in item.tags" :key="tag" class="text-zinc-400 dark:text-dtext/70">{{ tag }}</span>
+            </template>
+          </div>
+          <h2 v-if="item._kind === 'post'" class="text-xl text-text dark:text-dtext">{{ item.title }}</h2>
+          <div v-else-if="item._kind === 'quote'" class="quote-excerpt text-lg italic text-zinc-600 dark:text-dtext/80">
+            <ContentRenderer :value="item" :excerpt="true" />
           </div>
         </NuxtLink>
       </div>
@@ -90,13 +91,26 @@ useSeoMeta({
   ogDescription: 'Take Photo, Think Seriously',
 })
 
-// 列表只展示默认语言（en）版本；过滤掉 .zh 翻译副本和 type=page 的独立页面
-const { data: posts } = await useAsyncData('home-posts', async () => {
-  const all = await queryCollection('post')
-    .order('date', 'DESC')
-    .where('type', '<>', 'draft')
-    .all()
-  return all.filter((p: any) => p.lang !== 'zh' && p.type !== 'page').slice(0, 6)
+// 首页 Recently Posts：混合 Post 与 Quote，按 date 倒序展示
+// Post 过滤：默认语言（en）、排除 .zh 翻译副本、排除 type=page/rc/draft
+// Quote 过滤：排除 type=draft
+const { data: homeItems } = await useAsyncData('home-items', async () => {
+  const [allPosts, allQuotes] = await Promise.all([
+    queryCollection('post').order('date', 'DESC').all(),
+    queryCollection('quote').order('date', 'DESC').all()
+  ])
+
+  const filteredPosts = allPosts
+    .filter((p: any) => p.lang !== 'zh' && ['post', 'Post'].includes(p.type))
+    .map((p: any) => ({ ...p, _kind: 'post' as const }))
+
+  const filteredQuotes = allQuotes
+    .filter((q: any) => q.type !== 'draft')
+    .map((q: any) => ({ ...q, _kind: 'quote' as const }))
+
+  return [...filteredPosts, ...filteredQuotes]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 6)
 })
 
 // 查询每个 en 文章是否存在中文翻译，用于显示"中"徽章
@@ -155,22 +169,20 @@ const totalStats = computed(() => {
   mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.4) 50%, #000 100%);
 }
 
-.postCard {
-  transition: transform 0.3s, background-color 0.3s, box-shadow 0.6s;
+.homeItem {
+  transition: transform 0.3s;
 }
 
-.postCard:hover {
-  transition: transform 0.3s, background-color 0.3s, box-shadow 0.6s;
+.homeItem:hover {
   transform: translateX(5px);
 }
 
-.postCard:hover .postCoverWoCover {
-  transition: transform 0.3s, background-color 0.3s, box-shadow 0.6s, opacity 0.3s;
-  opacity: 1;
+.quote-excerpt :deep(p) {
+  margin: 0;
 }
 
-.postCoverWoCover {
-  transition: transform 0.3s, background-color 0.3s, box-shadow 0.6s, opacity 0.3s;
+.quote-excerpt :deep(p + p) {
+  margin-top: 0.5em;
 }
 
 .postCategory {
