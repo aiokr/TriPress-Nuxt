@@ -46,14 +46,15 @@
             alt="Running heatmap" />
         </div>
       </NuxtLink>
-      <div class="flex flex-col gap-8 px-4 md:px-8">
-        <NuxtLink v-for="item in homeItems" :key="item.path" :to="item.path" class="homeItem block">
+      <div ref="feedElement" class="flex flex-col gap-8 px-4 md:px-8">
+        <NuxtLink v-for="item in paginatedItems" :key="`${item._kind}:${item.path}`" :to="item.path"
+          class="homeItem block">
           <div class="text-xs text-zinc-400 dark:text-dtext/80 pb-2 flex items-center gap-2">
             <span v-if="item.date">{{ formatDate(item.date) }}</span>
             <template v-if="item._kind === 'post'">
               <span v-if="item.category" class="mx-1">·</span>
               <span v-if="item.category">{{ item.category }}</span>
-              <span v-if="hasZh(item.path)"
+              <span v-if="item.hasTranslation"
                 class="ml-1 px-1.5 py-0.5 rounded border border-main/50 text-main text-[10px]">中</span>
             </template>
             <template v-if="item._kind === 'quote' && item.tags?.length">
@@ -61,11 +62,38 @@
               <span v-for="tag in item.tags" :key="tag" class="text-zinc-400 dark:text-dtext/70">{{ tag }}</span>
             </template>
           </div>
-          <h2 v-if="item._kind === 'post'" class="text-xl text-text dark:text-dtext">{{ item.title }}</h2>
-          <div v-else-if="item._kind === 'quote'" class="quote-excerpt text-lg text-zinc-600 dark:text-dtext/80">
+          <template v-if="item._kind === 'post'">
+            <h2 class="text-xl text-text dark:text-dtext">{{ item.title }}</h2>
+            <p v-if="item.summary" class="pt-2 text-sm leading-6 text-zinc-500 dark:text-dtext/70">
+              {{ item.summary }}
+            </p>
+          </template>
+          <article v-else-if="item._kind === 'quote'" class="quote-excerpt text-zinc-600 dark:text-dtext/80">
             <MemoEditor :content="item.content" />
-          </div>
+          </article>
         </NuxtLink>
+
+        <div v-if="isFeedLoading" class="py-10 text-center text-sm text-zinc-400 dark:text-dtext/60">
+          正在加载内容…
+        </div>
+        <div v-else-if="paginatedItems.length === 0"
+          class="py-10 text-center text-sm text-zinc-400 dark:text-dtext/60">
+          暂无内容
+        </div>
+
+        <nav v-if="totalPages > 1" class="flex items-center justify-center gap-4 pt-4 pb-8" aria-label="首页内容分页">
+          <button type="button" class="paginationButton" :disabled="currentPage <= 1"
+            @click="goToPage(currentPage - 1)">
+            上一页
+          </button>
+          <span class="text-xs tabular-nums text-zinc-400 dark:text-dtext/60">
+            {{ currentPage }} / {{ totalPages }}
+          </span>
+          <button type="button" class="paginationButton" :disabled="currentPage >= totalPages"
+            @click="goToPage(currentPage + 1)">
+            下一页
+          </button>
+        </nav>
       </div>
     </section>
   </div>
@@ -73,7 +101,21 @@
 </template>
 
 <script setup lang="ts">
-import { getOtherLangPath, normalizePath } from '~/utils/content'
+import type { HomePostIndexItem } from '~/types/home-feed'
+import type { Quote, QuotesResponse } from '~/types/quote'
+
+type HomePostItem = HomePostIndexItem & {
+  _kind: 'post'
+  path: string
+}
+
+type HomeQuoteItem = Quote & {
+  _kind: 'quote'
+}
+
+type HomeItem = HomePostItem | HomeQuoteItem
+
+const PAGE_SIZE = 16
 
 const currentYear = new Date().getFullYear()
 
@@ -91,33 +133,72 @@ useSeoMeta({
   ogDescription: 'Take Photo, Think Seriously',
 })
 
-// 首页 Recently Posts：混合 Post 与 Quote，按 date 倒序展示
-// Post 过滤：默认语言（en）、排除 .zh 翻译副本、排除 type=page/rc/draft
-// Quote 数据来自 Tripper Index 的 Memos 公开 API（/api/quotes 代理），已按公开状态过滤
-const { data: quotesData } = await useQuotes()
+// 首页在浏览器中读取构建期文章索引与实时 Quote，然后按日期混排。
+const { data: postsData, status: postsStatus } = useFetch<HomePostIndexItem[]>('/content/home-posts.json', {
+  server: false,
+  default: () => [],
+})
 
-const { data: homeItems } = await useAsyncData('home-items', async () => {
-  const allPosts = await queryCollection('post').order('date', 'DESC').all()
+// TODO: /api/quotes 当前会返回每条 Quote 的完整 Markdown 与解析 body；首页只需要列表字段，
+// Quote 数量继续增长后应增加精简 Feed API，避免分页前下载全部正文。
+const { data: quotesData, status: quotesStatus } = useFetch<QuotesResponse>('/api/quotes', {
+  server: false,
+  default: () => ({ quotes: [] }),
+})
 
-  const filteredPosts = allPosts
-    .filter((p: any) => p.lang !== 'zh' && ['post', 'Post'].includes(p.type))
-    .map((p: any) => ({ ...p, _kind: 'post' as const }))
+const allHomeItems = computed<HomeItem[]>(() => {
+  const posts: HomePostItem[] = postsData.value.map(post => ({
+    ...post,
+    path: post.link,
+    _kind: 'post',
+  }))
+  const quotes: HomeQuoteItem[] = quotesData.value.quotes.map(quote => ({
+    ...quote,
+    _kind: 'quote',
+  }))
 
-  const filteredQuotes = (quotesData.value?.quotes ?? [])
-    .map((q) => ({ ...q, _kind: 'quote' as const }))
-
-  return [...filteredPosts, ...filteredQuotes]
+  return [...posts, ...quotes]
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 6)
 })
 
-// 查询每个 en 文章是否存在中文翻译，用于显示"中"徽章
-const { data: zhMap } = await useAsyncData('home-posts-zh-map', async () => {
-  const zhPosts = await queryCollection('post').all()
-  return zhPosts.filter((p: any) => p.lang === 'zh').map((p: any) => getOtherLangPath(p.path))
+const route = useRoute()
+const router = useRouter()
+const feedElement = ref<HTMLElement | null>(null)
+
+const requestedPage = computed(() => {
+  const value = Number.parseInt(String(route.query.page || '1'), 10)
+  return Number.isFinite(value) && value > 0 ? value : 1
+})
+const totalPages = computed(() => Math.max(1, Math.ceil(allHomeItems.value.length / PAGE_SIZE)))
+const currentPage = computed(() => Math.min(requestedPage.value, totalPages.value))
+const paginatedItems = computed(() => {
+  const start = (currentPage.value - 1) * PAGE_SIZE
+  return allHomeItems.value.slice(start, start + PAGE_SIZE)
+})
+const isFeedLoading = computed(() => ['idle', 'pending'].includes(postsStatus.value)
+  || ['idle', 'pending'].includes(quotesStatus.value))
+
+watch([requestedPage, totalPages, isFeedLoading], ([requested, pages, loading]) => {
+  if (loading || requested <= pages) return
+  void router.replace({
+    query: {
+      ...route.query,
+      page: pages > 1 ? String(pages) : undefined,
+    },
+  })
 })
 
-const hasZh = (path: string) => zhMap.value?.includes(normalizePath(path)) ?? false
+async function goToPage(page: number) {
+  const nextPage = Math.min(Math.max(page, 1), totalPages.value)
+  await router.push({
+    query: {
+      ...route.query,
+      page: nextPage > 1 ? String(nextPage) : undefined,
+    },
+  })
+  await nextTick()
+  feedElement.value?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
 
 interface RunningStatsJson {
   summary?: {
@@ -168,15 +249,48 @@ const totalStats = computed(() => {
 }
 
 .homeItem {
-  transition: transform 0.3s;
+  position: relative;
 }
 
-.homeItem:hover {
-  transform: translateX(5px);
+/* 悬浮时在左侧显示主题色竖线，卡片本身不位移 */
+.homeItem::before {
+  content: '';
+  position: absolute;
+  left: -0.75rem;
+  top: 0.25rem;
+  bottom: 0.25rem;
+  width: 2px;
+  border-radius: 9999px;
+  @apply bg-main;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.homeItem:hover::before {
+  opacity: 1;
+}
+
+.paginationButton {
+  @apply rounded border border-zinc-200 px-3 py-1.5 text-sm text-zinc-500 transition-colors hover:border-main hover:text-main disabled:cursor-not-allowed disabled:opacity-40 dark:border-zinc-700 dark:text-dtext;
+}
+
+/* 首页 Quote：在 article 正文（16px / 1.75）的基础上缩小并收紧行距 */
+.quote-excerpt {
+  font-size: 14px;
+  line-height: 1.4em;
 }
 
 .quote-excerpt :deep(p) {
   margin: 0;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.quote-excerpt :deep(ul),
+.quote-excerpt :deep(ol) {
+  font-size: inherit;
+  line-height: inherit;
 }
 
 .quote-excerpt :deep(p + p) {

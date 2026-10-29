@@ -32,8 +32,8 @@ defineProps<{
 }
 
 .quote-body {
-  font-size: 22px;
-  line-height: 1.6em;
+  font-size: 14px;
+  line-height: 1.4em;
 }
 
 .quote-body :deep(p) {
