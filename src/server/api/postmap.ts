@@ -14,6 +14,7 @@
  * 我们直接输出 xhtml:link 以保证 hreflang 标注正确（不依赖 i18n 模块）。
  */
 import { queryCollection } from '@nuxt/content/server'
+import { getQuotes } from '../utils/memos'
 
 const SITE = 'https://tripper.press'
 
@@ -24,12 +25,6 @@ interface Post {
   path: string
   date?: string
   lang?: Lang
-}
-
-interface Quote {
-  path: string
-  date?: string
-  type?: string
 }
 
 interface Alternative {
@@ -52,7 +47,7 @@ function toAbs(path: string): string {
 
 export default defineEventHandler(async (event) => {
   const posts = await queryCollection(event, 'post').all() as Post[]
-  const quotes = await queryCollection(event, 'quote').all() as Quote[]
+  const quotes = await getQuotes()
 
   // 按 baseSlug 分组（同篇文章的不同语言版本）
   const groups = new Map<string, Post[]>()
@@ -103,12 +98,18 @@ export default defineEventHandler(async (event) => {
     }
   }
 
-  // Quote 页面没有多语言分组，直接追加独立 URL（排除草稿）
+  // Quote 页面来自 Tripper Index 的 Memos API，没有多语言分组，直接追加独立 URL
+  if (quotes.length) {
+    urls.push({
+      loc: toAbs('/quotes'),
+      changefreq: 'weekly',
+      priority: 0.5,
+    })
+  }
   for (const q of quotes) {
-    if (q.type === 'draft') continue
     urls.push({
       loc: toAbs(q.path),
-      lastmod: q.date,
+      lastmod: q.updatedAt || q.date,
       changefreq: 'weekly',
       priority: 0.6,
     })

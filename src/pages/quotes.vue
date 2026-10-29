@@ -6,9 +6,9 @@
         <hr />
       </div>
       <div class="flex flex-col gap-6">
-        <QuoteCard v-for="quote in quotes" :key="quote.path" :quote="quote" />
+        <QuoteCard v-for="quote in quotes" :key="quote.uid" :quote="quote" />
       </div>
-      <div v-if="!quotes?.length" class="text-zinc-400 dark:text-dtext/60 text-sm py-12 text-center">
+      <div v-if="!quotes.length" class="text-zinc-400 dark:text-dtext/60 text-sm py-12 text-center">
         暂无 Quote
       </div>
     </section>
@@ -16,6 +16,8 @@
 </template>
 
 <script setup lang="ts">
+import type { Quote } from '~/types/quote'
+
 useHead({
   title: 'Quotes - Tripper Press',
   meta: [
@@ -30,10 +32,7 @@ useSeoMeta({
   ogDescription: 'Short quotes and thoughts from Tripper Press.'
 })
 
-const { data: quotes } = await useAsyncData('quotes-list', () => {
-  return queryCollection('quote')
-    .orWhere(group => group.where('type', 'IS NULL').orWhere(sub => sub.where('type', '<>', 'draft')))
-    .order('date', 'DESC')
-    .all()
-})
+// 数据来自 Tripper Index 的 Memos 公开 API（/api/quotes 代理）
+const { data } = await useQuotes()
+const quotes = computed<Quote[]>(() => data.value?.quotes ?? [])
 </script>

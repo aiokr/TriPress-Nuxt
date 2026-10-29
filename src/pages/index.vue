@@ -47,7 +47,7 @@
         </div>
       </NuxtLink>
       <div class="flex flex-col gap-8 px-4 md:px-8">
-        <NuxtLink v-for="item in homeItems" :key="item.path" :to="item.path" :class="['homeItem block', item._kind === 'quote' && 'border-l-2 border-zinc-200 pl-4 dark:border-zinc-700']">
+        <NuxtLink v-for="item in homeItems" :key="item.path" :to="item.path" class="homeItem block">
           <div class="text-xs text-zinc-400 dark:text-dtext/80 pb-2 flex items-center gap-2">
             <span v-if="item.date">{{ formatDate(item.date) }}</span>
             <template v-if="item._kind === 'post'">
@@ -62,8 +62,8 @@
             </template>
           </div>
           <h2 v-if="item._kind === 'post'" class="text-xl text-text dark:text-dtext">{{ item.title }}</h2>
-          <div v-else-if="item._kind === 'quote'" class="quote-excerpt text-lg italic text-zinc-600 dark:text-dtext/80">
-            <ContentRenderer :value="item" :excerpt="true" />
+          <div v-else-if="item._kind === 'quote'" class="quote-excerpt text-lg text-zinc-600 dark:text-dtext/80">
+            <MemoEditor :content="item.content" />
           </div>
         </NuxtLink>
       </div>
@@ -93,20 +93,18 @@ useSeoMeta({
 
 // 首页 Recently Posts：混合 Post 与 Quote，按 date 倒序展示
 // Post 过滤：默认语言（en）、排除 .zh 翻译副本、排除 type=page/rc/draft
-// Quote 过滤：排除 type=draft
+// Quote 数据来自 Tripper Index 的 Memos 公开 API（/api/quotes 代理），已按公开状态过滤
+const { data: quotesData } = await useQuotes()
+
 const { data: homeItems } = await useAsyncData('home-items', async () => {
-  const [allPosts, allQuotes] = await Promise.all([
-    queryCollection('post').order('date', 'DESC').all(),
-    queryCollection('quote').order('date', 'DESC').all()
-  ])
+  const allPosts = await queryCollection('post').order('date', 'DESC').all()
 
   const filteredPosts = allPosts
     .filter((p: any) => p.lang !== 'zh' && ['post', 'Post'].includes(p.type))
     .map((p: any) => ({ ...p, _kind: 'post' as const }))
 
-  const filteredQuotes = allQuotes
-    .filter((q: any) => q.type !== 'draft')
-    .map((q: any) => ({ ...q, _kind: 'quote' as const }))
+  const filteredQuotes = (quotesData.value?.quotes ?? [])
+    .map((q) => ({ ...q, _kind: 'quote' as const }))
 
   return [...filteredPosts, ...filteredQuotes]
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())

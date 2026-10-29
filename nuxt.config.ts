@@ -90,6 +90,8 @@ export default defineNuxtConfig({
   srcDir: 'src/',
 
   runtimeConfig: {
+    // Quote 数据源（Tripper Index 的 Memos 公开 API），可通过 NUXT_MEMOS_API_BASE 覆盖
+    memosApiBase: 'https://index.tripper.press/public/api/memos',
     public: {
       mapboxToken: '',
       isDevBranch: getIsDevBranch(),
@@ -138,6 +140,13 @@ export default defineNuxtConfig({
     sources: [
       '/api/postmap'
     ]
+  },
+
+  routeRules: {
+    // Quote 内容来自 Tripper Index 的 Memos API，按请求渲染。
+    // 关闭预渲染，避免 nuxt build 的 crawlLinks 把构建时的旧数据固化成静态页。
+    '/quotes': { prerender: false },
+    '/quote/**': { prerender: false },
   },
 
   content: {

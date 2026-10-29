@@ -22,6 +22,7 @@
     "@resvg/resvg-js": "^2.6.2",
     "@tmcw/togeojson": "^7.1.2",
     "@unhead/ssr": "^1.11.20",
+    "@usememos/editor": "^26.10.27",
     "@vueuse/core": "^10.11.0",
     "@vueuse/motion": "^2.2.3",
     "better-sqlite3": "^12.11.1",

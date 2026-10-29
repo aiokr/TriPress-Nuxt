@@ -1,18 +1,15 @@
 <template>
   <div v-if="quote" class="container max-w-[800px] mx-auto pt-12 px-4 pb-24">
     <div class="text-xs text-zinc-400 dark:text-dtext/80 pb-6 flex items-center gap-2">
+      <span v-if="quote.pinned" class="text-main">置顶</span>
       <span v-if="quote.date">{{ formatDate(quote.date) }}</span>
-      <span v-if="quote.tags?.length" class="flex items-center gap-1">
+      <span v-if="quote.tags.length" class="flex items-center gap-1">
         <span>·</span>
         <span v-for="tag in quote.tags" :key="tag" class="text-zinc-400 dark:text-dtext/70">{{ tag }}</span>
       </span>
     </div>
-    <article>
-      <ContentRenderer :value="quote" />
-      <div v-if="quote.cover" class="mt-4">
-        <img v-if="isImageUrl(quote.cover)" :src="quote.cover" alt="" class="w-full rounded-lg object-cover max-h-[400px]" />
-        <video v-else-if="isVideoUrl(quote.cover)" :src="quote.cover" controls class="w-full rounded-lg max-h-[400px]"></video>
-      </div>
+    <article class="quote-body">
+      <MemoEditor :content="quote.content" />
     </article>
   </div>
   <div v-else class="empty-page container max-w-[800px] mx-auto pt-40 px-4 text-center">
@@ -24,43 +21,38 @@
 </template>
 
 <script setup lang="ts">
-import { normalizePath } from '~/utils/content'
-import { isImageUrl, isVideoUrl } from '~/utils/media'
+import type { Quote } from '~/types/quote'
 
 const route = useRoute()
-const { data: quote } = await useAsyncData(route.path, () => {
-  return queryCollection('quote').path(route.path).first()
-})
 
-function firstParagraphText(body: any): string {
-  const text = (node: any): string =>
-    typeof node === 'string' ? node : Array.isArray(node) ? node.slice(2).map(text).join('') : ''
-  const paragraph = (body?.value ?? []).find((node: any) => Array.isArray(node) && node[0] === 'p')
-  return paragraph ? text(paragraph).trim() : ''
-}
+// /quote/<uid>，兼容 [...slug] 的数组形式
+const slug = route.params.slug
+const uid = Array.isArray(slug) ? slug[slug.length - 1] ?? '' : String(slug ?? '')
 
-function truncate(text: string, maxLength: number): string {
-  return text.length > maxLength ? text.slice(0, maxLength) + '...' : text
-}
+const { data } = await useQuote(uid)
+const quote = computed<Quote | null>(() => data.value?.quote ?? null)
 
 if (quote.value) {
-  const text = firstParagraphText(quote.value.body)
-  const title = truncate(text, 40) || quote.value.title
-  const description = quote.value.description || truncate(text, 120)
-  const canonical = 'https://tripper.press' + normalizePath(quote.value.path)
+  const canonical = 'https://tripper.press/quote/' + quote.value.uid
 
   useHead({
     titleTemplate: '%s - Tripper Press',
-    title,
+    title: quote.value.title,
     link: [{ rel: 'canonical', href: canonical }]
   })
   useSeoMeta({
-    title,
-    ogTitle: title,
-    description,
-    ogDescription: description,
+    title: quote.value.title,
+    ogTitle: quote.value.title,
+    description: quote.value.description,
+    ogDescription: quote.value.description,
   })
 } else {
+  // 服务端渲染时返回 404 状态，避免不存在的 Quote 被搜索引擎收录
+  const event = useRequestEvent()
+  if (event) {
+    setResponseStatus(event, 404)
+  }
+
   useHead({
     titleTemplate: '%s - Tripper Press',
     title: 'Page Not Found',
@@ -71,3 +63,26 @@ if (quote.value) {
   })
 }
 </script>
+
+<style scoped>
+.quote-body {
+  font-size: 22px;
+  line-height: 1.6em;
+}
+
+.quote-body :deep(p) {
+  margin-bottom: 0.75em;
+}
+
+.quote-body :deep(p:last-child) {
+  margin-bottom: 0;
+}
+
+.quote-body :deep(img) {
+  display: block;
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 0.75em 0 0 0;
+}
+</style>
+

@@ -1,35 +1,21 @@
 <template>
   <NuxtLink :to="quote.path" class="quoteCard block w-full p-4 lg:p-6">
     <div class="text-xs text-zinc-400 dark:text-dtext/80 pb-3 flex items-center gap-2">
+      <span v-if="quote.pinned" class="text-main">置顶</span>
       <span v-if="quote.date">{{ formatDate(quote.date) }}</span>
-      <span v-if="quote.tags?.length" class="flex items-center gap-1">
+      <span v-if="quote.tags.length" class="flex items-center gap-1">
         <span>·</span>
         <span v-for="tag in quote.tags" :key="tag" class="text-zinc-400 dark:text-dtext/70">{{ tag }}</span>
       </span>
     </div>
     <div class="quote-body text-text dark:text-dtext">
-      <ContentRenderer :value="quote" />
-    </div>
-    <div v-if="quote.cover" class="mt-4">
-      <img v-if="isImageUrl(quote.cover)" :src="quote.cover" alt="" class="w-full rounded-lg object-cover max-h-[400px]" />
-      <video v-else-if="isVideoUrl(quote.cover)" :src="quote.cover" controls class="w-full rounded-lg max-h-[400px]"></video>
+      <MemoEditor :content="quote.content" />
     </div>
   </NuxtLink>
 </template>
 
 <script setup lang="ts">
-import { isImageUrl, isVideoUrl } from '~/utils/media'
-
-interface Quote {
-  path: string
-  date?: string
-  title?: string
-  description?: string
-  cover?: string
-  tags?: string[]
-  body?: any
-  [key: string]: any
-}
+import type { Quote } from '~/types/quote'
 
 defineProps<{
   quote: Quote
