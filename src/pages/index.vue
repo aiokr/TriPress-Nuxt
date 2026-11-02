@@ -47,6 +47,10 @@
         </div>
       </NuxtLink>
       <div ref="feedElement" class="flex flex-col gap-8 px-4 md:px-8">
+        <div v-if="isFeedLoading" class="py-10 text-center text-sm text-zinc-400 dark:text-dtext/60">
+          正在加载内容…
+        </div>
+        <template v-else>
         <div v-for="item in paginatedItems" :key="`${item._kind}:${item.path}`" class="homeItem block">
           <NuxtLink :to="item.path" class="block">
           <div class="text-xs text-zinc-400 dark:text-dtext/80 pb-2 flex items-center gap-2">
@@ -75,10 +79,7 @@
           <QuoteGallery v-if="item._kind === 'quote'" :attachments="item.attachments" />
         </div>
 
-        <div v-if="isFeedLoading" class="py-10 text-center text-sm text-zinc-400 dark:text-dtext/60">
-          正在加载内容…
-        </div>
-        <div v-else-if="paginatedItems.length === 0"
+        <div v-if="paginatedItems.length === 0"
           class="py-10 text-center text-sm text-zinc-400 dark:text-dtext/60">
           暂无内容
         </div>
@@ -96,6 +97,7 @@
             下一页
           </button>
         </nav>
+        </template>
       </div>
     </section>
   </div>
@@ -149,12 +151,12 @@ const { data: quotesData, status: quotesStatus } = useFetch<QuotesResponse>('/ap
 })
 
 const allHomeItems = computed<HomeItem[]>(() => {
-  const posts: HomePostItem[] = postsData.value.map(post => ({
+  const posts: HomePostItem[] = (postsData.value ?? []).map(post => ({
     ...post,
     path: post.link,
     _kind: 'post',
   }))
-  const quotes: HomeQuoteItem[] = quotesData.value.quotes.map(quote => ({
+  const quotes: HomeQuoteItem[] = (quotesData.value?.quotes ?? []).map(quote => ({
     ...quote,
     _kind: 'quote',
   }))
