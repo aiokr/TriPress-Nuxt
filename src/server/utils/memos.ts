@@ -12,6 +12,7 @@ import type { Quote } from '~/types/quote'
  */
 
 interface MemoApiItem {
+  attachments?: Array<{ fileUrl?: string; thumbnailUrl?: string | null }>
   uid?: string
   content?: string
   state?: string
@@ -122,6 +123,12 @@ async function normalizeMemo(memo: MemoApiItem, origin: string): Promise<Quote> 
   const date = toSiteIso(memo.createdAt || memo.updatedAt)
 
   return {
+    attachments: (memo.attachments || [])
+      .filter((attachment) => typeof attachment.fileUrl === 'string' && /^https?:\/\//i.test(attachment.fileUrl))
+      .map((attachment) => ({
+        fileUrl: attachment.fileUrl!,
+        thumbnailUrl: attachment.thumbnailUrl || undefined,
+      })),
     uid: memo.uid!,
     path: `/quote/${memo.uid}`,
     date,
@@ -178,7 +185,9 @@ async function loadQuotes(): Promise<Quote[]> {
 const loadQuotesCached = defineCachedFunction(loadQuotes, {
   name: 'quotes',
   getKey: () => getMemosApi(),
-  maxAge: process.env.NODE_ENV === 'production' ? 120 : 0,
+  // Nitro treats maxAge: 0 as no expiry, not as disabling the cache.
+  shouldBypassCache: () => process.env.NODE_ENV !== 'production',
+  maxAge: 120,
   swr: true,
   staleMaxAge: 3600,
 })

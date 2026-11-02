@@ -11,6 +11,7 @@
     <article class="quote-body">
       <MemoEditor :content="quote.content" />
     </article>
+    <QuoteGallery :attachments="quote.attachments" />
   </div>
   <div v-else class="empty-page container max-w-[800px] mx-auto pt-40 px-4 text-center">
     <p class="text-zinc-400 dark:text-dtext/60 pb-4">{{ route.path }}</p>

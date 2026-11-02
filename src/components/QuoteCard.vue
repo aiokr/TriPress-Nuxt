@@ -1,5 +1,6 @@
 <template>
-  <NuxtLink :to="quote.path" class="quoteCard block w-full p-4 lg:p-6">
+  <div class="quoteCard block w-full p-4 lg:p-6">
+    <NuxtLink :to="quote.path" class="block">
     <div class="text-xs text-zinc-400 dark:text-dtext/80 pb-3 flex items-center gap-2">
       <span v-if="quote.pinned" class="text-main">置顶</span>
       <span v-if="quote.date">{{ formatDate(quote.date) }}</span>
@@ -11,7 +12,9 @@
     <div class="quote-body text-text dark:text-dtext">
       <MemoEditor :content="quote.content" />
     </div>
-  </NuxtLink>
+    </NuxtLink>
+    <QuoteGallery :attachments="quote.attachments" />
+  </div>
 </template>
 
 <script setup lang="ts">

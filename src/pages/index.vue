@@ -47,8 +47,8 @@
         </div>
       </NuxtLink>
       <div ref="feedElement" class="flex flex-col gap-8 px-4 md:px-8">
-        <NuxtLink v-for="item in paginatedItems" :key="`${item._kind}:${item.path}`" :to="item.path"
-          class="homeItem block">
+        <div v-for="item in paginatedItems" :key="`${item._kind}:${item.path}`" class="homeItem block">
+          <NuxtLink :to="item.path" class="block">
           <div class="text-xs text-zinc-400 dark:text-dtext/80 pb-2 flex items-center gap-2">
             <span v-if="item.date">{{ formatDate(item.date) }}</span>
             <template v-if="item._kind === 'post'">
@@ -71,7 +71,9 @@
           <article v-else-if="item._kind === 'quote'" class="quote-excerpt text-zinc-600 dark:text-dtext/80">
             <MemoEditor :content="item.content" />
           </article>
-        </NuxtLink>
+          </NuxtLink>
+          <QuoteGallery v-if="item._kind === 'quote'" :attachments="item.attachments" />
+        </div>
 
         <div v-if="isFeedLoading" class="py-10 text-center text-sm text-zinc-400 dark:text-dtext/60">
           正在加载内容…

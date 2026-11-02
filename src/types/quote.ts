@@ -5,6 +5,7 @@
  * 不再使用本地 content/quote 的 Markdown 文件。
  */
 export interface Quote {
+  attachments: QuoteAttachment[]
   /** Memos 中的唯一 id */
   uid: string
   /** 站内路径，形如 /quote/<uid> */
@@ -25,6 +26,11 @@ export interface Quote {
   content: string
   /** 由 Markdown 解析出的 MDC/HAST 正文，交给 ContentRenderer 渲染 */
   body: unknown
+}
+
+export interface QuoteAttachment {
+  fileUrl: string
+  thumbnailUrl?: string
 }
 
 /** GET /api/quotes */
