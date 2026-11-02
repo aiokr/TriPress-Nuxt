@@ -64,61 +64,61 @@
     </article>
 
     <div class="w-full h-48 md:h-16 overflow-hidden rounded mb-4 grid grid-cols-4 md:grid-cols-11">
-      <ColorSwatch name="neutral-25" hex="#f9fafb" class="bg-neutral-25 text-[#222831]" />
-      <ColorSwatch name="neutral-50" hex="#f3f4f7" class="bg-neutral-50 text-[#222831]" />
-      <ColorSwatch name="neutral-100" hex="#eaedf0" class="bg-neutral-100 text-[#222831]" />
-      <ColorSwatch name="neutral-200" hex="#d8dde4" class="bg-neutral-200 text-[#222831]" />
-      <ColorSwatch name="neutral-300" hex="#bdc5d1" class="bg-neutral-300 text-[#222831]" />
-      <ColorSwatch name="neutral-400" hex="#99a5b8" class="bg-neutral-400 text-[#222831]" />
-      <ColorSwatch name="neutral-500" hex="#74859f" class="bg-neutral-500 text-white" />
-      <ColorSwatch name="neutral-600" hex="#58677e" class="bg-neutral-600 text-white" />
-      <ColorSwatch name="neutral-700" hex="#3f4a5a" class="bg-neutral-700 text-white" />
-      <ColorSwatch name="neutral-800" hex="#222831" class="bg-neutral-800 text-white" />
-      <ColorSwatch name="neutral-900" hex="#13161b" class="bg-neutral-900 text-white" />
+      <ColorSwatch name="frost-25" hex="#f9fafb" class="bg-frost-25 text-[#222831]" />
+      <ColorSwatch name="frost-50" hex="#f3f4f7" class="bg-frost-50 text-[#222831]" />
+      <ColorSwatch name="frost-100" hex="#eaedf0" class="bg-frost-100 text-[#222831]" />
+      <ColorSwatch name="frost-200" hex="#d8dde4" class="bg-frost-200 text-[#222831]" />
+      <ColorSwatch name="frost-300" hex="#bdc5d1" class="bg-frost-300 text-[#222831]" />
+      <ColorSwatch name="frost-400" hex="#99a5b8" class="bg-frost-400 text-[#222831]" />
+      <ColorSwatch name="frost-500" hex="#74859f" class="bg-frost-500 text-white" />
+      <ColorSwatch name="frost-600" hex="#58677e" class="bg-frost-600 text-white" />
+      <ColorSwatch name="frost-700" hex="#3f4a5a" class="bg-frost-700 text-white" />
+      <ColorSwatch name="frost-800" hex="#222831" class="bg-frost-800 text-white" />
+      <ColorSwatch name="frost-900" hex="#13161b" class="bg-frost-900 text-white" />
     </div>
 
     <h3 class="heading-3 text-fg pt-8 pb-4">Background</h3>
 
     <div class="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
       <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-white border border-neutral-400" />
+        <div class="w-5 h-5 rounded-full bg-white border border-frost-400" />
         <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Background 1</p>
         <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-100 text-frost-600 uppercase">
           Light</div>
         <p class="text-sm text-fg w-[260px]">Default element background</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#FFFFFF</p>
         <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">white</p>
       </div>
       <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-50 border border-neutral-400" />
+        <div class="w-5 h-5 rounded-full bg-frost-50 border border-frost-400" />
         <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Background 2</p>
         <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-100 text-frost-600 uppercase">
           Light</div>
         <p class="text-sm text-fg w-[260px]">Secondary background</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#f3f4f7</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-50</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-50</p>
       </div>
       <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-900 border border-neutral-400" />
+        <div class="w-5 h-5 rounded-full bg-frost-900 border border-frost-400" />
         <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Background 1</p>
         <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-800 text-frost-200 uppercase">
           Dark</div>
         <p class="text-sm text-fg w-[260px]">Default element background</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#13161b</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-900</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-900</p>
       </div>
       <div class="flex h-12 items-center gap-3 border-none min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-800 border border-neutral-400" />
+        <div class="w-5 h-5 rounded-full bg-frost-800 border border-frost-400" />
         <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Background 2</p>
         <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-800 text-frost-200 uppercase">
           Dark</div>
         <p class="text-sm text-fg w-[260px]">Secondary background</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#222831</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-800</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-800</p>
       </div>
     </div>
 
@@ -126,64 +126,64 @@
 
     <div class="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
       <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-800 border border-neutral-400" />
+        <div class="w-5 h-5 rounded-full bg-frost-800 border border-frost-400" />
         <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Text 1</p>
         <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-100 text-frost-600 uppercase">
           Light</div>
         <p class="text-sm text-fg w-[260px]">Primary text, headings</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#222831</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-800</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-800</p>
       </div>
       <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-600 border border-neutral-400" />
+        <div class="w-5 h-5 rounded-full bg-frost-600 border border-frost-400" />
         <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Text 2</p>
         <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-100 text-frost-600 uppercase">
           Light</div>
         <p class="text-sm text-fg w-[260px]">Secondary text, captions</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#58677e</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-600</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-600</p>
       </div>
       <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-400 border border-neutral-400" />
+        <div class="w-5 h-5 rounded-full bg-frost-400 border border-frost-400" />
         <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Text 3</p>
         <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-100 text-frost-600 uppercase">
           Light</div>
         <p class="text-sm text-fg w-[260px]">Placeholder, disabled</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#99a5b8</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-400</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-400</p>
       </div>
       <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-100 border border-neutral-400" />
+        <div class="w-5 h-5 rounded-full bg-frost-100 border border-frost-400" />
         <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Text 1</p>
         <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-800 text-frost-200 uppercase">
           Dark</div>
         <p class="text-sm text-fg w-[260px]">Primary text, headings</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#eaedf0</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-100</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-100</p>
       </div>
       <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-400 border border-neutral-400" />
+        <div class="w-5 h-5 rounded-full bg-frost-400 border border-frost-400" />
         <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Text 2</p>
         <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-800 text-frost-200 uppercase">
           Dark</div>
         <p class="text-sm text-fg w-[260px]">Secondary text, captions</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#99a5b8</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-400</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-400</p>
       </div>
       <div class="flex h-12 items-center gap-3 border-none min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-600 border border-neutral-400" />
+        <div class="w-5 h-5 rounded-full bg-frost-600 border border-frost-400" />
         <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Text 3</p>
         <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-800 text-frost-200 uppercase">
           Dark</div>
         <p class="text-sm text-fg w-[260px]">Placeholder, disabled</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#58677e</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-600</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-600</p>
       </div>
     </div>
 
@@ -191,84 +191,84 @@
 
     <div class="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
       <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-25 border border-neutral-400" />
+        <div class="w-5 h-5 rounded-full bg-frost-25 border border-frost-400" />
         <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Input</p>
         <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-100 text-frost-600 uppercase">
           Light</div>
         <p class="text-sm text-fg w-[260px]">Input fields, sunken area background</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#f9fafb</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-25</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-25</p>
       </div>
       <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-200 border border-neutral-400" />
+        <div class="w-5 h-5 rounded-full bg-frost-200 border border-frost-400" />
         <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Border 1</p>
         <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-100 text-frost-600 uppercase">
           Light</div>
         <p class="text-sm text-fg w-[260px]">Default border, divider</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#d8dde4</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-200</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-200</p>
       </div>
       <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-300 border border-neutral-400" />
+        <div class="w-5 h-5 rounded-full bg-frost-300 border border-frost-400" />
         <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Border 2</p>
         <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-100 text-frost-600 uppercase">
           Light</div>
         <p class="text-sm text-fg w-[260px]">Emphasized border, input hover</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#bdc5d1</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-300</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-300</p>
       </div>
       <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-100 border border-neutral-400" />
+        <div class="w-5 h-5 rounded-full bg-frost-100 border border-frost-400" />
         <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">List Hover</p>
         <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-100 text-neutral-600 uppercase">
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-100 text-frost-600 uppercase">
           Light</div>
         <p class="text-sm text-fg w-[260px]">List item, menu item hover background</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#eaedf0</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-100</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-100</p>
       </div>
       <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-900 border border-neutral-400" />
+        <div class="w-5 h-5 rounded-full bg-frost-900 border border-frost-400" />
         <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Input</p>
         <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-800 text-frost-200 uppercase">
           Dark</div>
         <p class="text-sm text-fg w-[260px]">Input fields, sunken area background</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#13161b</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-900</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-900</p>
       </div>
       <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-700 border border-neutral-400" />
+        <div class="w-5 h-5 rounded-full bg-frost-700 border border-frost-400" />
         <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Border 1</p>
         <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-800 text-frost-200 uppercase">
           Dark</div>
         <p class="text-sm text-fg w-[260px]">Default border, divider</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#3f4a5a</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-700</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-700</p>
       </div>
       <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-600 border border-neutral-400" />
+        <div class="w-5 h-5 rounded-full bg-frost-600 border border-frost-400" />
         <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Border 2</p>
         <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-800 text-frost-200 uppercase">
           Dark</div>
         <p class="text-sm text-fg w-[260px]">Emphasized border, input hover</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#58677e</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-600</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-600</p>
       </div>
       <div class="flex h-12 items-center gap-3 border-none min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-neutral-800 border border-neutral-400" />
+        <div class="w-5 h-5 rounded-full bg-frost-800 border border-frost-400" />
         <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">List Hover</p>
         <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-neutral-800 text-neutral-200 uppercase">
+          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-800 text-frost-200 uppercase">
           Dark</div>
         <p class="text-sm text-fg w-[260px]">List item, menu item hover background</p>
         <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#222831</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">neutral-800</p>
+        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-800</p>
       </div>
     </div>
 

@@ -49,7 +49,7 @@ export default {
         },
 
         // 中性色
-        neutral: {
+        frost: {
           25: '#f9fafb',
           50: '#f3f4f7',
           100: '#eaedf0',

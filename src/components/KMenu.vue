@@ -5,7 +5,7 @@
         class="background fixed inset-0 bg-black/20 dark:bg-black/20 backdrop-blur z-40 cursor-default overflow-hidden"
         @click="close"></button>
       <div
-        class="fixed top-12 left-3 right-3 sm:left-0 sm:right-0 max-w-xl mx-auto min-h-48 bg-white/80 dark:bg-neutral-800/80 backdrop-blur rounded shadow-xl p-3 flex flex-col z-50 max-h-[80vh]">
+        class="fixed top-12 left-3 right-3 sm:left-0 sm:right-0 max-w-xl mx-auto min-h-48 bg-white/80 dark:bg-frost-800/80 backdrop-blur rounded shadow-xl p-3 flex flex-col z-50 max-h-[80vh]">
         <label for="kmenu-search-input" class="sr-only">Search</label>
         <input id="kmenu-search-input" ref="inputRef" v-model="kSearch" type="search"
           placeholder="Search posts (title & content)" autocomplete="off" spellcheck="false"
