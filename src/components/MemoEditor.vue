@@ -59,7 +59,7 @@ watch(() => props.content, (newContent) => {
 
 <style scoped>
 /* 编辑器根节点会带上 .mbe-root，其自身样式把字号固定为 16px，
-   这里让正文沿用引用的字号（.quote-body 的 22px）。 */
+   这里让正文沿用外层引用容器的字号（.quote-body / .quote-excerpt）。 */
 .memo-editor {
   font-size: inherit;
   line-height: inherit;

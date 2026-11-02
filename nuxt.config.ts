@@ -179,7 +179,7 @@ export default defineNuxtConfig({
 
   nitro: {
     prerender: {
-      routes: ['/', '/atom.xml'],
+      routes: ['/', '/atom.xml', '/content/home-posts.json'],
       crawlLinks: true,
       failOnError: false
     },
