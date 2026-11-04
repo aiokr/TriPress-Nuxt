@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 import plugin from 'tailwindcss/plugin'
+import colors from 'tailwindcss/colors'
+import { colorUsage, tokenColor } from './src/theme/color-usage.mjs'
 
 export default {
   content: [
@@ -63,39 +65,65 @@ export default {
           900: '#13161b',
         },
 
+        neutral: {
+          25: '#fafafa',
+          50: '#f4f4f4',
+          100: '#ededed',
+          200: '#dcdcdc',
+          300: '#c4c4c4',
+          400: '#a4a4a4',
+          500: '#848484',
+          600: '#666666',
+          700: '#494949',
+          800: '#282828',
+          900: '#161616',
+        },
+
+        // 暖灰色
+        stone: colors.stone,
+
         // 语义色
-        success: { DEFAULT: '#3fa97a', bg: '#e6f5ee', text: '#1e6b4c' },
-        warning: { DEFAULT: '#e0a23c', bg: '#fbf1de', text: '#96620f' },
-        danger: { DEFAULT: '#d95d5d', bg: '#faeaea', text: '#a83232' },
-        info: { DEFAULT: '#71afdd', bg: '#eaf3fa', text: '#236494' },
+        success: { DEFAULT: '#3fa97a', bg: tokenColor('success-bg'), text: tokenColor('success-text') },
+        warning: { DEFAULT: '#e0a23c', bg: tokenColor('warning-bg'), text: tokenColor('warning-text') },
+        danger: { DEFAULT: '#d95d5d', bg: tokenColor('danger-bg'), text: tokenColor('danger-text') },
+        info: { DEFAULT: '#71afdd', bg: tokenColor('info-bg'), text: tokenColor('info-text') },
 
         // 辅助色
-        canvas: 'var(--bg-canvas)',       // 主背景，绝大多数场景  
-        subtle: 'var(--bg-subtle)',       // 淡灰分区（侧栏、代码块，少用）
-        sunken: 'var(--bg-sunken)',       // 输入框、凹陷区
+        canvas: tokenColor('bg-canvas'),
+        surface: tokenColor('bg-surface'),
+        subtle: tokenColor('bg-subtle'),
+        sunken: tokenColor('bg-sunken'),
         fg: {
-          DEFAULT: 'var(--fg)',           // 主要文字、标题
-          muted: 'var(--fg-muted)',       // 次要文字、说明信息
-          subtle: 'var(--fg-subtle)',     // 占位、禁用（不承担信息）
+          DEFAULT: tokenColor('fg'),
+          muted: tokenColor('fg-muted'),
+          subtle: tokenColor('fg-subtle'),
         },
         line: {
-          DEFAULT: 'var(--line)',          // 默认边框、分隔线
-          strong: 'var(--line-strong)',    // 强调边框、输入框 hover
+          DEFAULT: tokenColor('line'),
+          strong: tokenColor('line-strong'),
+          control: tokenColor('line-control'),
         },
-        hover: 'var(--fill-hover)',        // 列表项、菜单项悬停底色
+        hover: tokenColor('fill-hover'),
+        selected: tokenColor('fill-selected'),
+        link: { DEFAULT: tokenColor('link'), hover: tokenColor('link-hover') },
+        action: { DEFAULT: tokenColor('action'), hover: tokenColor('action-hover') },
+        'on-action': tokenColor('on-action'),
+        focus: tokenColor('focus'),
+        'warm-fg': tokenColor('warm-fg'),
+        'cold-fg': tokenColor('cold-fg'),
 
         // 辅助色系 // 保留兼容性
-        'text': 'var(--fg)',
-        'dtext': 'var(--fg)',
-        'sub-text': 'var(--fg-subtle)',
-        'dsub-text': 'var(--fg-subtle)',
-        'dbg': 'var(--bg-canvas)',
-        'sub-bg': 'var(--bg-subtle)',
-        'dsub-bg': 'var(--bg-subtle)',
+        'text': tokenColor('fg'),
+        'dtext': tokenColor('fg'),
+        'sub-text': tokenColor('fg-muted'),
+        'dsub-text': tokenColor('fg-muted'),
+        'dbg': tokenColor('bg-canvas'),
+        'sub-bg': tokenColor('bg-subtle'),
+        'dsub-bg': tokenColor('bg-subtle'),
 
       },
       borderColor: {
-        DEFAULT: 'var(--border-color)',
+        DEFAULT: tokenColor('line'),
       },
       boxShadow: {
         'card': '0 -1px 3px 0 rgb(0 0 0 / 0.05)',
@@ -109,6 +137,21 @@ export default {
     },
   },
   plugins: [
+    plugin(function ({ addBase, theme }) {
+      const variables = (mode) => Object.fromEntries(colorUsage.map(({ token, ...usage }) => {
+        const reference = usage[mode]
+        const value = reference.startsWith('#') ? reference : theme(`colors.${reference}`)
+        if (typeof value !== 'string' || !/^#([\da-f]{3}|[\da-f]{6})$/i.test(value)) {
+          throw new Error(`Invalid ${mode} color for ${token}: ${reference}`)
+        }
+        const hex = value.length === 4 ? `#${[...value.slice(1)].map((digit) => digit + digit).join('')}` : value
+        return [`--${token}`, [1, 3, 5].map((start) => parseInt(hex.slice(start, start + 2), 16)).join(' ')]
+      }))
+      addBase({
+        ':root, .theme-light': { ...variables('light'), colorScheme: 'light' },
+        '.dark, .theme-dark': { ...variables('dark'), colorScheme: 'dark' },
+      })
+    }),
     plugin(function ({ addComponents }) {
       addComponents({
         // 页面标题
@@ -171,7 +214,7 @@ export default {
           fontSize: '14px',
           fontWeight: 400,
           lineHeight: 1.5,
-          color: 'var(--fg-muted)',
+          color: 'rgb(var(--fg-muted) / 1)',
         },
       })
     }),

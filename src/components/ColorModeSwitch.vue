@@ -23,7 +23,7 @@ const props = defineProps<{
 
 const colorMode = useColorMode();
 
-const defaultButtonClass = 'themeBtn hover:bg-gray-100 dark:hover:bg-zinc-700 rounded-full p-2 transition-all';
+const defaultButtonClass = 'themeBtn hover:bg-hover text-fg rounded-full p-2 transition-all';
 
 const buttonClass = computed(() => props.buttonClass ?? defaultButtonClass);
 

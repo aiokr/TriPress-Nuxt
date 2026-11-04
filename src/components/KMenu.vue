@@ -5,62 +5,62 @@
         class="background fixed inset-0 bg-black/20 dark:bg-black/20 backdrop-blur z-40 cursor-default overflow-hidden"
         @click="close"></button>
       <div
-        class="fixed top-12 left-3 right-3 sm:left-0 sm:right-0 max-w-xl mx-auto min-h-48 bg-white/80 dark:bg-frost-800/80 backdrop-blur rounded shadow-xl p-3 flex flex-col z-50 max-h-[80vh]">
+        class="fixed top-12 left-3 right-3 sm:left-0 sm:right-0 max-w-xl mx-auto min-h-48 bg-surface/95 backdrop-blur rounded shadow-xl p-3 flex flex-col z-50 max-h-[80vh]">
         <label for="kmenu-search-input" class="sr-only">Search</label>
         <input id="kmenu-search-input" ref="inputRef" v-model="kSearch" type="search"
           placeholder="Search posts (title & content)" autocomplete="off" spellcheck="false"
-          class="w-full h-[36px] p-2 text-base border-b-slate-900/10 hover:border-slate-300 focus:outline-none focus:border-b-2 focus:border-main shadow-sm text-slate-700 dark:bg-slate-800 dark:ring-0 dark:text-slate-200 dark:highlight-white/5 dark:hover:bg-slate-700 transition"
+          class="w-full h-[36px] p-2 text-base border border-line-control bg-sunken text-fg placeholder:text-fg-muted focus:outline-none focus:ring-2 focus:ring-focus transition"
           @keydown.down.prevent="moveSel(1)" @keydown.up.prevent="moveSel(-1)" @keydown.enter.prevent="openSelected" />
 
         <!-- 结果区 -->
         <div class="mt-2 flex-1 min-h-0 min-w-0 overflow-y-auto text-sm">
           <!-- 索引未就绪 -->
-          <div v-if="status !== 'ready' && kSearch.trim()" class="py-8 text-center text-zinc-400 dark:text-slate-500">
+          <div v-if="status !== 'ready' && kSearch.trim()" class="py-8 text-center text-fg-muted">
             <span v-if="status === 'loading'">Loading search index…</span>
             <span v-else-if="status === 'error'">Search index failed to load</span>
             <span v-else>Preparing search…</span>
           </div>
           <!-- 有查询、无结果 -->
           <div v-else-if="kSearch.trim() && status === 'ready' && results.length === 0"
-            class="py-8 text-center text-zinc-400 dark:text-slate-500">
-            No results for "<span class="text-slate-600 dark:text-slate-300">{{ kSearch }}</span>"
+            class="py-8 text-center text-fg-muted">
+            No results for "<span class="text-fg">{{ kSearch }}</span>"
           </div>
           <!-- 空查询：提示 + 功能链接 -->
           <div v-else-if="!kSearch.trim()" class="py-4 flex flex-col">
-            <div class="text-center text-xs text-zinc-400 dark:text-slate-500">
+            <div class="text-center text-xs text-fg-muted">
               Type to search across all posts titles &amp; content
             </div>
-            <div class="text-sm text-zinc-400 px-2 pb-1">More Pages</div>
+            <div class="text-sm text-fg-muted px-2 pb-1">More Pages</div>
             <NuxtLink to="/brand"
-              class="block px-3 py-2 rounded transition text-zinc-600 dark:text-slate-300 hover:bg-main/30 dark:hover:bg-slate-800"
+              class="block px-3 py-2 rounded transition text-fg-muted hover:bg-hover"
               @click="close">
               TriPress Brand
             </NuxtLink>
 
             <NuxtLink to="/lab"
-              class="block px-3 py-2 rounded transition text-zinc-600 dark:text-slate-300 hover:bg-main/30 dark:hover:bg-slate-800"
+              class="block px-3 py-2 rounded transition text-fg-muted hover:bg-hover"
               @click="close">
               Lab
             </NuxtLink>
 
             <template v-if="isLocalDev">
-              <div class="text-sm text-zinc-400 px-2 pb-1 pt-3">Dev Mode</div>
+              <div class="text-sm text-fg-muted px-2 pb-1 pt-3">Dev Mode</div>
               <NuxtLink to="/studio"
-                class="block px-3 py-2 rounded transition text-zinc-600 dark:text-slate-300 hover:bg-main/30 dark:hover:bg-slate-800"
+                class="block px-3 py-2 rounded transition text-fg-muted hover:bg-hover"
                 @click="close">
                 Studio
               </NuxtLink>
             </template>
 
-            <div class="text-sm text-zinc-400 px-2 pb-1 pt-3">Tools</div>
+            <div class="text-sm text-fg-muted px-2 pb-1 pt-3">Tools</div>
             <button type="button" class="block w-full px-3 py-2 rounded text-left font-medium transition" :class="copied
-              ? 'bg-success text-text dark:text-dtext'
-              : 'text-zinc-600 dark:text-slate-300 hover:bg-main/30 dark:hover:bg-slate-800'" @click="copyLink">
+              ? 'bg-success-bg text-success-text'
+              : 'text-fg-muted hover:bg-hover'" @click="copyLink">
               {{ copied ? 'Link copied!' : 'Copy current page link' }}
             </button>
             <button type="button" class="block w-full px-3 py-2 rounded text-left font-medium transition" :class="showQr
-              ? 'bg-main/15 text-text dark:text-dtext'
-              : 'text-zinc-600 dark:text-slate-300 hover:bg-main/30 dark:hover:bg-slate-800'" @click="toggleQr">
+              ? 'bg-selected text-link'
+              : 'text-fg-muted hover:bg-hover'" @click="toggleQr">
               {{ showQr ? 'Hide QR code' : 'QR code of this page' }}
             </button>
             <div v-if="showQr" class="flex flex-col items-center gap-2 py-3">
@@ -73,14 +73,14 @@
           <ul v-else class="flex flex-col gap-1">
             <li v-for="(item, i) in results" :key="item.id">
               <NuxtLink :to="item.id" class="block px-3 py-2 rounded transition" :class="selected === i
-                ? 'bg-main/15 text-text dark:text-dtext'
-                : 'text-zinc-600 dark:text-slate-300 hover:bg-main/30 dark:hover:bg-slate-800'" @click="close"
+                ? 'bg-selected text-link'
+                : 'text-fg-muted hover:bg-hover'" @click="close"
                 @mouseenter="selected = i">
                 <div class="font-medium truncate">
                   <span v-if="item.snippets?.title" v-html="item.snippets.title"></span>
                   <span v-else>{{ item.title }}</span>
                 </div>
-                <div v-if="item.snippets?.content" class="text-xs text-zinc-400 dark:text-slate-500 line-clamp-2 mt-1"
+                <div v-if="item.snippets?.content" class="text-xs text-fg-muted line-clamp-2 mt-1"
                   v-html="item.snippets.content"></div>
               </NuxtLink>
             </li>
@@ -89,7 +89,7 @@
 
         <!-- 底部状态栏 -->
         <div v-if="kSearch.trim() && status === 'ready'"
-          class="mt-2 pt-2 border-t border-slate-200/60 dark:border-slate-700/60 text-[10px] text-zinc-400 dark:text-slate-500 flex items-center justify-between">
+          class="mt-2 pt-2 border-t border-line text-[10px] text-fg-muted flex items-center justify-between">
           <span>↑ ↓ navigate · ↵ open · Esc close</span>
           <span>{{ results.length }} result{{ results.length === 1 ? '' : 's' }}</span>
         </div>

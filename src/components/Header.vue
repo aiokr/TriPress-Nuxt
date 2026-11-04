@@ -1,6 +1,6 @@
 <template>
   <main
-    class="container mx-auto bg-white/60 dark:bg-[#13161b]/80 backdrop-blur sticky top-0 px-4 z-10 max-w-full border-b border-gray-200 dark:border-zinc-800">
+    class="container mx-auto bg-canvas/80 backdrop-blur sticky top-0 px-4 z-10 max-w-full border-b border-line">
     <div class="container max-w-[1200px] mx-auto px-3 flex items-center justify-between  h-16">
       <router-link to="/" class="flex items-center gap-6">
         <img src="https://imgur.lzmun.com/picgo/after2022/tripper2whitefull.png_avatar" alt="logo"
@@ -14,7 +14,7 @@
         <router-link to="/posts" class="headerLink">Posts</router-link>
         <router-link to="/docs" class="headerLink">Docs</router-link>
         <button v-if="isDocs" type="button" @click="docPreferences.toggleFootnotePlacement"
-          class="themeBtn hover:bg-gray-100 dark:hover:bg-zinc-700 rounded-full p-2 transition-all"
+          class="themeBtn hover:bg-hover rounded-full p-2 transition-all"
           :aria-label="docPreferences.footnotePlacement === 'side' ? '切换为底部脚注' : '切换为侧边脚注'"
           :title="docPreferences.footnotePlacement === 'side' ? '切换为底部脚注' : '切换为侧边脚注'"
           :aria-pressed="docPreferences.footnotePlacement === 'side'">
@@ -22,11 +22,11 @@
         </button>
         <ColorModeSwitch />
         <button @click="clickHeaderMenuBtn"
-          class="headerMenu headerMenuBtn md:hidden hover:bg-gray-100 dark:hover:bg-zinc-700 rounded-full p-2 transition-all"
+          class="headerMenu headerMenuBtn md:hidden hover:bg-hover rounded-full p-2 transition-all"
           :aria-label="headerMenuOpen ? 'Close menu' : 'Open menu'" :aria-expanded="headerMenuOpen">
           <IconsMenu />
         </button>
-        <button @click="openKMenu" class="themeBtn hover:bg-gray-100 dark:hover:bg-zinc-700 rounded-full p-2 transition-all"
+        <button @click="openKMenu" class="themeBtn hover:bg-hover rounded-full p-2 transition-all"
           aria-label="Open search (⌘K)" title="Search · ⌘K" data-umami-event="openKMenu">
           <IconsCommand />
         </button>
@@ -34,7 +34,7 @@
     </div>
   </main>
   <div v-if="headerMenuOpen"
-    class="headerMenu fixed px-4 py-3 min-w-48 rounded-lg shadow-lg border bg-white dark:bg-zinc-900 flex flex-col gap-3 z-10"
+    class="headerMenu fixed px-4 py-3 min-w-48 rounded-lg shadow-lg border bg-surface flex flex-col gap-3 z-10"
     :style="headerMenuStyle">
     <router-link to="/" class="headerMenuLink">Home</router-link>
     <router-link to="/posts" class="headerMenuLink">Posts</router-link>

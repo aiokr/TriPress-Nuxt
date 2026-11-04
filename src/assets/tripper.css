@@ -1,37 +1,12 @@
-:root {
-  /* 背景 */
-  --bg-canvas: #ffffff;
-  --bg-subtle: #f3f4f7;
-  --bg-sunken: #f9fafb;
-
-  /* 文字 */
-  --fg: #222831;
-  --fg-muted: #58677e;
-  --fg-subtle: #99a5b8;
-
-  /* 结构 */
-  --line: #d8dde4;
-  --line-strong: #bdc5d1;
-  --fill-hover: #eaedf0;
-  --border-color: #d8dde4;
+/* 主题变量由 Tailwind 从 src/theme/color-usage.mjs 统一生成。 */
+body {
+  background-color: rgb(var(--bg-canvas) / 1);
+  color: rgb(var(--fg) / 1);
 }
 
-.dark {
-  /* 背景 */
-  --bg-canvas: #13161b;
-  --bg-subtle: #222831;
-  --bg-sunken: #13161b;
-
-  /* 文字 */
-  --fg: #eaedf0;
-  --fg-muted: #99a5b8;
-  --fg-subtle: #58677e;
-
-  /* 结构 */
-  --line: #3f4a5a;
-  --line-strong: #58677e;
-  --fill-hover: #222831;
-  --border-color: #3f4a5a;
+::selection {
+  background-color: rgb(var(--fill-selected) / 1);
+  color: rgb(var(--link) / 1);
 }
 
 .no-scrollbar {

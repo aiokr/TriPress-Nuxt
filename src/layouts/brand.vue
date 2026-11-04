@@ -17,12 +17,12 @@ function isActive(item: (typeof navItems)[number]) {
 <template>
   <NuxtLayout name="default">
     <div class="flex flex-col lg:flex-row -mt-px">
-      <nav class="lg:hidden sticky top-16 z-[5] flex gap-2 overflow-x-auto px-4 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden shrink-0 w-full bg-white/60 dark:bg-[#13161b]/80 backdrop-blur">
+      <nav class="lg:hidden sticky top-16 z-[5] flex gap-2 overflow-x-auto px-4 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden shrink-0 w-full bg-canvas/80 backdrop-blur">
         <NuxtLink v-for="item in navItems" :key="item.path" :to="item.path"
           class="shrink-0 px-3 py-1.5 rounded-full text-sm transition-colors"
           :class="isActive(item)
-            ? 'bg-main/10 text-main font-medium'
-            : 'text-fg-muted bg-sub-bg dark:bg-white/5'">
+            ? 'bg-selected text-link font-medium'
+            : 'text-fg-muted bg-subtle'">
           {{ item.label }}
         </NuxtLink>
       </nav>
@@ -33,7 +33,7 @@ function isActive(item: (typeof navItems)[number]) {
           <NuxtLink v-for="item in navItems" :key="item.path" :to="item.path"
             class="flex items-baseline justify-between px-3 py-2 rounded text-sm transition-colors"
             :class="isActive(item)
-              ? 'bg-main/10 text-main font-medium'
+              ? 'bg-selected text-link font-medium'
               : 'text-fg-muted hover:bg-hover hover:text-fg'">
             <span>{{ item.label }}</span>
           </NuxtLink>

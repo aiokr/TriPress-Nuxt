@@ -77,247 +77,36 @@
       <ColorSwatch name="frost-900" hex="#13161b" class="bg-frost-900 text-white" />
     </div>
 
-    <h3 class="heading-3 text-fg pt-8 pb-4">Background</h3>
-
-    <div class="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-white border border-frost-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Background 1</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-100 text-frost-600 uppercase">
-          Light</div>
-        <p class="text-sm text-fg w-[260px]">Default element background</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#FFFFFF</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">white</p>
-      </div>
-      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-frost-50 border border-frost-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Background 2</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-100 text-frost-600 uppercase">
-          Light</div>
-        <p class="text-sm text-fg w-[260px]">Secondary background</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#f3f4f7</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-50</p>
-      </div>
-      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-frost-900 border border-frost-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Background 1</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-800 text-frost-200 uppercase">
-          Dark</div>
-        <p class="text-sm text-fg w-[260px]">Default element background</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#13161b</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-900</p>
-      </div>
-      <div class="flex h-12 items-center gap-3 border-none min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-frost-800 border border-frost-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Background 2</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-800 text-frost-200 uppercase">
-          Dark</div>
-        <p class="text-sm text-fg w-[260px]">Secondary background</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#222831</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-800</p>
-      </div>
+    <div class="w-full h-48 md:h-16 overflow-hidden rounded mb-4 grid grid-cols-4 md:grid-cols-11">
+      <ColorSwatch name="neutral-25" hex="#fafafa" class="bg-neutral-25 text-black" />
+      <ColorSwatch name="neutral-50" hex="#f4f4f4" class="bg-neutral-50 text-black" />
+      <ColorSwatch name="neutral-100" hex="#ededed" class="bg-neutral-100 text-black" />
+      <ColorSwatch name="neutral-200" hex="#dcdcdc" class="bg-neutral-200 text-black" />
+      <ColorSwatch name="neutral-300" hex="#c4c4c4" class="bg-neutral-300 text-black" />
+      <ColorSwatch name="neutral-400" hex="#a4a4a4" class="bg-neutral-400 text-black" />
+      <ColorSwatch name="neutral-500" hex="#848484" class="bg-neutral-500 text-black" />
+      <ColorSwatch name="neutral-600" hex="#666666" class="bg-neutral-600 text-white" />
+      <ColorSwatch name="neutral-700" hex="#494949" class="bg-neutral-700 text-white" />
+      <ColorSwatch name="neutral-800" hex="#282828" class="bg-neutral-800 text-white" />
+      <ColorSwatch name="neutral-900" hex="#161616" class="bg-neutral-900 text-white" />
     </div>
 
-    <h3 class="heading-3 text-fg pt-8 pb-4">Text</h3>
-
-    <div class="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-frost-800 border border-frost-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Text 1</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-100 text-frost-600 uppercase">
-          Light</div>
-        <p class="text-sm text-fg w-[260px]">Primary text, headings</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#222831</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-800</p>
-      </div>
-      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-frost-600 border border-frost-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Text 2</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-100 text-frost-600 uppercase">
-          Light</div>
-        <p class="text-sm text-fg w-[260px]">Secondary text, captions</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#58677e</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-600</p>
-      </div>
-      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-frost-400 border border-frost-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Text 3</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-100 text-frost-600 uppercase">
-          Light</div>
-        <p class="text-sm text-fg w-[260px]">Placeholder, disabled</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#99a5b8</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-400</p>
-      </div>
-      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-frost-100 border border-frost-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Text 1</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-800 text-frost-200 uppercase">
-          Dark</div>
-        <p class="text-sm text-fg w-[260px]">Primary text, headings</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#eaedf0</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-100</p>
-      </div>
-      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-frost-400 border border-frost-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Text 2</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-800 text-frost-200 uppercase">
-          Dark</div>
-        <p class="text-sm text-fg w-[260px]">Secondary text, captions</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#99a5b8</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-400</p>
-      </div>
-      <div class="flex h-12 items-center gap-3 border-none min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-frost-600 border border-frost-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Text 3</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-800 text-frost-200 uppercase">
-          Dark</div>
-        <p class="text-sm text-fg w-[260px]">Placeholder, disabled</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#58677e</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-600</p>
-      </div>
+    <div class="w-full h-48 md:h-16 overflow-hidden rounded mb-4 grid grid-cols-4 md:grid-cols-11">
+      <ColorSwatch name="stone-50" hex="#fafaf9" class="bg-stone-50 text-black" />
+      <ColorSwatch name="stone-100" hex="#f5f5f4" class="bg-stone-100 text-black" />
+      <ColorSwatch name="stone-200" hex="#e7e5e4" class="bg-stone-200 text-black" />
+      <ColorSwatch name="stone-300" hex="#d6d3d1" class="bg-stone-300 text-black" />
+      <ColorSwatch name="stone-400" hex="#a8a29e" class="bg-stone-400 text-black" />
+      <ColorSwatch name="stone-500" hex="#78716c" class="bg-stone-500 text-white" />
+      <ColorSwatch name="stone-600" hex="#57534e" class="bg-stone-600 text-white" />
+      <ColorSwatch name="stone-700" hex="#44403c" class="bg-stone-700 text-white" />
+      <ColorSwatch name="stone-800" hex="#292524" class="bg-stone-800 text-white" />
+      <ColorSwatch name="stone-900" hex="#1c1917" class="bg-stone-900 text-white" />
+      <ColorSwatch name="stone-950" hex="#0c0a09" class="bg-stone-950 text-white" />
     </div>
 
-    <h3 class="heading-3 text-fg pt-8 pb-4">Structure</h3>
+    <BrandColorUsage />
 
-    <div class="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-frost-25 border border-frost-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Input</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-100 text-frost-600 uppercase">
-          Light</div>
-        <p class="text-sm text-fg w-[260px]">Input fields, sunken area background</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#f9fafb</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-25</p>
-      </div>
-      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-frost-200 border border-frost-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Border 1</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-100 text-frost-600 uppercase">
-          Light</div>
-        <p class="text-sm text-fg w-[260px]">Default border, divider</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#d8dde4</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-200</p>
-      </div>
-      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-frost-300 border border-frost-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Border 2</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-100 text-frost-600 uppercase">
-          Light</div>
-        <p class="text-sm text-fg w-[260px]">Emphasized border, input hover</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#bdc5d1</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-300</p>
-      </div>
-      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-frost-100 border border-frost-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">List Hover</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-100 text-frost-600 uppercase">
-          Light</div>
-        <p class="text-sm text-fg w-[260px]">List item, menu item hover background</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#eaedf0</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-100</p>
-      </div>
-      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-frost-900 border border-frost-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Input</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-800 text-frost-200 uppercase">
-          Dark</div>
-        <p class="text-sm text-fg w-[260px]">Input fields, sunken area background</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#13161b</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-900</p>
-      </div>
-      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-frost-700 border border-frost-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Border 1</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-800 text-frost-200 uppercase">
-          Dark</div>
-        <p class="text-sm text-fg w-[260px]">Default border, divider</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#3f4a5a</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-700</p>
-      </div>
-      <div class="flex h-12 items-center gap-3 border-b min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-frost-600 border border-frost-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">Border 2</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-800 text-frost-200 uppercase">
-          Dark</div>
-        <p class="text-sm text-fg w-[260px]">Emphasized border, input hover</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#58677e</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-600</p>
-      </div>
-      <div class="flex h-12 items-center gap-3 border-none min-w-[800px]">
-        <div class="w-5 h-5 rounded-full bg-frost-800 border border-frost-400" />
-        <p class="text-sm leading-[20px] font-medium text-fg w-[120px]">List Hover</p>
-        <div
-          class="flex items-center justify-center text-xs font-bold w-[56px] h-[22px] rounded-full bg-frost-800 text-frost-200 uppercase">
-          Dark</div>
-        <p class="text-sm text-fg w-[260px]">List item, menu item hover background</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text ml-auto uppercase">#222831</p>
-        <p class="text-sm text-sub-text dark:text-dsub-text w-[120px] text-right">frost-800</p>
-      </div>
-    </div>
-
-    <h2 class="heading-2 text-fg pb-6 pt-12">Semantic Color</h2>
-    <article class="text-fg">
-      <p>Furthermore, three functional semantic colors are derived from the core primary hue, respectively applied to
-        status feedback and informational prompts across various contexts. Among them, the "Info" indicator is
-        directly
-        represented by the brand's primary color, as it carries no inherent emotional bias and thus naturally aligns
-        with the brand's core chromatic identity.</p>
-      <p>此外，基于核心主色衍生出三种功能性语义色，分别用于不同场景下的状态反馈与信息提示；其中，信息提示「Info」直接由品牌主色承担，因其本身不带有情绪倾向，与品牌核心色调天然契合。</p>
-    </article>
-
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 pb-6">
-      <div>
-        <div class="bg-success-bg text-success-text rounded border-l-[16px] border-success p-2 pl-3 mb-4">Success
-        </div>
-        <div class="h-16 overflow-hidden rounded mb-4 grid grid-cols-3">
-          <ColorSwatch name="success-bg" hex="#e6f5ee" class="bg-success-bg text-success-text" />
-          <ColorSwatch name="success" hex="#3fa97a" class="bg-success text-white" />
-          <ColorSwatch name="success-text" hex="#1e6b4c" class="bg-success-text text-white" />
-        </div>
-      </div>
-      <div>
-        <div class="bg-warning-bg text-warning-text rounded border-l-[16px] border-warning p-2 pl-3 mb-4">Warning
-        </div>
-        <div class="h-16 overflow-hidden rounded mb-4 grid grid-cols-3">
-          <ColorSwatch name="warning-bg" hex="#fbf1de" class="bg-warning-bg text-warning-text" />
-          <ColorSwatch name="warning" hex="#e0a23c" class="bg-warning text-white" />
-          <ColorSwatch name="warning-text" hex="#96620f" class="bg-warning-text text-white" />
-        </div>
-      </div>
-      <div>
-        <div class="bg-danger-bg text-danger-text rounded border-l-[16px] border-danger p-2 pl-3 mb-4">Danger</div>
-        <div class="h-16 overflow-hidden rounded mb-4 grid grid-cols-3">
-          <ColorSwatch name="danger-bg" hex="#faeaea" class="bg-danger-bg text-danger-text" />
-          <ColorSwatch name="danger" hex="#d95d5d" class="bg-danger text-white" />
-          <ColorSwatch name="danger-text" hex="#a83232" class="bg-danger-text text-white" />
-        </div>
-      </div>
-      <div>
-        <div class="bg-info-bg text-info-text rounded border-l-[16px] border-info p-2 pl-3 mb-4">Info</div>
-        <div class="h-16 overflow-hidden rounded mb-4 grid grid-cols-3">
-          <ColorSwatch name="info-bg" hex="#eaf3fa" class="bg-info-bg text-info-text" />
-          <ColorSwatch name="info" hex="#71afdd" class="bg-info text-white" />
-          <ColorSwatch name="info-text" hex="#236494" class="bg-info-text text-white" />
-        </div>
-      </div>
-    </div>
   </section>
 </template>
 

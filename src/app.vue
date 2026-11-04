@@ -95,7 +95,7 @@ function scrollContainerTo(container: HTMLElement | Window, top: number) {
 
 async function setupScrollContainer(restore: boolean) {
   await nextTick()
-  const mainElement = document.querySelector('#main-content') ?? document.querySelector('main')
+  const mainElement = document.querySelector<HTMLElement>('#main-content') ?? document.querySelector<HTMLElement>('main')
   const container = findScrollContainer(mainElement)
 
   bindScrollListener(container)
@@ -143,15 +143,3 @@ onMounted(() => {
 })
 
 </script>
-
-
-<style>
-body {
-  color: #222831;
-}
-
-.dark body {
-  background: #18181B;
-  color: #E2E2E2;
-}
-</style>
