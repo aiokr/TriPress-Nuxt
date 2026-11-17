@@ -23,8 +23,7 @@
     </section>
 
     <section class="px-2 md:px-8 lg:px-0">
-      <NuxtLink to="/heatmap"
-        class="relative block rounded-feature-card shadow-feature-card dark:shadow-feature-card-dark mb-12 overflow-hidden transition-shadow">
+      <NuxtLink to="/heatmap" class="home-card relative mb-12 overflow-hidden">
         <div class="relative z-[1] p-4 lg:p-6 md:pr-[48%]">
           <div class="text-lg pb-2 md:text-base text-zinc-500 dark:text-dtext/70 mt-1">Runs in {{ currentYear }}</div>
           <div class="flex items-end gap-6 md:gap-10">
@@ -46,57 +45,47 @@
             alt="Running heatmap" />
         </div>
       </NuxtLink>
-      <div ref="feedElement" class="flex flex-col gap-8 px-4 md:px-8">
+      <div ref="feedElement" class="flex flex-col gap-8">
         <div v-if="isFeedLoading" class="py-10 text-center text-sm text-zinc-400 dark:text-dtext/60">
           正在加载内容…
         </div>
         <template v-else>
-        <div v-for="item in paginatedItems" :key="`${item._kind}:${item.path}`" class="homeItem block">
-          <NuxtLink :to="item.path" class="block">
-          <div class="text-xs text-zinc-400 dark:text-dtext/80 pb-2 flex items-center gap-2">
-            <span v-if="item.date">{{ formatDate(item.date) }}</span>
-            <template v-if="item._kind === 'post'">
-              <span v-if="item.category" class="mx-1">·</span>
-              <span v-if="item.category">{{ item.category }}</span>
-              <span v-if="item.hasTranslation"
-                class="ml-1 px-1.5 py-0.5 rounded border border-main/50 text-main text-[10px]">中</span>
-            </template>
-            <template v-if="item._kind === 'quote' && item.tags?.length">
-              <span class="mx-1">·</span>
-              <span v-for="tag in item.tags" :key="tag" class="text-zinc-400 dark:text-dtext/70">{{ tag }}</span>
-            </template>
-          </div>
-          <template v-if="item._kind === 'post'">
-            <h2 class="text-xl text-text dark:text-dtext">{{ item.title }}</h2>
-            <p v-if="item.summary" class="pt-2 text-sm leading-6 text-zinc-500 dark:text-dtext/70">
-              {{ item.summary }}
-            </p>
+          <template v-for="item in paginatedItems" :key="`${item._kind}:${item.path}`">
+            <NuxtLink v-if="item._kind === 'post'" :to="item.path" class="home-card px-4 py-5 md:px-8 md:py-6">
+              <div v-if="item.date || item.category || item.hasTranslation"
+                class="mb-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-fg-muted">
+                <span v-if="item.date">{{ formatDate(item.date) }}</span>
+                <span v-if="item.date && item.category" aria-hidden="true">·</span>
+                <span v-if="item.category">{{ item.category }}</span>
+                <span v-if="item.hasTranslation"
+                  class="rounded border border-main/50 px-1.5 py-0.5 text-[10px] text-link">中</span>
+              </div>
+              <h2 class="break-words text-xl font-semibold text-fg">{{ item.title }}</h2>
+              <p v-if="item.summary" class="mt-2 break-words text-sm leading-6 text-fg-muted">
+                {{ item.summary }}
+              </p>
+            </NuxtLink>
+            <HomeQuote v-else :quote="item" class="quote-item mx-4 md:mx-8" />
           </template>
-          <article v-else-if="item._kind === 'quote'" class="quote-excerpt text-zinc-600 dark:text-dtext/80">
-            <MemoEditor :content="item.content" />
-          </article>
-          </NuxtLink>
-          <QuoteGallery v-if="item._kind === 'quote'" :attachments="item.attachments" />
-        </div>
 
-        <div v-if="paginatedItems.length === 0"
-          class="py-10 text-center text-sm text-zinc-400 dark:text-dtext/60">
-          暂无内容
-        </div>
+          <div v-if="paginatedItems.length === 0"
+            class="py-10 text-center text-sm text-zinc-400 dark:text-dtext/60">
+            暂无内容
+          </div>
 
-        <nav v-if="totalPages > 1" class="flex items-center justify-center gap-4 pt-4 pb-8" aria-label="首页内容分页">
-          <button type="button" class="paginationButton" :disabled="currentPage <= 1"
-            @click="goToPage(currentPage - 1)">
-            上一页
-          </button>
-          <span class="text-xs tabular-nums text-zinc-400 dark:text-dtext/60">
-            {{ currentPage }} / {{ totalPages }}
-          </span>
-          <button type="button" class="paginationButton" :disabled="currentPage >= totalPages"
-            @click="goToPage(currentPage + 1)">
-            下一页
-          </button>
-        </nav>
+          <nav v-if="totalPages > 1" class="flex items-center justify-center gap-4 pt-4 pb-8" aria-label="首页内容分页">
+            <button type="button" class="paginationButton" :disabled="currentPage <= 1"
+              @click="goToPage(currentPage - 1)">
+              上一页
+            </button>
+            <span class="text-xs tabular-nums text-zinc-400 dark:text-dtext/60">
+              {{ currentPage }} / {{ totalPages }}
+            </span>
+            <button type="button" class="paginationButton" :disabled="currentPage >= totalPages"
+              @click="goToPage(currentPage + 1)">
+              下一页
+            </button>
+          </nav>
         </template>
       </div>
     </section>
@@ -252,53 +241,35 @@ const totalStats = computed(() => {
   mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.4) 50%, #000 100%);
 }
 
-.homeItem {
-  position: relative;
+.home-card {
+  @apply block w-full rounded bg-surface focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-focus;
+  text-decoration: none;
+  /* 保持 ach.tripper.press 卡片的阴影层顺序和过渡。 */
+  box-shadow: theme('boxShadow.feature-card');
+  transition: transform 0.3s, background-color 0.3s, box-shadow 0.6s;
 }
 
-/* 悬浮时在左侧显示主题色竖线，卡片本身不位移 */
-.homeItem::before {
-  content: '';
-  position: absolute;
-  left: -0.75rem;
-  top: 0.25rem;
-  bottom: 0.25rem;
-  width: 2px;
-  border-radius: 9999px;
-  @apply bg-main;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease;
+.home-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 1px 10px 30px 0 rgb(0 0 0 / 0.1);
 }
 
-.homeItem:hover::before {
-  opacity: 1;
+@media (prefers-reduced-motion: reduce) {
+  .home-card {
+    transition: none;
+  }
+
+  .home-card:hover {
+    transform: none;
+  }
+}
+
+.quote-item + .quote-item {
+  @apply mt-4;
 }
 
 .paginationButton {
   @apply rounded border border-zinc-200 px-3 py-1.5 text-sm text-zinc-500 transition-colors hover:border-main hover:text-main disabled:cursor-not-allowed disabled:opacity-40 dark:border-zinc-700 dark:text-dtext;
-}
-
-/* 首页 Quote：在 article 正文（16px / 1.75）的基础上缩小并收紧行距 */
-.quote-excerpt {
-  font-size: 14px;
-  line-height: 1.4em;
-}
-
-.quote-excerpt :deep(p) {
-  margin: 0;
-  font-size: inherit;
-  line-height: inherit;
-}
-
-.quote-excerpt :deep(ul),
-.quote-excerpt :deep(ol) {
-  font-size: inherit;
-  line-height: inherit;
-}
-
-.quote-excerpt :deep(p + p) {
-  margin-top: 0.5em;
 }
 
 .postCategory {

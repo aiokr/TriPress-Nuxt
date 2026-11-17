@@ -1,0 +1,53 @@
+.memo-lightbox .pswp__top-bar {
+  box-sizing: border-box;
+  align-items: flex-start;
+  gap: 0;
+  padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) 0 12px;
+}
+
+.memo-lightbox .memo-lightbox-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  border-radius: 9999px;
+  background: rgb(0 0 0 / 0.56);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.12);
+  backdrop-filter: blur(12px);
+}
+
+.memo-lightbox .pswp__top-bar .pswp__button:is(.pswp__button--zoom, .pswp__button--close) {
+  box-sizing: border-box;
+  width: 44px;
+  height: 32px;
+  min-height: 32px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 9999px;
+  background: transparent;
+  color: white;
+  box-shadow: none;
+  opacity: 1;
+  transition: background-color 0.15s ease;
+  --pswp-icon-color: white;
+  --pswp-icon-color-secondary: transparent;
+  --pswp-icon-stroke-width: 0;
+}
+
+.memo-lightbox .pswp__top-bar .pswp__button:is(.pswp__button--zoom, .pswp__button--close):hover {
+  background: rgb(255 255 255 / 0.14);
+}
+
+.memo-lightbox .pswp__top-bar .pswp__button:is(.pswp__button--zoom, .pswp__button--close):focus-visible {
+  outline: 2px solid white;
+  outline-offset: 3px;
+}
+
+.memo-lightbox :is(.pswp__button--zoom, .pswp__button--close) .pswp__icn {
+  top: 4px;
+  left: 10px;
+  width: 24px;
+  height: 24px;
+}
